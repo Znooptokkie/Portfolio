@@ -1,0 +1,10 @@
+{
+    "liveSassCompile.settings.forceBaseDirectory": "/app/static/style/sass",
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/app/static/style/css"
+        }
+    ]
+}

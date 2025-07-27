@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Atilla Oomen</title>
+    <link href="{{ url_for('static', filename='style/css/main.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/ouroborus.png') }}" type="image/jpeg">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <nav class="nav-header">
+            <ul>
+                <li>
+                    <a href="{{ url_for('main.home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}">Education</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}">Projects</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}">Future</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    {% block header %}
+
+    {% endblock %}
+    {% block auth_content %}
+
+    {% endblock %}
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+    {% block footer %}
+    
+    {% endblock %}
+</body>
+</html>
