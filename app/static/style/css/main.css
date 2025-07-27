@@ -31,9 +31,6 @@ header .nav-header ul li a {
   color: rgb(36, 36, 36);
 }
 
-main {
-  background-color: blue;
-}
 main .cv-title-parent {
   position: relative;
   display: flex;
