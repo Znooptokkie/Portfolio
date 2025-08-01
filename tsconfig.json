@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "outDir": "./app/static/js",
+    "rootDir": "./app/static/ts",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2017", "dom"]
+  },
+//   "include": ["app/static/ts/**/*"],
+  "include": ["app/static/ts/main.ts"],
+  "exclude": ["node_modules"]
+}
