@@ -204,15 +204,12 @@ footer .footer-svg a svg {
 }
 
 @media (max-width: 409.99px) {
-  :root {
-    font-size: 12px;
-  }
   main .cv-banner-section .cv-main-banner .profile-pic img {
-    width: 75px;
+    width: 125px;
     border: solid 5px rgb(235, 235, 235);
   }
   main .cv-banner-section .cv-main-banner .banner-info h1 {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
   main .cv-banner-section .cv-main-banner .banner-info .banner-divider {
     height: 3px;
@@ -223,9 +220,6 @@ footer .footer-svg a svg {
   }
   main .cv-banner-section .ch-short-info {
     padding: 0;
-  }
-  footer {
-    flex-direction: column;
   }
 }
 @media (min-width: 410px) and (max-width: 575.97px) {
@@ -247,7 +241,7 @@ footer .footer-svg a svg {
 /* Base styles for mobile (max-width: 575.98px) */
 @media (max-width: 575.98px) {
   main {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     gap: 0;
   }
   main .cv-banner-section .cv-main-banner .banner-divider {
@@ -255,7 +249,7 @@ footer .footer-svg a svg {
     margin: 0;
   }
   main .cv-banner-section .cv-short-info {
-    margin-top: -2.25rem;
+    margin-top: -2.5rem;
   }
   main .cv-banner-section .cv-short-info .cv-short-first-div div,
   main .cv-banner-section .cv-short-info .cv-short-second-div div {
