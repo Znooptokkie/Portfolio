@@ -11,8 +11,30 @@
 </head>
 <body>
     <header>
+        <button class="nav-toggle-button" aria-label="Toggle menu">
+            &#9776;
+        </button>
         <nav class="nav-header">
             <ul>
+                <li>
+                    <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/education' %}active{% endif %}">Education</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/projects' %}active{% endif %}">Projects</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/future' %}active{% endif %}">Future</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/contact' %}active{% endif %}">Contact</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="nav-header-dropdown">
+            <ul class="nav-header-ul">
                 <li>
                     <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Home</a>
                 </li>

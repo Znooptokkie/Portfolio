@@ -80,6 +80,9 @@ header .nav-header ul li a.active {
 header .nav-header ul li a.active:hover {
   color: rgb(249.9, 199.92, 0);
 }
+header .nav-header-dropdown {
+  display: none;
+}
 
 main {
   flex: 1;
@@ -123,7 +126,7 @@ main .cv-banner-section .cv-main-banner .banner-info h2 {
 main .cv-banner-section .cv-short-info {
   z-index: -1;
   margin-top: -3rem;
-  padding: 3.5rem 2rem 2rem;
+  padding: 3rem 2rem 2rem;
   background-color: #cccccc;
   display: flex;
 }
@@ -256,7 +259,7 @@ footer .footer-svg a svg {
     margin: 0;
   }
   main .cv-banner-section .cv-short-info {
-    margin-top: -2.5rem;
+    margin-top: -2rem;
   }
   main .cv-banner-section .cv-short-info .cv-short-first-div div,
   main .cv-banner-section .cv-short-info .cv-short-second-div div {
@@ -302,6 +305,38 @@ footer .footer-svg a svg {
 /* Desktops (992px to 1199.98px) */
 /* Large desktops (1200px and up) */
 @media (max-width: 991px) {
+  header .nav-toggle-button {
+    display: block;
+  }
+  header .nav-header {
+    display: none;
+  }
+  header .nav-header-dropdown {
+    display: none;
+    background-color: rgb(235, 235, 235);
+    position: absolute;
+    top: 4rem;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+  header .nav-header-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
+  }
+  header .nav-header-dropdown ul li {
+    margin-bottom: 1rem;
+  }
+  header .nav-header-dropdown ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  header .nav-header-dropdown ul li a.active {
+    color: #ffcc00;
+  }
   main {
     padding-top: 0;
     gap: 0;
@@ -325,10 +360,24 @@ footer .footer-svg a svg {
     margin-top: 0;
     gap: 0;
   }
-  header {
-    display: none;
-  }
   svg {
     display: none;
   }
+}
+.nav-toggle-button {
+  display: none;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0.5rem;
+  float: right;
+}
+
+header.dropdown-active {
+  background-color: rgb(51, 51, 51);
+}
+
+header.dropdown-active .nav-toggle-button {
+  color: #ffcc00;
 }/*# sourceMappingURL=main.css.map */
