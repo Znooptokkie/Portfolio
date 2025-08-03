@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Unlock&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Goldman:wght@400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Unlock&display=swap");
 :root {
   font-size: 16px;
 }
@@ -52,54 +52,127 @@ body {
   height: 100px;
 }
 
+header .nav-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 header .nav-header ul {
   list-style: none;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.5rem 0;
+  width: 80%;
 }
 header .nav-header ul li a {
   text-decoration: none;
-  font-family: "Unlock", serif;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+header .nav-header ul li a:hover {
+  color: rgb(249.9, 199.92, 0);
+}
+header .nav-header ul li a.active {
+  color: #ffcc00;
+}
+header .nav-header ul li a.active:hover {
+  color: rgb(249.9, 199.92, 0);
 }
 
 main {
   flex: 1;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 7.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 }
-main .cv-main-banner {
+main .cv-banner-section .cv-main-banner {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-main .cv-main-banner .profile-pic img {
+main .cv-banner-section .cv-main-banner .profile-pic img {
   width: 15vw;
   border-radius: 50%;
   object-fit: cover;
-  border: solid 5px black;
+  border: solid 15px rgb(235, 235, 235);
 }
-main .cv-main-banner .banner-info h1 {
+main .cv-banner-section .cv-main-banner .banner-info h1 {
   font-size: 5rem;
   text-align: center;
 }
-main .cv-main-banner .banner-info .banner-divider {
+main .cv-banner-section .cv-main-banner .banner-info h1::first-letter {
+  color: #ffcc00;
+}
+main .cv-banner-section .cv-main-banner .banner-info .banner-divider {
   border: none;
   height: 5px;
   background-color: rgb(51, 51, 51);
   margin: 0.5rem 0;
   width: 100%;
 }
-main .cv-main-banner .banner-info h2 {
-  font-size: 3.5rem;
+main .cv-banner-section .cv-main-banner .banner-info h2 {
+  font-size: 3rem;
   text-align: center;
 }
-main .cv-intro-section .cv-intro-svg .cv-section-text,
-main .cv-exp-section .cv-intro-svg .cv-section-text {
-  position: relative;
-  text-align: center;
+main .cv-banner-section .cv-short-info {
+  z-index: -1;
+  margin-top: -3rem;
+  padding: 3.5rem 2rem 2rem;
+  background-color: rgb(178.5, 178.5, 178.5);
+  display: flex;
+}
+main .cv-banner-section .cv-short-info .cv-short-first-div,
+main .cv-banner-section .cv-short-info .cv-short-second-div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+main .cv-banner-section .cv-short-info .cv-short-first-div div,
+main .cv-banner-section .cv-short-info .cv-short-second-div div {
+  display: flex;
+}
+main .cv-banner-section .cv-short-info .cv-short-first-div div p,
+main .cv-banner-section .cv-short-info .cv-short-second-div div p {
+  font-family: "Courier Prime", monospace;
+  font-size: 1.1rem;
+  margin: 0;
+}
+main .cv-banner-section .cv-short-info .cv-short-first-div div p:nth-child(1),
+main .cv-banner-section .cv-short-info .cv-short-second-div div p:nth-child(1) {
+  font-weight: bold;
+  flex-shrink: 0;
+}
+main .cv-banner-section .cv-short-info .cv-short-first-div div p:nth-child(2),
+main .cv-banner-section .cv-short-info .cv-short-second-div div p:nth-child(2) {
+  flex: 1;
+}
+main .cv-banner-section .cv-short-info .cv-short-first-div p:nth-child(1) {
+  width: 12.5rem;
+}
+main .cv-banner-section .cv-short-info .cv-short-second-div p:nth-child(1) {
+  width: 13rem;
+}
+main .cv-articles-section {
+  margin-top: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+main .cv-articles-section .cv-article .cv-section-text {
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+main .cv-articles-section .cv-article .cv-section-text p {
+  line-height: 1.5;
 }
 
 footer {

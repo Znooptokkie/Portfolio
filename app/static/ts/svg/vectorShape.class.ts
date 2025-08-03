@@ -1,5 +1,5 @@
-import { Shape } from './shape.class';
-import {VectorShapeConfig } from "../interfaces/svgShapes.interface";
+import { Shape } from './shape.class.js';
+import {VectorShapeConfig } from "../interfaces/svgShapes.interface.js";
 
 /**
  * Klasse voor het aanmaken van samengestelde SVG-shapes en bijhorende tekst.
@@ -38,7 +38,7 @@ export class VectorShapes
         shapeStroke: "grey",
         shapeStrokeWidth: "3",
         fontSize: "20",
-        fontFamily: "Unlock, serif",
+        fontFamily: "Ubuntu, sans-serif",
         fontFill: "black",
         svgPointsTitle: 
         [
@@ -158,7 +158,7 @@ export class VectorShapes
             fontFamily: cfg.fontFamily,
             fill: cfg.fontFill,
             fontStyle: "italic",
-            fontWeight: "normal"
+            fontWeight: "regular"
         };
 
         return new Shape(
@@ -190,7 +190,8 @@ export class VectorShapes
         this.width = 774;
         this.height = 100;
         this.textStyles = {
-            fontSize: cfg.fontSize,
+            // fontSize: cfg.fontSize,
+            fontSize: "30",
             fontFamily: cfg.fontFamily,
             fill: cfg.fontFill,
             fontWeight: "bold",
@@ -224,9 +225,11 @@ export class VectorShapes
             this.svgSelector,
             "text",
             {
-                x: shape.shapeName === "title" ? (shape.calcCenter().x - shape.shapeWidth / 2 + 30) : shape.calcCenter().x,
+                x: shape.calcCenter().x,
+                "text-anchor": "middle",
+                // x: shape.shapeName === "title" ? (shape.calcCenter().x - shape.shapeWidth / 2 + 30) : shape.calcCenter().x,
                 y: shape.calcCenter().y,
-                "text-anchor": shape.shapeName === "title" ? "start" : "middle",
+                // "text-anchor": shape.shapeName === "title" ? "start" : "middle",
                 "dominant-baseline": "middle",
                 "font-size": this.textStyles!.fontSize,
                 "font-family": this.textStyles!.fontFamily,

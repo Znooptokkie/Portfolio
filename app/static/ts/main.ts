@@ -1,4 +1,4 @@
-import { VectorShapes } from './svg/vectorShape.class';
+import { VectorShapes } from './svg/vectorShape.class.js';
 
 // CV - Introduction Title
 const introductionTitleShape = new VectorShapes(
@@ -72,16 +72,18 @@ const languageSubtitleShape = new VectorShapes(
 
 document.addEventListener("DOMContentLoaded", () => 
 {
+    // CV - INTRODUCTION
     introductionTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
     });
-introductionSubtitleShape.render({
-    fontSize: "26",
-    shapeStroke: "grey",
-    shapeStrokeWidth: "3",
-});
+    introductionSubtitleShape.render({
+        fontSize: "26",
+        shapeStroke: "grey",
+        shapeStrokeWidth: "3",
+    });
 
+    // CV - MOTIVATION
     motivationTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
@@ -91,31 +93,31 @@ introductionSubtitleShape.render({
         fill: "transparent"
     });
 
+    // CV - INTEREST
     interestTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
     });
-
     interestSubtitleShape.render({
         fontSize: "26",
         fill: "transparent"
     });
 
+    // CV - EXPERTISE
     expertiseTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
     });
-
     expertiseSubtitleShape.render({
         fontSize: "26",
         fill: "transparent"
     });
 
+    // CV - LANGUAGE
     languageTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
     });
-
     languageSubtitleShape.render({
         fontSize: "26",
         fill: "transparent"

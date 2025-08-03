@@ -20,6 +20,7 @@ const languageTitleShape = new VectorShapes(".cv-lang-svg svg", "CV - Languages"
 // CV - Language Subtitle
 const languageSubtitleShape = new VectorShapes(".cv-lang-svg svg", "What languages do I master?", "subtitle");
 document.addEventListener("DOMContentLoaded", () => {
+    // CV - INTRODUCTION
     introductionTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         shapeStroke: "grey",
         shapeStrokeWidth: "3",
     });
+    // CV - MOTIVATION
     motivationTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fontSize: "26",
         fill: "transparent"
     });
+    // CV - INTEREST
     interestTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
@@ -45,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fontSize: "26",
         fill: "transparent"
     });
+    // CV - EXPERTISE
     expertiseTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"
@@ -53,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fontSize: "26",
         fill: "transparent"
     });
+    // CV - LANGUAGE
     languageTitleShape.render({
         fontFill: "white",
         shapeStrokeWidth: "0"

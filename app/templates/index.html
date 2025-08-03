@@ -3,59 +3,152 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-    <section class="cv-main-banner">
-        <div class="profile-pic">
-            <img src="../static/images/ikzelf.jpg" alt="A selfie of me with the Battlebot">
+    <section class="cv-banner-section">
+        <div class="cv-main-banner">
+            <div class="profile-pic">
+                <img src="../static/images/ikzelf.jpg" alt="A selfie of me with the Battlebot">
+            </div>
+            <div class="banner-info">
+                <h1>Atilla Oomen</h1>
+                <div class="banner-divider"></div>
+                <h2>Junior Software Developer</h2>
+            </div>
         </div>
-        <div class="banner-info">
-            <h1>Atilla Oomen</h1>
-            <div class="banner-divider"></div>
-            <h2>Junior Software Developer</h2>
+        <!-- <svg width="0" height="0">
+            <defs>
+                <clipPath id="left-notch" clipPathUnits="objectBoundingBox">
+                    <path d="
+                        M 0.0,0
+                        L 0.0225,0
+                        Q 0.155,0.17 0.285,0
+                        L 1,0
+                        L 1,1
+                        L 0,1
+                        Z" />
+                </clipPath>
+            </defs>
+        </svg> -->
+<div class="cv-short-info">
+    <div class="cv-short-first-div">
+        <div>
+            <p>Age:</p>
+            <p>30</p>
         </div>
+        <div>
+            <p>Location:</p>
+            <p>The Hague</p>
+        </div>
+        <div>
+            <p>Languages:</p>
+            <p>Dutch, English</p>
+        </div>
+        <div>
+            <p>Driver's License:</p>
+            <p>B</p>
+        </div>
+        <div>
+            <p>Soft Skills:</p>
+            <p>Social, Independent, Detail-oriented</p>
+        </div>
+    </div>
+    <div class="cv-short-second-div">
+        <div>
+            <p>Education Level:</p>
+            <p>MBO 4 Software Development (cum laude)</p>
+        </div>
+        <div>
+            <p>Employment Status:</p>
+            <p>Seeking work</p>
+        </div>
+        <div>
+            <p>Experience Level:</p>
+            <p>Junior Developer</p>
+        </div>
+        <div>
+            <p>Availability:</p>
+            <p>Immediately</p>
+        </div>
+        <div>
+            <p>Experience:</p>
+            <p>3 years</p>
+        </div>
+    </div>
+</div>
+
     </section>
-    <!-- INTRODUCTION section-->
-    <section class="cv-intro-section">
-        <div class="cv-intro-svg">
-            <svg></svg>
+    <section class="cv-articles-section">
+        <!-- INTRODUCTION section-->
+        <div class="cv-intro-section cv-article">
+            <div class="cv-intro-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-intro-article-text cv-section-text">
+                <p>
+                    My name is Atilla Oomen. I am 30 years old and currently living in The Hague.
+                </p>
+                <p>
+                    After finishing high school, I enrolled in the Software Development programme at ROC Mondriaan Tinwerf. Unfortunately, I wasn't able to find the motivation at the time to complete it.
+                </p>
+                <p>
+                    I then chose to work as a house painter for ten years, which I truly enjoyed — and still occasionally do as a summer job.
+                </p>
+                <p>
+                    However, my interest in the IT sector never really faded. So, at the age of 28, I decided to go back to school — this time with the motivation and drive to learn as much as I could about computers and software.
+                </p>
+                <p>
+                    I successfully completed the Software Developer programme at mboRijnland in Leiden. In fact, I was the very first student in the programme’s history at mboRijnland to graduate cum laude — definitely something worth mentioning.
+                </p>
+            </article>
         </div>
-        <article class="cv-intro-article-text cv-section-text">
-            Morbi cursus metus eget ornare mattis. In dignissim, nibh nec mollis euismod, ligula felis mollis tortor, vitae maximus libero magna sed nisi. Mauris justo ipsum, tempor at hendrerit eu, commodo eu metus. Etiam vel pharetra nulla. Nunc at consequat sem. Donec eu diam tempor, mattis turpis quis, accumsan turpis. Suspendisse volutpat consectetur efficitur. Morbi imperdiet ante vel nulla condimentum ultrices. Nullam auctor lacinia libero, ac volutpat tortor. Nam commodo venenatis vulputate. Proin quis iaculis eros. Donec odio risus, tincidunt tincidunt posuere non, euismod id mauris. Pellentesque luctus, metus et egestas interdum, neque orci eleifend ante, et faucibus est felis id arcu.
-        </article>
-    </section>
-    <!-- MOTIVATION section-->
-    <section class="cv-mot-section">        
-        <div class="cv-mot-svg">
-            <svg></svg>
+        <!-- MOTIVATION section-->
+        <div class="cv-mot-section cv-article">        
+            <div class="cv-mot-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-mot-article-text cv-section-text">
+                <p>
+                    Ondanks dat ik misschien niet altijd mijn best heb gedaan op school, ben ik wel altijd al geintreseerd geweest in technologie. Hoe worden dingen berekend? Waarom wordt iets specifiek gemaakt op deze manier? Wat zal de toekomst ons brengen qua uitvingen? 
+                </p>
+                <p>
+                    De computer is daarmee de uitgelezen kans om zelf deel uit te maken van deze toekomst. ...
+                </p>
+                <p>
+                    ...
+                </p>
+            </article>
         </div>
-        <article class="cv-mot-article-text cv-section-text">
-            Morbi cursus metus eget ornare mattis. In dignissim, nibh nec mollis euismod, ligula felis mollis tortor, vitae maximus libero magna sed nisi. Mauris justo ipsum, tempor at hendrerit eu, commodo eu metus. Etiam vel pharetra nulla. Nunc at consequat sem. Donec eu diam tempor, mattis turpis quis, accumsan turpis. Suspendisse volutpat consectetur efficitur. Morbi imperdiet ante vel nulla condimentum ultrices. Nullam auctor lacinia libero, ac volutpat tortor. Nam commodo venenatis vulputate. Proin quis iaculis eros. Donec odio risus, tincidunt tincidunt posuere non, euismod id mauris. Pellentesque luctus, metus et egestas interdum, neque orci eleifend ante, et faucibus est felis id arcu.
-        </article>
-    </section>
-    <!-- INTEREST section-->
-    <section class="cv-inter-section">        
-        <div class="cv-inter-svg">
-            <svg></svg>
+        <!-- INTEREST section-->
+        <div class="cv-inter-section cv-article">        
+            <div class="cv-inter-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-inter-article-text cv-section-text">
+                <p>
+                    ...
+                </p>
+            </article>
         </div>
-        <article class="cv-inter-article-text cv-section-text">
-            Morbi cursus metus eget ornare mattis. In dignissim, nibh nec mollis euismod, ligula felis mollis tortor, vitae maximus libero magna sed nisi. Mauris justo ipsum, tempor at hendrerit eu, commodo eu metus. Etiam vel pharetra nulla. Nunc at consequat sem. Donec eu diam tempor, mattis turpis quis, accumsan turpis. Suspendisse volutpat consectetur efficitur. Morbi imperdiet ante vel nulla condimentum ultrices. Nullam auctor lacinia libero, ac volutpat tortor. Nam commodo venenatis vulputate. Proin quis iaculis eros. Donec odio risus, tincidunt tincidunt posuere non, euismod id mauris. Pellentesque luctus, metus et egestas interdum, neque orci eleifend ante, et faucibus est felis id arcu.
-        </article>
-    </section>
-    <!-- EXPERTISE section-->
-    <section class="cv-exper-section">        
-        <div class="cv-exper-svg">
-            <svg></svg>
+        <!-- EXPERTISE section-->
+        <div class="cv-exper-section cv-article">        
+            <div class="cv-exper-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-exper-article-text cv-section-text">
+                <p>
+                    ...
+                </p>
+            </article>
         </div>
-        <article class="cv-exper-article-text cv-section-text">
-            Morbi cursus metus eget ornare mattis. In dignissim, nibh nec mollis euismod, ligula felis mollis tortor, vitae maximus libero magna sed nisi. Mauris justo ipsum, tempor at hendrerit eu, commodo eu metus. Etiam vel pharetra nulla. Nunc at consequat sem. Donec eu diam tempor, mattis turpis quis, accumsan turpis. Suspendisse volutpat consectetur efficitur. Morbi imperdiet ante vel nulla condimentum ultrices. Nullam auctor lacinia libero, ac volutpat tortor. Nam commodo venenatis vulputate. Proin quis iaculis eros. Donec odio risus, tincidunt tincidunt posuere non, euismod id mauris. Pellentesque luctus, metus et egestas interdum, neque orci eleifend ante, et faucibus est felis id arcu.
-        </article>
-    </section>
-    <!-- LANGUAGES section-->
-    <section class="cv-lang-section">        
-        <div class="cv-lang-svg">
-            <svg></svg>
+        <!-- LANGUAGES section-->
+        <div class="cv-lang-section cv-article">        
+            <div class="cv-lang-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-lang-article-text cv-section-text">
+                <p>
+                    ...
+                </p>
+            </article>
         </div>
-        <article class="cv-lang-article-text cv-section-text">
-            Morbi cursus metus eget ornare mattis. In dignissim, nibh nec mollis euismod, ligula felis mollis tortor, vitae maximus libero magna sed nisi. Mauris justo ipsum, tempor at hendrerit eu, commodo eu metus. Etiam vel pharetra nulla. Nunc at consequat sem. Donec eu diam tempor, mattis turpis quis, accumsan turpis. Suspendisse volutpat consectetur efficitur. Morbi imperdiet ante vel nulla condimentum ultrices. Nullam auctor lacinia libero, ac volutpat tortor. Nam commodo venenatis vulputate. Proin quis iaculis eros. Donec odio risus, tincidunt tincidunt posuere non, euismod id mauris. Pellentesque luctus, metus et egestas interdum, neque orci eleifend ante, et faucibus est felis id arcu.
-        </article>
     </section>
 {% endblock %}

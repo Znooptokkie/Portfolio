@@ -1,5 +1,5 @@
 **/*.env
-__pychache__
+__pycache__/
 venv/
 *.pyc
 *.css.map
@@ -8,3 +8,4 @@ venv/
 # Eigen TS file transform
 con/
 go.sh
+*.js
