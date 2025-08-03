@@ -52,7 +52,7 @@ h5
 
 body
 {
-    max-width: 100vw;
+    width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -119,6 +119,7 @@ header
 main
 {
     flex: 1;
+    width: 100%;
     max-width: 1024px;
     margin: 0 auto;
     padding: 7.5rem 1rem;
@@ -140,7 +141,8 @@ main
             {
                 img
                 {
-                    width: 15vw;
+                    // width: 15vw;
+                    width: 275px;
                     border-radius: 50%;
                     object-fit: cover;
                     border: solid 15px $background-color;
@@ -185,7 +187,7 @@ main
             z-index: -1;
             margin-top: -3rem;
             padding: 3.5rem 2rem 2rem;
-            background-color: lighten($primary-color, 50);
+            background-color: lighten($primary-color, 60);
             display: flex;
         
             .cv-short-first-div,
@@ -310,8 +312,434 @@ footer
                 
                 vertical-align: middle;
                 margin-right: 0.5rem;
-                fill: white; // Zorgt ervoor dat de SVG-vulling wit is
+                fill: white;
             }
         }
+    }
+}
+
+// @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Goldman:wght@400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Unlock&display=swap');
+
+// $title-font: "Unlock", serif;
+// $test-font: "Goldman", sans-serif;
+// $paragraph-font: "Ubuntu", sans-serif;
+// $courier-font: "Courier Prime", monospace;
+
+// $primary-color: rgb(51, 51, 51);
+// $background-color: rgb(235, 235, 235);
+// $main-color: #ffcc00;
+
+// :root
+// {
+//     font-size: 16px; // Base font size
+// }
+
+// ::selection 
+// {
+//     background: $main-color;
+//     color: black;
+// }
+
+// /* Reset remains unchanged */
+// *,
+// *::before,
+// *::after
+// {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }
+
+// p,
+// a,
+// li,
+// article,
+// div,
+// textarea
+// {
+//     font-family: $paragraph-font;
+//     color: $primary-color;
+// }
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5
+// {
+//     color: $primary-color;
+// }
+
+// body
+// {
+//     max-width: 100vw;
+//     min-height: 100vh;
+//     display: flex;
+//     flex-direction: column;
+//     background-color: $background-color;
+// }
+
+
+///////////////////////////////////////////
+/// 
+///       
+///      ///      ///
+///    //       //
+///    //       //
+///      ///      ///
+/// 
+/// 
+/// ////////////////////////////////////
+/// 
+///
+
+// @media (max-width: 410px)
+// {
+//     main
+//     {
+
+//         .cv-banner-section
+//         {
+//             .cv-main-banner
+//             {
+
+//                 .banner-info
+//                 {
+//                     h1
+//                     {
+//                         font-size: 1.5rem !important;
+//                     }
+
+//                 .banner-divider
+//                 {
+//                     height: 3px;
+//                     margin: 0;
+//                 }
+
+//                     h2
+//                     {
+//                         font-size: .75rem !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+@media (max-width: 409.99px)
+{
+    :root
+    {
+        font-size: 12px;
+    }
+    main
+    {
+        .cv-banner-section
+        {
+            .cv-main-banner
+            {
+                .profile-pic
+                {
+                    img
+                    {
+                        width: 75px;
+                        border: solid 5px $background-color;
+                    }
+                }
+                .banner-info
+                {
+                    h1
+                    {
+                        font-size: 1rem;
+                    }
+
+                .banner-divider
+                {
+                    height: 3px;
+                    margin: 0;
+                }
+
+                    h2
+                    {
+                        font-size: .75rem;
+                    }
+                }
+            }
+
+            .ch-short-info
+            {
+                padding: 0;
+            }
+        }
+    }
+
+    footer
+    {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 410px) and (max-width: 575.97px)
+{
+    main
+    {
+        .cv-banner-section
+        {
+            .cv-main-banner
+            {
+                .profile-pic
+                {
+                    img
+                    {
+                        width: 150px;
+                        border: solid 10px $background-color;
+                    }
+                }
+
+                .banner-info
+                {
+                    h1
+                    {
+                        font-size: 2rem;
+                    }
+
+                .banner-divider
+                {
+                    height: 3px;
+                    margin: 0;
+                }
+
+                    h2
+                    {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Base styles for mobile (max-width: 575.98px) */
+@media (max-width: 575.98px) 
+{
+    main
+    {
+        padding: 0 1rem;
+        gap: 0;
+
+        .cv-banner-section
+        {
+            // margin: 0 5rem;
+
+            .cv-main-banner
+            {
+                // .profile-pic
+                // {
+                //     img
+                //     {
+                //         width: 150px;
+                //         border: solid 10px $background-color;
+                //     }
+                // }
+
+                // .banner-info
+                // {
+                //     h1
+                //     {
+                //         font-size: 2rem;
+                //     }
+
+                .banner-divider
+                {
+                    height: 3px;
+                    margin: 0;
+                }
+
+                //     h2
+                //     {
+                //         font-size: 1.1rem;
+                //     }
+                // }
+            }
+        
+        .cv-short-info
+        {
+            margin-top: -2.25rem;
+            // padding: 3.5rem 2rem 2rem;
+
+            .cv-short-first-div,
+            .cv-short-second-div
+            {
+                div
+                {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            .cv-short-first-div
+            {
+                div:nth-child(4),
+                div:nth-child(5)
+                {
+                    display: none;
+                }
+            }
+
+            .cv-short-second-div
+            {
+                div:nth-child(4),
+                div:nth-child(5)
+                {
+                    display: none;
+                }
+            }
+        }
+        }
+    }
+}
+
+/* Small tablets (576px to 767.98px) */
+@media (min-width: 576px) and (max-width: 767.98px) 
+{
+    main
+    {
+        .cv-banner-section
+        {
+            // margin: 0 5rem;
+
+            .cv-main-banner
+            {
+                .profile-pic
+                {
+                    img
+                    {
+                        width: 200px;
+                    }
+                }
+
+                .banner-info
+                {
+                    h1
+                    {
+                        font-size: 2.5rem;
+                    }
+
+                    h2
+                    {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+            .cv-short-info
+            {
+                padding: 3.5rem 4rem 2rem;
+            }
+        }
+    }
+}
+
+/* Large tablets/small laptops (768px to 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) 
+{
+    main
+    {
+        .cv-banner-section
+        {
+            // margin: 0 5rem;
+
+            .cv-main-banner
+            {
+                .banner-info
+                {
+                    h1
+                    {
+                        font-size: 3.5rem;
+                    }
+
+                    h2
+                    {
+                        font-size: 2rem;
+                    }
+                }
+            }
+
+            .cv-short-info
+            {
+                padding: 3.5rem 4rem 2rem;
+            }
+        }
+    }
+}
+
+
+// 992px is belangrijk breekpunt
+
+/* Desktops (992px to 1199.98px) */
+@media (min-width: 992px) and (max-width: 1199.98px) 
+{
+
+}
+
+/* Large desktops (1200px and up) */
+@media (min-width: 1200px) 
+{
+
+}
+
+@media (max-width: 991px)
+{
+    main
+    {
+        padding-top: 0;
+        gap: 0;
+        
+        .cv-banner-section
+        {
+            // margin: 0 5rem;
+
+            .cv-short-info
+            {
+                font-size: 1rem;
+                flex-direction: column;
+                // padding: 3.5rem 4rem 2rem;
+
+            .cv-short-first-div,
+            .cv-short-second-div
+            {
+                width: 100%;
+                // align-self: center;
+
+                p:nth-child(1)
+                {
+                    width: 15rem;
+                }
+            }
+
+            .cv-short-second-div
+            {
+                margin-top: .5rem;
+            }
+            }
+        }
+
+        .cv-articles-section
+        {
+            margin-top: 0;
+            gap: 0;
+        }
+    }
+
+
+    header
+    {
+        display: none;
+    }
+    // MOET WEGGEHAALD WORDEN!!!!@#!@rewfwqfadsfwef
+    // !@#!#!@/
+    svg
+    {
+        display: none;
     }
 }
