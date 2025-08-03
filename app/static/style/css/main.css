@@ -209,17 +209,24 @@ footer .footer-svg a svg {
     border: solid 5px rgb(235, 235, 235);
   }
   main .cv-banner-section .cv-main-banner .banner-info h1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
   main .cv-banner-section .cv-main-banner .banner-info .banner-divider {
     height: 3px;
     margin: 0;
   }
   main .cv-banner-section .cv-main-banner .banner-info h2 {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
   main .cv-banner-section .ch-short-info {
     padding: 0;
+  }
+  main .cv-articles-section .cv-article .cv-section-text {
+    margin: 0;
+    padding: 1rem;
+  }
+  footer {
+    font-size: 0.75rem;
   }
 }
 @media (min-width: 410px) and (max-width: 575.97px) {
