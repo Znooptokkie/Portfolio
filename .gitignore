@@ -1,16 +1,23 @@
+# Omgevings- en configuratiebestanden
 **/*.env
-__pycache__/
-venv/
-*.pyc
-*.css.map
 .vscode/
 
-# Eigen TS file transform
-con/
-go.sh
-/dist
-/build
+# Python build/artifact bestanden
+__pycache__/
+*.pyc
+venv/
+
+# CSS en gerelateerde bestanden
+*.css
+*.css.map
+
+# TypeScript/JS build/artifact bestanden
+app/static/js/
+dist/
+build/
 *.js
 *.js.map
-*.class.js
-app/static/js/
+
+# Eigen scripts en mappen
+con/
+go.sh

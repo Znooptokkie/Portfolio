@@ -251,7 +251,7 @@ main
 
     .cv-articles-section
     {
-        margin-top: 7.5rem;
+        margin-top: 2.5rem;
         display: flex;
         flex-direction: column;
         gap: 5rem;
@@ -287,6 +287,7 @@ footer
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    padding: .5rem 0;
 
     p
     {
@@ -796,7 +797,7 @@ footer
 
         .cv-articles-section
         {
-            margin-top: 0;
+            margin-top: 3.5rem;
             gap: 0;
         }
     }
