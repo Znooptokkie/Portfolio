@@ -48,8 +48,10 @@ body {
 .cv-inter-svg svg,
 .cv-exper-svg svg,
 .cv-lang-svg svg {
-  width: 1024px;
-  height: 100px;
+  width: 100%;
+  max-width: 1024px;
+  max-height: 100px;
+  margin: 0 auto;
 }
 
 header .nav-header {
@@ -359,9 +361,6 @@ footer .footer-svg a svg {
   main .cv-articles-section {
     margin-top: 0;
     gap: 0;
-  }
-  svg {
-    display: none;
   }
 }
 .nav-toggle-button {

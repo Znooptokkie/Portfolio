@@ -20,13 +20,15 @@ export class Shape
      * @param height - De hoogte van het element
      * @param name - Optionele naam van het element
      */
-    constructor(
+    constructor
+    (
         svgSelector: string, 
         type: string, 
         attributes: { [key: string]: string | number } = {}, 
         width: number = 0, 
         height: number = 0, 
-        name: string | null = null) 
+        name: string | null = null
+    ) 
     {
         this.svg = document.querySelector(svgSelector) as SVGElement | null;
         this.type = type;
@@ -40,52 +42,29 @@ export class Shape
     /**
      * Maakt het SVG-element aan, inclusief gradient indien nodig.
      */
-create(): void 
-{
-    if (this.type === "path" && this.shapeName === "title") 
+    public create(): void 
     {
-        const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+        this.element = document.createElementNS("http://www.w3.org/2000/svg", this.type) as SVGGraphicsElement;
 
-        const gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-        gradient.setAttribute("id", "titleGradient");
-        gradient.setAttribute("x1", "0%");
-        gradient.setAttribute("y1", "0%");
-        gradient.setAttribute("x2", "100%");
-        gradient.setAttribute("y2", "100%");
+        if (this.type === "path" && this.shapeName === "title") 
+        {
+            this.attributes.fill = "url(#titleGradient)";
+        } 
+        else if (this.type === "path" && this.shapeName === "subtitle") 
+        {
+            this.attributes.fill = "transparent";
+        }
 
-        const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop1.setAttribute("offset", "0%");
-        stop1.setAttribute("stop-color", "#222");
-
-        const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-        stop2.setAttribute("offset", "100%");
-        stop2.setAttribute("stop-color", "#666");
-
-        gradient.appendChild(stop1);
-        gradient.appendChild(stop2);
-        defs.appendChild(gradient);
-        this.svg?.appendChild(defs);
-
-        this.attributes.fill = "url(#titleGradient)";
-        delete this.attributes.filter;
-    } 
-    else if (this.type === "path" && this.shapeName === "subtitle") 
-    {
-        this.attributes.fill = "transparent";
+        for (const [key, value] of Object.entries(this.attributes)) 
+        {
+            this.element.setAttribute(key, String(value));
+        }
     }
-
-    this.element = document.createElementNS("http://www.w3.org/2000/svg", this.type) as SVGGraphicsElement;
-
-    for (const [key, value] of Object.entries(this.attributes)) 
-    {
-        this.element.setAttribute(key, String(value));
-    }
-}
 
     /**
      * Tekent het SVG-element in de container.
      */
-    draw(): void 
+    public draw(): void 
     {
         if (!this.element) 
         {
@@ -102,7 +81,7 @@ create(): void
      * Berekent het middelpunt van het SVG-element.
      * @returns De X- en Y-coördinaten van het midden
      */
-    calcCenter(): { x: number; y: number } 
+    public calcCenter(): { x: number; y: number } 
     {
         if (!this.element) 
         {

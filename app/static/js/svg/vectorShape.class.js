@@ -13,12 +13,46 @@ export class VectorShapes {
         this.svgSelector = svgSelector;
         this.svgText = svgText;
         this.name = name;
+        if (!VectorShapes.instancesBySelector.has(svgSelector)) {
+            VectorShapes.instancesBySelector.set(svgSelector, []);
+        }
+        VectorShapes.instancesBySelector.get(svgSelector).push(this);
+        this.initializeResizeListener();
+    }
+    // Methode om de resize listener te initialiseren
+    initializeResizeListener() {
+        let timeout;
+        window.addEventListener("resize", () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                const instances = VectorShapes.instancesBySelector.get(this.svgSelector);
+                if (instances) {
+                    VectorShapes.clearAllPaths(this.svgSelector);
+                    instances.forEach(instance => {
+                        instance.render({});
+                    });
+                }
+            }, 100);
+        });
+    }
+    /**
+     * Verwijdert alle path- en text-elementen uit de opgegeven SVG-container.
+     * @param svgSelector - De CSS-selector van de SVG-container
+     */
+    static clearAllPaths(svgSelector) {
+        const svgContainer = document.querySelector(svgSelector);
+        if (svgContainer) {
+            svgContainer.querySelectorAll("path, text").forEach(el => el.remove());
+        }
     }
     /**
      * Rendert het SVG-shape en bijhorende tekst.
      * @param config - Optionele configuratie (overschrijft defaults)
      */
     render(config = {}) {
+        if (this.name === "title") {
+            this.titleGradient();
+        }
         const shape = this.defineWhichShape(config);
         if (shape) {
             shape.draw();
@@ -43,10 +77,70 @@ export class VectorShapes {
         }
     }
     /**
-     * Genereert de path-string voor het SVG-path.
-     * @param cfg - Configuratie met puntencoördinaten
-     * @returns Path-string in SVG-notatie
+     * Stelt de eigenschappen in voor een titel-shape.
+     * @param cfg - Configuratieobject
+     * @returns Shape
      */
+    titlePropertiesArticle(cfg) {
+        var _a;
+        const scaledPoints = this.responsiveSvgPoints(cfg.svgPointsTitle);
+        // Werk de pathData bij met de schaalbare punten
+        this.pathData = this.makePathForSvg(Object.assign(Object.assign({}, cfg), { svgPointsTitle: scaledPoints }));
+        this.shapeStyles = {
+            stroke: cfg.shapeStroke,
+            strokeWidth: cfg.shapeStrokeWidth
+        };
+        this.width = 350;
+        this.height = 50;
+        this.textStyles = {
+            fontSize: cfg.fontSize,
+            fontFamily: cfg.fontFamily,
+            fill: ((_a = this.textStyles) === null || _a === void 0 ? void 0 : _a.fill) || cfg.fontFill,
+            fontStyle: "italic",
+            fontWeight: "regular"
+        };
+        return new Shape(this.svgSelector, "path", {
+            d: this.pathData,
+            stroke: cfg.shapeStroke,
+            "stroke-width": 0,
+        }, this.width, // X_AS
+        this.height, this.name);
+    }
+    /**
+     * Stelt de eigenschappen in voor een subtitle-shape.
+     * @param cfg - Configuratieobject
+     * @returns Shape
+     */
+    subtitlePropertiesArticle(cfg) {
+        var _a;
+        const scaledPoints = this.responsiveSvgPoints(cfg.svgPointsSubtitle);
+        // Werk de pathData bij met de schaalbare punten
+        this.pathData = this.makePathForSvg(Object.assign(Object.assign({}, cfg), { svgPointsSubtitle: scaledPoints }));
+        this.shapeStyles = {
+            stroke: cfg.shapeStroke,
+            strokeWidth: cfg.shapeStrokeWidth
+        };
+        this.width = 774;
+        this.height = 100;
+        this.textStyles = {
+            // fontSize: cfg.fontSize,
+            fontSize: "30",
+            fontFamily: cfg.fontFamily,
+            fill: ((_a = this.textStyles) === null || _a === void 0 ? void 0 : _a.fill) || cfg.fontFill,
+            fontWeight: "bold",
+            fontStyle: "normal"
+        };
+        return new Shape(this.svgSelector, "path", {
+            d: this.pathData,
+            stroke: cfg.shapeStroke,
+            "stroke-width": cfg.shapeStrokeWidth
+        }, this.width, this.height, this.name);
+    }
+    /**
+ * Genereert de path-string voor het SVG-path.
+ * @param cfg - Configuratie met puntencoördinaten
+ * @returns Path-string in SVG-notatie
+ */
     makePathForSvg(cfg) {
         let pathStructure = "";
         const whichSvg = this.name === "title" ? cfg.svgPointsTitle : cfg.svgPointsSubtitle;
@@ -61,72 +155,15 @@ export class VectorShapes {
         return `M ${pathStructure} Z`;
     }
     /**
-     * Stelt de eigenschappen in voor een titel-shape.
-     * @param cfg - Configuratieobject
-     * @returns Shape
-     */
-    titlePropertiesArticle(cfg) {
-        this.pathData = this.makePathForSvg(cfg);
-        console.log(this.pathData);
-        this.shapeStyles = {
-            stroke: cfg.shapeStroke,
-            strokeWidth: cfg.shapeStrokeWidth
-        };
-        this.width = 350;
-        this.height = 50;
-        this.textStyles = {
-            fontSize: cfg.fontSize,
-            fontFamily: cfg.fontFamily,
-            fill: cfg.fontFill,
-            fontStyle: "italic",
-            fontWeight: "regular"
-        };
-        return new Shape(this.svgSelector, "path", {
-            d: this.pathData,
-            stroke: cfg.shapeStroke,
-            "stroke-width": cfg.shapeStrokeWidth
-        }, this.width, this.height, this.name);
-    }
-    /**
-     * Stelt de eigenschappen in voor een subtitle-shape.
-     * @param cfg - Configuratieobject
-     * @returns Shape
-     */
-    subtitlePropertiesArticle(cfg) {
-        this.pathData = this.makePathForSvg(cfg);
-        this.shapeStyles = {
-            stroke: cfg.shapeStroke,
-            strokeWidth: cfg.shapeStrokeWidth
-        };
-        this.width = 774;
-        this.height = 100;
-        this.textStyles = {
-            // fontSize: cfg.fontSize,
-            fontSize: "30",
-            fontFamily: cfg.fontFamily,
-            fill: cfg.fontFill,
-            fontWeight: "bold",
-            fontStyle: "normal"
-        };
-        return new Shape(this.svgSelector, "path", {
-            d: this.pathData,
-            stroke: cfg.shapeStroke,
-            "stroke-width": cfg.shapeStrokeWidth
-        }, this.width, this.height, this.name);
-    }
-    /**
      * Maakt een tekstvorm die gepositioneerd wordt bij het middelpunt van een shape.
      * @param shape - De bijbehorende shape waar tekst bij hoort
      * @returns Tekstvorm als SVG-element
      */
     createTextShape(shape) {
-        const center = shape.calcCenter();
         const textShape = new Shape(this.svgSelector, "text", {
             x: shape.calcCenter().x,
             "text-anchor": "middle",
-            // x: shape.shapeName === "title" ? (shape.calcCenter().x - shape.shapeWidth / 2 + 30) : shape.calcCenter().x,
             y: shape.calcCenter().y,
-            // "text-anchor": shape.shapeName === "title" ? "start" : "middle",
             "dominant-baseline": "middle",
             "font-size": this.textStyles.fontSize,
             "font-family": this.textStyles.fontFamily,
@@ -140,7 +177,54 @@ export class VectorShapes {
         }
         return textShape;
     }
+    responsiveSvgPoints(array) {
+        // 1040px = Width of the (svg + margin)
+        if (window.innerWidth <= 1040) {
+            const scaledPoints = [];
+            for (let i = 0; i < array.length; i++) {
+                const element = parseInt(array[i].x, 10);
+                const newXPoint = Math.round((element * (window.innerWidth / 1024)));
+                // console.log(newXPoint);
+                scaledPoints.push({
+                    x: newXPoint.toString(),
+                    y: array[i].y
+                });
+            }
+            // console.log(`X-AS: ${window.innerWidth}`);
+            return scaledPoints;
+        }
+        return array;
+    }
+    titleGradient() {
+        const svgContainer = document.querySelector(this.svgSelector);
+        if (!svgContainer)
+            return;
+        let defs = svgContainer.querySelector("defs");
+        if (!defs) {
+            defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+            svgContainer.insertBefore(defs, svgContainer.firstChild);
+        }
+        let gradient = defs.querySelector("#titleGradient");
+        if (!gradient) {
+            gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+            gradient.setAttribute("id", "titleGradient");
+            gradient.setAttribute("x1", "0%");
+            gradient.setAttribute("y1", "0%");
+            gradient.setAttribute("x2", "100%");
+            gradient.setAttribute("y2", "100%");
+            const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+            stop1.setAttribute("offset", "0%");
+            stop1.setAttribute("stop-color", "#222");
+            const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+            stop2.setAttribute("offset", "100%");
+            stop2.setAttribute("stop-color", "#666");
+            gradient.appendChild(stop1);
+            gradient.appendChild(stop2);
+            defs.appendChild(gradient);
+        }
+    }
 }
+VectorShapes.instancesBySelector = new Map();
 /**
  * Standard values the title/subtitle part - CV Homepage
  */
@@ -166,5 +250,5 @@ VectorShapes.defaultConfig = {
         { x: "971.5", y: "52.5" },
         { x: "921.5", y: "97.5" },
         { x: "302.5", y: "97.5" }
-    ]
+    ],
 };

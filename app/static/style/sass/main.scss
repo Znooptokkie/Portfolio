@@ -65,8 +65,10 @@ body
 .cv-exper-svg svg,
 .cv-lang-svg svg
 {
-    width: 1024px;
-    height: 100px;
+    width: 100%;
+    max-width: 1024px;
+    max-height: 100px;
+    margin: 0 auto;
 }
 
 header
@@ -805,7 +807,7 @@ footer
 
     svg
     {
-        display: none;
+        // display: none;x  
     }
 }
 
