@@ -8,4 +8,9 @@ venv/
 # Eigen TS file transform
 con/
 go.sh
+/dist
+/build
 *.js
+*.js.map
+*.class.js
+app/static/js/
