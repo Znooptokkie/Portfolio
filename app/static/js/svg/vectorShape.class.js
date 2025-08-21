@@ -93,7 +93,7 @@ export class VectorShapes {
         this.width = 350;
         this.height = 50;
         this.textStyles = {
-            fontSize: cfg.fontSize,
+            fontSize: this.responsiveSvgText()[0],
             fontFamily: cfg.fontFamily,
             fill: ((_a = this.textStyles) === null || _a === void 0 ? void 0 : _a.fill) || cfg.fontFill,
             fontStyle: "italic",
@@ -124,12 +124,13 @@ export class VectorShapes {
         this.height = 100;
         this.textStyles = {
             // fontSize: cfg.fontSize,
-            fontSize: "30",
+            fontSize: this.responsiveSvgText()[1],
             fontFamily: cfg.fontFamily,
             fill: ((_a = this.textStyles) === null || _a === void 0 ? void 0 : _a.fill) || cfg.fontFill,
             fontWeight: "bold",
             fontStyle: "normal"
         };
+        // console.log(scaledPoints);
         return new Shape(this.svgSelector, "path", {
             d: this.pathData,
             stroke: cfg.shapeStroke,
@@ -178,22 +179,46 @@ export class VectorShapes {
         return textShape;
     }
     responsiveSvgPoints(array) {
-        // 1040px = Width of the (svg + margin)
+        // 1040px = Width of the (svg + margin) 1024 + 16
         if (window.innerWidth <= 1040) {
             const scaledPoints = [];
             for (let i = 0; i < array.length; i++) {
-                const element = parseInt(array[i].x, 10);
-                const newXPoint = Math.round((element * (window.innerWidth / 1024)));
-                // console.log(newXPoint);
+                const xPoint = parseInt(array[i].x, 10);
+                const newXPoint = Math.round((xPoint * (window.innerWidth / 1024)));
+                const yPoint = parseInt(array[i].y, 10);
+                let newYPoint = 0;
+                if (window.innerWidth <= 625) {
+                    newYPoint = Math.round((yPoint * (window.innerWidth / 600)));
+                }
+                if (newYPoint === 0) {
+                    newYPoint = array[i].y;
+                }
+                // console.log(yPoint);
+                // console.log(newYPoint);
                 scaledPoints.push({
                     x: newXPoint.toString(),
-                    y: array[i].y
+                    y: newYPoint.toString(),
                 });
             }
-            // console.log(`X-AS: ${window.innerWidth}`);
             return scaledPoints;
         }
         return array;
+    }
+    responsiveSvgText() {
+        let basicFontSizeTitle = 20;
+        let basicFontSizeSubtitle = 30;
+        if (window.innerWidth < 700) {
+            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 700);
+            if (window.innerWidth < 600) {
+                basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 500);
+                if (basicFontSizeSubtitle > 30) {
+                    basicFontSizeSubtitle = 30;
+                }
+            }
+        }
+        // console.log(basicFontSizeTitle);
+        // console.log(basicFontSizeSubtitle);
+        return [basicFontSizeTitle.toString(), basicFontSizeSubtitle.toString()];
     }
     titleGradient() {
         const svgContainer = document.querySelector(this.svgSelector);

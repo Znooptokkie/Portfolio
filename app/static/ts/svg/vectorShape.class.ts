@@ -176,7 +176,7 @@ export class VectorShapes
             this.width = 350;
             this.height = 50;
             this.textStyles = {
-                fontSize: cfg.fontSize,
+                fontSize: this.responsiveSvgText()[0],
                 fontFamily: cfg.fontFamily,
                 fill: this.textStyles?.fill || cfg.fontFill,
                 fontStyle: "italic",
@@ -208,33 +208,35 @@ export class VectorShapes
 
         // Werk de pathData bij met de schaalbare punten
         this.pathData = this.makePathForSvg({ ...cfg, svgPointsSubtitle: scaledPoints });
-            this.shapeStyles = {
-                stroke: cfg.shapeStroke,
-                strokeWidth: cfg.shapeStrokeWidth
-            };
-            this.width = 774;
-            this.height = 100;
-            this.textStyles = {
-                // fontSize: cfg.fontSize,
-                fontSize: "30",
-                fontFamily: cfg.fontFamily,
-                fill: this.textStyles?.fill || cfg.fontFill,
-                fontWeight: "bold",
-                fontStyle: "normal"
-            };
+        this.shapeStyles = {
+            stroke: cfg.shapeStroke,
+            strokeWidth: cfg.shapeStrokeWidth
+        };
+        this.width = 774;
+        this.height = 100;
+        this.textStyles = {
+            // fontSize: cfg.fontSize,
+            fontSize: this.responsiveSvgText()[1],
+            fontFamily: cfg.fontFamily,
+            fill: this.textStyles?.fill || cfg.fontFill,
+            fontWeight: "bold",
+            fontStyle: "normal"
+        };
 
-            return new Shape(
-                this.svgSelector,
-                "path",
-                {
-                    d: this.pathData,
-                    stroke: cfg.shapeStroke,
-                    "stroke-width": cfg.shapeStrokeWidth
-                },
-                this.width,
-                this.height,
-                this.name
-            );
+        // console.log(scaledPoints);
+
+        return new Shape(
+            this.svgSelector,
+            "path",
+            {
+                d: this.pathData,
+                stroke: cfg.shapeStroke,
+                "stroke-width": cfg.shapeStrokeWidth
+            },
+            this.width,
+            this.height,
+            this.name
+        );
     }
 
         /**
@@ -299,26 +301,66 @@ export class VectorShapes
 
     private responsiveSvgPoints(array: { x: string; y: string }[]): { x: string; y: string }[] 
     {
-        // 1040px = Width of the (svg + margin)
+        // 1040px = Width of the (svg + margin) 1024 + 16
         if (window.innerWidth <= 1040) 
         {
-            const scaledPoints = [];
+            const scaledPoints = []
 
             for (let i = 0; i < array.length; i++) 
             {
-                const element = parseInt(array[i].x, 10);
-                const newXPoint = Math.round((element * (window.innerWidth / 1024)));
-                // console.log(newXPoint);
+                const xPoint: number = parseInt(array[i].x, 10)
+                const newXPoint: number = Math.round((xPoint * (window.innerWidth / 1024)))
+
+                const yPoint: number = parseInt(array[i].y, 10)
+                let newYPoint: number | string = 0
+
+                if (window.innerWidth <= 625)
+                {
+                    newYPoint = Math.round((yPoint * (window.innerWidth / 600)))
+                }
+
+                if (newYPoint === 0)
+                {
+                    newYPoint = array[i].y
+                }
+
+                // console.log(yPoint);
+                // console.log(newYPoint);
+
                 scaledPoints.push({
                     x: newXPoint.toString(),
-                    y: array[i].y
+                    y: newYPoint.toString(),
                 });
             }
-
-            // console.log(`X-AS: ${window.innerWidth}`);
             return scaledPoints;
         }
         return array;
+    }
+
+    private responsiveSvgText(): string[]
+    {
+        let basicFontSizeTitle: number | string = 20
+        let basicFontSizeSubtitle: number | string = 30
+
+        if (window.innerWidth < 700)
+        {
+            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 700)
+
+            if (window.innerWidth < 600)
+            {
+                basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 500)
+
+                if (basicFontSizeSubtitle > 30)
+                {
+                    basicFontSizeSubtitle = 30
+                }
+            }
+        }
+
+        // console.log(basicFontSizeTitle);
+        // console.log(basicFontSizeSubtitle);
+
+        return [basicFontSizeTitle.toString(), basicFontSizeSubtitle.toString()]
     }
 
     private titleGradient(): void

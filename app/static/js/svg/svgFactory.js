@@ -8,9 +8,9 @@ export class SvgFactoryClass {
         this.interestTitleShape = new VectorShapes(".cv-inter-svg svg", "CV - Interests", "title");
         this.interestSubtitleShape = new VectorShapes(".cv-inter-svg svg", "What do I like?", "subtitle");
         this.expertiseTitleShape = new VectorShapes(".cv-exper-svg svg", "CV - Expertise", "title");
-        this.expertiseSubtitleShape = new VectorShapes(".cv-exper-svg svg", "Which concepts do I understand?", "subtitle");
+        this.expertiseSubtitleShape = new VectorShapes(".cv-exper-svg svg", "What do I know?", "subtitle");
         this.languageTitleShape = new VectorShapes(".cv-lang-svg svg", "CV - Languages", "title");
-        this.languageSubtitleShape = new VectorShapes(".cv-lang-svg svg", "What languages do I master?", "subtitle");
+        this.languageSubtitleShape = new VectorShapes(".cv-lang-svg svg", "Languages I know", "subtitle");
     }
     contentForDOMContentLoaded() {
         // CV - INTRODUCTION

@@ -52,7 +52,7 @@ export class SvgFactoryClass
         );
         this.expertiseSubtitleShape = new VectorShapes(
             ".cv-exper-svg svg",
-            "Which concepts do I understand?",
+            "What do I know?",
             "subtitle"
         );
         this.languageTitleShape = new VectorShapes(
@@ -62,7 +62,7 @@ export class SvgFactoryClass
         );
         this.languageSubtitleShape = new VectorShapes(
             ".cv-lang-svg svg",
-            "What languages do I master?",
+            "Languages I know",
             "subtitle"
         );
 
