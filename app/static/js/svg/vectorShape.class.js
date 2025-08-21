@@ -208,7 +208,7 @@ export class VectorShapes {
         let basicFontSizeTitle = 20;
         let basicFontSizeSubtitle = 30;
         if (window.innerWidth < 700) {
-            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 700);
+            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 600);
             if (window.innerWidth < 600) {
                 basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 500);
                 if (basicFontSizeSubtitle > 30) {

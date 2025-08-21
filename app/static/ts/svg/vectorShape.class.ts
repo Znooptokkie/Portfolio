@@ -344,7 +344,7 @@ export class VectorShapes
 
         if (window.innerWidth < 700)
         {
-            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 700)
+            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 600)
 
             if (window.innerWidth < 600)
             {

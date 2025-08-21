@@ -17,7 +17,7 @@ export class SvgFactoryClass
     {
         this.introductionTitleShape = new VectorShapes(
             ".cv-intro-svg svg",
-            "CV - Introduction",
+            "Introduction",
             "title"
         );
         this.introductionSubtitleShape = new VectorShapes(
@@ -27,7 +27,7 @@ export class SvgFactoryClass
         );
         this.motivationTitleShape = new VectorShapes(
             ".cv-mot-svg svg",
-            "CV - Motivation",
+            "Motivation",
             "title"
         );
         this.motivationSubtitleShape = new VectorShapes(
@@ -37,7 +37,7 @@ export class SvgFactoryClass
         );
         this.interestTitleShape = new VectorShapes(
             ".cv-inter-svg svg",
-            "CV - Interests",
+            "Interests",
             "title"
         );
         this.interestSubtitleShape = new VectorShapes(
@@ -47,7 +47,7 @@ export class SvgFactoryClass
         );
         this.expertiseTitleShape = new VectorShapes(
             ".cv-exper-svg svg",
-            "CV - Expertise",
+            "Expertise",
             "title"
         );
         this.expertiseSubtitleShape = new VectorShapes(
@@ -57,7 +57,7 @@ export class SvgFactoryClass
         );
         this.languageTitleShape = new VectorShapes(
             ".cv-lang-svg svg",
-            "CV - Languages",
+            "Languages",
             "title"
         );
         this.languageSubtitleShape = new VectorShapes(
