@@ -177,6 +177,14 @@ main section h2 {
   font-size: 3rem;
   text-align: center;
 }
+main section article {
+  margin-top: 5rem;
+}
+main hr {
+  border: 1px solid black;
+  margin: 10px 0;
+  width: 100%;
+}
 main .education-school-section .education-article-context {
   display: flex;
   justify-content: center;

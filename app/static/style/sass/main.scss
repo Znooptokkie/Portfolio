@@ -257,6 +257,18 @@ main
             font-size: 3rem;
             text-align: center;
         }
+
+        article
+        {
+            margin-top: 5rem;
+        }
+    }
+    
+    hr 
+    {
+        border: 1px solid black; 
+        margin: 10px 0; 
+        width: 100%; 
     }
 
     .education-school-section
