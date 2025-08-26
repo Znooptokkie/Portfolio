@@ -20,16 +20,16 @@
                     <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/education' %}active{% endif %}">Education</a>
+                    <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/education' %}active{% endif %}">Education</a>
                 </li>
                 <li>
                     <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/projects' %}active{% endif %}">Projects</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/future' %}active{% endif %}">Future</a>
+                    <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/future' %}active{% endif %}">Future</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/contact' %}active{% endif %}">Contact</a>
+                    <a href="{{ url_for('main.contact') }}" class="{% if request.endpoint == 'main.contact' and request.path == '/contact' %}active{% endif %}">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -39,16 +39,16 @@
                     <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/education' %}active{% endif %}">Education</a>
+                    <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/education' %}active{% endif %}">Education</a>
                 </li>
                 <li>
                     <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/projects' %}active{% endif %}">Projects</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/future' %}active{% endif %}">Future</a>
+                    <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/future' %}active{% endif %}">Future</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.projects') }}" class="{% if request.endpoint == 'main.projects' and request.path == '/contact' %}active{% endif %}">Contact</a>
+                    <a href="{{ url_for('main.contact') }}" class="{% if request.endpoint == 'main.contact' and request.path == '/contact' %}active{% endif %}">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -67,7 +67,9 @@
     {% block footer %}
     <footer>
         <img src="../static/images/logo_ouroborus_white.png" alt="Temporary icon of my website" width="20" height="20">
-        <p><b>Atilla Oomen</b></p>
+        <p>
+            <b>Atilla Oomen 2025 &copy;</b>
+        </p>
         <p>|</p>
         <p class="footer-svg">
             <a href="https://github.com/znooptokkie" target="_blank" rel="noopener">

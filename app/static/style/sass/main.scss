@@ -63,7 +63,13 @@ body
 .cv-mot-svg svg,
 .cv-inter-svg svg,
 .cv-exper-svg svg,
-.cv-lang-svg svg
+.cv-lang-svg svg,
+.education-wellant-svg svg,
+.education-mondriaan-svg svg,
+.education-rijnland-svg svg,
+.education-in-verbinding-svg svg,
+.education-ai-onderzoek-svg svg,
+.projects-latest-svg  svg
 {
     width: 100%;
     height: 100%;
@@ -191,6 +197,7 @@ main
             padding: 3rem 2rem 2rem;
             background-color: lighten($primary-color, 60);
             display: flex;
+            flex-direction: column;
         
             .cv-short-first-div,
             .cv-short-second-div
@@ -361,11 +368,11 @@ footer
                     padding: 1rem;
                 }
             }
+        }
 
-            svg
-            {
-                max-height: 75px;
-            }
+        svg
+        {
+            max-height: 75px;
         }
     }
 
@@ -583,7 +590,7 @@ footer
             display: none;
             background-color: $background-color;
             position: absolute;
-            top: 4rem;
+            top: 3.75rem;
             width: 100%;
             left: 0;
             z-index: 1000;
@@ -618,14 +625,14 @@ footer
     main
     {
         padding-top: 0;
-        gap: 0;
+        gap: 0;media
         
         .cv-banner-section
         {
             .cv-short-info
             {
                 font-size: 1rem;
-                flex-direction: column;
+                // flex-direction: column;
 
             .cv-short-first-div,
             .cv-short-second-div
@@ -665,7 +672,7 @@ footer
 
 header.dropdown-active 
 {
-    background-color: $primary-color;
+    // background-color: $primary-color;
 }
 
 header.dropdown-active .nav-toggle-button 

@@ -1,6 +1,139 @@
 import { VectorShapes } from "./vectorShape.class.js";
 
-export class SvgFactoryClass 
+export class SvgFactoryClassEducation
+{
+    private wellantTitleShape: VectorShapes;
+    private WellantSubtitleShape: VectorShapes; 
+    private mondriaanTitleShape: VectorShapes;
+    private mondriaanSubtitleShape: VectorShapes;
+    private rijnlandTitleShape: VectorShapes;
+    private rijnlandSubtitleShape: VectorShapes;
+
+    private inVerbindingTitleShape: VectorShapes;
+    private inVerbindingSubtitleShape: VectorShapes;
+    private AIOnderzoekTitleShape: VectorShapes;
+    private AIOnderzoekSubtitleShape: VectorShapes;
+
+    constructor()
+    {
+        // WELLANT
+        this.wellantTitleShape = new VectorShapes(
+            ".education-wellant-svg svg",
+            "2008 - 2012",
+            "title"
+        )
+        this.WellantSubtitleShape = new VectorShapes(
+            ".education-wellant-svg svg",
+            "VMBO Gemengde Leerweg",
+            "subtitle"
+        )
+
+        // MONDRIAAN
+        this.mondriaanTitleShape = new VectorShapes(
+            ".education-mondriaan-svg svg",
+            "2014 - 2016",
+            "title"
+        )
+        this.mondriaanSubtitleShape = new VectorShapes(
+            ".education-mondriaan-svg svg",
+            "MBO 2 - Medewerker Schilder",
+            "subtitle"
+        )
+
+        // RIJNLAND
+        this.rijnlandTitleShape = new VectorShapes(
+            ".education-rijnland-svg svg",
+            "2021 - 2025",
+            "title"
+        )
+        this.rijnlandSubtitleShape = new VectorShapes(
+            ".education-rijnland-svg svg",
+            "MBO 4 - Software Developer",
+            "subtitle"
+        )
+
+
+        // IN VERBINDING
+        this.inVerbindingTitleShape = new VectorShapes(
+            ".education-in-verbinding-svg svg",
+            "Certificaaat",
+            "title"
+        )
+        this.inVerbindingSubtitleShape = new VectorShapes(
+            ".education-in-verbinding-svg svg",
+            "In Verbinding",
+            "subtitle"
+        )
+
+        // AI ONDERZOEK
+        this.AIOnderzoekTitleShape = new VectorShapes(
+            ".education-ai-onderzoek-svg svg",
+            "Excellentie",
+            "title"
+        )
+        this.AIOnderzoekSubtitleShape = new VectorShapes(
+            ".education-ai-onderzoek-svg svg",
+            "AI Onderzoek",
+            "subtitle"
+        )
+    }
+
+    public callAfterDOM(): void 
+    {
+            //  - WELLANT
+        this.wellantTitleShape.render({
+            fontFill: "white",
+            shapeStrokeWidth:"0",
+        })
+        this.WellantSubtitleShape.render({
+            fontSize: 38,
+            fill: "transparent"
+        })
+
+        //  - MONDRIAAN
+        this.mondriaanTitleShape.render({
+            fontFill: "white",
+            shapeStrokeWidth:"0",
+        })
+        this.mondriaanSubtitleShape.render({
+            fontSize: 38,
+            fill: "transparent"
+        })
+
+        //  - RIJNLAND
+        this.rijnlandTitleShape.render({
+            fontFill: "white",
+            shapeStrokeWidth:"0",
+        })
+        this.rijnlandSubtitleShape.render({
+            fontSize: 38,
+            fill: "transparent"
+        })
+
+
+        //  - IN VERBINDING
+        this.inVerbindingTitleShape.render({
+            fontFill: "white",
+            shapeStrokeWidth:"0",
+        })
+        this.inVerbindingSubtitleShape.render({
+            fontSize: 38,
+            fill: "transparent"
+        })
+        
+        //  - AI ONDERZOEK
+        this.AIOnderzoekTitleShape.render({
+            fontFill: "white",
+            shapeStrokeWidth:"0",
+        })
+        this.AIOnderzoekSubtitleShape.render({
+            fontSize: 38,
+            fill: "transparent"
+        })
+    }
+}
+
+export class SvgFactoryClassCV
 {
     private introductionTitleShape: VectorShapes;
     private introductionSubtitleShape: VectorShapes;
@@ -65,10 +198,9 @@ export class SvgFactoryClass
             "Languages I know",
             "subtitle"
         );
-
     }
 
-    public contentForDOMContentLoaded(): void 
+    public callAfterDOM(): void 
     {
         // CV - INTRODUCTION
         this.introductionTitleShape.render({
@@ -76,7 +208,7 @@ export class SvgFactoryClass
             shapeStrokeWidth: "0"
         });
         this.introductionSubtitleShape.render({
-            fontSize: "26",
+            fontSize: 38,
             shapeStroke: "grey",
             shapeStrokeWidth: "3"
         });
@@ -87,7 +219,7 @@ export class SvgFactoryClass
             shapeStrokeWidth: "0"
         });
         this.motivationSubtitleShape.render({
-            fontSize: "26",
+            fontSize: 38,
             fill: "transparent"
         });
 
@@ -97,7 +229,7 @@ export class SvgFactoryClass
             shapeStrokeWidth: "0"
         });
         this.interestSubtitleShape.render({
-            fontSize: "26",
+            fontSize: 38,
             fill: "transparent"
         });
 
@@ -107,7 +239,7 @@ export class SvgFactoryClass
             shapeStrokeWidth: "0"
         });
         this.expertiseSubtitleShape.render({
-            fontSize: "26",
+            fontSize: 38,
             fill: "transparent"
         });
 
@@ -117,7 +249,40 @@ export class SvgFactoryClass
             shapeStrokeWidth: "0"
         });
         this.languageSubtitleShape.render({
-            fontSize: "26",
+            fontSize: 38,
+            fill: "transparent"
+        });
+    }
+}
+
+export class svgFactoryClassProjects
+{
+    private latestProjectTitleShape: VectorShapes;
+    private latestProjectSubtitleShape: VectorShapes;
+
+    constructor()
+    {
+        this.latestProjectTitleShape = new VectorShapes(
+            ".projects-latest-svg svg",
+            "Latest",
+            "title"
+        )
+
+        this.latestProjectSubtitleShape = new VectorShapes(
+            ".projects-latest-svg svg",
+            "Battlebot",
+            "subtitle"
+        )
+    }
+
+    public callAfterDOM(): void
+    {
+        this.latestProjectTitleShape.render({
+            fontFill: "white",
+            shapeStrokeWidth: "0"
+        });
+        this.latestProjectSubtitleShape.render({
+            fontSize: 38,
             fill: "transparent"
         });
     }

@@ -10,6 +10,7 @@ export class VectorShapes {
      * @param name - Naam van het shape-type (bijv. "title", "subtitle")
      */
     constructor(svgSelector, svgText, name) {
+        this.currentConfig = {};
         this.svgSelector = svgSelector;
         this.svgText = svgText;
         this.name = name;
@@ -29,7 +30,7 @@ export class VectorShapes {
                 if (instances) {
                     VectorShapes.clearAllPaths(this.svgSelector);
                     instances.forEach(instance => {
-                        instance.render({});
+                        instance.render(); // hergebruik currentConfig
                     });
                 }
             }, 100);
@@ -50,10 +51,11 @@ export class VectorShapes {
      * @param config - Optionele configuratie (overschrijft defaults)
      */
     render(config = {}) {
+        this.currentConfig = Object.assign(Object.assign({}, this.currentConfig), config);
         if (this.name === "title") {
             this.titleGradient();
         }
-        const shape = this.defineWhichShape(config);
+        const shape = this.defineWhichShape(this.currentConfig);
         if (shape) {
             shape.draw();
             const text = this.createTextShape(shape);
@@ -93,7 +95,7 @@ export class VectorShapes {
         this.width = 350;
         this.height = 50;
         this.textStyles = {
-            fontSize: this.responsiveSvgText()[0],
+            fontSize: this.responsiveSvgText(cfg)[0],
             fontFamily: cfg.fontFamily,
             fill: ((_a = this.textStyles) === null || _a === void 0 ? void 0 : _a.fill) || cfg.fontFill,
             fontStyle: "italic",
@@ -124,7 +126,7 @@ export class VectorShapes {
         this.height = 100;
         this.textStyles = {
             // fontSize: cfg.fontSize,
-            fontSize: this.responsiveSvgText()[1],
+            fontSize: this.responsiveSvgText(cfg)[1],
             fontFamily: cfg.fontFamily,
             fill: ((_a = this.textStyles) === null || _a === void 0 ? void 0 : _a.fill) || cfg.fontFill,
             fontWeight: "bold",
@@ -204,20 +206,19 @@ export class VectorShapes {
         }
         return array;
     }
-    responsiveSvgText() {
-        let basicFontSizeTitle = 20;
-        let basicFontSizeSubtitle = 30;
-        if (window.innerWidth < 700) {
-            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 600);
-            if (window.innerWidth < 600) {
-                basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 500);
-                if (basicFontSizeSubtitle > 30) {
-                    basicFontSizeSubtitle = 30;
-                }
+    responsiveSvgText(config = {}) {
+        const cfg = Object.assign(Object.assign({}, VectorShapes.defaultConfig), config);
+        let basicFontSizeTitle = cfg.fontSize;
+        let basicFontSizeSubtitle = cfg.fontSize;
+        if (window.innerWidth < 800) {
+            basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 900);
+            if (basicFontSizeSubtitle > 30) {
+                basicFontSizeSubtitle = 30;
             }
         }
-        // console.log(basicFontSizeTitle);
-        // console.log(basicFontSizeSubtitle);
+        if (window.innerWidth < 700) {
+            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 600);
+        }
         return [basicFontSizeTitle.toString(), basicFontSizeSubtitle.toString()];
     }
     titleGradient() {
@@ -256,7 +257,7 @@ VectorShapes.instancesBySelector = new Map();
 VectorShapes.defaultConfig = {
     shapeStroke: "grey",
     shapeStrokeWidth: "3",
-    fontSize: "20",
+    fontSize: 20,
     fontFamily: "Ubuntu, sans-serif",
     fontFill: "black",
     svgPointsTitle: [

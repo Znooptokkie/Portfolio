@@ -1,6 +1,16 @@
 import { Shape } from './shape.class.js';
 import { VectorShapeConfig } from "../interfaces/svgShapes.interface.js";
 
+type defaultConfig = {
+        shapeStroke: string;
+        shapeStrokeWidth: string;
+        fontSize: number;
+        fontFamily: string;
+        fontFill: string;
+        svgPointsTitle: { x: string; y: string }[];
+        svgPointsSubtitle: { x: string; y: string }[];
+}
+
 /**
  * Klasse voor het aanmaken van samengestelde SVG-shapes en bijhorende tekst.
  */
@@ -26,19 +36,10 @@ export class VectorShapes
     /** 
      * Standard values the title/subtitle part - CV Homepage
      */
-    static defaultConfig: 
-    {
-        shapeStroke: string;
-        shapeStrokeWidth: string;
-        fontSize: string;
-        fontFamily: string;
-        fontFill: string;
-        svgPointsTitle: { x: string; y: string }[];
-        svgPointsSubtitle: { x: string; y: string }[];
-    } = {
+    static defaultConfig: defaultConfig = {
         shapeStroke: "grey",
         shapeStrokeWidth: "3",
-        fontSize: "20",
+        fontSize: 20,
         fontFamily: "Ubuntu, sans-serif",
         fontFill: "black",
         svgPointsTitle: 
@@ -62,6 +63,9 @@ export class VectorShapes
         ],
     };
 
+    private currentConfig: VectorShapeConfig = {}
+
+
     /**
      * @constructor
      * @param svgSelector - CSS-selector voor de SVG-container
@@ -84,26 +88,27 @@ export class VectorShapes
     }
 
     // Methode om de resize listener te initialiseren
-    private initializeResizeListener(): void 
+private initializeResizeListener(): void 
+{
+    let timeout: number
+    window.addEventListener("resize", () => 
     {
-        let timeout: number;
-        window.addEventListener("resize", () => 
+        clearTimeout(timeout)
+        timeout = setTimeout(() => 
         {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => 
+            const instances = VectorShapes.instancesBySelector.get(this.svgSelector)
+            if (instances) 
             {
-                const instances = VectorShapes.instancesBySelector.get(this.svgSelector);
-                if (instances) 
+                VectorShapes.clearAllPaths(this.svgSelector)
+                instances.forEach(instance => 
                 {
-                    VectorShapes.clearAllPaths(this.svgSelector);
-                    instances.forEach(instance => 
-                    {
-                        instance.render({} as VectorShapeConfig);
-                    });
-                }
-            }, 100);
-        });
-    }
+                    instance.render() // hergebruik currentConfig
+                })
+            }
+        }, 100)
+    })
+}
+
 
     /**
      * Verwijdert alle path- en text-elementen uit de opgegeven SVG-container.
@@ -122,21 +127,24 @@ export class VectorShapes
      * Rendert het SVG-shape en bijhorende tekst.
      * @param config - Optionele configuratie (overschrijft defaults)
      */
-    public render(config: VectorShapeConfig = {}): void
+public render(config: VectorShapeConfig = {}): void
+{
+    this.currentConfig = { ...this.currentConfig, ...config }
+
+    if (this.name === "title")
     {
-        if (this.name === "title")
-        {
-            this.titleGradient();
-        }
-    
-        const shape = this.defineWhichShape(config);
-        if (shape)
-        {
-            shape.draw();
-            const text = this.createTextShape(shape);
-            text.draw();
-        }
+        this.titleGradient()
     }
+
+    const shape = this.defineWhichShape(this.currentConfig)
+    if (shape)
+    {
+        shape.draw()
+        const text = this.createTextShape(shape)
+        text.draw()
+    }
+}
+
 
     /**
      * Bepaalt welk shape-type gemaakt moet worden.
@@ -176,7 +184,7 @@ export class VectorShapes
             this.width = 350;
             this.height = 50;
             this.textStyles = {
-                fontSize: this.responsiveSvgText()[0],
+                fontSize: this.responsiveSvgText(cfg)[0],
                 fontFamily: cfg.fontFamily,
                 fill: this.textStyles?.fill || cfg.fontFill,
                 fontStyle: "italic",
@@ -216,7 +224,7 @@ export class VectorShapes
         this.height = 100;
         this.textStyles = {
             // fontSize: cfg.fontSize,
-            fontSize: this.responsiveSvgText()[1],
+            fontSize: this.responsiveSvgText( cfg)[1],
             fontFamily: cfg.fontFamily,
             fill: this.textStyles?.fill || cfg.fontFill,
             fontWeight: "bold",
@@ -337,31 +345,31 @@ export class VectorShapes
         return array;
     }
 
-    private responsiveSvgText(): string[]
+private responsiveSvgText(config: VectorShapeConfig = {}): string[]
+{
+    const cfg = { ...VectorShapes.defaultConfig, ...config }
+
+    let basicFontSizeTitle = cfg.fontSize
+    let basicFontSizeSubtitle = cfg.fontSize
+
+    if (window.innerWidth < 800)
     {
-        let basicFontSizeTitle: number | string = 20
-        let basicFontSizeSubtitle: number | string = 30
-
-        if (window.innerWidth < 700)
+        basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 900)
+        if (basicFontSizeSubtitle > 30)
         {
-            basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 600)
-
-            if (window.innerWidth < 600)
-            {
-                basicFontSizeSubtitle = basicFontSizeSubtitle * (window.innerWidth / 500)
-
-                if (basicFontSizeSubtitle > 30)
-                {
-                    basicFontSizeSubtitle = 30
-                }
-            }
+            basicFontSizeSubtitle = 30
         }
-
-        // console.log(basicFontSizeTitle);
-        // console.log(basicFontSizeSubtitle);
-
-        return [basicFontSizeTitle.toString(), basicFontSizeSubtitle.toString()]
     }
+
+    if (window.innerWidth < 700)
+    {
+        basicFontSizeTitle = basicFontSizeTitle * (window.innerWidth / 600)
+    }
+
+    return [basicFontSizeTitle.toString(), basicFontSizeSubtitle.toString()]
+}
+
+
 
     private titleGradient(): void
     {

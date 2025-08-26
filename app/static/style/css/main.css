@@ -47,7 +47,13 @@ body {
 .cv-mot-svg svg,
 .cv-inter-svg svg,
 .cv-exper-svg svg,
-.cv-lang-svg svg {
+.cv-lang-svg svg,
+.education-wellant-svg svg,
+.education-mondriaan-svg svg,
+.education-rijnland-svg svg,
+.education-in-verbinding-svg svg,
+.education-ai-onderzoek-svg svg,
+.projects-latest-svg svg {
   width: 100%;
   height: 100%;
   max-width: 1024px;
@@ -132,6 +138,7 @@ main .cv-banner-section .cv-short-info {
   padding: 3rem 2rem 2rem;
   background-color: #cccccc;
   display: flex;
+  flex-direction: column;
 }
 main .cv-banner-section .cv-short-info .cv-short-first-div,
 main .cv-banner-section .cv-short-info .cv-short-second-div {
@@ -232,7 +239,7 @@ footer .footer-svg a svg {
     margin: 0;
     padding: 1rem;
   }
-  main .cv-articles-section svg {
+  main svg {
     max-height: 75px;
   }
   footer {
@@ -326,7 +333,7 @@ footer .footer-svg a svg {
     display: none;
     background-color: rgb(235, 235, 235);
     position: absolute;
-    top: 4rem;
+    top: 3.75rem;
     width: 100%;
     left: 0;
     z-index: 1000;
@@ -352,19 +359,18 @@ footer .footer-svg a svg {
     padding-top: 0;
     gap: 0;
   }
-  main .cv-banner-section .cv-short-info {
+  main media .cv-banner-section .cv-short-info {
     font-size: 1rem;
-    flex-direction: column;
   }
-  main .cv-banner-section .cv-short-info .cv-short-first-div,
-  main .cv-banner-section .cv-short-info .cv-short-second-div {
+  main media .cv-banner-section .cv-short-info .cv-short-first-div,
+  main media .cv-banner-section .cv-short-info .cv-short-second-div {
     width: 100%;
   }
-  main .cv-banner-section .cv-short-info .cv-short-first-div p:nth-child(1),
-  main .cv-banner-section .cv-short-info .cv-short-second-div p:nth-child(1) {
+  main media .cv-banner-section .cv-short-info .cv-short-first-div p:nth-child(1),
+  main media .cv-banner-section .cv-short-info .cv-short-second-div p:nth-child(1) {
     width: 15rem;
   }
-  main .cv-banner-section .cv-short-info .cv-short-second-div {
+  main media .cv-banner-section .cv-short-info .cv-short-second-div {
     margin-top: 0.5rem;
   }
   main .cv-articles-section {
@@ -379,10 +385,6 @@ footer .footer-svg a svg {
   cursor: pointer;
   margin: 0.5rem;
   float: right;
-}
-
-header.dropdown-active {
-  background-color: rgb(51, 51, 51);
 }
 
 header.dropdown-active .nav-toggle-button {
