@@ -259,7 +259,7 @@ VectorShapes.defaultConfig = {
     shapeStrokeWidth: "3",
     fontSize: 20,
     fontFamily: "Ubuntu, sans-serif",
-    fontFill: "black",
+    fontFill: "rgb(51, 51, 51)",
     svgPointsTitle: [
         { x: "2.5", y: "35" },
         { x: "27.5", y: "12.5" },

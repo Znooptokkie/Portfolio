@@ -41,7 +41,7 @@ export class VectorShapes
         shapeStrokeWidth: "3",
         fontSize: 20,
         fontFamily: "Ubuntu, sans-serif",
-        fontFill: "black",
+        fontFill: "rgb(51, 51, 51)",
         svgPointsTitle: 
         [
             { x: "2.5", y: "35" },
