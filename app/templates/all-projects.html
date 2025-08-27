@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+ 
+{% block content %}
+
+<section class="all-projects-section">
+   <h2>All Projects</h2>
+    <div class="filters">
+        <div class="custom-select" data-filter="language">
+            <div class="selected">Programmeertaal</div>
+            <ul class="options">
+                <li data-value="">Programmeertaal</li>
+                <li data-value="python">Python</li>
+                <li data-value="javascript">JavaScript</li>
+                <li data-value="php">PHP</li>
+            </ul>
+        </div>
+
+        <div class="custom-select" data-filter="year">
+            <div class="selected">Aflopend Jaartal</div>
+            <ul class="options">
+                <li data-value="">Aflopend Jaartal</li>
+                <li data-value="2025">2025</li>
+                <li data-value="2024">2024</li>
+                <li data-value="2023">2023</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="projects">
+        <a href="battlebot.html" class="project" data-language="python" data-year="2025">
+            <img src="../static/images/projects/zinra.png" alt="Battlebot project">
+            <div class="overlay">
+                <h3>Battlebot</h3>
+                <p>Python project 2025</p>
+            </div>
+        </a>
+
+        <a href="eindexamen.html" class="project" data-language="python" data-year="2025">
+            <img src="../static/images/projects/zinra.png" alt="Eindexamen project">
+            <div class="overlay">
+                <h3>Eindexamen</h3>
+                <p>Python project 2025</p>
+            </div>
+        </a>
+
+        <a href="smart-garden-mobile.html" class="project" data-language="javascript" data-year="2024">
+            <img src="../static/images/projects/zinra.png" alt="Smart Garden Mobile project">
+            <div class="overlay">
+                <h3>Smart Garden - Mobile</h3>
+                <p>JavaScript project 2024</p>
+            </div>
+        </a>
+
+        <a href="smart-garden-desktop.html" class="project" data-language="javascript python" data-year="2024">
+            <img src="../static/images/projects/zinra.png" alt="Smart Garden Desktop project">
+            <div class="overlay">
+                <h3>Smart Garden - Desktop</h3>
+                <p>JavaScript & Python project 2024</p>
+            </div>
+        </a>
+
+        <a href="bram.html" class="project" data-language="python" data-year="2023">
+            <img src="../static/images/projects/zinra.png" alt="BRAM project">
+            <div class="overlay">
+                <h3>BRAM</h3>
+                <p>Python project 2023</p>
+            </div>
+        </a>
+
+        <a href="zinra.html" class="project" data-language="javascript php" data-year="2023">
+            <img src="../static/images/projects/zinra.png" alt="Zinra project">
+            <div class="overlay">
+                <h3>Zinra</h3>
+                <p>JavaScript & PHP project 2023</p>
+            </div>
+        </a>
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -17,6 +17,11 @@ def education():
 def projects():
     return render_template("projects.html", title="Projects")
 
+# All Projects
+@main_bp.route("/all-projects")
+def all_projects(): 
+    return render_template("all-projects.html", title="All Projects")
+
 # Future
 @main_bp.route("/future")
 def future():

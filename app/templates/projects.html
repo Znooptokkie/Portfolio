@@ -1,13 +1,80 @@
 {% extends "base.html" %}
 
 {% block title %}Projects{% endblock %}
-
+ 
 {% block content %}
-<section>
-    <div class="">
-      <svg></svg>
+
+<section class="projects-latest-section">
+    <article>
+        <div class="projects-latest-context">
+            <div class="projects-latest-context-img">
+                <img src="../static/images/ikzelf.jpg" alt="A selfie of me with the Battlebot">
+                <div class="overlay"></div>
+            </div>
+            <div class="projects-latest-context-text">
+                <h2>Battlebot</h2>
+                <p>Battlebot was een project die ik samen met een klasgenoot heb uitgevoerd op school. Het doel was om een bestaande robot (gemaakt door Techniek) te laten rijden via een Raspberry Pi 5 en Pico 2.</p>
+                <ul>
+                    <li>
+                        <p>Programmeertaal:</p>
+                        <p>Python / MicroPython</p>
+                    </li>
+                    <li>
+                        <p>Github:</p>
+                        <a href="https://github.com/BattlebotdeGripper/battlebot_pi">github.com/BattlebotdeGripper/battlebot_pi</a>
+                    </li>
+                    <li>
+                        <p>Bijzonderheden:</p>
+                        <p>Thonny, Bitwise Operators, Hailo-HAT</p>
+                    </li>
+                </ul>
+                <div class="read-more-wrapper">
+                    <a href="{{ url_for('main.home') }}" class="projects-latest-read-more">Lees meer >></a>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+<!-- <hr> -->
+<section class="projects-featured-section">
+   <h2>Featured</h2>
+   <div class="carousel">
+       <div class="project-item">
+           <a href="{{ url_for('main.home') }}" class="project-featured">
+               <img src="../static/images/projects/zinra.png" alt="Zinra project">
+               <div class="overlay">
+                   <h3>Zinra</h3>
+                   <p>Sorteerdienst Mailbox</p>
+               </div>
+           </a>
+           <p class="project-name">Zinra</p>
+       </div>
+
+       <div class="project-item">
+           <a href="{{ url_for('main.home') }}" class="project-featured center">
+               <img src="../static/images/projects/smartgarden_versie-1_invullen.png" alt="Smart Garden project">
+               <div class="overlay">
+                   <h3>Smart Garden</h3>
+                   <p>Autonome Auguratie Systeem</p>
+               </div>
+           </a>
+           <p class="project-name">Smart Garden</p>
+       </div>
+
+       <div class="project-item">
+           <a href="{{ url_for('main.home') }}" class="project-featured">
+               <img src="../static/images/projects/bram_open_page.png" alt="BRAM project">
+               <div class="overlay">
+                   <h3>BRAM</h3>
+                   <p>Mobiele Applicatie Ouderen</p>
+               </div>
+           </a>
+           <p class="project-name">BRAM</p>
+       </div>
+   </div>
+   <div class="all-projects-link">
+        <a href="{{ url_for('main.all_projects') }}">All Projects</a>
    </div>
 </section>
-
 
 {% endblock %}
