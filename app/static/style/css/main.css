@@ -328,6 +328,7 @@ main .projects-featured-section .project-featured {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   border: solid 3px rgb(51, 51, 51);
   display: inline-block;
+  transition: transform 0.3s ease;
 }
 main .projects-featured-section .project-featured img {
   display: block;
@@ -336,6 +337,9 @@ main .projects-featured-section .project-featured img {
 }
 main .projects-featured-section .project-featured.center {
   margin-top: 32px;
+}
+main .projects-featured-section .project-featured:hover {
+  transform: scale(1.05);
 }
 main .projects-featured-section .project-featured:hover .overlay {
   opacity: 1;
@@ -393,10 +397,10 @@ main .all-projects-section .filters {
 main .all-projects-section .filters .custom-select {
   position: relative;
   display: inline-block;
-  background: #2c2c2c;
+  background: rgb(53.04, 53.04, 53.04);
   color: white;
   border-radius: 999px;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   cursor: pointer;
   user-select: none;
   margin-right: 1rem;
@@ -412,7 +416,7 @@ main .all-projects-section .filters .custom-select .options {
   top: 100%;
   left: 0;
   right: 0;
-  background: #2c2c2c;
+  background: rgb(53.04, 53.04, 53.04);
   border-radius: 0 0 10px 10px;
   overflow: hidden;
   z-index: 1000;
@@ -431,6 +435,24 @@ main .all-projects-section .filters .custom-select.open {
 }
 main .all-projects-section .filters .custom-select.open .options {
   display: block;
+}
+main .all-projects-section .filters .custom-select[data-filter=language] .selected {
+  padding-left: 35px;
+  background: url("../../images/coding_svg.png") no-repeat left center;
+  background-size: 20px 20px;
+}
+main .all-projects-section .filters .custom-select[data-filter=year] .selected {
+  padding-left: 35px;
+  background: url("../../images/clock_svg.png") no-repeat left center;
+  background-size: 20px 20px;
+}
+main .all-projects-section .filters .undo-icon-filters {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+main .all-projects-section .filters .undo-icon-filters img {
+  width: 40px;
 }
 main .all-projects-section .projects {
   display: grid;
@@ -477,7 +499,6 @@ main .all-projects-section .projects .project:hover .overlay {
 }
 
 footer {
-  background-color: rgb(51, 51, 51);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -485,7 +506,7 @@ footer {
   padding: 0.5rem 0;
 }
 footer p {
-  color: white;
+  color: rgb(51, 51, 51);
   text-align: center;
   padding: 0.25rem 0;
   font-weight: 200;
@@ -494,14 +515,18 @@ footer p:nth-child(3) {
   margin-inline: 0.5rem;
 }
 footer .footer-svg a {
-  color: white;
+  color: rgb(51, 51, 51);
+  font-weight: bold;
 }
 footer .footer-svg a svg {
   width: 20;
   height: 20;
   vertical-align: middle;
   margin-right: 0.5rem;
-  fill: white;
+  fill: rgb(51, 51, 51);
+}
+footer .footer-svg a:hover {
+  color: #ffcc00;
 }
 
 @media (max-width: 409.99px) {
