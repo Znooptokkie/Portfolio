@@ -40,7 +40,8 @@ h2:not(.banner-info h2) {
   margin: 2.5rem 0;
 }
 
-h2::first-letter {
+h2::first-letter,
+h3::first-letter {
   color: #ffcc00;
 }
 
@@ -135,7 +136,7 @@ main .cv-banner-section .cv-main-banner .banner-info .banner-divider {
   width: 100%;
 }
 main .cv-banner-section .cv-main-banner .banner-info h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
 }
 main .cv-banner-section .cv-short-info {
@@ -291,10 +292,11 @@ main .projects-latest-section article .projects-latest-context .projects-latest-
   background-color: rgb(51, 51, 51);
   gap: 0.5rem;
 }
-main .projects-latest-section article .projects-latest-context .projects-latest-context-text h2 {
+main .projects-latest-section article .projects-latest-context .projects-latest-context-text h3 {
   color: white;
   text-align: left;
   margin: 0;
+  font-size: 2rem;
 }
 main .projects-latest-section article .projects-latest-context .projects-latest-context-text p {
   color: lightgrey;
@@ -339,7 +341,6 @@ main .projects-latest-section article .projects-latest-context .projects-latest-
 }
 main .projects-featured-section .carousel {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   gap: 3.5rem;
 }
@@ -416,7 +417,6 @@ main .projects-featured-section .all-projects-link a:hover {
 }
 main .all-projects-section .filters {
   display: flex;
-  gap: 1rem;
   margin-bottom: 2rem;
 }
 main .all-projects-section .filters .custom-select {
@@ -429,7 +429,7 @@ main .all-projects-section .filters .custom-select {
   cursor: pointer;
   user-select: none;
   margin-right: 1rem;
-  min-width: 200px;
+  min-width: 140px;
 }
 main .all-projects-section .filters .custom-select .selected {
   display: block;
@@ -561,8 +561,10 @@ footer .footer-second-div .footer-svg a:hover {
 
 @media (max-width: 409.99px) {
   main .education-school-section h2,
-  main .education-certifcates-section h2 {
-    font-size: 2rem;
+  main .education-certifcates-section h2,
+  main .projects-latest-section h2,
+  main .projects-featured-section h2 {
+    font-size: 2.5rem;
   }
   main .cv-banner-section .cv-main-banner .profile-pic img {
     width: 125px;
@@ -585,7 +587,7 @@ footer .footer-second-div .footer-svg a:hover {
     margin: 0;
   }
   main svg {
-    max-height: 60px !important;
+    max-height: 70px !important;
   }
   footer {
     font-size: 0.75rem;
@@ -602,9 +604,6 @@ footer .footer-second-div .footer-svg a:hover {
   main .cv-banner-section .cv-main-banner .banner-info .banner-divider {
     height: 3px;
     margin: 0;
-  }
-  main .cv-banner-section .cv-main-banner .banner-info h2 {
-    font-size: 1.1rem;
   }
 }
 /* Base styles for mobile (max-width: 575.98px) */
@@ -745,8 +744,18 @@ footer .footer-second-div .footer-svg a:hover {
   main .projects-latest-section article .projects-latest-context .projects-latest-context-img {
     position: relative;
   }
+  main .projects-latest-section article .projects-latest-context .projects-latest-context-img img {
+    height: 40vh;
+  }
   main .projects-latest-section article .projects-latest-context .projects-latest-context-img .overlay {
     background: linear-gradient(to top, #333333 5%, rgba(51, 51, 51, 0.2) 100%);
+  }
+  main .projects-latest-section article .projects-latest-context .projects-latest-context-text .latest-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   main .projects-latest-section article .projects-latest-context .projects-latest-context-text .latest-github-list-item {
     display: flex;
@@ -766,6 +775,12 @@ footer .footer-second-div .footer-svg a:hover {
   }
   main .projects-featured-section .project-featured.center {
     margin-top: 0;
+  }
+  main .projects-featured-section .carousel {
+    flex-direction: column;
+  }
+  main .all-projects-section .projects {
+    grid-template-columns: repeat(2, 1fr);
   }
   footer {
     flex-direction: column;
