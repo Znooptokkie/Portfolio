@@ -21,9 +21,9 @@
                         <p>Programming Language:</p>
                         <p>{{ latest.language.split() | join(", ") }}</p>
                     </li>
-                    <li>
+                    <li class="latest-github-list-item">
                         <p>Github:</p>
-                        <a href="{{ latest.github }}" target="_blank">{{ latest.github | replace("https://", "") }}</a>
+                        <a href="{{ latest.github }}" target="_blank" class="projects-github">{{ latest.github | replace("https://", "") }}</a>
                     </li>
                     <li>
                         <p>Details:</p>

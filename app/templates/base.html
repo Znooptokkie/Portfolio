@@ -65,14 +65,14 @@
     </main>
     {% block footer %}
     <footer>
-        <!-- <img src="../static/images/logo_ouroborus_white.png" alt="Temporary icon of my website" width="20" height="20"> -->
-         <img src="../static/images/logo_ouroborus.svg" alt="Icon of Ouroborus" width="20" height="20">
-        <p>
-            <!-- <b>Atilla Oomen 2025&copy;</b>
-              -->
-            <b>&copy; 2025 Atilla Oomen. All rights reserved.</b>
-        </p>
-        <p>|</p>
+        <hr class="footer-hr-mobile">
+        <div class="footer-first-div">
+            <img src="../static/images/logo_ouroborus.svg" alt="Icon of Ouroborus" width="20" height="20">
+            <p>
+                <b>&copy; 2025 Atilla Oomen. All rights reserved.</b>
+            </p>
+        </div>
+        <div class="footer-second-div">
         <p class="footer-svg">
             <a href="https://github.com/znooptokkie" target="_blank" rel="noopener">
                 <svg xmlns="http://www.w3.org/2000/svg" 
@@ -84,6 +84,7 @@
                 </svg>github.com/znooptokkie
             </a>
         </p>
+        </div>
     </footer>
     {% endblock %}
 </body>
