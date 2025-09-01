@@ -1,6 +1,12 @@
-import { SvgFactoryClassCV, SvgFactoryClassEducation, svgFactoryClassProjects } from "./svg/svgFactory.js"
+import { SvgFactoryClassCV, SvgFactoryClassEducation, svgFactoryClassProjects } from "./svg/svgFactory.class.js"
 import { Dropdown } from "./controls.js"
 import { ProjectFuncClass } from "./projects/projectFilter.js"
+import { ProjectCarousel, SpecsAccordion } from "./projects/projectDetails.js"
+
+document.addEventListener("DOMContentLoaded", () =>
+{
+    // new ProjectCarousel(".project-carousel");
+});
 
 const svgFactoryCV = new SvgFactoryClassCV()
 const svgFactoryEducation = new SvgFactoryClassEducation()
@@ -18,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () =>
 
     callDropdownClass.checkForButton()
     callProjectClass.init()
+
+    new ProjectCarousel(".project-carousel");
+    new SpecsAccordion()
 });
 
 // window.addEventListener("resize", () =>

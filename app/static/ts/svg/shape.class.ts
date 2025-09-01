@@ -52,7 +52,7 @@ export class Shape
         } 
         else if (this.type === "path" && this.shapeName === "subtitle") 
         {
-            this.attributes.fill = "transparent";
+            this.attributes.fill = "rgb(235, 235, 235)";
         }
 
         for (const [key, value] of Object.entries(this.attributes)) 

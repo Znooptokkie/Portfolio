@@ -88,7 +88,8 @@ body
 .education-rijnland-svg svg,
 .education-in-verbinding-svg svg,
 .education-ai-onderzoek-svg svg,
-.projects-latest-svg  svg
+.projects-latest-svg  svg,
+.project-detail-svg svg
 {
     width: 100%;
     height: 100%;
@@ -795,6 +796,133 @@ main
 
         }
     }
+
+    .project-detail-section
+    {
+        .project-detail-svg
+    {
+        position: relative;
+        z-index: 1000; /* Ensure the SVG container has a high z-index */
+        
+        svg
+        {
+            width: 100%;
+            height: 100%;
+            max-width: 1024px;
+            max-height: 100px;
+            margin: 0 auto;
+            z-index: 1000; /* Reinforce high z-index for the SVG */
+        }
+    }
+        .project-carousel
+        {
+            max-width: 100%;
+            margin: auto;
+            padding: 0 7.5rem;
+            // transform: translateY(-50px);
+            z-index: 1;
+            
+            .project-carousel-main
+            {
+                .main-image-wrapper
+                {
+                    width: 100%;
+                    aspect-ratio: 16/9;
+                    overflow: hidden;
+
+                    img
+                    {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                        border: 2px solid $primary-color;
+                    }
+                }
+            }
+
+            .project-carousel-thumbnails
+            {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+                margin-top: 10px;
+
+                .thumb-wrapper
+                {
+                    width: 80px;
+                    aspect-ratio: 4/3;
+                    overflow: hidden;
+
+                    img
+                    {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        cursor: pointer;
+                        border: 2px solid $primary-color;
+                        transition: border-color 0.2s;
+
+                        &:hover,
+                        &.active
+                        {
+                            border-color: $main-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .project-detail-specifications
+        {
+            .specs-accordion
+            {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+
+                .accordion-item
+                {
+                    border-top: 1px solid #ddd;
+
+                    &:first-child
+                    {
+                        border-top: none;
+                    }
+
+                    .accordion-header
+                    {
+                        width: 100%; 
+                        padding: 10px; 
+                        text-align: left;
+                        background: #f8f9fa; 
+                        border: none; 
+                        cursor: pointer; 
+                        font-weight: bold;
+
+                        &.active
+                        {
+                            background: #e9ecef;
+                        }
+                    }
+
+                    .accordion-content
+                    {
+                        max-height: 0; 
+                        overflow: hidden;
+                        transition: max-height 0.3s ease, padding 0.3s ease;
+                        padding: 0 10px;
+
+                        &.open
+                        {
+                            max-height: 500px;
+                            padding: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 footer
@@ -1044,6 +1172,20 @@ footer
                 }
             }
         }
+
+        .project-detail-section
+        {
+            .project-carousel
+            {
+                .project-carousel-thumbnails
+                {
+                    .thumb-wrapper 
+                    {
+                        width: 45px;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -1081,6 +1223,20 @@ footer
             .cv-short-info
             {
                 padding: 3.5rem 4rem 2rem;
+            }
+        }
+
+        .project-detail-section
+        {
+            .project-carousel
+            {
+                .project-carousel-thumbnails
+                {
+                    .thumb-wrapper 
+                    {
+                        width: 60px;
+                    }
+                }
             }
         }
     }

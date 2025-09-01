@@ -42,7 +42,7 @@
                                 <div class="d-flex flex-wrap gap-2">
                                     {% for image in project.images %}
                                         <div>
-                                            <img src="{{ image.image_url }}" alt="{{ image.alt_text or 'Project image' }}" class="img-thumbnail" style="max-width:150px;">
+                                            <img src="{{ url_for('static', filename='images/' ~ image.image_url) }}" alt="{{ image.alt_text or 'Project image' }}" class="img-thumbnail" style="max-width:150px;">
                                             {% if image.is_main_image %}
                                                 <p class="text-success small mb-0">Main image</p>
                                             {% endif %}

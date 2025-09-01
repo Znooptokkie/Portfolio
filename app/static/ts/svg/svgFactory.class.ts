@@ -255,33 +255,42 @@ export class SvgFactoryClassCV
     }
 }
 
+
 export class svgFactoryClassProjects
 {
-    private latestProjectTitleShape: VectorShapes;
-    private latestProjectSubtitleShape: VectorShapes;
+    private projectDetailTitleShape: VectorShapes
+    private projectDetailSubtitleShape: VectorShapes
+
+    private svgSelector: HTMLElement
+    private title: string
+    private subtitle: string
 
     constructor()
     {
-        this.latestProjectTitleShape = new VectorShapes(
-            ".projects-latest-svg svg",
-            "Latest",
+        this.svgSelector = document.querySelector(".project-detail-svg")!
+        this.title = this.svgSelector?.dataset.title ?? ""
+        this.subtitle = this.svgSelector?.dataset.subtitle ?? ""
+
+        this.projectDetailTitleShape = new VectorShapes(
+            ".project-detail-svg svg",
+            `${this.subtitle}`,
             "title"
         )
 
-        this.latestProjectSubtitleShape = new VectorShapes(
-            ".projects-latest-svg svg",
-            "Battlebot",
+        this.projectDetailSubtitleShape = new VectorShapes(
+            ".project-detail-svg svg",
+            `${this.title}`,
             "subtitle"
         )
     }
 
     public callAfterDOM(): void
     {
-        this.latestProjectTitleShape.render({
+        this.projectDetailTitleShape.render({
             fontFill: "white",
             shapeStrokeWidth: "0"
         });
-        this.latestProjectSubtitleShape.render({
+        this.projectDetailSubtitleShape.render({
             fontSize: 38,
             fill: "transparent"
         });
