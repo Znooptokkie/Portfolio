@@ -1,27 +1,51 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ project.title if project else "Project Not Found" }}{% endblock %}
 
 {% block content %}
-<section class="project-detail-section">
-    <h2>{{ project.title }}</h2>
-    {% if project %}
-    <div class="project">
-        <img src="{{ project.image }}" alt="{{ project.title }} project">
-        <div class="overlay">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
-            <p>Samenvatting: {{ project.excerpt }}</p>
-            <p>Programmeertaal: {{ project.formatted_language }}</p>
-            <p>Jaar: {{ project.year }}</p>
-            <p>Toegevoegd op: {{ project.datetime | format_datetime }}</p>
-            <p>Github: <a href="{{ project.github }}" target="_blank">{{ project.github | replace("https://", "") }}</a></p>
-            <p>Bijzonderheden: {{ project.details.split("|") | join(", ") }}</p>
-        </div>
-    </div>
-    <a href="{{ url_for('projects.projects') }}">Terug naar alle projecten</a>
-    {% else %}
-    <p>Project niet gevonden.</p>
-    {% endif %}
-</section>
+    <section class="project-detail-section">
+        {% if project %}
+            <h2>{{ project.title }}</h2>
+            <div class="project">
+                {% if project.images %}
+                    <img src="{{ url_for('static', filename=project.images[0].image_url.replace('../static/', '')) }}" alt="{{ project.title }} project">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="{{ project.title }} project">
+                {% endif %}
+                <div class="overlay">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <p>Samenvatting: {{ project.excerpt }}</p>
+                    <p>Programmeertaal: 
+                        {% if project.languages %}
+                            {% set languages = project.languages | map(attribute='language.language') | list | join(', ') %}
+                            {{ languages }}
+                        {% else %}
+                            Geen talen...
+                        {% endif %}
+                    </p>
+                    <p>Jaar: {{ project.year }}</p>
+                    <p>Toegevoegd op: {{ project.datetime.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <p>Github: 
+                        {% if project.github %}
+                            <a href="{{ project.github }}" target="_blank">{{ project.github | replace("https://", "") }}</a>
+                        {% else %}
+                            Geen GitHub-link
+                        {% endif %}
+                    </p>
+                    <p>Bijzonderheden: 
+                        {% if project.specifications %}
+                            {% set specs = project.specifications | map(attribute='specification') | list | join(', ') %}
+                            {{ specs }}
+                        {% else %}
+                            Geen specificaties...
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <a href="{{ url_for('projects.projects') }}">Terug naar alle projecten</a>
+        {% else %}
+            <p>Project niet gevonden.</p>
+        {% endif %}
+    </section>
 {% endblock %}

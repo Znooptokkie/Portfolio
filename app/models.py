@@ -1,51 +1,127 @@
-import json
-import os
-from datetime import datetime
+from app import db
+import enum
+from sqlalchemy.orm import joinedload
 
-class ProjectsManager:
+class Project(db.Model):
+    """
+
+    Got 3 ralationships with (project_images, project_specifications, project_language).
+
+    ONE TO MANY (Project > ProjectImage)
+    ONE TO MANY (Project > ProjectSpecifications)
+    ONE TO MANY (Project > ProjectLanguage)
+
+    """
+    __tablename__ = "project"
+
+    project_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False) 
+    subtitle = db.Column(db.String(255))
+    description = db.Column(db.Text)
+    link = db.Column(db.String(255))
+    year = db.Column(db.Integer)
+    datetime = db.Column(db.DateTime, default=db.func.current_timestamp())
+    excerpt = db.Column(db.Text)
+    github = db.Column(db.String(255))
+    featured = db.Column(db.Boolean, default=False)
+
+    images = db.relationship("ProjectImage", backref="project", lazy="select")
+    specifications = db.relationship("ProjectSpecification", backref="project", lazy="select")
+    languages = db.relationship("ProjectLanguage", backref="project", lazy="select")
+
+    @classmethod
+    def join_tables(cls):
+        """Retourneert een tuple van joinedload-opties voor alle relaties."""
+        return (
+            joinedload(cls.images),
+            joinedload(cls.specifications),
+            joinedload(cls.languages).joinedload(ProjectLanguage.language),
+            joinedload(cls.languages).joinedload(ProjectLanguage.framework)
+        )
+
+    @classmethod
+    def get_all_projects(cls):
+        return cls.query.options(*cls.join_tables()).all()
+
+    @classmethod
+    def get_latest_project(cls):
+        return cls.query.options(*cls.join_tables()).order_by(cls.datetime.desc()).first()
     
-    def __init__(self, file_path="projects.json"):
+    @classmethod
+    def get_project_name(cls, link):    
+        return cls.query.options(*cls.join_tables()).filter_by(link=link).first()
 
-        self.file_path = file_path
 
-    def load_projects(self):
+class ProjectImage(db.Model):
+    """
 
-        if not os.path.exists(self.file_path):
-            return []
-            
-        with open(self.file_path, "r") as file:
-            return json.load(file)
-        
-    def format_datetime(self, iso_string):
+    FK: project_id
 
-        """Formatteer een ISO 8601-datum naar een leesbaar formaat."""
-        
-        try:
-            dt = datetime.fromisoformat(iso_string)
-            return dt.strftime('%d-%m-%Y %H:%M')
-        
-        except ValueError:
-            return iso_string
-        
-    def get_latest_project(self):
+    """
+    __tablename__ = "project_image"
 
-        """Vind het meest recente project op basis van het datetime-veld."""
+    project_image_id = db.Column(db.Integer, primary_key=True)
+    image_url = db.Column(db.String(255), nullable=False)
+    alt_text = db.Column(db.Text)
+    is_main_image = db.Column(db.Boolean, default=False)
 
-        projects = self.load_projects()
+    project_id = db.Column(db.Integer, db.ForeignKey('project.project_id'), nullable=False)
 
-        if not projects:
-            return None
-        
-        return max(projects, key=lambda project: datetime.fromisoformat(project['datetime']))
+
+
+class ProjectSpecificationEnumCategory(enum.Enum):
+    SOFTWARE = "software"
+    HARDWARE = "hardware"
+    BACKEND = "backend"
+    FRONTEND = "frontend"
+    OTHER = "other"
+
+
+
+class ProjectSpecification(db.Model):
+    """
     
-    def get_project_by_name(self, title):
+    FK: project_id
 
-        """Zoek een project op basis van de titel."""
+    """
+    __tablename__ = "project_specification"
 
-        projects = self.load_projects()
+    project_specification_id = db.Column(db.Integer, primary_key=True)
+    specification = db.Column(db.String(255))
+    category = db.Column(db.Enum(ProjectSpecificationEnumCategory), nullable=False, default=ProjectSpecificationEnumCategory.SOFTWARE) 
 
-        for project in projects:
-            if project['link'] == title:
-                return project
-            
-        return None
+    project_id = db.Column(db.Integer, db.ForeignKey('project.project_id'), nullable=False)
+
+
+
+class ProjectLanguage(db.Model):
+    """
+    
+    FK: project_id -> Project
+    FK: language_id -> Language
+    FK: framework_id -> Framework
+
+    """
+    __tablename__ = "project_language"
+
+    project_language_id = db.Column(db.Integer, primary_key=True)
+
+    project_id = db.Column(db.Integer, db.ForeignKey('project.project_id'), nullable=False)
+    language_id = db.Column(db.Integer, db.ForeignKey('language.language_id'), nullable=False)
+    framework_id = db.Column(db.Integer, db.ForeignKey('framework.framework_id'), nullable=True)
+
+class Language(db.Model):
+    __tablename__ = "language"
+
+    language_id = db.Column(db.Integer, primary_key=True)
+    language = db.Column(db.String(50), unique=True, nullable=False)
+
+    projects = db.relationship("ProjectLanguage", backref="language", lazy="dynamic")
+
+class Framework(db.Model):
+    __tablename__ = "framework"
+
+    framework_id = db.Column(db.Integer, primary_key=True)
+    framework = db.Column(db.String(50), unique=True, nullable=False)
+
+    projects = db.relationship("ProjectLanguage", backref="framework", lazy="dynamic")

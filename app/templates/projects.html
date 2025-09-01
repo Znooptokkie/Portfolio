@@ -1,66 +1,87 @@
 {% extends "base.html" %}
 
 {% block title %}Projects{% endblock %}
- 
+
 {% block content %}
-
-<section class="projects-latest-section">
-    <h2>Latest Project</h2>
-    <article>
-        <div class="projects-latest-context">
-            <div class="projects-latest-context-img">
-                <img src="{{ latest.image }}" alt="A selfie of me with the Battlebot">
-                <div class="overlay"></div>
-            </div>
-            <div class="projects-latest-context-text">
-                {% if latest %}
-                <h3>{{ latest.title }}</h3>
-                <p class="latest-excerpt">{{ latest.excerpt }}</p>
-                <ul>
-                    <li>
-                        <p>Programming Language:</p>
-                        <p>{{ latest.language.split() | join(", ") }}</p>
-                    </li>
-                    <li class="latest-github-list-item">
-                        <p>Github:</p>
-                        <a href="{{ latest.github }}" target="_blank" class="projects-github">{{ latest.github | replace("https://", "") }}</a>
-                    </li>
-                    <li>
-                        <p>Details:</p>
-                        <p>{{ latest.details.split("|") | join(", ") }}</p>
-                    </li>
-                </ul>
-                <div class="read-more-wrapper">
-                    <a href="{{ url_for('projects.project_detail', title=latest.link) }}" class="projects-latest-read-more">Lees meer >></a>
+    <section class="projects-latest-section">
+        <h2>Latest Project</h2>
+        <article>
+            <div class="projects-latest-context">
+                <div class="projects-latest-context-img">
+                    {% if latest and latest.images %}
+                        {% set main_image = (latest.images | selectattr("is_main_image", "equalto", True) | list | first) %}
+                        {% if main_image %}
+                            <img src="{{ url_for('static', filename='images/' ~ main_image.image_url) }}" alt="{{ main_image.alt_text }}">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="No image available">
+                        {% endif %}
+                    {% else %}
+                        <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="No image available">
+                    {% endif %}
+                    <div class="overlay"></div>
                 </div>
-                {% else %}
-                    <p>Geen recent project gevonden.</p>
-                {% endif %}
-            </div>
-        </div>
-    </article>
-</section>
-<!-- <hr> -->
-<section class="projects-featured-section">
-   <h2>Featured</h2>
-   <div class="carousel">
-    {% for project in projects if project.featured == "yes" %}
-        <div class="project-item">
-            <a href="{{ url_for('projects.project_detail', title=project.link) }}"
-               class="project-featured {% if loop.index == 2 %}center{% endif %}">
-                <img src="{{ project.image }}" alt="{{ project.title }} project">
-                <div class="overlay">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.subtitle }}</p>
+                <div class="projects-latest-context-text">
+                    {% if latest %}
+                        <h3>{{ latest.title }}</h3>
+                        <p class="latest-excerpt">{{ latest.excerpt }}</p>
+                        <ul>
+                            <li>
+                                <p>Programming Language:</p>
+                                {% if latest.languages %}
+                                    {% set languages = latest.languages | map(attribute='language.language') | list | join(', ') %}
+                                    <p>{{ languages }}</p>
+                                {% else %}
+                                    <p>No languages...</p>
+                                {% endif %}
+                            </li>
+                            <li class="latest-github-list-item">
+                                <p>Github:</p>
+                                <a href="{{ latest.github }}" target="_blank" class="projects-github">{{ latest.github | replace("https://", "") }}</a>
+                            </li>
+                            <li>
+                                <p>Specifications:</p>
+                                {% if latest.specifications %}
+                                    {% set specs = latest.specifications | map(attribute='specification') | list | join(', ') %}
+                                    <p>{{ specs }}</p>
+                                {% else %}
+                                    <p>No specifications...</p>
+                                {% endif %}
+                            </li>
+                        </ul>
+                        <div class="read-more-wrapper">
+                            <a href="{{ url_for('projects.project_detail', link=latest.link) }}" class="projects-latest-read-more">Lees meer >></a>
+                        </div>
+                    {% else %}
+                        <p>Geen recent project gevonden.</p>
+                    {% endif %}
                 </div>
-            </a>
-            <p class="project-name">{{ project.title }}</p>
-        </div>
-    {% endfor %}
-   </div>
-   <div class="all-projects-link">
-        <a href="{{ url_for('projects.all_projects') }}">All Projects</a>
-   </div>
-</section>
+            </div>
+        </article>
+    </section>
 
+    <section class="projects-featured-section">
+        <h2>Featured</h2>
+        <div class="carousel">
+            {% for project in projects if project.featured %}
+                <div class="project-item">
+                    <a href="{{ url_for('projects.project_detail', link=project.link) }}"
+                       class="project-featured {% if loop.index == 2 %}center{% endif %}">
+                        {% if project.images %}
+                             <img src="{{ url_for('static', filename='images/' ~ main_image.image_url) }}" alt="{{ main_image.alt_text }}">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" alt="{{ project.title }} project">
+                        {% endif %}
+                        <div class="overlay">
+                            <h3>{{ project.title }}</h3>
+                            <p>{{ project.subtitle }}</p>
+                        </div>
+                    </a>
+                    <p class="project-name">{{ project.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="all-projects-link">
+            <a href="{{ url_for('projects.all_projects') }}">All Projects</a>
+        </div>
+    </section>
 {% endblock %}

@@ -1,10 +1,39 @@
-**/*.env
+# Python
 __pycache__/
-venv/
 *.pyc
-*.css.map
-.vscode/
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
 
-# Eigen TS file transform
-con/
-go.sh
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Flask / Instance
+instance/
+*.db
+*.sqlite3
+
+# Flask-Migrate / Alembic
+migrations/versions/
+migrations/*.log
+
+# Logs
+*.log
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+# Environment variables
+*.env
+.env.*

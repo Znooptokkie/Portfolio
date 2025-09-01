@@ -57,8 +57,14 @@ h2:not(.banner-info h2)
     margin: 2.5rem 0;
 }
 
-h2::first-letter,
-h3::first-letter
+.all-projects-section h2::first-letter,
+.projects-latest-section h2::first-letter,
+.projects-featured-section h2::first-letter,
+.projects-latest-section .projects-latest-context,
+.projects-latest-context-text h3::first-letter,
+.education-school-section h2::first-letter,
+.education-certifcates-section h2::first-letter,
+.cv-banner-section h1::first-letter
 {
     color: $main-color;
 }
@@ -411,7 +417,7 @@ main
             {
                 display: flex;
                 // flex-direction: column;latest
-                padding: 2rem;
+                // padding: 2rem;
 
                 div
                 {
@@ -702,14 +708,14 @@ main
             .custom-select[data-filter="language"] .selected
             {
                 padding-left: 35px;
-                background: url("../../images/coding_svg.png") no-repeat left center;
+                background: url("../../images/coding_svg.webp") no-repeat left center;
                 background-size: 20px 20px;
             }
 
             .custom-select[data-filter="year"] .selected
             {
                 padding-left: 35px;
-                background: url("../../images/clock_svg.png") no-repeat left center;
+                background: url("../../images/clock_svg.webp") no-repeat left center;
                 background-size: 20px 20px;
             }
 
@@ -829,6 +835,7 @@ footer
                 {
                     color: $primary-color;
                     font-weight: bold;
+                    text-decoration: none;
                 
                     svg
                     {
@@ -842,7 +849,8 @@ footer
                 
                     &:hover
                     {
-                        color: $main-color;
+                        // color: $main-color;
+                        text-decoration: underline;
                     }
                 }
             }
@@ -1265,6 +1273,7 @@ footer
                 .projects-latest-context
                 {
                     flex-direction: column;
+                    padding: 0;
 
                     div
                     {
@@ -1453,6 +1462,7 @@ footer
                 .projects-latest-context
                 {
                     flex-direction: row;
+                    padding: 2rem;
                 }
             }
         }

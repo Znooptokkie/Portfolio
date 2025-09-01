@@ -3,5 +3,83 @@
 {% block title %}Future{% endblock %}
 
 {% block content %}
-   HOI ---- FUTURE
+<div class="container my-4">
+    <h1 class="mb-4">Future Projects</h1>
+
+    {% if projects %}
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ project.title }}</h2>
+                            
+                            {% if project.subtitle %}
+                                <h6 class="text-muted">{{ project.subtitle }}</h6>
+                            {% endif %}
+
+                            {% if project.description %}
+                                <p class="mt-2">{{ project.description }}</p>
+                            {% endif %}
+
+                            <ul class="list-unstyled">
+                                {% if project.link %}
+                                    <li><strong>Link:</strong> <a href="{{ project.link }}">{{ project.link }}</a></li>
+                                {% endif %}
+                                <li><strong>Year:</strong> {{ project.year }}</li>
+                                <li><strong>Date/Time:</strong> {{ project.datetime.strftime('%Y-%m-%d %H:%M') }}</li>
+                                {% if project.excerpt %}
+                                    <li><strong>Excerpt:</strong> {{ project.excerpt }}</li>
+                                {% endif %}
+                                {% if project.github %}
+                                    <li><strong>GitHub:</strong> <a href="{{ project.github }}" target="_blank">View on GitHub</a></li>
+                                {% endif %}
+                                <li><strong>Featured:</strong> {{ "Yes" if project.featured else "No" }}</li>
+                            </ul>
+
+                            {% if project.images %}
+                                <h5 class="mt-3">Images</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    {% for image in project.images %}
+                                        <div>
+                                            <img src="{{ image.image_url }}" alt="{{ image.alt_text or 'Project image' }}" class="img-thumbnail" style="max-width:150px;">
+                                            {% if image.is_main_image %}
+                                                <p class="text-success small mb-0">Main image</p>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            {% if project.specifications %}
+                                <h5 class="mt-3">Specifications</h5>
+                                <ul>
+                                    {% for spec in project.specifications %}
+                                        <li>{{ spec.specification }} <span class="badge bg-secondary">{{ spec.category.value }}</span></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if project.languages %}
+                                <h5 class="mt-3">Languages & Frameworks</h5>
+                                <ul>
+                                    {% for lang in project.languages %}
+                                        <li>
+                                            {{ lang.language.language if lang.language else "N/A" }}
+                                            {% if lang.framework %}
+                                                – <span class="badge bg-info">{{ lang.framework.framework }}</span>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No projects found.</p>
+    {% endif %}
+</div>
 {% endblock %}

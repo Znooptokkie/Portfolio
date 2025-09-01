@@ -40,8 +40,14 @@ h2:not(.banner-info h2) {
   margin: 2.5rem 0;
 }
 
-h2::first-letter,
-h3::first-letter {
+.all-projects-section h2::first-letter,
+.projects-latest-section h2::first-letter,
+.projects-featured-section h2::first-letter,
+.projects-latest-section .projects-latest-context,
+.projects-latest-context-text h3::first-letter,
+.education-school-section h2::first-letter,
+.education-certifcates-section h2::first-letter,
+.cv-banner-section h1::first-letter {
   color: #ffcc00;
 }
 
@@ -261,7 +267,6 @@ main .cv-articles-section .cv-lang-section .cv-lang-article-text .cv-lang-list-c
 }
 main .projects-latest-section article .projects-latest-context {
   display: flex;
-  padding: 2rem;
 }
 main .projects-latest-section article .projects-latest-context div {
   width: 50%;
@@ -463,12 +468,12 @@ main .all-projects-section .filters .custom-select.open .options {
 }
 main .all-projects-section .filters .custom-select[data-filter=language] .selected {
   padding-left: 35px;
-  background: url("../../images/coding_svg.png") no-repeat left center;
+  background: url("../../images/coding_svg.webp") no-repeat left center;
   background-size: 20px 20px;
 }
 main .all-projects-section .filters .custom-select[data-filter=year] .selected {
   padding-left: 35px;
-  background: url("../../images/clock_svg.png") no-repeat left center;
+  background: url("../../images/clock_svg.webp") no-repeat left center;
   background-size: 20px 20px;
 }
 main .all-projects-section .filters .undo-icon-filters {
@@ -547,6 +552,7 @@ footer .footer-first-div p {
 footer .footer-second-div .footer-svg a {
   color: rgb(51, 51, 51);
   font-weight: bold;
+  text-decoration: none;
 }
 footer .footer-second-div .footer-svg a svg {
   width: 20;
@@ -556,7 +562,7 @@ footer .footer-second-div .footer-svg a svg {
   fill: rgb(51, 51, 51);
 }
 footer .footer-second-div .footer-svg a:hover {
-  color: #ffcc00;
+  text-decoration: underline;
 }
 
 @media (max-width: 409.99px) {
@@ -737,6 +743,7 @@ footer .footer-second-div .footer-svg a:hover {
   }
   main .projects-latest-section article .projects-latest-context {
     flex-direction: column;
+    padding: 0;
   }
   main .projects-latest-section article .projects-latest-context div {
     width: 100%;
@@ -826,6 +833,7 @@ footer .footer-second-div .footer-svg a:hover {
   }
   main .projects-latest-section article .projects-latest-context {
     flex-direction: row;
+    padding: 2rem;
   }
 }
 .nav-toggle-button {
