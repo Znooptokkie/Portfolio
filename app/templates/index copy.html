@@ -1,0 +1,388 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+
+    <!-- <div class="container">
+        <h1 class="heading" data-target-resolver></h1>
+    </div> -->
+<section class="cv-banner-section">
+        <div class="cv-main-banner">
+            <div class="profile-pic">
+                <img src="../static/images/myself.webp" alt="A selfie of me with the Battlebot">
+            </div>
+            <!-- <div class="banner-info">
+                <h1>Atilla Oomen</h1>
+                <div class="banner-divider"></div>
+                <h2>Junior Software Developer</h2>
+            </div> -->
+        </div>
+        <div class="cv-banner-fancy-header">
+            <div class="cv-banner-container">
+                <h1 class="heading" data-target-resolver></h1>
+            </div>
+            <p>I successfully completed the Software Developer secondary vocational education at mboRijnland in Leiden. In fact, I was the very first student in the programme’s history at mboRijnland to graduate cum laude — definitely something worth mentioning</p>
+        </div>
+        <div class="cv-short-info">
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.cv-banner-fancy-header {
+    height: 100%; /* Blijf deze op 100% houden als je de volledige sectie wilt vullen */
+}
+
+.cv-banner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px; /* Vaste hoogte, pas deze aan naar wens (bijv. 150px) */
+    padding: 1rem;
+    margin-top: 7.5rem;
+    text-align: center;
+    overflow: hidden; /* Voorkomt dat tekst buiten de container valt */
+}
+
+.cv-banner-container .heading {
+    color: #eee;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin: 0; /* Verwijder standaard marges om hoogte consistent te houden */
+
+}
+</style>
+
+<script>
+const resolver = {
+  resolve: function resolve(options, callback) {
+    const resolveString = options.resolveString || options.element.getAttribute('data-target-resolver');
+    const combinedOptions = Object.assign({}, options, {resolveString: resolveString});
+    
+    function getRandomInteger(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    function randomCharacter(characters) {
+      return characters[getRandomInteger(0, characters.length - 1)];
+    }
+    
+    function doRandomiserEffect(options, callback) {
+      const { characters, timeout, element, partialString, iterations } = options;
+      setTimeout(() => {
+        if (iterations >= 0) {
+          const nextOptions = Object.assign({}, options, {iterations: iterations - 1});
+element.innerHTML = iterations === 0
+    ? partialString
+    : partialString.substring(0, partialString.length - 1) + randomCharacter(characters);
+          doRandomiserEffect(nextOptions, callback)
+        } else if (typeof callback === "function") callback();
+      }, options.timeout);
+    }
+    
+    function doResolverEffect(options, callback) {
+      const { resolveString, characters, offset } = options;
+      const partialString = getPartialString(resolveString, offset);
+
+      const combinedOptions = Object.assign({}, options, {partialString: partialString});
+      doRandomiserEffect(combinedOptions, () => {
+        const nextOptions = Object.assign({}, options, {offset: offset + 1});
+        if (offset <= resolveString.length) doResolverEffect(nextOptions, callback);
+        else if (typeof callback === "function") callback();
+      });
+    }
+
+    doResolverEffect(combinedOptions, callback);
+  } 
+}
+
+function getPartialString(str, offset) {
+    let result = "";
+    let count = 0;
+    let inTag = false;
+    for (let i = 0; i < str.length && count < offset; i++) {
+        const char = str[i];
+        result += char;
+        if (char === "<") inTag = true;
+        if (char === ">") inTag = false;
+        if (!inTag) count++;
+    }
+    return result;
+}
+
+
+const strings = [
+  "Greetings, my name is <span class='green-name'>Atilla Oomen</span>"
+];
+
+let counter = 0;
+
+const options = {
+  offset: 0,
+  timeout: 5,
+  iterations: 10,
+  characters: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?- ".split(""),
+  resolveString: strings[counter],
+  element: document.querySelector('[data-target-resolver]')
+}
+
+function callback() {
+  setTimeout(() => {
+    counter++;
+    if (counter >= strings.length) counter = 0;
+    resolver.resolve(Object.assign({}, options, {resolveString: strings[counter]}), callback);
+  }, 50000);
+}
+
+resolver.resolve(options, callback);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <section class="cv-banner-section">
+        <div class="cv-main-banner">
+            <div class="profile-pic">
+                <img src="../static/images/myself.webp" alt="A selfie of me with the Battlebot">
+            </div>
+            <div class="banner-info">
+                <h1>Atilla Oomen</h1>
+                <div class="banner-divider"></div>
+                <h2>Junior Software Developer</h2>
+            </div>
+        </div>
+        <div class="cv-short-info">
+            <div class="cv-short-first-div">
+                <div>
+                    <p>Age:</p>
+                    <p>30</p>
+                </div>
+                <div>
+                    <p>Location:</p>
+                    <p>The Hague</p>
+                </div>
+                <div>
+                    <p>Languages:</p>
+                    <p>Dutch, English</p>
+                </div>
+                <div>
+                    <p>Driver's License:</p>
+                    <p>B</p>
+                </div>
+                <div>
+                    <p>Soft Skills:</p>
+                    <p>Social, Independent, Detail-oriented</p>
+                </div>
+            </div>
+            <div class="cv-short-second-div">
+                <div>
+                    <p>Education Level:</p>
+                    <p>MBO 4 Software Development <i>(cum laude)</i></p>
+                </div>
+                <div>
+                    <p>Employment Status:</p>
+                    <p>Seeking work</p>
+                </div>
+                <div>
+                    <p>Experience Level:</p>
+                    <p>Junior Developer</p>
+                </div>
+                <div>
+                    <p>Availability:</p>
+                    <p>Immediately</p>
+                </div>
+                <div>
+                    <p>Experience:</p>
+                    <p>3 years</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="cv-articles-section">
+        <!-- INTRODUCTION section-->
+        <div class="cv-intro-section cv-article">
+            <div class="cv-intro-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-intro-article-text cv-section-text">
+                <p>
+                    My name is Atilla Oomen. I am 30 years old and currently living in The Hague.
+                </p>
+                <p>
+                    After finishing high school, I enrolled in the Software Development secondary vocational education at ROC Mondriaan Tinwerf. Unfortunately, I wasn't able to find the motivation at the time to complete it.
+                </p>
+                <p>
+                    I then chose to work as a house painter for ten years, which I truly enjoyed — and still occasionally do as a summer job.
+                </p>
+                <p>
+                    However, my interest in the IT sector never really faded. So, at the age of 28, I decided to go back to school — this time with the motivation and drive to learn as much as I could about computers and software.
+                </p>
+                <p>
+                    I successfully completed the Software Developer secondary vocational education at mboRijnland in Leiden. In fact, I was the very first student in the programme’s history at mboRijnland to graduate cum laude — definitely something worth mentioning.
+                </p>
+            </article>
+        </div>
+        <!-- MOTIVATION section-->
+        <div class="cv-mot-section cv-article">        
+            <div class="cv-mot-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-mot-article-text cv-section-text">
+                <p>
+                    Vanaf kinds af aan was altijd wel al geintreseerd in technologie. Hoe worden dingen berekend? Waarom wordt iets specifiek gemaakt op deze manier? Wat zal de toekomst ons brengen qua uitvingen?
+                </p>
+                <p>
+                    De computer is daarmee de uitgelezen kans om zelf deel uit te maken van deze toekomst. De interrese daarin begon uiteraard door het spelen van videogames. En dan vooral proberen vals te spelen met spellen doormiddel van het hacken ervan.
+                </p>
+                <!-- <p>
+                    Op een gegeven moment vond ik andere dingen wat belangrijker en ben vrijwel met alles gestopt rondom computers. Toch bleef ik ze altijd wel interessant vinden, en heb dan ook besloten om 3 jaar geleden het roer volledig om te gooien. Van Schilder — wat ik altijd met veel plezier deed — naar Software Developer.
+                </p> -->
+            </article>
+        </div>
+        <!-- INTEREST section-->
+        <div class="cv-inter-section cv-article">        
+            <div class="cv-inter-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-inter-article-text cv-section-text">
+                <div>
+                    <h3 class="cv-subtitle">Heelal</h3>
+                    <p>
+                        Zoals hierboven vermeld ligt mijn grootste interesse bij technologie. Samen met technologie ben ik ook erg geintreseerd in het heelal. Ook dit facineerd mij al sins kinds af aan. Waarom bestaan wij als mens? Waar is het heelal van gemaakt, en waar bevindt het zich in? Is alles oneindig, of is er altijd een einde?
+                    </p>
+                </div>
+                <div>
+                    <h3 class="cv-subtitle">Geschiedenis</h3>
+                    <p>
+                        Dit zijn dan mijn twee grootste interesses. Buiten deze twee zijn er uiteraard nog een aantal dingen wat ik leuk vind. Zo ben ik ook altijd wel nieuwsgierig geweest naar de geschiedenis van de mens. Uiteindelijk bepaald de geschiedenis ons heden. 
+                    </p>
+                </div>
+                <div>
+                    <h3 class="cv-subtitle">Natuur</h3>
+                    <p>
+                        Geen mensheid zonder een perfect leefklimaat. Onze aarde geeft ons dat. Waar niet alleen wij als mens rondlopen, maar ook het gignatisch diverse aanbod aan dieren en planten. Alles wat zich op aarde bevind is daar met een logische reden. Van de enorm hoge Alpen tot aan de Great Barrier Reef.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="cv-subtitle">Voetbal</h3>
+                    <p>
+                        Hoewel ik zelf nooit op voetbal heb gezeten, mijn interesse toen lag bij Taekwondo en Scouting, ben ik sinds kind al fan van Ado Den Haag. Een aantal jaren lang was ik wekelijs te vinden bij Ado. Niet voor het "prachtige" voetbal, maar de mooie sfeer en de uiteindelijke hardwerkende volksclub. Al heb ik wel met vol trots het Europees voetbal mogen meemaken.
+                    </p>
+                    <p>
+                        Buiten voetbal kijk ik elke week Formule 1 en probeer altijd wel zoveel mogelijk de Olympische Spelen te volgen. Voor nu ben ik zelf niet zo sportief bezig. Ik ben wel van plan op zeer korte termijn mijn motorrijbewijs te halen om lekker te gaan touren en dingen te ontdekken.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="cv-subtitle">Muziek</h3>
+                    <p>
+                        Dan hetgeen wat ik eigenlijk 24/7 luister, mijn muziek. De muzieksmaak die ik heb is heel diverse. De soms wat bizare teksten van Rammstein, of de poetische rapmuziek van NF, maar ook de harde beats van Techno. Vrijwel alle soorten muziek kan ik waarderen. Elk jaar probeer ik wel naar Pinkpop te gaan om allerlij bands te zien waar ik niet perse een kaartje voor zou kopen, maar toch heel vet is om live te zien.
+                    </p>
+                </div>
+            </article>
+        </div>
+        <!-- EXPERTISE section-->
+        <div class="cv-exper-section cv-article">        
+            <div class="cv-exper-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-exper-article-text cv-section-text">
+                <p>
+                    De afgelopen drie jaar heb ik vanuit school meerdere onderdelen van de IT sector meegekregen. Zo leerde school mij PHP, HTML, CSS, JS en SQL. Zelf heb ik nog in mijn vrije tijd Python erbij geleerd. Mijn besturingssysteem is bij voorkeur Linux. Ik draai nu Debian 12, maar nu ik de basis van Linux snap, ben ik van plan om naar een wat meer geavanceerdere Linux distrobution over te stappen. 
+                </p>
+                <p>
+                    Ook heb ik een Raspberry Pi 5 en een aantal Raspberry Pi Pico 2 microcontrollers aangeschaf t om wat hobby dingetjes mee te kunnen doen. Ik wil de Raspberry Pi 5 gaan gebruiken als access point naar mijn huis toe, zodat ik overal bij mijn documenten kan via een ssh verbinding. Op die manier wil ik mijn eigen cloud bouwen. Tijdens mijn 2e stage heb ik enorm veel gewerkt met de Raspberry Pi 5, dus de basis zit ook hier al behoorlijk goed naar mijn mening.
+                </p>
+            </article>
+        </div>
+        <!-- LANGUAGES section-->
+        <div class="cv-lang-section cv-article">        
+            <div class="cv-lang-svg">
+                <svg></svg>
+            </div>
+            <article class="cv-lang-article-text cv-section-text">
+                <div>
+                    <p>
+                       Na de middelbare koos ik in eerste instantie voor ICT. Mijn cijfers waren over het algemeen best wel redelijk, maar mijn motivatie was ook bij deze opleiding ver te zoeken.
+                    </p>
+                    <p>
+                       Eigenlijk wilde ik helemaal geen opleiding gaan doen en gewoon aan de slag als schilder. Maar mijn vader eiste dat ik een minimale opleiding heb voordat ik stop met school.
+                    </p>
+                    <p>
+                       Aangezien ik schilder werd, heb ik dan ook gekozen voor een MBO niveau 2 opleiding. Deze opleiding heb ik dan ook met succes afgerond en heb zelfs een 10/10 gehaald met het rekeneneindexamen. Verder waren er geen spectaulaire bijzonderheden op deze opleiding.
+                    </p>
+                 </div>
+                 <div class="cv-lang-list-container">
+                    <h3 class="cv-subtitle">Software Skills</h3>
+                    <div class="cv-lang-subcontainer">
+                        <ul class="cv-lang-list">
+                            <li class="cv-lang-skill">Python
+                                <ul>
+                                    <li class="cv-lang-subskill">Flask</li>
+                                    <li class="cv-lang-subskill">Django</li>
+                                </ul>
+                            </li>
+                            <li class="cv-lang-skill">PHP
+                                <ul>
+                                    <li class="cv-lang-subskill">Laravel</li>
+                                </ul>
+                            </li>
+                            <li class="cv-lang-skill">JavaScript
+                                <ul>
+                                    <li class="cv-lang-subskill">TypeScript</li>
+                                    <li class="cv-lang-subskill">React Native</li>
+                                    <li class="cv-lang-subskill">Electron</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="cv-lang-list">
+                            <li class="cv-lang-skill">HTML</li>
+                            <li class="cv-lang-skill">CSS
+                                <ul>
+                                    <li class="cv-lang-subskill">SCSS</li>
+                                    <li class="cv-lang-subskill">Bootstrap</li>
+                                </ul>
+                            </li>
+                            <li class="cv-lang-skill">SQL</li>
+                            <li class="cv-lang-skill">Linux</li>
+                            <li class="cv-lang-skill">Wordpress</li>
+                            <li class="cv-lang-skill">Raspberry Pi
+                                <ul>
+                                    <li class="cv-lang-subskill">Raspberry Pico</li>
+                                </ul>
+                            </li>
+                            <li class="cv-lang-skill">Figma / Adobe XD</li>
+                        </ul>
+                    </div>
+                 </div>
+            </article>
+        </div>
+    </section>
+{% endblock %}

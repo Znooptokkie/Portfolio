@@ -1,4 +1,4 @@
-import { VectorShapes } from "./vectorShape.class.js";
+import { VectorShapes } from "./VectorShape.js";
 
 export class SvgFactoryClassEducation
 {

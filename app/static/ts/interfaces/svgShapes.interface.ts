@@ -1,4 +1,4 @@
-import { VectorShapes } from '../svg/vectorShape.class';
+import { VectorShapes } from '../svg/VectorShape';
 
 export interface VectorShapeConfig extends Partial<typeof VectorShapes.defaultConfig> 
 {

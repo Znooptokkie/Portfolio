@@ -1,4 +1,4 @@
-import { Shape } from './shape.class.js';
+import { Shape } from './Shape.js';
 import { VectorShapeConfig } from "../interfaces/svgShapes.interface.js";
 
 type defaultConfig = {

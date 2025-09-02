@@ -1,12 +1,17 @@
-import { SvgFactoryClassCV, SvgFactoryClassEducation, svgFactoryClassProjects } from "./svg/svgFactory.class.js"
-import { Dropdown } from "./controls.js"
-import { ProjectFuncClass } from "./projects/projectFilter.js"
-import { ProjectCarousel, SpecsAccordion } from "./projects/projectDetails.js"
+import { SvgFactoryClassCV, SvgFactoryClassEducation, svgFactoryClassProjects } from "./svg/SvgFactory.js"
+import { Dropdown } from "./Dropdown.js"
+import { ProjectFuncClass } from "./projects/Filter.js"
+import { ProjectCarousel, SpecsAccordion } from "./projects/Carousel.js"
+import { TextResolver } from "./FancyText.js"
 
-document.addEventListener("DOMContentLoaded", () =>
-{
-    // new ProjectCarousel(".project-carousel");
-});
+const resolver = new TextResolver(
+    document.querySelector("[data-target-resolver]") as HTMLElement,
+    ["Greetings, my name is <span class='green-name'>Atilla Oomen</span>"],
+    { timeout: 5, iterations: 10 },
+    50000 
+);
+
+resolver.start();
 
 const svgFactoryCV = new SvgFactoryClassCV()
 const svgFactoryEducation = new SvgFactoryClassEducation()
@@ -28,8 +33,3 @@ document.addEventListener("DOMContentLoaded", () =>
     new ProjectCarousel(".project-carousel");
     new SpecsAccordion()
 });
-
-// window.addEventListener("resize", () =>
-// {
-
-// });
