@@ -1,8 +1,11 @@
 import { SvgFactoryClassCV, SvgFactoryClassEducation, svgFactoryClassProjects } from "./svg/SvgFactory.js"
 import { Dropdown } from "./Dropdown.js"
 import { ProjectFuncClass } from "./projects/Filter.js"
-import { ProjectCarousel, SpecsAccordion } from "./projects/Carousel.js"
+// import { ProjectCarousel, SpecsAccordion } from "./projects/Carousel.js"
 import { TextResolver } from "./FancyText.js"
+import { Starfield } from "./Background.js"
+import { CardManager } from "./CardManager.js"
+// import { TimelineAnimator } from "./Timeline.js"
 
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
@@ -21,6 +24,10 @@ const callDropdownClass = new Dropdown()
 
 const callProjectClass = new ProjectFuncClass()
 
+// const timeline = new TimelineAnimator()
+new Starfield("stars", 50)
+const cards = new CardManager()
+
 document.addEventListener("DOMContentLoaded", () => 
 {
     svgFactoryCV.callAfterDOM()
@@ -30,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () =>
     callDropdownClass.checkForButton()
     callProjectClass.init()
 
-    new ProjectCarousel(".project-carousel");
-    new SpecsAccordion()
+    cards.init()
+    // timeline.init()
+    // new ProjectCarousel(".project-carousel")
+    // new SpecsAccordion()
+    // Initialiseren
+
 });

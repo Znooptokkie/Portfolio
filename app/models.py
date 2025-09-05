@@ -51,7 +51,6 @@ class Project(db.Model):
     def get_project_name(cls, link):    
         return cls.query.options(*cls.join_tables()).filter_by(link=link).first()
 
-
 class ProjectImage(db.Model):
     """
 
@@ -115,8 +114,13 @@ class Language(db.Model):
 
     language_id = db.Column(db.Integer, primary_key=True)
     language = db.Column(db.String(50), unique=True, nullable=False)
+    svg_url = db.Column(db.String(255))
 
     projects = db.relationship("ProjectLanguage", backref="language", lazy="dynamic")
+
+    @classmethod
+    def get_all_languages(cls):
+        return cls.query.order_by(cls.language).all()
 
 class Framework(db.Model):
     __tablename__ = "framework"

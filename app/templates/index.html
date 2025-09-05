@@ -40,14 +40,14 @@
                     </svg>
                 </a>
                 <a href="https://github.com/atillaoomen" target="_blank" aria-label="GitHub">
-        <!-- GitHub -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-             fill="none" stroke="white" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round"
-             viewBox="0 0 24 24">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-        </svg>
-    </a>
+                    <!-- GitHub -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         fill="none" stroke="white" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round"
+                         viewBox="0 0 24 24">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>            
             </div>
         </div>
         <div class="my-description">
@@ -55,4 +55,236 @@
         </div>
     </div>
 </section>
+
+
+
+
+<section class="cv-experience-section">
+  <div>
+    <p>30</p>
+    <h3><span>Years</span><span>old</span></h3>
+  </div>
+  <div>
+    <p>3</p>
+    <h3><span>Years</span><span>Experience</span></h3>
+  </div>
+  <div>
+    <p>7</p>
+    <h3><span>Project</span><span>Completed</span></h3>
+  </div>
+  <div>
+    <p>3</p>
+    <h3><span>Years</span><span>Experience</span></h3>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="cv-introduction-section">
+  <h2>Everything About <span class="last-word">Me</span></h2>
+  <div class="introduction-container">
+    <div class="row1">
+      <div class="row1-left">
+        <p>
+            "After ten years, I made a career switch and pursued a <span class="green-name">Software Developer</span> role with full dedication and motivation"
+        </p>
+    </div>
+    <div class="row1-right">
+        <ul>
+            {% for language in languages %}
+                <li class="cv-languages-li">
+                    <i class="devicon-{{ language.language | lower }}-plain"></i>
+                    <h4>{{ language.language }}</h4>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    </div>
+    <!-- <div class="row2">
+      <div class="row2-left">Interesses</div>
+      <div class="row2-right">
+          <div class="row2-right-top">Opleidingen</div>
+          <div class="row2-right-bottom">
+              <div class="bottom-left">STAGE - Battlebot</div>
+              <div class="bottom-right">STAGE - Webprepare</div>
+          </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+
+
+
+
+
+<!-- <section class="cv-skills-section">
+    <h2>Skill <span class="last-word">Knowledge</span></h2>
+        <div class="skills-container front" data-card="1">Frameworks</div>
+        <div class="skills-container left" data-card="2"></div>
+        <div class="skills-container right" data-card="3">Kaart 3</div>
+</section>
+
+
+
+ -->
+<section class="cv-skills-section">
+  <h2>Featured <span class="last-word">Projects</span></h2>
+  <div class="cv-skills-section-carousel">
+      <div class="skills-container front" data-card="1">
+          <div class="project-banner">Battlebot Project</div>
+          <div class="overlay">
+              <div class="overlay-text">Beschrijving van het Battlebot Project: Een geavanceerde robot gebouwd met AI en precisie-engineering.</div>
+          </div>
+      </div>
+      <div class="skills-container left" data-card="2">
+          <div class="project-banner">Ander Project</div>
+          <div class="overlay">
+              <div class="overlay-text">Beschrijving van Ander Project: Een innovatieve oplossing voor moderne technologieproblemen.</div>
+          </div>
+      </div>
+      <div class="skills-container right" data-card="3">
+          <div class="project-banner">Nog Een Project</div>
+          <div class="overlay">
+              <div class="overlay-text">Beschrijving van Nog Een Project: Een futuristisch project met cutting-edge design.</div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<section class="timeline-section">
+    <section class="timeline">
+        <div class="container">
+            <div class="timeline-item">
+                <div class="timeline-img"></div>
+                <div class="timeline-content fadeInRight">
+                    <h2>Founding</h2>
+                    <p>Lorem ipsum dolor sit amet...</p>
+                </div>
+            </div> 
+            <div class="timeline-item">
+              <div class="timeline-img"></div>
+              <div class="timeline-content fadeInRight">
+                    <h2>Growth Expansion</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin sit amet libero eget bibendum. Proin condimentum nisi ante, at semper metus gravida vitae. Pellentesque ut dolor ac sem interdum fringilla eget non risus. Phasellus scelerisque faucibus semper. Sed sagittis tempor ex ac suscipit. Cras maximus nisl eget mauris ornare pretium. Phasellus vel metus at dui interdum sagittis. Donec laoreet leo eget mi lobortis, non mollis nunc convallis. Vestibulum sed ante a tellus finibus viverra et in sem. Sed imperdiet, sapien quis dapibus molestie, justo mi condimentum lacus, sed mattis urna ex in augue. Praesent augue mauris, vehicula sit amet eros at, dignissim consectetur enim. Donec condimentum rhoncus libero, quis hendrerit dui feugiat vitae. Phasellus ornare fringilla justo, nec ornare tortor tempus non. Duis vitae neque urna. In rutrum ultrices consectetur.
+                    
+                        Morbi congue nisl et libero volutpat, vitae tincidunt nisi gravida. Donec non ullamcorper est, vel lobortis nibh. Suspendisse in urna metus. Ut id tempor lectus. Proin vestibulum rutrum vulputate. Nam vitae purus et mi mattis mollis vitae tincidunt risus. Duis dictum luctus dictum.
+                    
+                        Integer commodo eu ipsum nec vehicula. Phasellus in justo pulvinar, maximus diam a, laoreet tellus. Nunc vitae dui ac neque porta cursus at non felis. Integer non mi a ex rutrum rutrum. Etiam vel nisl faucibus, dignissim erat eget, aliquet tellus. Sed faucibus ultricies turpis id fringilla. Mauris dignissim lacus ut arcu iaculis, sed elementum dui sagittis. Suspendisse ornare massa magna. Vivamus sed nulla quis risus suscipit pulvinar sed sit amet ante. Proin est massa, suscipit id lacinia sed, feugiat ut urna. Mauris sit amet ex vitae diam luctus consequat. Donec in aliquet lorem, ac convallis orci. Integer interdum eros sit amet odio mattis condimentum. Nam venenatis elementum dui, in pharetra erat faucibus ac.
+                    </p>
+                </div>
+            </div>   
+            <div class="timeline-item">
+              <div class="timeline-img"></div>
+              <div class="timeline-content fadeInRight">
+                    <h2>Major Achievements</h2>
+                    <p>Lorem ipsum dolor sit amet...</p>
+              </div>
+            </div> 
+            <div class="timeline-item">
+                <div class="timeline-img"></div>
+                <div class="timeline-content fadeInRight">
+                    <h2>Recent Milestones</h2>
+                    <p>Lorem ipsum dolor sit amet...</p>
+                </div>
+            </div>  
+            <div class="timeline-item">
+                <div class="timeline-img"></div>
+                <div class="timeline-content fadeInRight">
+                    <h2>Recent Milestones</h2>
+                    <p>Lorem ipsum dolor sit amet...</p>
+                </div>   
+            </div>
+        </div>
+    </section>
+
+</section>
+
+<section class="cv-projects-section">
+  <h2>My Project <span class="last-word">Collection</span></h2>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => 
+{
+    const elements = Array.from(document.querySelectorAll(".timeline-content"));
+
+    elements.forEach((el, i) => 
+    {
+        el.dataset.srIndex = i;
+        el.style.opacity = "0";
+        el.style.transform = "translateX(0)";
+        el.style.transition = "transform 0.8s ease, opacity 0.8s ease";
+        el.style.willChange = "transform, opacity";
+        el._isVisible = false;
+        el.classList.add("fadeInRight");
+    });
+
+    if (!("IntersectionObserver" in window)) 
+    {
+        elements.forEach(el => 
+        {
+            el.style.opacity = "1";
+            el.style.transform = "translateX(0)";
+            el._isVisible = true;
+        });
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => 
+    {
+        entries.forEach(entry => 
+        {
+            const el = entry.target;
+            const index = parseInt(el.dataset.srIndex, 10);
+            const delay = index * 120;
+
+            if (entry.isIntersecting && !el._isVisible) 
+            {
+                setTimeout(() => 
+                {
+                    el.style.opacity = "1";
+                    el.style.transform = "translateX(0)";
+                    el._isVisible = true;
+                }, delay);
+            }
+
+            if (!document.body.contains(el)) 
+            {
+                observer.unobserve(el);
+            }
+        });
+    }, 
+    {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1
+    });
+
+    elements.forEach(el => observer.observe(el));
+});
+</script>
 {% endblock %}

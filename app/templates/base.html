@@ -6,9 +6,11 @@
     <title>{% block title %}{% endblock %} - Atilla Oomen</title>
     <link href="{{ url_for('static', filename='style/css/main.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='images/logo_ouroborus_white.png') }}" type="image/jpeg">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
+    <canvas id="stars"></canvas>
     <header>
         <button class="nav-toggle-button" aria-label="Toggle menu"></button>
         <div class="header-desktop">
@@ -17,9 +19,6 @@
             </a>
             <nav class="nav-header">
                 <ul>
-                    <!-- <li>
-                        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Home</a>
-                    </li> -->
                     <li>
                         <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/education' %}active{% endif %}">Education</a>
                     </li>

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 # from .models import ProjectsManager
-from app.models import Project
+from app.models import Project, Language
 
 main_bp = Blueprint("main", __name__)
 project_bp = Blueprint("projects", __name__)
@@ -8,7 +8,9 @@ project_bp = Blueprint("projects", __name__)
 # Homepage / CV
 @main_bp.route("/")
 def home():
-    return render_template("index.html", title="Homepage")
+    languages = Language.get_all_languages()
+    
+    return render_template("index.html", title="Homepage", languages=languages)
 
 
 # Education
