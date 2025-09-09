@@ -1,12 +1,4 @@
-interface Star 
-{
-    x: number;
-    y: number;
-    radius: number;
-    speedX: number;
-    speedY: number;
-    alpha: number;
-}
+import { Star } from "./interfaces/star.interface.js"
 
 export class Starfield 
 {
@@ -48,7 +40,7 @@ export class Starfield
                 y: Math.random() * window.innerHeight,
                 radius: Math.random() * 2,
                 speedX: (Math.random() - 0.5) * 0.2,
-                speedY: (Math.random() - 0.5) * 0.2,
+                speedY: (Math.random() - 0.5) * 0.5,
                 alpha: Math.random() * 0.8 + 0.2
             });
         }

@@ -11,4 +11,4 @@ class Config:
     db_pass = os.environ.get("DB_PASS")
 
     SECRET_KEY = secret_key
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{db_user}:{quote(db_pass)}@localhost/{db_name}"
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{db_user}:{quote(str(db_pass))}@localhost/{db_name}"

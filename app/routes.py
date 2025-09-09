@@ -1,16 +1,17 @@
 from flask import Blueprint, render_template
-# from .models import ProjectsManager
 from app.models import Project, Language
 
 main_bp = Blueprint("main", __name__)
 project_bp = Blueprint("projects", __name__)
 
+
 # Homepage / CV
 @main_bp.route("/")
 def home():
     languages = Language.get_all_languages()
+    projects = Project.get_all_projects()
     
-    return render_template("index.html", title="Homepage", languages=languages)
+    return render_template("index.html", title="Homepage", languages=languages, projects=projects)
 
 
 # Education
@@ -59,3 +60,8 @@ def future():
 @main_bp.route("/contact")
 def contact():
     return render_template("contact.html", title="Contact")
+
+# Coming Soon
+@main_bp.route("/coming-soon")
+def coming_soon():
+    return render_template("coming_soon.html", title="Coming Soon")

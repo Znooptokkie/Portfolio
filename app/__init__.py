@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -12,11 +12,9 @@ from app.models import Project, ProjectImage, ProjectSpecification
 
 def create_app():
 
-    # Maak applicatie aan
     app = Flask(__name__)
     app.config.from_object("config.Config")
 
-    # Initialiseer de database met migrate
     db.init_app(app)
     migrate.init_app(app, db)
 
@@ -28,6 +26,10 @@ def create_app():
         except ValueError:
             return iso_string
     app.jinja_env.filters['format_datetime'] = format_datetime
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template("404.html"), 404
 
     # Blueprints
     from app.routes import main_bp, project_bp

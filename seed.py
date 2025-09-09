@@ -58,11 +58,11 @@ images = {
     ],
     "final_exam": 
     [
-        {"url": "final_exam/ikzelf.jpg", "is_main_image": True}
+        {"url": "final_exam/myself.webp", "is_main_image": True}
     ],
     "smartgarden_mobile": 
     [
-        {"url": "smartgarden_mobile/ikzelf.jpg", "is_main_image": True}
+        {"url": "smartgarden_mobile/smartgarden_desktop_add_plant.webp", "is_main_image": True}
     ],
     "smartgarden_desktop": 
     [
@@ -70,7 +70,7 @@ images = {
     ],
     "bram": 
     [
-        {"url": "projects/bram_open_page.png", "is_main_image": True}
+        {"url": "bram/bram_loadingscreen.webp", "is_main_image": True}
     ],
     "zinra": 
     [
@@ -78,7 +78,7 @@ images = {
     ],
     "portfolio": 
     [
-        {"url": "/projects/zinra.png", "is_main_image": True}
+        {"url": "zinra/zinra.webp", "is_main_image": True}
     ]
 }
 
@@ -122,7 +122,7 @@ json_data = [
         "datetime": "2025-08-27T20:00:00+02:00",
         "excerpt": "Battlebot was a project I completed with a classmate at school. We upgraded a technical robot to be controlled via a Raspberry Pi 5 and a second Pico microcontroller.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
-        "featured": "no",
+        "featured": "yes",
         "framework": ""
     },
     {
@@ -143,26 +143,26 @@ json_data = [
         "subtitle": "Autonomous Irrigation System",
         "description": "JavaScript project 2024",
         "link": "smart-garden-mobile",
-        "language": "Python",
+        "language": "TypeScript JavaScript",
         "year": 2024,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "I built a mobile app that lets users monitor and water their smart garden remotely, using live data from sensors connected to a small server.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
-        "featured": "no",
-        "framework": "react_native"
+        "featured": "yes",
+        "framework": "React Native|"
     },
     {
         "title": "Smart Garden - Desktop",
         "subtitle": "Autonomous Irrigation System",
         "description": "JavaScript & Python project 2024",
         "link": "smart-garden-desktop",
-        "language": "Python",
+        "language": "Python JavaScript",
         "year": 2024,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "This desktop version allowed users to control their smart garden from a PC. It integrated Python scripts for sensor reading and JavaScript for interactive dashboards.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
-        "featured": "yes",
-        "framework": "electron|flask"
+        "featured": "no",
+        "framework": "Electron|Flask"
     },
     {
         "title": "BRAM",
@@ -174,7 +174,7 @@ json_data = [
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "BRAM was a personal project where I programmed an intelligent assistant in Python to help schedule tasks and send notifications automatically.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
-        "featured": "yes",
+        "featured": "no",
         "framework": ""
     },
     {
@@ -182,7 +182,7 @@ json_data = [
         "subtitle": "Mailbox Sorting Service",
         "description": "JavaScript & PHP project 2023",
         "link": "zinra",
-        "language": "Python",
+        "language": "Python JavaScript",
         "year": 2023,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "Zinra was a web project combining JavaScript and PHP to create a dynamic website with interactive features and a secure backend for user data.",
@@ -271,9 +271,14 @@ def seed_projects():
     return project_map
 
 def seed_project_images(project_map):
+    link_map = {
+        "smart-garden-desktop": "smartgarden_desktop",
+        "smart-garden-mobile": "smartgarden_mobile"
+    }
+
     for item in json_data:
         project = project_map[item["title"]]
-        link = item["link"].replace("-", "_")
+        link = link_map.get(item["link"], item["link"].replace("-", "_"))
         if link in images:
             for image_data in images[link]:
                 if image_data:
@@ -286,6 +291,7 @@ def seed_project_images(project_map):
                     db.session.add(project_image)
     db.session.commit()
     print("Project images seeded successfully!")
+
 
 def seed_project_specifications(project_map):
     """Voeg specificaties toe aan de ProjectSpecification-tabel vanuit de specifications dictionary."""

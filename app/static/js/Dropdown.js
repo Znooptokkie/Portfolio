@@ -5,14 +5,6 @@ export class Dropdown {
         this.headerHTML = document.querySelector("header");
         this.toggleDropdown = this.toggleDropdown.bind(this);
     }
-    // handleDropdown(): void
-    // {
-    //     if (this.dropdownMenuHTML)
-    //     {
-    //         // Veranderen naar 10
-    //         this.dropdownMenuHTML.style.display = window.innerWidth < 991 ? "none" : "none";
-    //     }
-    // }
     toggleDropdown() {
         if (this.dropdownMenuHTML && this.headerHTML && this.toggleButtonDropdownHTML) {
             const isOpen = this.dropdownMenuHTML.style.display === "block";

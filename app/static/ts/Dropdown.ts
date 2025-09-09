@@ -12,15 +12,6 @@ export class Dropdown
         this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
-    // handleDropdown(): void
-    // {
-    //     if (this.dropdownMenuHTML)
-    //     {
-    //         // Veranderen naar 10
-    //         this.dropdownMenuHTML.style.display = window.innerWidth < 991 ? "none" : "none";
-    //     }
-    // }
-
     toggleDropdown(): void
     {
         if (this.dropdownMenuHTML && this.headerHTML && this.toggleButtonDropdownHTML)

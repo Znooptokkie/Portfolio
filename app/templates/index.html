@@ -15,9 +15,8 @@
         </div>
         <div class="subheading-container">
             <p class="subheading">Junior Developer | Full Stack Developer</p>
-            <!-- <hr> -->
             <div class="social-icons">
-                <a href="https://www.linkedin.com/in/atillaoomen" target="_blank" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/atilla-oomen-3a4b78335" target="_blank" aria-label="LinkedIn">
                     <!-- LinkedIn -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          fill="none" stroke="white" stroke-width="2"
@@ -29,7 +28,7 @@
                         <path d="M12 17v-6h2.4a2 2 0 0 1 2 2V17"/>
                     </svg>
                 </a>
-                <a href="mailto:atilla@example.com" aria-label="Mail">
+                <a href="mailto:oomenatilla@gmail.com" aria-label="Mail">
                     <!-- Mail -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          fill="none" stroke="white" stroke-width="2"
@@ -39,7 +38,7 @@
                         <polyline points="3,7 12,13 21,7"/>
                     </svg>
                 </a>
-                <a href="https://github.com/atillaoomen" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/znooptokkie/" target="_blank" aria-label="GitHub">
                     <!-- GitHub -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          fill="none" stroke="white" stroke-width="2"
@@ -51,240 +50,233 @@
             </div>
         </div>
         <div class="my-description">
-             <p>I graduated cum laude from the Software Developer secondary vocational education at mboRijnland in Leiden, as the first student in the program’s history to achieve this distinction</p>
+             <p>
+                I graduated <span class="green-name">cum laude</span> from the Software Developer secondary vocational education at mboRijnland in Leiden, as the first student in the program’s history to achieve this distinction
+            </p>
+        </div>
+    </div>
+</section>
+<section class="cv-experience-section">
+    <div>
+        <p>30</p>
+        <h3>
+            <span>Years</span>
+            <span>old</span>
+        </h3>
+    </div>
+    <div>
+        <p>3</p>
+        <h3>
+            <span>Years</span>
+            <span>Experience</span>
+        </h3>
+    </div>
+    <div>
+        <p>7</p>
+        <h3>
+            <span>Projects</span>
+            <span>Completed</span>
+        </h3>
+    </div>
+    <div>
+        <p>3</p>
+        <h3>
+            <span>Years</span>
+            <span>Experience</span>
+        </h3>
+    </div>
+</section>
+
+<section class="cv-introduction-section">
+    <h2>Everything About <span class="last-word">Me</span></h2>
+    <div class="introduction-container">
+        <div class="row1">
+            <div class="row1-left">
+                <p>
+                    "I am proficient in several programming languages, especially Python and JavaScript, and plan to learn a low-level language in the future."
+                </p>
+            </div>
+            <div class="row1-right">
+                <ul>
+                    {% for language in languages %}
+                        <li class="cv-languages-li">
+                            <i class="devicon-{{ language.language | lower }}-plain"></i>
+                            <h4>{{ language.language }}</h4>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </section>
 
-
-
-
-<section class="cv-experience-section">
-  <div>
-    <p>30</p>
-    <h3><span>Years</span><span>old</span></h3>
-  </div>
-  <div>
-    <p>3</p>
-    <h3><span>Years</span><span>Experience</span></h3>
-  </div>
-  <div>
-    <p>7</p>
-    <h3><span>Project</span><span>Completed</span></h3>
-  </div>
-  <div>
-    <p>3</p>
-    <h3><span>Years</span><span>Experience</span></h3>
-  </div>
-</section>
-
-
-
-
-
-
-
-<section class="cv-introduction-section">
-  <h2>Everything About <span class="last-word">Me</span></h2>
-  <div class="introduction-container">
-    <div class="row1">
-      <div class="row1-left">
-        <p>
-            "After ten years, I made a career switch and pursued a <span class="green-name">Software Developer</span> role with full dedication and motivation"
-        </p>
-    </div>
-    <div class="row1-right">
-        <ul>
-            {% for language in languages %}
-                <li class="cv-languages-li">
-                    <i class="devicon-{{ language.language | lower }}-plain"></i>
-                    <h4>{{ language.language }}</h4>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    </div>
-    <!-- <div class="row2">
-      <div class="row2-left">Interesses</div>
-      <div class="row2-right">
-          <div class="row2-right-top">Opleidingen</div>
-          <div class="row2-right-bottom">
-              <div class="bottom-left">STAGE - Battlebot</div>
-              <div class="bottom-right">STAGE - Webprepare</div>
-          </div>
-      </div>
-    </div> -->
-  </div>
-</section>
-
-
-
-
-
-
-<!-- <section class="cv-skills-section">
-    <h2>Skill <span class="last-word">Knowledge</span></h2>
-        <div class="skills-container front" data-card="1">Frameworks</div>
-        <div class="skills-container left" data-card="2"></div>
-        <div class="skills-container right" data-card="3">Kaart 3</div>
-</section>
-
-
-
- -->
-<section class="cv-skills-section">
-  <h2>Featured <span class="last-word">Projects</span></h2>
-  <div class="cv-skills-section-carousel">
-      <div class="skills-container front" data-card="1">
-          <div class="project-banner">Battlebot Project</div>
-          <div class="overlay">
-              <div class="overlay-text">Beschrijving van het Battlebot Project: Een geavanceerde robot gebouwd met AI en precisie-engineering.</div>
-          </div>
-      </div>
-      <div class="skills-container left" data-card="2">
-          <div class="project-banner">Ander Project</div>
-          <div class="overlay">
-              <div class="overlay-text">Beschrijving van Ander Project: Een innovatieve oplossing voor moderne technologieproblemen.</div>
-          </div>
-      </div>
-      <div class="skills-container right" data-card="3">
-          <div class="project-banner">Nog Een Project</div>
-          <div class="overlay">
-              <div class="overlay-text">Beschrijving van Nog Een Project: Een futuristisch project met cutting-edge design.</div>
-          </div>
-      </div>
-  </div>
-</section>
-
 <section class="timeline-section">
-    <section class="timeline">
-        <div class="container">
+    <h2>My <span class="last-word">Timeline</span></h2>
+    <article class="timeline">
+        <div class="timeline-container">
             <div class="timeline-item">
                 <div class="timeline-img"></div>
                 <div class="timeline-content fadeInRight">
-                    <h2>Founding</h2>
-                    <p>Lorem ipsum dolor sit amet...</p>
+                    <h3>Leaving Highschool</h3>
+                    <p>
+                        I was advised to pursue TL-HAVO from primary school, but I chose the easier path. I never had the motivation to put in my best effort at school. Although I completed all requirements satisfactorily, my performance in secondary school was not exceptional.
+                    </p>
+                    <p>
+                        After secondary school, I initially chose to study ICT at ROC Mondriaan Tinwerf. My grades were generally quite decent, but my attendance and motivation in this program were also lacking.
+                    </p>
+                    <p>
+                        In reality, I did not want to pursue further education and preferred to start working as a painter. However, my father insisted that I complete at least a minimum level of education before leaving school.
+                    </p>
+                    <p>
+                        Since I became a painter, I chose an <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">MBO Level 2 program</a>. I successfully completed this program and even achieved a perfect score of 10/10 on the mathematics examination.
+                    </p>
                 </div>
             </div> 
             <div class="timeline-item">
-              <div class="timeline-img"></div>
-              <div class="timeline-content fadeInRight">
-                    <h2>Growth Expansion</h2>
+                <div class="timeline-img"></div>
+                <div class="timeline-content fadeInRight">
+                    <h3>Working as a Painter</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin sit amet libero eget bibendum. Proin condimentum nisi ante, at semper metus gravida vitae. Pellentesque ut dolor ac sem interdum fringilla eget non risus. Phasellus scelerisque faucibus semper. Sed sagittis tempor ex ac suscipit. Cras maximus nisl eget mauris ornare pretium. Phasellus vel metus at dui interdum sagittis. Donec laoreet leo eget mi lobortis, non mollis nunc convallis. Vestibulum sed ante a tellus finibus viverra et in sem. Sed imperdiet, sapien quis dapibus molestie, justo mi condimentum lacus, sed mattis urna ex in augue. Praesent augue mauris, vehicula sit amet eros at, dignissim consectetur enim. Donec condimentum rhoncus libero, quis hendrerit dui feugiat vitae. Phasellus ornare fringilla justo, nec ornare tortor tempus non. Duis vitae neque urna. In rutrum ultrices consectetur.
-                    
-                        Morbi congue nisl et libero volutpat, vitae tincidunt nisi gravida. Donec non ullamcorper est, vel lobortis nibh. Suspendisse in urna metus. Ut id tempor lectus. Proin vestibulum rutrum vulputate. Nam vitae purus et mi mattis mollis vitae tincidunt risus. Duis dictum luctus dictum.
-                    
-                        Integer commodo eu ipsum nec vehicula. Phasellus in justo pulvinar, maximus diam a, laoreet tellus. Nunc vitae dui ac neque porta cursus at non felis. Integer non mi a ex rutrum rutrum. Etiam vel nisl faucibus, dignissim erat eget, aliquet tellus. Sed faucibus ultricies turpis id fringilla. Mauris dignissim lacus ut arcu iaculis, sed elementum dui sagittis. Suspendisse ornare massa magna. Vivamus sed nulla quis risus suscipit pulvinar sed sit amet ante. Proin est massa, suscipit id lacinia sed, feugiat ut urna. Mauris sit amet ex vitae diam luctus consequat. Donec in aliquet lorem, ac convallis orci. Integer interdum eros sit amet odio mattis condimentum. Nam venenatis elementum dui, in pharetra erat faucibus ac.
+                        I then started working as a house painter, a profession I pursued for approximately ten years with great enjoyment, and which I still occasionally practice.
+                    </p>
+                    <p>
+                        Nevertheless, software development continued to intrigue me. I attempted to teach myself the <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">Python programming language</a>, but I was quickly overwhelmed by the vast amount of information required to write even a simple program.
+                    </p>
+                    <p>
+                        There was only one option left for me: returning to school. This time, I chose to enroll in the Software Developer program at <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">mboRijnland in Leiden</a>.
                     </p>
                 </div>
             </div>   
             <div class="timeline-item">
-              <div class="timeline-img"></div>
-              <div class="timeline-content fadeInRight">
-                    <h2>Major Achievements</h2>
-                    <p>Lorem ipsum dolor sit amet...</p>
-              </div>
+                <div class="timeline-img"></div>
+                <div class="timeline-content fadeInRight">
+                    <h3>Switching to Software Developer</h3>
+                    <p>
+                        This time, I began the program with a tremendous amount of motivation, which paid off on multiple occasions. I was repeatedly asked to take on <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">extra projects such as supervising an exchange program</a> and was even given the opportunity to <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">mentor HBO students</a> as a challenge provider for their project.
+                    </p>
+                    <p>
+                        The results of my motivation are also reflected in my grades. I <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">graduated</a> cum laude as the top student in the Software Development program at mboRijnland. I should note that seven years ago ROC Leiden transitioned into mboRijnland, but it is still an achievement I am extremely proud of!
+                    </p>
+                    <p>
+                        Furthermore, I participated in an <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">AI research project</a> for which I received a certificate of excellence. This research focused on how schools can responsibly handle the use of AI. I conducted various studies for this project and delivered multiple presentations together with a team of students and a teacher.
+                    </p>
+                    <p>
+                        School provided me with a solid foundation to build upon. By paying close attention and completing my assignments diligently, I am now able to write code independently and solve problems reasonably well.
+                    </p>
+                </div>
             </div> 
             <div class="timeline-item">
                 <div class="timeline-img"></div>
                 <div class="timeline-content fadeInRight">
-                    <h2>Recent Milestones</h2>
-                    <p>Lorem ipsum dolor sit amet...</p>
+                    <h3>Internship</h3>
+                    <div class="timeline-internship">
+                        <div>
+                            <div>
+                                <img src="../static/images/webprepare.webp" alt="Webprepare logo">
+                            </div>
+                            <h4>Webprepare</h4>
+                            <p>
+                                I completed my first internship at Webprepare in Voorschoten, a company specializing in WordPress and hosting.
+                            </p>
+                        </div>
+                        <div>
+                            <div>
+                                <img src="../static/images/mborijnland.svg" alt="mboRijnland logo">
+                            </div>
+                            <h4>Battlebot</h4>
+                            <p>
+                                Battlebot was my final internship at mboRijnland within the Technology department. My task, together with a fellow student, was to fully automate the existing robot.
+                            </p>
+                        </div>
+                
+                    </div>
                 </div>
-            </div>  
+            </div>
             <div class="timeline-item">
                 <div class="timeline-img"></div>
                 <div class="timeline-content fadeInRight">
-                    <h2>Recent Milestones</h2>
-                    <p>Lorem ipsum dolor sit amet...</p>
+                    <h3>Future Toughts</h3>
+                    <p>
+                        Given my age and the other steps I wish to take in life, I am currently unable to continue formal studies, although I would have very much liked to do so.
+                    </p>
+                    <p>
+                        Nevertheless, I am highly motivated to further expand my knowledge, building on the strong foundation that school has provided me.
+                    </p>
+                    <p>
+                        For now, I am considering focusing on mastering a programming language thoroughly, while simultaneously continuing to study computer theory in general.
+                    </p>
+                    <p>
+                        During the <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">Battlebot internship</a>, we worked with bit operators and hexadecimal values. I find this aspect of computing extremely interesting and would like to learn more about it.
+                    </p>
+                    <p>
+                        In the near future, I plan to study a low-level programming language in order to gain practical experience in this area.
+                    </p>
                 </div>   
             </div>
         </div>
-    </section>
-
-</section>
-
-<section class="cv-projects-section">
-  <h2>My Project <span class="last-word">Collection</span></h2>
+    </article>
 </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-document.addEventListener("DOMContentLoaded", () => 
-{
-    const elements = Array.from(document.querySelectorAll(".timeline-content"));
-
-    elements.forEach((el, i) => 
-    {
-        el.dataset.srIndex = i;
-        el.style.opacity = "0";
-        el.style.transform = "translateX(0)";
-        el.style.transition = "transform 0.8s ease, opacity 0.8s ease";
-        el.style.willChange = "transform, opacity";
-        el._isVisible = false;
-        el.classList.add("fadeInRight");
-    });
-
-    if (!("IntersectionObserver" in window)) 
-    {
-        elements.forEach(el => 
-        {
-            el.style.opacity = "1";
-            el.style.transform = "translateX(0)";
-            el._isVisible = true;
-        });
-        return;
-    }
-
-    const observer = new IntersectionObserver(entries => 
-    {
-        entries.forEach(entry => 
-        {
-            const el = entry.target;
-            const index = parseInt(el.dataset.srIndex, 10);
-            const delay = index * 120;
-
-            if (entry.isIntersecting && !el._isVisible) 
-            {
-                setTimeout(() => 
-                {
-                    el.style.opacity = "1";
-                    el.style.transform = "translateX(0)";
-                    el._isVisible = true;
-                }, delay);
-            }
-
-            if (!document.body.contains(el)) 
-            {
-                observer.unobserve(el);
-            }
-        });
-    }, 
-    {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1
-    });
-
-    elements.forEach(el => observer.observe(el));
-});
-</script>
+<section class="projects-featured-section">
+    <h2>Featured <span class="green-name">Projects</span></h2>
+    <div class="carousel">
+        <button class="carousel-arrow left-arrow">&#10094;</button>
+        {% for project in projects if project.featured %}
+            {% set main_image = (project.images | selectattr("is_main_image", "equalto", True) | list | first) or (project.images | first) %}
+            <div class="card-wrapper skills-container" data-card="{{ loop.index }}">
+                <div class="card">
+                    <svg viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg">
+                        <path class="card-shape" stroke="rgba(147, 160, 188, 0.1)" stroke-width="3" />
+                        <path class="card-shape-inner" stroke="rgba(180, 190, 210, 0.7)" stroke-width="20" />
+                        <text
+                          class="card-title"
+                          x="170"
+                          y="25"
+                          text-anchor="middle"
+                          alignment-baseline="middle"
+                          font-size="20"
+                          font-family="Goldman"
+                          fill="rgba(180, 190, 210, 1)"
+                        >
+                          {{ project.title }}
+                        </text>
+                    </svg>
+                    <div class="card-content">
+                        <div class="card-image">
+                            {% if main_image %}
+                                <img
+                                  src="{{ url_for('static', filename='images/' ~ main_image.image_url) }}"
+                                  alt="{{ main_image.alt_text }}"
+                                />
+                            {% else %}
+                                <img
+                                  src="{{ url_for('static', filename='images/placeholder.jpg') }}"
+                                  alt="{{ project.title }} project"
+                                />
+                            {% endif %}
+                        </div>
+                        <div class="card-stats">
+                            {% for tech in project.languages_and_frameworks %}
+                                <div class="stat">{{ tech }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="card-description">
+                            <p>{{ project.excerpt }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/">GO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <button class="carousel-arrow right-arrow">&#10095;</button>
+    </div>
+    <div class="all-projects-button">
+        <a href="/">
+            All Projects
+        </a>
+    </div>
+</section>
 {% endblock %}

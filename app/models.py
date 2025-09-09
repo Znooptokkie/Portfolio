@@ -50,6 +50,18 @@ class Project(db.Model):
     @classmethod
     def get_project_name(cls, link):    
         return cls.query.options(*cls.join_tables()).filter_by(link=link).first()
+    
+    @property
+    def languages_and_frameworks(self):
+        """Retourneert een gesorteerde lijst van unieke talen en frameworks"""
+        items = set()
+        for pl in self.languages:
+            if pl.language:
+                items.add(pl.language.language)
+            if pl.framework:
+                items.add(pl.framework.framework)
+        return sorted(items)
+
 
 class ProjectImage(db.Model):
     """
@@ -67,14 +79,12 @@ class ProjectImage(db.Model):
     project_id = db.Column(db.Integer, db.ForeignKey('project.project_id'), nullable=False)
 
 
-
 class ProjectSpecificationEnumCategory(enum.Enum):
     SOFTWARE = "software"
     HARDWARE = "hardware"
     BACKEND = "backend"
     FRONTEND = "frontend"
     OTHER = "other"
-
 
 
 class ProjectSpecification(db.Model):
@@ -90,7 +100,6 @@ class ProjectSpecification(db.Model):
     category = db.Column(db.Enum(ProjectSpecificationEnumCategory), nullable=False, default=ProjectSpecificationEnumCategory.SOFTWARE) 
 
     project_id = db.Column(db.Integer, db.ForeignKey('project.project_id'), nullable=False)
-
 
 
 class ProjectLanguage(db.Model):
@@ -109,6 +118,7 @@ class ProjectLanguage(db.Model):
     language_id = db.Column(db.Integer, db.ForeignKey('language.language_id'), nullable=False)
     framework_id = db.Column(db.Integer, db.ForeignKey('framework.framework_id'), nullable=True)
 
+
 class Language(db.Model):
     __tablename__ = "language"
 
@@ -121,6 +131,7 @@ class Language(db.Model):
     @classmethod
     def get_all_languages(cls):
         return cls.query.order_by(cls.language).all()
+
 
 class Framework(db.Model):
     __tablename__ = "framework"
