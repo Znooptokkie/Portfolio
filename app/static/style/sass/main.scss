@@ -6,14 +6,23 @@ $courier-font: "Courier Prime", monospace;
 
 $primary-color: rgb(51, 51, 51);
 $background-color: rgb(6, 10, 18);
+// $background-color: rgb(0, 12, 35);
 // $main-color: #75df83;
 $main-color: #2ecc71;
 // $main-color: #79e6a6;
 // $main-color: #001aff;
 //   background-color: #1a1a2e;
 // $main-color: #00ffcc; 
+$paragraph-color: rgba(158, 190, 255, 0.5);
 
-@mixin glass-card($height: 100%, $width: 100%, $border-radius: 10px, $blur: 5px)
+///////////////////////////////////////////////
+
+@mixin glass-card(
+    $height: 100%, 
+    $width: 100%, 
+    $border-radius: 10px, 
+    $blur: 5px
+)
 {
     height: $height;
     width: $width;
@@ -22,6 +31,39 @@ $main-color: #2ecc71;
     backdrop-filter: blur($blur);
     background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
 }
+
+@mixin flexbox(
+    $direction: row, 
+    $justify: flex-start, 
+    $align: stretch
+) 
+{
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin typography(
+  $font-family: $paragraph-font,
+  $font-size: 1rem,
+  $font-weight: 400,
+  $color: white,
+  $line-height: 1.5,
+  $text-align: left,
+  $text-transform: none
+) 
+{
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  line-height: $line-height;
+  text-align: $text-align;
+  text-transform: $text-transform;
+}
+
+//////////////////////////////////////////
 
 .row1-left,
 .row2-left,
@@ -40,8 +82,8 @@ $main-color: #2ecc71;
 /* Hele scrollbar */
 ::-webkit-scrollbar 
 {
-    width: 12px;
-    height: 12px;
+    width: .75rem;
+    height: .75rem;
 }
 
 /* Scrollbar track (achtergrond) */
@@ -106,22 +148,15 @@ article,
 div,
 textarea
 {
+    // @include typography();
     font-family: $paragraph-font;
-    color: white;
-}
-
-h1
-{
-    color: $primary-color;
-    font-family: $title-font;
 }
 
 body
 {
+    @include flexbox($direction: column);
     width: 100%;
     min-height: 100%;
-    display: flex;
-    flex-direction: column;
     position: relative;
 }
 
@@ -156,10 +191,7 @@ body
 {
     h2
     {
-        color: white;
-        text-align: center;
-        font-family: $paragraph-font;
-        font-size: 2.5rem;
+        @include typography($text-align: center, $font-size: 2.5rem);
         margin-bottom: 2.5rem;
 
         span.last-word
@@ -187,35 +219,147 @@ body
     }
 }
 
+.all-projects-button,
+.contact-me-button 
+{
+    display: inline-flex;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    // margin: 2rem;
+    border-radius: 0.25em;
+    position: relative;
+    color: $main-color;
+    border: $main-color 0.125em solid;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em $main-color;
+    box-shadow: 
+        inset 0 0 0.5em 0 $main-color,
+        0 0 0.5em 0 $main-color;
+    // background: radial-gradient(
+    //     circle at 50% 50%,
+    //     rgba(46, 204, 113, 0.2) 0%,
+    //     transparent 70% 
+    // );
+
+    a 
+    {
+        @include typography($color: $main-color, $font-weight: bold);
+        text-decoration: none;
+        text-shadow: 0 1px 2px rgba($background-color, 1);
+    }
+
+    &::after 
+    {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        box-shadow: 0 0 2em .25em $main-color;
+        // background-color: rgba(46, 204, 113, 0.3);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 100ms linear;
+    }
+
+    &:hover::before,
+    &:focus::before 
+    {
+        opacity: 1;
+    }
+
+    &:hover::after,
+    &:focus::after 
+    {
+        opacity: 1;
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+        color: $background-color;
+        text-shadow: none;
+        // background: radial-gradient(
+        //     circle at 50% 50%,
+        //     rgba(46, 204, 113, 0.3) 0%,
+        //     transparent 70%
+        // );
+    }
+
+    &.active 
+    {
+        animation: animate 0.5s ease-in-out;
+    }
+
+    &.active::before 
+    {
+        animation: scalingShadow 0.5s ease-in-out;
+    }
+}
+
+/* Neon-button */
+@keyframes scalingShadow {
+    0% {
+        top: 120%;
+        transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
+    }
+    50% {
+        top: 165%;
+        transform: perspective(1.5em) rotateX(45deg) scale(0.75, 0.3);
+    }
+    100% {
+        top: 120%;
+        transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0%);
+    }
+    50% {
+        transform: translateY(-40%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
 header.dropdown-active .nav-toggle-button 
 {
     color: $main-color;
 }
 
+
+/////////////////////////////////////
+/// 
+///      ---Start Nesting --- 
+/// 
+////////////////////////////////////
+
+
 header 
 {
+    @include flexbox($direction: row-reverse);
     width: 100%;
     padding: 1rem 5rem;
-    display: flex;
-    flex-direction: row-reverse;
 
     .header-desktop 
     {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        @include flexbox($justify: space-between, $align: center);
         width: 100%;
 
         #portfolio-title 
         {
+            @include typography($font-family: $title-font, $font-size: clamp(1.5rem, 4vw, 3rem));
             text-decoration: none;
-            font-family: $title-font;
-            font-size: clamp(1.5rem, 4vw, 3rem);
 
-            b 
+            img
             {
-                color: white;
+                max-height: 10vh;
             }
         }
 
@@ -223,8 +367,8 @@ header
         {
             ul 
             {
+                @include flexbox();
                 list-style: none;
-                display: flex;
                 gap: 2.5rem;
 
                 li a 
@@ -237,6 +381,11 @@ header
                     {
                         color: $main-color;
                     }
+
+                    &:visited
+                    {
+                        color: white;
+                    }
                 }
             }
         }
@@ -245,28 +394,22 @@ header
 
 main 
 {
+    @include flexbox($direction: column);
     flex: 1;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
     gap: 7.5rem;
 
     .error-container
     {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flexbox($justify: center, $align: center);
         height: 100%;
         text-align: center;
     
         h1
         {
-            color: white;
-            text-align: center;
-            font-family: $paragraph-font;
-            font-size: 2.5rem;
+            @include typography($font-weight: bold, $text-align: center, $font-size: 2.5rem);
             margin-bottom: 2.5rem;
 
             span.last-word
@@ -282,11 +425,12 @@ main
 
         a
         {
+            @include typography($color: $main-color, $font-size: 1.25rem);
             padding: .25rem .5rem;
-            color: $main-color; 
+            // color: $main-color; 
             text-decoration: none;
             cursor: pointer;
-            font-size: 1.25rem;
+            // font-size: 1.25rem;
         }
 
         a:hover
@@ -298,27 +442,21 @@ main
 
     .cv-banner-section 
     {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
+        @include flexbox($direction: row-reverse, $align: center);
         width: 100%;
         padding: 1rem;
         box-sizing: border-box;
 
         .cv-main-banner 
         {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
+            @include flexbox($justify: center);
             width: 100%;
             max-width: 1200px;
             gap: 2rem;
 
             .profile-pic 
             {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flexbox();
                 width: 100%;
                 max-width: clamp(200px, 25vw, 300px);
                 aspect-ratio: 1/1;
@@ -329,25 +467,20 @@ main
                     width: 100%;
                     height: 100%;
                     border-radius: 50%;
-                    object-fit: cover;
                 }
             }
         }
 
         .cv-banner-fancy-header 
         {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            @include flexbox($direction: column, $justify: center);
             width: 100%;
             max-width: 800px;
             height: auto;
 
             .cv-banner-container 
             {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                @include flexbox($justify: center, $align: center);
                 text-align: left;
                 padding: 0 1rem;
                 overflow: hidden;
@@ -355,20 +488,14 @@ main
 
                 .heading
                 {
-                    color: #eee;
-                    font-size: clamp(1.5rem, 5vw, 2.5rem);
-                    font-weight: 300;
-                    text-transform: uppercase;
-                    line-height: 1.2;
+                    @include typography($font-size: clamp(1.5rem, 5vw, 2.5rem), $line-height: 1.2, $text-transform: uppercase, $font-family: $title-font);
                     margin: 0;
                 }
             }
 
             .subheading-container 
             {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                @include flexbox($justify: center, $align: center);
                 gap: 1rem;
                 margin: 1rem 0;
 
@@ -382,16 +509,12 @@ main
 
                 .social-icons 
                 {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
+                    @include flexbox($justify: flex-start, $align: center);
                     gap: 0.75rem;
 
                     a 
                     {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        @include flexbox($justify: center, $align: center);
                     }
 
                     a:hover svg 
@@ -402,8 +525,8 @@ main
 
                     svg 
                     {
-                        width: 24px;
-                        height: 24px;
+                        width: 1.5rem;
+                        height: 1.5rem;
                         stroke: $main-color;
                         fill: none;
                         transition: stroke 0.3s, transform 0.2s;
@@ -413,16 +536,11 @@ main
 
             .my-description 
             {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flexbox($justify: center, $align: center);
 
                 p 
                 {
-                    color: white;
-                    font-weight: lighter;
-                    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
-                    text-align: center;
+                    @include typography($font-weight: lighter, $font-size: clamp(1.1rem, 2.5vw, 1.25rem), $text-align: center);
                     max-width: 600px;
                     margin: 1rem 0;
                 }
@@ -432,7 +550,7 @@ main
 
     .cv-experience-section 
     {
-        padding: 20px;
+        padding: 1.25rem;
         color: white;
         display: grid;
         max-width: 1000px; 
@@ -444,21 +562,24 @@ main
 
             p 
             {
-                font-size: 48px;
-                color: $main-color;
+                @include typography(
+                    $font-family: $title-font, 
+                    $color: $main-color, 
+                    $font-size: 3rem, 
+                    $font-weight: bold);
+                text-align: center;
                 margin: 0;
-                font-weight: bold;
-                font-family: $title-font;
+                text-shadow: 
+                    0 0 0.25em hsl(0 0% 100% / 0.5),
+                    0 0 5em $main-color,
+                    0 0 2.5em $main-color;
             }
 
             h3
             {
-                font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-                margin: 5px 0 0;
-                display: flex;
-                flex-direction: column;
-                font-family: $courier-font;
-                font-weight: 100;
+                @include flexbox($direction: column, $align: center, $justify: center);
+                @include typography($color: white, $font-family: $courier-font, $font-weight: 100, $font-size: clamp(1.25rem, 2.5vw, 1.5rem));
+                margin: .5rem 0 0;
             }
         }
     }
@@ -488,10 +609,7 @@ main
 
                     p
                     {
-                        font-family: $courier-font;
-                        font-size: 1.5rem;
-                        color: rgba(70, 80, 100, 0.75);
-                        line-height: 1.5;
+                        @include typography($font-family: $courier-font, $font-size: 1.5rem, $color: $paragraph-color, $line-height: 1.5);
                         font-style: italic;
 
                         span.green-name
@@ -529,13 +647,13 @@ main
 
                             i
                             {
-                                font-size: 40px;
-                                color: rgba(70, 80, 100, 0.75);
+                                font-size: 2.5rem;
+                                color: $paragraph-color;
                             }
 
                             h4
                             {
-                                color: rgba(70, 80, 100, 0.75);
+                                color: $paragraph-color;
                             }
                         }
                     }
@@ -562,7 +680,7 @@ main
                     grid-template-areas: 
                         "row2-right-top"
                         "row2-right-bottom";
-                    gap: 10px;
+                    gap: .75rem;
 
                     .row2-right-top 
                     {
@@ -575,7 +693,7 @@ main
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         grid-template-areas: "bottom-left bottom-right";
-                        gap: 10px;
+                        gap: .75rem;
 
                         .bottom-left 
                         {
@@ -588,6 +706,39 @@ main
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .cv-contact-me-section
+    {
+        @include flexbox($justify: center, $align: center);
+
+        .contact-me-text
+        {
+            @include typography($text-align: center, $font-size: 1.5rem);
+            width: 50%;
+            padding: 1rem 4rem;
+
+            p
+            {
+                // color: $paragraph-color;
+                color: white;
+                line-height: 2.5rem;
+                text-decoration: underline;
+                text-decoration-color: $main-color;
+                text-underline-offset: 0.5rem;
+            }
+        }
+
+        .contact-me-button-container
+        {
+            @include flexbox($justify: center, $align: center);
+            width: 50%;
+
+            .contact-me-button
+            {
+                font-size: 1.5rem;
             }
         }
     }
@@ -610,10 +761,9 @@ main
 
                 .timeline-item 
                 {
+                    @include flexbox($justify: center);
                     width: 100%;
-                    display: flex;
                     box-sizing: border-box;
-                    justify-content: center;
 
                     &:not(:last-child) 
                     {
@@ -622,12 +772,12 @@ main
 
                     .timeline-img 
                     {
-                        width: 24px;
-                        height: 24px;
+                        width: 1.5rem;
+                        height: 1.5rem;
                         border-radius: 50%;
                         position: absolute;
                         left: 53px;
-                        margin-top: 25px;
+                        margin-top: 1.5rem;
                         z-index: 2;
                         transition: background 0.25s ease;
                     
@@ -656,6 +806,7 @@ main
 
                     .timeline-content 
                     {
+                        @include flexbox($direction: column);
                         position: relative;
                         width: 75%;
                         margin-left: 50px;
@@ -676,26 +827,24 @@ main
                         );
                         background-repeat: no-repeat;
                         background-attachment: fixed;
-                        display: flex;
-                        flex-direction: column;
                         gap: 1rem;
 
                         h3
                         {
                             font-size: clamp(1.5rem, 2.5vw, 2rem);
+                            color: white;
                         }
 
                         p
                         {
-                            color: rgba(147, 160, 188, 0.75);
+                            color: $paragraph-color;
                             line-height: 1.5;
                             font-size: clamp(1.15rem, 2.5vw, 1.25rem);
                         }
 
                         .timeline-internship
                         {
-                            display: flex;
-                            flex-direction: row;
+                            @include flexbox();
                             gap: 2.5rem;
 
                             div:nth-child(1)
@@ -710,27 +859,24 @@ main
                             
                             div
                             {
+                                @include flexbox($direction: column, $justify: start, $align: center);
                                 border-radius: 10px;
                                 text-align: center;
                                 padding: 2rem 1rem 0;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: start;
-                                align-items: center;
                                 gap: 1rem;
 
                                 h4
                                 {
-                                    // font-size: 1.5rem;
                                     font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-                                    // color: rgba($main-color, 0.75);
                                     text-decoration: underline;
                                     text-decoration-color: #2ecc71;
                                     text-decoration-thickness: 3px;
+                                    color: white;
                                 }
                                 
                                 div
                                 {
+                                    @include flexbox($justify: center, $align: center);
                                     width: 50%;     
                                     max-width: 7.5rem;
                                     aspect-ratio: 1 / 1;
@@ -738,9 +884,6 @@ main
                                     border-radius: 50%;
                                     overflow: hidden;
                                     padding: 1rem;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
                                     box-shadow: inset 4px 8px 16px rgba($background-color, 0.5);
 
                                     img
@@ -780,17 +923,15 @@ main
         width: 100%;
         height: 850px;
         overflow: hidden;
-        padding: 20px;
+        padding: 1.25rem;
         box-sizing: border-box;
 
         .carousel 
         {
+            @include flexbox($justify: center, $align: center);
             position: relative;
             width: 100%;
             min-height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
             .carousel-arrow 
             {
@@ -805,7 +946,7 @@ main
             aspect-ratio: 340 / 520;
             transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.8s ease;
             left: 50%;
-            top: 50%;
+            top: 35%;
             transform: translate(-50%, -50%);
             z-index: 1;
 
@@ -822,7 +963,7 @@ main
                         .card-shape 
                         {
                             fill: none;
-                            stroke: rgba(147, 160, 188, 0.1);
+                            stroke: rgba(48, 67, 102, 0.25);
                             stroke-width: 3;
                         }   
 
@@ -831,26 +972,43 @@ main
                             fill: none;  
                             stroke-width: 2;
                         }   
+
+                        .card-title 
+                        {
+                            fill: $paragraph-color;
+                        }
                     }
 
                     .card-content
                     {
                         .card-stats
                         {
-                            opacity: 0.75;
+                            // opacity: 0.75;
+                            border-bottom: solid 3px rgba(48, 67, 102, 0.5);
 
                             .stat 
                             {
-                                padding: 0.25rem 0.5rem;
-                                background-color: $main-color;
-                                border-radius: 10px;
-                                color: rgba(6, 12, 22, 0.9); 
-                                font-size: 0.75rem;
-                                font-weight: bold;
-                                box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.005), 
-                                            inset 0 -1px 3px rgba(0, 0, 0, 0.5), 
-                                            0 2px 5px rgba(0, 0, 0, 0.2); 
-                                filter: drop-shadow(0 0 3px $background-color); 
+                                // @include typography($font-size: .75rem, $font-weight: bold);
+                                // padding: 0.25rem 0.5rem;
+                                // background-color: $main-color;
+                                // border-radius: 10px;
+                                // color: white;
+                                // box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.005), 
+                                //             inset 0 -1px 3px rgba(0, 0, 0, 0.5), 
+                                //             0 2px 5px rgba(0, 0, 0, 0.2); 
+                                // filter: drop-shadow(0 0 3px $background-color); 
+                                color: $main-color;
+                                border: $main-color 0.125em solid;
+                                text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em $main-color;
+                                box-shadow: 
+                                    inset 0 0 0.5em 0 $main-color,
+                                    0 0 0.5em 0 $main-color;
+                                // background: radial-gradient(
+                                //     circle at 50% 50%,
+                                //     rgba(46, 204, 113, 0.2) 0%,
+                                //     transparent 70% 
+                                // );
+                                border-radius: .25rem;
                             }   
                         }
 
@@ -858,7 +1016,7 @@ main
                         {
                             p
                             {
-                                color: rgba(147, 160, 188, 0.75);
+                                color: $paragraph-color;
                             }
                         }
 
@@ -867,6 +1025,7 @@ main
                             a
                             {
                                 color: rgba($main-color, 0.75);
+                                text-shadow: 0 0 0.125em hsla(0, 0%, 14%, 0.3), 0 0 0.45em $main-color;
                                 
                                 &:hover
                                 {
@@ -884,6 +1043,24 @@ main
                 opacity: 0.7;
                 z-index: 5;
                 cursor: pointer;
+
+                .card
+                {
+                    .card-content
+                    {
+                        .card-stats
+                        {
+                            border-bottom: solid 3px rgba(48, 67, 102, 0.25);
+
+                            .stat
+                            {
+                                color: rgba(48, 67, 102, 0.25);
+                                border: rgba(48, 67, 102, 0.25) 0.125em solid;
+                                border-radius: .25rem;
+                            }
+                        }
+                    }
+                }
             
                 &:hover 
                 {
@@ -904,20 +1081,32 @@ main
                     transform: translate(calc(-50% + 360px), -50%) scale(0.85);
                     opacity: 0.85;
                 }   
+
+                .card
+                {
+                    .card-content
+                    {
+                        .card-stats
+                        {
+                            border-bottom: solid 3px rgba(48, 67, 102, 0.25);
+
+                            .stat
+                            {
+                                color: rgba(48, 67, 102, 0.25);
+                                border: rgba(48, 67, 102, 0.25) 0.125em solid;
+                                border-radius: .25rem;
+                            }
+                        }
+                    }
+                }
             }
 
             .card  
             {
+                @include glass-card();
                 width: 100%;
                 height: 100%;
                 position: relative;
-                background: linear-gradient(
-                    235deg,
-                    rgba(6, 12, 22, 0.5) 0%,
-                    rgba(8.55, 14.25, 25.65, 1) 40%,
-                    rgba(12, 20, 35, 1) 60%,
-                    rgba(4, 9, 16, 1) 100%
-                );
                 clip-path: polygon(
                     0px 25px,
                     25px 0px,
@@ -945,13 +1134,14 @@ main
                     {
                         text-anchor: middle;
                         alignment-baseline: middle;
-                        font-family: 'Goldman', sans-serif;
+                        font-family: $title-font;
                         fill: rgba(147, 160, 188, 0.5);
                     }
                 }   
                 
                 .card-content 
                 {
+                    @include flexbox($direction: column);
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -959,20 +1149,16 @@ main
                     height: 100%;
                     padding: 30px;
                     box-sizing: border-box;
-                    display: flex;
-                    flex-direction: column;
                     z-index: 2;
                 
                     .card-image 
                     {
+                        @include flexbox($justify: center, $align: center);
                         width: 200px;
                         height: 200px;
                         border-radius: 50%;
                         overflow: hidden;
                         margin: 1.5rem auto 15px auto;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
 
                         img 
                         {
@@ -986,30 +1172,28 @@ main
                   
                     .card-stats 
                     {
-                        display: flex;
+                        @include flexbox();
                         flex-wrap: wrap;
-                        gap: 10px;
-                        margin-bottom: 15px;
+                        gap: .75rem;
+                        margin-bottom: 1rem;
+                        padding: 0 0 1rem;
 
                         .stat 
                         {
-                            padding: 0.25rem 0.5rem;
-                            background-color: rgba(70, 80, 100, 0.5);
-                            border-radius: 10px;
-                            color: $background-color;
-                            font-size: 0.75rem;
-                            font-weight: bold;
+                            font-size: .75rem;
+                            padding: .25rem .5rem;
+                            // @include typography($color: $background-color, $font-size: .75rem, $font-weight: bold);
+                            // padding: 0.25rem 0.5rem;
+                            // background-color: rgba(70, 80, 100, 0.5);
+                            // border-radius: 10px;
                         }
                     }
                   
                     .card-description 
                     {
+                        @include flexbox($direction: column, $justify: flex-start, $align: center);
                         line-height: 1.75em;
                         flex: 1;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: flex-start;
 
                         p 
                         {
@@ -1026,11 +1210,10 @@ main
                   
                     .card-footer 
                     {
+                        @include flexbox($align: center);
                         position: absolute;
                         bottom: 12px;
                         right: 25px;
-                        display: flex;
-                        align-items: center;
 
                         a
                         {
@@ -1086,41 +1269,19 @@ main
         
         .all-projects-button
         {
-            background: linear-gradient(
-                135deg,
-                rgba(62, 198, 121, 0.9) 0%,
-                rgba(46, 204, 113, 0.9) 50%, 
-                rgba(13, 154, 74, 0.9) 100% 
-            );
             position: absolute;
-            bottom: 0;
+            bottom: 10%;
             left: 50%;
             transform: translate((-50%, -50%));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.75;
-            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.005), 
-                inset 0 -1px 3px rgba(0, 0, 0, 0.5), 
-                0 2px 5px rgba(0, 0, 0, 0.2); 
-            filter: drop-shadow(0 0 1px $main-color); 
-
-            a
-            {
-                color: $background-color;
-                font-weight: bold;
-                text-decoration: none;   
-                padding: .5rem 1rem;
-            }
+            opacity: 1;
         }
+
     }
 }         
 
 footer 
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox($justify: center, $align: center);
     gap: 2rem;
     padding: .5rem 0;
 
@@ -1131,8 +1292,7 @@ footer
 
     .footer-first-div 
     {
-        display: flex;
-        align-items: center;
+        @include flexbox($align: center);
         gap: .25rem;
 
         p 
@@ -1193,6 +1353,19 @@ footer
 
 @media (max-width: 480px) 
 {
+    header
+    {
+        .header-desktop
+        {
+            #portfolio-title
+            {
+                img
+                {
+                    height: 7.5vh;
+                }
+            }
+        }
+    }
     main 
     {
         padding: 1rem;
@@ -1327,14 +1500,19 @@ footer
 
         .projects-featured-section
         {
-            height: 600px;
-
             .carousel
             {
                 position: static;
 
+                .carousel-arrow
+                {
+                    top: 45% !important;
+                }
+
                 .skills-container
                 {
+                    top: 45%;
+                    
                     .card
                     {
                         .card-content
@@ -1371,23 +1549,6 @@ footer
 
 @media (max-width: 800px) 
 {
-    .cv-experience-section 
-    {
-        grid-template-columns: repeat(2, 1fr); 
-        padding: 10px;
-        width: 100%; 
-        
-        p 
-        {
-            font-size: 2.5rem;
-        }
-    
-        h3
-        {
-            font-size: .75rem;
-        }
-    }
-
     main
     {
         .cv-introduction-section
@@ -1399,6 +1560,43 @@ footer
                     .row1-left p
                     {
                         font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+
+        .cv-experience-section 
+        {
+            grid-template-columns: repeat(2, 1fr); 
+            padding: 10px;
+            width: 100%; 
+
+            p 
+            {
+                font-size: 2.5rem;
+            }
+        
+            h3
+            {
+                font-size: .75rem;
+            }
+        }
+
+        .projects-featured-section
+        {
+            .skills-container
+            {
+                .card
+                {
+                    .card-content
+                    {
+                        .card-description
+                        {
+                            p
+                            {
+                                -webkit-line-clamp: 3;
+                            }
+                        }
                     }
                 }
             }
@@ -1420,15 +1618,13 @@ footer
 {
     header 
     {
-        padding: 2rem .5rem;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
+        @include flexbox($direction: row-reverse, $justify: space-between, $align: center);
+        padding: 0 1rem;
         z-index: 2000;
 
         .nav-toggle-button 
         {
-            display: flex;
+            @include flexbox();
             font-size: 3.5rem;
             background: none;
             border: none;
@@ -1472,7 +1668,7 @@ footer
         .nav-header-dropdown 
         {
             display: none;
-            background-color: rgba($background-color, 0.98);
+            background-color: rgba($background-color, 1);
             position: fixed;
             top: 0;
             left: 0;
@@ -1482,21 +1678,16 @@ footer
 
             &.active 
             {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flexbox($justify: center, $align: center);
                 text-align: center;
             }
 
             ul 
             {
+                @include flexbox($direction: column, $justify: center, $align: center);
                 list-style: none;
                 margin: 0;
                 padding: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
                 gap: 2rem;
                 width: 100%;
                 height: 100%;
@@ -1521,17 +1712,26 @@ footer
     {
         padding: 1rem;
 
+        .cv-skills-section,
+        .cv-projects-section,
+        .cv-introduction-section,
+        .timeline-section,
+        .projects-featured-section
+        {
+            h2
+            {
+                font-size: 1.75rem;
+            }
+        }
+
         .cv-banner-section 
         {
-            flex-direction: column;
-            align-items: center;
+            @include flexbox($direction: column, $align: center);
 
             .cv-main-banner 
             {
-                flex-direction: column;
-                align-items: center;
+                @include flexbox($direction: column, $justify: center, $align: center);
                 gap: 1rem;
-                justify-content: center;
 
                 .profile-pic 
                 {
@@ -1618,8 +1818,37 @@ footer
             }
         }
 
+        .cv-contact-me-section
+        {
+            flex-direction: column !important;
+
+            .contact-me-text
+            {
+                padding: 1rem;
+                width: 100%;
+
+                p
+                {
+                font-size: 1.25rem;
+                }
+            }
+
+            .contact-me-button-container
+            {
+                margin-top: 2rem;
+                width: 100%;
+            }
+        }
+
         .projects-featured-section
         {
+            height: 800px;
+
+            .skills-container
+            {
+                top: 35%;
+            }
+
             .carousel
             {
                 .skills-container.left,
@@ -1642,7 +1871,7 @@ footer
                 {
                     display: block;
                     position: absolute;
-                    top: 50%;
+                    top: 35%;
                     transform: translateY(-50%);
                     font-size: 2.5rem;
                     color: $main-color;
@@ -1658,21 +1887,6 @@ footer
                     }
                 }
 
-            }
-        }
-    }
-
-    main
-    {
-        .cv-skills-section,
-        .cv-projects-section,
-        .cv-introduction-section,
-        .timeline-section,
-        .projects-featured-section
-        {
-            h2
-            {
-                font-size: 1.75rem;
             }
         }
 
@@ -1705,6 +1919,45 @@ footer
         }
     }
 
+    .timeline-section
+    {
+        .timeline
+        {
+            .timeline-container
+            {
+                .timeline-item
+                {
+                    .timeline-img
+                    {
+                        left: 0;
+                    }
+
+                    .timeline-content
+                    {
+                        width: 100%;
+                        padding: 1rem;
+
+                        .timeline-internship
+                        {
+                            flex-direction: column !important;
+                            align-items: center;
+
+                            div:nth-child(1)
+                            {
+                                width: 100% !important;
+                            }
+
+                            div:nth-child(2)
+                            {
+                                width: 100% !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     footer 
     {
         flex-direction: column;
@@ -1728,8 +1981,7 @@ footer
 
         .nav-header-dropdown 
         {
-            // important moet blijven staan ivm resize
-            display: none !important; 
+            display: none !important; // important moet blijven staan ivm resize 
         }
     }
 
@@ -1739,9 +1991,7 @@ footer
 
         .cv-banner-section 
         {
-            flex-direction: row-reverse;
-            align-items: flex-start;
-            justify-content: center;
+            @include flexbox($direction: row-reverse, $justify: center, $align: flex-start);
             gap: 2rem;
 
             .cv-banner-fancy-header
