@@ -9,6 +9,7 @@ $background-color: rgb(6, 10, 18);
 // $background-color: rgb(0, 12, 35);
 // $main-color: #75df83;
 $main-color: #2ecc71;
+// $main-color: red;
 // $main-color: #79e6a6;
 // $main-color: #001aff;
 //   background-color: #1a1a2e;
@@ -123,17 +124,19 @@ $paragraph-color: rgba(158, 190, 255, 0.5);
     border: 0;
 }
 
-html 
+html
 {
-    background: rgb(6, 10, 18); /* Old browsers */
-    background: rgb(6, 10, 18) -moz-linear-gradient(bottom, lighten($background-color, 5) 0%, rgba(6, 10, 18, 0.2) 100%); /* FF3.6+ */
-    background: rgb(6, 10, 18) -webkit-gradient(linear, left bottom, left top, color-stop(0%, lighten($background-color, 5)), color-stop(100%, rgba(6, 10, 18, 0.2))); /* Chrome, Safari4+ */
-    background: rgb(6, 10, 18) -webkit-linear-gradient(bottom, lighten($background-color, 8) 0%, rgba(6, 10, 18, 0.2) 100%); /* Chrome10+, Safari5.1+ */
-    background: rgb(6, 10, 18) -o-linear-gradient(bottom, lighten($background-color, 2) 0%, rgba(6, 10, 18, 0.2) 100%); /* Opera11.10+ */
-    background: rgb(6, 10, 18) -ms-linear-gradient(bottom, lighten($background-color, 5) 0%, rgba(6, 10, 18, 0.2) 100%); /* IE10+ */
-    background: rgb(6, 10, 18) linear-gradient(to top, lighten($background-color, 2) 0%, rgba(6, 10, 18, 0.2) 100%); /* W3C */
-    z-index: 1;
+    // background: linear-gradient(
+    //     to top,
+    //     #05080f 0%,   /* iets lichter dan #060A12 */
+    //     rgba(6, 10, 18, 0.85) 40%,
+    //     rgba(6, 10, 18, 0.86) 70%,
+    //     rgba(6, 10, 18, 0.94) 100%
+    // );
+    min-height: 100%;
+    background-color: $background-color;
 }
+
 
 html,
 body
@@ -150,6 +153,7 @@ textarea
 {
     // @include typography();
     font-family: $paragraph-font;
+    color: white;
 }
 
 body
@@ -187,17 +191,37 @@ body
 .cv-projects-section,
 .cv-introduction-section,
 .timeline-section,
-.projects-featured-section
+.projects-featured-section,
+.education-certifcates-section
 {
     h2
     {
-        @include typography($text-align: center, $font-size: 2.5rem);
+        @include typography($text-align: center, $font-size: 2.5rem, $font-weight: bold);
         margin-bottom: 2.5rem;
 
         span.last-word
         {
             color: $main-color;
         }
+    }
+}
+
+.education-school-section
+{
+    h1
+    {
+        @include typography($text-align: center, $font-size: 2.5rem, $font-weight: bold);
+        margin-bottom: 2.5rem;
+
+        span.last-word
+        {
+            color: $main-color;
+        }
+    }
+
+    .education-explenation
+    {
+        color: $paragraph-color;
     }
 }
 
@@ -379,7 +403,7 @@ header
                     &.active,
                     &:hover
                     {
-                        color: $main-color;
+                        color: $main-color !important;
                     }
 
                     &:visited
@@ -569,10 +593,10 @@ main
                     $font-weight: bold);
                 text-align: center;
                 margin: 0;
-                text-shadow: 
-                    0 0 0.25em hsl(0 0% 100% / 0.5),
-                    0 0 5em $main-color,
-                    0 0 2.5em $main-color;
+                // text-shadow: 
+                //     0 0 0.25em hsl(0 0% 100% / 0.5),
+                //     0 0 5em $main-color,
+                //     0 0 2.5em $main-color;
             }
 
             h3
@@ -594,6 +618,7 @@ main
             display: grid;
             grid-template-rows: auto auto;
             gap: 1rem;
+            
 
             .row1 
             {
@@ -606,6 +631,8 @@ main
                 {
                     grid-area: row1-left;
                     padding: 1.5rem;
+                    border: solid 2px rgba(51, 81, 142, 0.5);
+                    box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
 
                     p
                     {
@@ -644,6 +671,8 @@ main
                             align-items: center;
                             gap: 1rem;
                             padding: 1.5rem 0;
+                            border: solid 2px rgba(51, 81, 142, 0.5);
+                            box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
 
                             i
                             {
@@ -958,6 +987,9 @@ main
 
                 .card
                 {
+                    // border: solid 2px rgba(51, 81, 142, 0.5);
+                    // box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
+
                     svg
                     {
                         .card-shape 
@@ -984,7 +1016,7 @@ main
                         .card-stats
                         {
                             // opacity: 0.75;
-                            border-bottom: solid 3px rgba(48, 67, 102, 0.5);
+                            border-bottom: solid 3px rgba(48, 67, 102, 0.25);
 
                             .stat 
                             {
@@ -1107,16 +1139,16 @@ main
                 width: 100%;
                 height: 100%;
                 position: relative;
-                clip-path: polygon(
-                    0px 25px,
-                    25px 0px,
-                    315px 0px,
-                    340px 25px,
-                    340px 495px,
-                    315px 520px,
-                    25px 520px,
-                    0px 495px
-                );
+                // clip-path: polygon(
+                //     0px 25px,
+                //     25px 0px,
+                //     315px 0px,
+                //     340px 25px,
+                //     340px 495px,
+                //     315px 520px,
+                //     25px 520px,
+                //     0px 495px
+                // );
                 
                 svg 
                 {
@@ -1150,6 +1182,8 @@ main
                     padding: 30px;
                     box-sizing: border-box;
                     z-index: 2;
+                    // border: solid 2px rgba(51, 81, 142, 0.5);
+                    border-radius: 15px;
                 
                     .card-image 
                     {
@@ -1275,9 +1309,254 @@ main
             transform: translate((-50%, -50%));
             opacity: 1;
         }
-
     }
-}         
+
+    
+    //////////////////////
+    //                  //
+    //     EDUCATION    //
+    //                  //
+    //////////////////////
+    /// 
+    
+
+    .education-school-section,
+    .education-certifcates-section
+    {
+        @include flexbox($direction: column);
+        // gap: 5rem;
+
+        .education-child-articles
+        {
+            @include flexbox($direction: column);
+            gap: 5rem;
+        }
+
+        .education-certificates-articles
+        {
+            @include flexbox($direction: column);
+            gap: 5rem;
+
+            .education-article-context
+            {
+                .education-title
+                {
+
+                }
+
+                .education-content
+                {
+                    .education-certificates
+                    {
+                        p
+                        {
+                            color: $paragraph-color;
+                            line-height: 1.5;
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .education-article-context
+        {
+            @include flexbox($direction: column);
+            @include glass-card();
+            padding: 3rem 2rem 4rem;
+            box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
+            height: auto;
+            border: solid 2px rgba(51, 81, 142, 0.5);
+            // clip-path: polygon(
+            //     0% 50px,
+            //     50px 0%,
+            //     100% 0%,
+            //     100% calc(100% - #{50px}),
+            //     calc(100% - #{50px}) 100%, 
+            //     0% 100% 
+            // );
+
+            .education-title
+            {
+                @include flexbox($direction: row, $justify: space-between, $align: center);
+                width: 100%;
+                border-bottom: solid 3px rgba(158, 190, 255, 0.05);
+                // padding-bottom: 1rem;
+                padding: 0 2rem 1rem;
+
+                .education-header-container
+                {
+                    h3
+                    {
+                        color: $paragraph-color;
+                        opacity: 0.75;
+                        font-size: 2rem;
+                    }
+                }
+
+                .education-year-container
+                {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+
+                    p
+                    {
+                        font-size: 2rem;
+                        font-style: italic;
+                        color: $paragraph-color;
+                    }
+                }
+            }
+            
+            .education-content
+            {
+                @include flexbox();
+                gap: 5rem;
+                padding: 2rem 2rem 0;
+                min-height: 200px !important;
+
+                .education-excerpt
+                {
+                    @include flexbox($direction: column);
+                    gap: 1rem;
+                    width: 45%;
+                    
+                    p
+                    {
+                        color: $paragraph-color;
+                        line-height: 1.5;
+                        font-size: 1.25rem;
+                    }
+                }
+                
+                .separator 
+                {
+                    width: 3px;
+                    align-self: stretch;
+                    background-color: rgba(158, 190, 255, 0.05);
+                    // box-shadow: 0 0 10px rgba(158, 190, 255, 0.05);
+                }
+
+                .education-properties
+                {
+                    width: 45%;
+
+                    // ul:not(.rijnland-properties-spec)
+
+                    h4
+                    {
+                        font-size: 1.5rem;
+                        color: $paragraph-color;
+                        margin-bottom: 1.5rem;
+                    }
+
+                    .education-ul
+                    {
+                        @include flexbox($direction: column);
+                        gap: 1rem;
+                        list-style: none;
+                        
+                        li
+                        {
+                            p:not(.rijnland-properties-spec li p)
+                            {
+                                color: $paragraph-color;
+                                font-size: 1.25rem;
+
+                                &:nth-child(1)
+                                {
+                                    font-weight: bold;
+                                    // color: lighten($paragraph-color, $amount: 5);
+                                }
+
+                                &:nth-child(2)
+                                {
+                                    font-style: italic;
+                                }
+                            }
+
+                            .completion-rating-container
+                            {
+                                display: flex;
+                                margin-top: .5rem;
+
+                                .green-rate
+                                {
+                                    background-color: $main-color;
+                                    background-image: linear-gradient(to bottom, lighten($main-color, 10%), darken($main-color, 10%));
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 #97f29733;
+                                    border-radius: 4px;
+                                }
+                                
+                                .rate:not(.green-rate)
+                                {
+                                    background-color: rgba(158, 190, 255, 0.1);   
+                                }
+
+                                .rate
+                                {
+                                    width: 60px;
+                                    height: 13px; 
+
+                                    &:first-child
+                                    {
+                                        clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+                                        border-top-left-radius: 10px;
+                                        border-bottom-left-radius: 10px;
+                                    }
+
+                                    &:nth-child(2),
+                                    &:nth-child(3),
+                                    &:nth-child(4)
+                                    {
+                                        clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
+                                    }
+
+                                    &:last-child
+                                    {
+                                        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+                                        border-top-right-radius: 10px;
+                                        border-bottom-right-radius: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .rijnland-properties-spec,
+                    .certificates-properties
+                    {
+                        list-style:square;
+                        
+                        margin-left: 1rem;
+
+                        li
+                        {
+                            p
+                            {
+                                color: $paragraph-color;
+                                font-size: 1.25rem;
+                                font-style: italic;
+                            }
+
+                            &::marker
+                            {
+                                color: $main-color;
+                            }
+                        }
+                    }
+
+                    .certificates-properties
+                    {
+                        @include flexbox($direction: column);
+                        gap: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}        
 
 footer 
 {
@@ -1539,6 +1818,36 @@ footer
                 }
             }
         }
+        
+        .education-certifcates-section,
+        .education-school-section
+        {
+            .education-article-context
+            {
+                .education-title
+                {
+                    // flex-direction: column !important;
+                    // gap: 1rem !important;
+                    
+                    .education-header-container
+                    {
+                        h3
+                        {
+                            font-size: 1.25rem !important;
+                        }
+                    }
+                
+                    .education-year-container
+                    {
+                        
+                        p
+                        {
+                            font-size: 1.25rem !important;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     footer 
@@ -1599,6 +1908,15 @@ footer
                         }
                     }
                 }
+            }
+        }
+
+        .education-article-context
+        {
+            .education-title
+            {
+                flex-direction: column !important;
+                gap: 1rem !important;
             }
         }
     }
@@ -1718,6 +2036,16 @@ footer
         .timeline-section,
         .projects-featured-section
         {
+            h2
+            {
+                font-size: 1.75rem;
+            }
+        }
+
+        .education-school-section,
+        .education-certifcates-section
+        {
+            h1,
             h2
             {
                 font-size: 1.75rem;
@@ -1953,6 +2281,60 @@ footer
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    .education-certifcates-section,
+    .education-school-section
+    {
+        .education-article-context
+        {
+           .education-title
+            {
+                padding: 0 0 1rem !important;
+
+                .education-header-container
+                {
+                    h3
+                    {
+                        color: $paragraph-color;
+                        opacity: 0.75;
+                        font-size: 1.5rem !important;
+                    }
+                }
+
+                .education-year-container
+                {
+                    p
+                    {
+                        font-size: 1.5rem !important;
+                    }
+                }
+            }
+
+            .education-content
+            {
+                // @include flexbox($direction: column);
+                flex-direction: column !important;
+                // background-color: red;
+                padding: .5rem !important;
+                gap: 1rem !important;
+
+                .education-excerpt
+                {
+                    width: 100% !important;
+                }
+
+                .separator
+                {
+                    display: none;
+                }
+
+                .education-properties
+                {
+                    width: 100% !important;
                 }
             }
         }
