@@ -32,7 +32,7 @@
                         <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/future' %}active{% endif %}">Future</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('main.contact') }}" class="{% if request.endpoint == 'main.contact' and request.path == '/contact' %}active{% endif %}">Contact</a>
+                        <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/about-me' %}active{% endif %}">About Me</a>
                     </li>
                 </ul>
             </nav>
@@ -52,7 +52,7 @@
                     <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/future' %}active{% endif %}">Future</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.contact') }}" class="{% if request.endpoint == 'main.contact' and request.path == '/contact' %}active{% endif %}">Contact</a>
+                    <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/about-me' %}active{% endif %}">About Me</a>
                 </li>
             </ul>
         </nav>

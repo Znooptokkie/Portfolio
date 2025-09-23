@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="about-me-section">
+  <article class="about-me-excerpt">
+    <h1>More About <span class="green-name">Me</span></h1>
+    <!-- <hr> -->
+    <p>
+      Met vol anthousiame en een enorme bak aan motivatie ga ik de toekomst tegemoet. Hetgeen waar ik me in wil gaan verdiepen is voor mij nog niet helemaal duidelijk.
+    </p>
+    <p>
+      Voor nu leg ik vooral de focus op Python en JavaScript/TypeScript. Daar is ook deze website in gemaakt, althans met een Python framework Flask.
+    </p>
+    <p>
+      Er zijn wel een aantal onderdelen waar ik mij de aankomende tijd meer in ga verdiepen.
+    </p>
+    <p>
+      Zo lijkt het mij interresant om wat dieper te gaan in de computer. Dat betekent dat ik een low-level taal zal gaan leren in de nabije toekomst. 
+    </p>
+    <p>
+      Ook ben ik bezig met Hack The Box om meer te leren over cybersecurity. Het mooie hieraan is dat je gelijk meer leert over Networks, Ports, Protocols, Shells, Servers, Tmux, Vim, etc.
+    </p>
+    <p>
+      En in de tussentijd ga ik samen met wat voormalige klasgenoten een aantal projecten opzetten. Met als doel samenwerken en de manier van werken binnen een bedrijf te bevorderen.
+    </p>
+    <!-- <hr> -->
+  </article>
+  <article class="about-me-form-article">
+    <!-- <h2><span class="green-name">---</span> Vragen <span class="green-name">of</span> Contact?  <span class="green-name">---</span></h2> -->
+     <h2>Vragen of <span class="green-name">Contact</span></h2>
+    <form method="POST" class="about-me-form">
+
+        {{ form.hidden_tag() }}
+
+        <div>
+          <!-- <label for="name">Naam</label> -->
+          <input type="text" id="name" name="name" placeholder="Name" autocomplete="name" value="{{ form.name.data or '' }}">
+          {% for error in form.name.errors %}
+              <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div>
+          <!-- <label for="email">Email</label> -->
+          <input type="email" id="email" name="email" placeholder="E-mail" autocomplete="email" value="{{ form.email.data or '' }}">
+          {% for error in form.email.errors %}
+              <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
+    
+        <div>
+          <!-- <label for="message">Bericht</label> -->
+          <textarea id="message" name="message" placeholder="Message...">{{ form.message.data or '' }}</textarea>
+          {% for error in form.message.errors %}
+              <span class="error">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="form-item honeypot">
+          <input type="text" name="honeypot" style="display:none;">
+        </div>
+
+        <div class="about-me-submit-button">
+            <button type="submit">Verstuur</button>
+        </div>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </article>
+</section>
+
+{% endblock %}

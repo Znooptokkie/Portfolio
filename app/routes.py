@@ -1,5 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
+
 from app.models import Project, Language
+from app.forms import ContactForm
+from app.classes import ContactFormProcessing
+
 
 main_bp = Blueprint("main", __name__)
 project_bp = Blueprint("projects", __name__)
@@ -56,10 +60,15 @@ def future():
     return render_template("future.html", title="Future", projects=projects)
 
 
-# Contact
-@main_bp.route("/contact")
-def contact():
-    return render_template("contact.html", title="Contact")
+# About Me
+@main_bp.route("/about-me", methods=["GET", "POST"])
+def about_me():
+    form = ContactForm()
+    if form.validate_on_submit():
+        ContactFormProcessing.process_form_data(form)
+        return redirect(url_for("main.about_me"))
+    return render_template("about_me.html", form=form)
+
 
 # Coming Soon
 @main_bp.route("/coming-soon")
