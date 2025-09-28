@@ -403,6 +403,7 @@ header
                 {
                     text-decoration: none;
                     font-size: 1.5rem;
+                    font-weight: bold;
 
                     &.active,
                     &:hover
@@ -905,6 +906,7 @@ main
                                     text-decoration: underline;
                                     text-decoration-color: #2ecc71;
                                     text-decoration-thickness: 3px;
+                                    text-underline-offset: 0.5rem;
                                     color: white;
                                 }
                                 
@@ -1579,7 +1581,7 @@ main
             display: flex;
             flex-direction: column;
             // text-align: center;
-            gap: 2rem;
+            gap: .75rem;
             // align-items: center;
             // background-color: rgba(51, 81, 142, 0.05);
 

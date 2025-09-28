@@ -6,7 +6,7 @@ import { TimelineAnimation } from "./Timeline.js"
 
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
-    ["Greetings, my name is <span class='green-name'>Atilla Oomen</span>"],
+    ["Goedendag, mijn naam is <span class='green-name'>Atilla Oomen</span>"],
     { timeout: 5, iterations: 10 },
     50000 
 );

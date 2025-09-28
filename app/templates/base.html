@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,16 +23,16 @@
             <nav class="nav-header">
                 <ul>
                     <li>
-                        <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/education' %}active{% endif %}">Education</a>
+                        <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/opleidingen' %}active{% endif %}">Opleidingen</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('projects.projects') }}" class="{% if request.endpoint == 'projects.projects' and request.path == '/projects' %}active{% endif %}">Projects</a>
+                        <a href="{{ url_for('projecten.projects') }}" class="{% if request.endpoint == 'projecten.projects' and request.path == '/projecten' %}active{% endif %}">Projecten</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/future' %}active{% endif %}">Future</a>
+                        <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/toekomst' %}active{% endif %}">Toekomst</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/about-me' %}active{% endif %}">About Me</a>
+                        <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/over-mij' %}active{% endif %}">Over Mij</a>
                     </li>
                 </ul>
             </nav>
@@ -43,16 +43,16 @@
                     <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/education' %}active{% endif %}">Education</a>
+                    <a href="{{ url_for('main.education') }}" class="{% if request.endpoint == 'main.education' and request.path == '/opleidingen' %}active{% endif %}">Opleidingen</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('projects.projects') }}" class="{% if request.endpoint == 'projects.projects' and request.path == '/projects' %}active{% endif %}">Projects</a>
+                    <a href="{{ url_for('projecten.projects') }}" class="{% if request.endpoint == 'projecten.projects' and request.path == '/projecten' %}active{% endif %}">Projecten</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/future' %}active{% endif %}">Future</a>
+                    <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/toekomst' %}active{% endif %}">Toekomst</a>
                 </li>
                 <li>
-                    <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/about-me' %}active{% endif %}">About Me</a>
+                    <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/over-mij' %}active{% endif %}">Over Mij</a>
                 </li>
             </ul>
         </nav>
@@ -85,7 +85,7 @@
                 <div class="footer-first-div">
             <img src="../static/images/cv_logo_dark.svg" alt="Icon of My Portolio Website" width="20" height="20">
             <p>
-                <b>2025 Atilla Oomen. All rights reserved.</b>
+                <b>2025 Atilla Oomen. Alle rechten voorbehouden.</b>
             </p>
         </div>
     </footer>

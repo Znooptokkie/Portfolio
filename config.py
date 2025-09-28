@@ -1,14 +1,27 @@
 import os
 from dotenv import load_dotenv
-from urllib.parse import quote  # Voor automatische URL-encoding special characters
+from urllib.parse import quote
 
-load_dotenv()
+env_type = os.environ.get("FLASK_ENV", "development")
 
-class Config:
-    secret_key = os.environ.get("APP_SECRET_KEY")
-    db_name = os.environ.get("DB_NAME")
-    db_user = os.environ.get("DB_USER")
-    db_pass = os.environ.get("DB_PASS")
+if env_type == "production":
+    load_dotenv(".env.production")
+else:
+    load_dotenv(".env.development")
 
-    SECRET_KEY = secret_key
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{db_user}:{quote(str(db_pass))}@localhost/{db_name}"
+class BaseConfig:
+    SECRET_KEY = os.environ.get("APP_SECRET_KEY", "dev-secret")
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    MAIL_SERVER = os.environ.get("MAIL_SERVER")
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{os.environ.get('DB_USER')}:{quote(str(os.environ.get('DB_PASS')))}@localhost/{os.environ.get('DB_NAME')}"
+
+class DevelopmentConfig(BaseConfig):
+    DEBUG = True
+
+class ProductionConfig(BaseConfig):
+    DEBUG = False
+

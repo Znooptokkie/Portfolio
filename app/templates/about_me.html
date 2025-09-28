@@ -3,7 +3,7 @@
 {% block content %}
 <section id="about-me-section">
   <article class="about-me-excerpt">
-    <h1>More About <span class="green-name">Me</span></h1>
+    <h1>Meer Over <span class="green-name">Mij</span></h1>
     <!-- <hr> -->
     <p>
       Met vol anthousiame en een enorme bak aan motivatie ga ik de toekomst tegemoet. Hetgeen waar ik me in wil gaan verdiepen is voor mij nog niet helemaal duidelijk.
@@ -34,7 +34,7 @@
 
         <div>
           <!-- <label for="name">Naam</label> -->
-          <input type="text" id="name" name="name" placeholder="Name" autocomplete="name" value="{{ form.name.data or '' }}">
+          <input type="text" id="name" name="name" placeholder="Naam" autocomplete="name" value="{{ form.name.data or '' }}">
           {% for error in form.name.errors %}
               <span class="error">{{ error }}</span>
           {% endfor %}
@@ -50,7 +50,7 @@
     
         <div>
           <!-- <label for="message">Bericht</label> -->
-          <textarea id="message" name="message" placeholder="Message...">{{ form.message.data or '' }}</textarea>
+          <textarea id="message" name="message" placeholder="Bericht...">{{ form.message.data or '' }}</textarea>
           {% for error in form.message.errors %}
               <span class="error">{{ error }}</span>
           {% endfor %}

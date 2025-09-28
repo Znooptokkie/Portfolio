@@ -1,6 +1,14 @@
 import json
 from app import db, create_app
-from app.models import Project, ProjectImage, ProjectSpecification, ProjectLanguage, Language, Framework, ProjectSpecificationEnumCategory
+# from app.models import Project, ProjectImage, ProjectSpecification, ProjectLanguage, Language, Framework, ProjectSpecificationEnumCategory
+from app.models.framework import Framework
+from app.models.language import Language
+from app.models.project import Project
+from app.models.project_image import ProjectImage
+from app.models.project_language import ProjectLanguage
+from app.models.project_spec import ProjectSpecification
+from app.models.project_spec_enum_category import ProjectSpecificationEnumCategory
+
 from datetime import datetime
 from dateutil.parser import parse
 
@@ -120,85 +128,85 @@ json_data = [
         "language": "Python",
         "year": 2025,
         "datetime": "2025-08-27T20:00:00+02:00",
-        "excerpt": "Battlebot was a project I completed with a classmate at school. We upgraded a technical robot to be controlled via a Raspberry Pi 5 and a second Pico microcontroller.",
+        "excerpt": "Battlebot was een project dat ik samen met een klasgenoot op school heb uitgevoerd. We hebben een technische robot geüpgraded zodat deze kan worden aangestuurd via een Raspberry Pi 5 en een tweede Pico-microcontroller.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "yes",
         "framework": ""
     },
     {
-        "title": "Final Exam Project",
+        "title": "Eindexamen Project",
         "subtitle": "...",
         "description": "Python project 2025",   
         "link": "schoolexam",
         "language": "Python",
         "year": 2025,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "This was my final exam project where I created a Python application that analyzed sensor data from a classroom robot and displayed insights in real time.",
+        "excerpt": "Dit was mijn eindexamenproject waarbij ik een Python-applicatie heb gemaakt die sensorgegevens van een klaslokaalrobot analyseerde en inzichten in realtime weergeeft.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "no",
         "framework": "flask"
     },
     {
-        "title": "Smart Garden - Mobile",
-        "subtitle": "Autonomous Irrigation System",
+        "title": "Smart Garden - Mobiel",
+        "subtitle": "Autonoom Irrigatiesysteem",
         "description": "JavaScript project 2024",
         "link": "smart-garden-mobile",
         "language": "TypeScript JavaScript",
         "year": 2024,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "I built a mobile app that lets users monitor and water their smart garden remotely, using live data from sensors connected to a small server.",
+        "excerpt": "Ik heb een mobiele app ontwikkeld waarmee gebruikers hun slimme tuin op afstand kunnen monitoren en bewateren, met gebruik van realtime data van sensoren die verbonden zijn met een Raspberry Pi.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "yes",
         "framework": "React Native|"
     },
     {
         "title": "Smart Garden - Desktop",
-        "subtitle": "Autonomous Irrigation System",
+        "subtitle": "Autonoom Irrigatiesysteem",
         "description": "JavaScript & Python project 2024",
         "link": "smart-garden-desktop",
         "language": "Python JavaScript",
         "year": 2024,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "This desktop version allowed users to control their smart garden from a PC. It integrated Python scripts for sensor reading and JavaScript for interactive dashboards.",
+        "excerpt": "Deze desktopversie stelde gebruikers in staat hun slimme tuin vanaf een pc te bedienen. Het integreerde Python-scripts voor het uitlezen van sensoren en JavaScript voor interactieve dashboards.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "no",
         "framework": "Electron|Flask"
     },
     {
         "title": "BRAM",
-        "subtitle": "Mobile Application for Elderly",
+        "subtitle": "Mobiele Applicatie voor Senioren",
         "description": "Python project 2023",
         "link": "bram",
         "language": "Python",
         "year": 2023,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "BRAM was a personal project where I programmed an intelligent assistant in Python to help schedule tasks and send notifications automatically.",
+        "excerpt": "BRAM was een persoonlijk project waarbij ik een intelligente assistent in Python heb geprogrammeerd om taken te plannen en automatisch meldingen te versturen.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "no",
         "framework": ""
     },
     {
         "title": "Zinra",
-        "subtitle": "Mailbox Sorting Service",
+        "subtitle": "Postvak Sorteerservice",
         "description": "JavaScript & PHP project 2023",
         "link": "zinra",
         "language": "Python JavaScript",
         "year": 2023,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "Zinra was a web project combining JavaScript and PHP to create a dynamic website with interactive features and a secure backend for user data.",
+        "excerpt": "Zinra was een webproject waarin JavaScript en PHP werden gecombineerd om een dynamische website te creëren met interactieve functies en een veilige backend voor gebruikersgegevens.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "yes",
         "framework": ""
     },
     {
         "title": "Portfolio Website",
-        "subtitle": "Own Portfolio Website",
+        "subtitle": "Eigen Portfolio Website",
         "description": "JavaScript & Python project 2025",
         "link": "portfolio",
         "language": "Python JavaScript TypeScript PHP HTML5 CSS3 SASS Bootstrap",
         "year": 2025,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "Zinra was a web project combining JavaScript and PHP to create a dynamic website with interactive features and a secure backend for user data.",
+        "excerpt": "Mijn eigen portfolio website. De website waar u zich op dit moment op bevindt.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "no",
         "framework": "flask"

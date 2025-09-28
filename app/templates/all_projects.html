@@ -33,7 +33,7 @@
         <div class="projects">
             {% for project in projects %}
                 {% set languages = project.languages | map(attribute='language.language') | list | join(' ') %}
-                <a href="{{ url_for('projects.project_detail', link=project.link) }}" class="project" data-language="{{ languages | lower }}" data-year="{{ project.year }}">
+                <a href="{{ url_for('projecten.project_detail', link=project.link) }}" class="project" data-language="{{ languages | lower }}" data-year="{{ project.year }}">
                     {% if project.images %}
                         <img src="{{ url_for('static', filename=project.images[0].image_url.replace('../static/', '')) }}" alt="{{ project.title }} project">
                     {% else %}
