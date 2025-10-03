@@ -61,7 +61,7 @@ def create_app(config_class=DevelopmentConfig):
     
     @app.errorhandler(429)
     def too_many_requests(e):
-        return render_template("429.html", 429)
+        return render_template("429.html"), 429
 
     # Blueprints
     from app.routes import main_bp, project_bp

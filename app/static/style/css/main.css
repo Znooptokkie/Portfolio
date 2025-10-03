@@ -131,7 +131,8 @@ a.timeline-link {
 }
 
 .education-school-section h1,
-#about-me-section h1 {
+#about-me-section h1,
+#projects-section-all h1 {
   font-family: "Ubuntu", sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
@@ -142,7 +143,8 @@ a.timeline-link {
   margin-bottom: 2.5rem;
 }
 .education-school-section .education-explenation,
-#about-me-section .education-explenation {
+#about-me-section .education-explenation,
+#projects-section-all .education-explenation {
   color: rgba(158, 190, 255, 0.5);
 }
 
@@ -169,12 +171,10 @@ a.timeline-link {
   cursor: pointer;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  border-radius: 0.25em;
+  border-radius: 25px;
   position: relative;
   color: #2ecc71;
   border: #2ecc71 0.125em solid;
-  text-shadow: 0 0 0.125em hsla(0, 0%, 100%, 0.3), 0 0 0.45em #2ecc71;
-  box-shadow: inset 0 0 0.5em 0 #2ecc71, 0 0 0.5em 0 #2ecc71;
 }
 .all-projects-button a,
 .contact-me-button a {
@@ -187,19 +187,6 @@ a.timeline-link {
   text-transform: none;
   text-decoration: none;
   text-shadow: 0 1px 2px #060a12;
-}
-.all-projects-button::after,
-.contact-me-button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  box-shadow: 0 0 2em 0.25em #2ecc71;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 100ms linear;
 }
 .all-projects-button:hover::before, .all-projects-button:focus::before,
 .contact-me-button:hover::before,
@@ -699,12 +686,12 @@ main .timeline-section .timeline .timeline-container .timeline-item .timeline-co
   padding: 2rem;
   border: 1px solid rgba(84, 84, 84, 0.15);
   border-radius: 8px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(5px);
   box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
   transform: translateX(0);
   transition: transform 0.5s ease, opacity 0.5s ease;
   will-change: transform, opacity;
-  background: linear-gradient(235deg, rgba(6, 12, 22, 0.6) 0%, rgba(8.55, 14.25, 25.65, 0.6) 40%, rgba(12, 20, 35, 0.6) 60%, rgba(4, 9, 16, 0.6) 100%);
+  background: linear-gradient(235deg, rgba(6, 12, 22, 0.16) 0%, rgba(8.55, 14.25, 25.65, 0.16) 40%, rgba(12, 20, 35, 0.16) 60%, rgba(4, 9, 16, 0.16) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   gap: 1rem;
@@ -811,6 +798,7 @@ main .projects-featured-section .skills-container {
   top: 35%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  backdrop-filter: blur(5px);
 }
 main .projects-featured-section .skills-container.front {
   transform: translate(-50%, -50%) scale(1);
@@ -827,7 +815,7 @@ main .projects-featured-section .skills-container.front .card svg .card-shape-in
   stroke-width: 2;
 }
 main .projects-featured-section .skills-container.front .card svg .card-title {
-  fill: rgba(158, 190, 255, 0.5);
+  fill: rgba(51, 81, 142, 0.75);
 }
 main .projects-featured-section .skills-container.front .card .card-content .card-stats {
   border-bottom: solid 3px rgba(48, 67, 102, 0.25);
@@ -837,10 +825,10 @@ main .projects-featured-section .skills-container.front .card .card-content .car
   border: #2ecc71 0.125em solid;
   text-shadow: 0 0 0.125em hsla(0, 0%, 100%, 0.3), 0 0 0.45em #2ecc71;
   box-shadow: inset 0 0 0.5em 0 #2ecc71, 0 0 0.5em 0 #2ecc71;
-  border-radius: 0.25rem;
+  border-radius: 25px;
 }
 main .projects-featured-section .skills-container.front .card .card-content .card-description p {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgba(51, 81, 142, 0.75);
 }
 main .projects-featured-section .skills-container.front .card .card-content .card-footer a {
   color: rgba(46, 204, 113, 0.75);
@@ -855,13 +843,16 @@ main .projects-featured-section .skills-container.left {
   z-index: 5;
   cursor: pointer;
 }
+main .projects-featured-section .skills-container.left .card svg .card-title {
+  fill: rgba(51, 81, 142, 0.25);
+}
 main .projects-featured-section .skills-container.left .card .card-content .card-stats {
   border-bottom: solid 3px rgba(48, 67, 102, 0.25);
 }
 main .projects-featured-section .skills-container.left .card .card-content .card-stats .stat {
   color: rgba(48, 67, 102, 0.25);
   border: rgba(48, 67, 102, 0.25) 0.125em solid;
-  border-radius: 0.25rem;
+  border-radius: 25px;
 }
 main .projects-featured-section .skills-container.left:hover {
   transform: translate(calc(-50% - 360px), -50%) scale(0.85);
@@ -877,13 +868,16 @@ main .projects-featured-section .skills-container.right:hover {
   transform: translate(calc(-50% + 360px), -50%) scale(0.85);
   opacity: 0.85;
 }
+main .projects-featured-section .skills-container.right .card svg .card-title {
+  fill: rgba(51, 81, 142, 0.25);
+}
 main .projects-featured-section .skills-container.right .card .card-content .card-stats {
   border-bottom: solid 3px rgba(48, 67, 102, 0.25);
 }
 main .projects-featured-section .skills-container.right .card .card-content .card-stats .stat {
   color: rgba(48, 67, 102, 0.25);
   border: rgba(48, 67, 102, 0.25) 0.125em solid;
-  border-radius: 0.25rem;
+  border-radius: 25px;
 }
 main .projects-featured-section .skills-container .card {
   height: 100%;
@@ -909,7 +903,6 @@ main .projects-featured-section .skills-container .card svg .card-title {
   text-anchor: middle;
   alignment-baseline: middle;
   font-family: "Goldman", sans-serif;
-  fill: rgba(147, 160, 188, 0.5);
 }
 main .projects-featured-section .skills-container .card .card-content {
   display: flex;
@@ -967,7 +960,7 @@ main .projects-featured-section .skills-container .card .card-content .card-desc
   flex: 1;
 }
 main .projects-featured-section .skills-container .card .card-content .card-description p {
-  color: rgb(70, 80, 100);
+  color: rgba(51, 81, 142, 0.25);
   font-size: 1.1rem;
   text-align: center;
   display: -webkit-box;
@@ -987,7 +980,7 @@ main .projects-featured-section .skills-container .card .card-content .card-foot
 }
 main .projects-featured-section .skills-container .card .card-content .card-footer a {
   font-weight: bold;
-  color: rgba(70, 80, 100, 0.75);
+  color: rgba(51, 81, 142, 0.25);
   cursor: pointer;
   font-size: 1.25rem;
   text-decoration: none;
@@ -1223,6 +1216,230 @@ main .education-certifcates-section .education-article-context .education-conten
   align-items: stretch;
   gap: 1rem;
 }
+main #projects-section-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+main #projects-section-form form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+main #projects-section-form .form-search-bar {
+  width: 100%;
+}
+main #projects-section-form .form-search-bar input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 16px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+  border: solid 2px rgba(51, 81, 142, 0.25);
+  color: rgba(158, 190, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+main #projects-section-form .form-search-bar input::placeholder {
+  color: rgba(51, 81, 142, 0.5);
+  opacity: 1;
+}
+main #projects-section-form .form-search-bar input:focus {
+  box-shadow: 0 0 15px rgba(25, 41, 71, 0.1);
+  border: solid 2px rgba(158, 190, 255, 0.5);
+  outline: none;
+}
+main #projects-section-form .form-selections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+main #projects-section-form .form-selections .custom-select {
+  position: relative;
+  border-radius: 25px;
+  border: 2px solid rgba(51, 81, 142, 0.25);
+  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: border-radius 0.2s ease;
+  box-sizing: border-box;
+  backdrop-filter: blur(5px);
+}
+main #projects-section-form .form-selections .custom-select .selected {
+  color: rgba(51, 81, 142, 0.5);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main #projects-section-form .form-selections .custom-select .selected::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232ecc71' viewBox='0 0 320 512'%3E%3Cpath d='M31.3 192h257.3c28.4 0 42.8 34.5 22.6 54.6L182.6 375.4c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.4 226.5 3.1 192 31.3 192z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  margin-left: 1rem;
+  transition: transform 0.3s ease;
+}
+main #projects-section-form .form-selections .custom-select .options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -2px;
+  width: calc(100% + 4px);
+  border-radius: 0 0 25px 25px;
+  border-left: 2px solid rgba(158, 190, 255, 0.5);
+  border-right: 2px solid rgba(158, 190, 255, 0.5);
+  border-bottom: 2px solid rgba(158, 190, 255, 0.5);
+  border-top: none;
+  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  backdrop-filter: blur(5px);
+}
+main #projects-section-form .form-selections .custom-select .options li {
+  padding: 0.75rem 1rem;
+  color: rgba(158, 190, 255, 0.5);
+}
+main #projects-section-form .form-selections .custom-select .options li:hover {
+  background: rgba(51, 81, 142, 0.1);
+}
+main #projects-section-form .form-selections .custom-select .options li:last-child {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+main #projects-section-form .form-selections .custom-select.open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border: solid 2px rgba(158, 190, 255, 0.5);
+  border-bottom: none;
+}
+main #projects-section-form .form-selections .custom-select.open .selected {
+  color: rgba(158, 190, 255, 0.5);
+}
+main #projects-section-form .form-selections .custom-select.open .options {
+  display: block;
+}
+main #projects-section-form .form-selections button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+  border: solid 2px rgba(51, 81, 142, 0.25);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  backdrop-filter: blur(5px);
+}
+main #projects-section-form .form-selections button:hover {
+  border: solid 2px rgba(158, 190, 255, 0.5);
+}
+main #projects-section-all div {
+  position: relative;
+}
+main #projects-section-all .content-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 25px rgba(25, 41, 71, 0.5);
+  border-radius: 25px;
+  backdrop-filter: blur(5px);
+}
+main #projects-section-all .projects-grid {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+main #projects-section-all .projects-grid .projects-overlay {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(6, 10, 18);
+  border-radius: 25px;
+  opacity: 1;
+  border: solid 2px #2ecc71;
+}
+main #projects-section-all .projects-grid .image-container {
+  width: 256px;
+  height: 256px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+main #projects-section-all .projects-grid .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0.25;
+}
+main #projects-section-all .projects-grid .projects-upper-part {
+  gap: 1rem;
+  display: flex;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-left {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-top {
+  min-height: 30rem;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-bottom {
+  gap: 1rem;
+  min-height: 20rem;
+  display: flex;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-bottom .bottom-1 {
+  flex: 1;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-bottom .bottom-2 {
+  flex: 1;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-right {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-right .upper-right-top {
+  min-height: 20rem;
+}
+main #projects-section-all .projects-grid .projects-upper-part .upper-right .upper-right-bottom {
+  min-height: 30rem;
+}
+main #projects-section-all .projects-grid .projects-lower-part {
+  gap: 1rem;
+  display: flex;
+  min-height: 20rem;
+}
+main #projects-section-all .projects-grid .projects-lower-part .lower-left {
+  flex: 0 0 calc(33.33% - 1rem);
+  min-height: 20rem;
+}
+main #projects-section-all .projects-grid .projects-lower-part .lower-right {
+  flex: 0 0 66.67%;
+  min-height: 20rem;
+}
 main #about-me-section {
   display: flex;
   flex-direction: column;
@@ -1243,6 +1460,8 @@ main #about-me-section .about-me-excerpt p {
   text-transform: none;
   line-height: 1.75;
   padding: 0 2rem;
+  color: white;
+  line-height: 2rem;
 }
 main #about-me-section .about-me-excerpt hr {
   border: none;
@@ -1264,9 +1483,6 @@ main #about-me-section .about-me-form-article .about-me-form {
 main #about-me-section .about-me-form-article .about-me-form .honeypot {
   display: none;
 }
-main #about-me-section .about-me-form-article .about-me-form div label {
-  color: rgba(51, 81, 142, 0.75);
-}
 main #about-me-section .about-me-form-article .about-me-form div input:-webkit-autofill,
 main #about-me-section .about-me-form-article .about-me-form div textarea:-webkit-autofill {
   -webkit-text-fill-color: #2ecc71 !important;
@@ -1277,27 +1493,22 @@ main #about-me-section .about-me-form-article .about-me-form div input[type=emai
 main #about-me-section .about-me-form-article .about-me-form div textarea {
   width: 100%;
   max-width: max(90%, 800px);
-  height: 100%;
-  width: 100%;
-  border: solid 3px rgba(70, 80, 100, 0.05);
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
+  color: rgba(158, 190, 255, 0.5);
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-  color: rgb(51, 81, 142);
-  border-radius: 5px;
-  padding: 0.5rem;
+  border: solid 2px rgba(51, 81, 142, 0.25);
+  border-radius: 25px;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   outline: none;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
-  border: solid 2px rgba(51, 81, 142, 0.5);
+  backdrop-filter: blur(5px);
 }
 main #about-me-section .about-me-form-article .about-me-form div input[type=text]:focus,
 main #about-me-section .about-me-form-article .about-me-form div input[type=email]:focus,
 main #about-me-section .about-me-form-article .about-me-form div textarea:focus {
-  box-shadow: 0 0 15px #2ecc71, 0 0 25px #2ecc71;
-  border-color: #2ecc71;
-  color: #2ecc71;
+  box-shadow: 0 0 15px rgba(25, 41, 71, 0.1);
+  border: solid 2px rgba(158, 190, 255, 0.5);
+  outline: none;
 }
 main #about-me-section .about-me-form-article .about-me-form div input[type=text]::placeholder,
 main #about-me-section .about-me-form-article .about-me-form div input[type=email]::placeholder,
@@ -1320,26 +1531,13 @@ main #about-me-section .about-me-form-article .about-me-form div button {
   border-radius: 10px;
   backdrop-filter: blur(5px);
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-  color: rgb(51, 81, 142);
-  border-radius: 5px;
-  padding: 0.5rem;
+  color: rgba(51, 81, 142, 0.5);
+  border-radius: 25px;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   outline: none;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
-  border: solid 2px rgba(51, 81, 142, 0.5);
-}
-main #about-me-section .about-me-form-article .about-me-form div button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  box-shadow: 0 0 2em 0.25em #2ecc71;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 100ms linear;
+  border: solid 2px rgba(51, 81, 142, 0.25);
 }
 main #about-me-section .about-me-form-article .about-me-form div button:hover::before, main #about-me-section .about-me-form-article .about-me-form div button:focus::before {
   opacity: 1;
@@ -1351,7 +1549,6 @@ main #about-me-section .about-me-form-article .about-me-form div button:hover, m
   outline: none;
   color: #2ecc71;
   text-shadow: none;
-  background: radial-gradient(circle at 50% 50%, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
   border: solid 2px #2ecc71;
 }
 main #about-me-section .about-me-form-article .about-me-form div button.active {
@@ -1870,5 +2067,19 @@ footer .footer-second-div .footer-svg a:hover {
     transform: translate(calc(-70% + 400px), -50%) scale(0.65);
     z-index: 2;
     opacity: 0.7;
+  }
+}
+@media (max-width: 881px) {
+  .projects-grid .projects-upper-part .upper-right {
+    display: none !important;
+  }
+  .projects-grid .projects-upper-part .upper-right .upper-right-top {
+    display: none !important;
+  }
+  .projects-grid .projects-upper-part .upper-right .upper-right-bottom {
+    display: none !important;
+  }
+  .projects-grid .projects-lower-part .lower-left {
+    display: none !important;
   }
 }/*# sourceMappingURL=main.css.map */

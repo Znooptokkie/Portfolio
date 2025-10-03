@@ -98,7 +98,7 @@ export class CardManager
         this.cardList.forEach((card, index) => 
         {
             const rect = card.getBoundingClientRect();
-            console.log(`Card ${index + 1}: `, rect);
+            // console.log(`Card ${index + 1}: `, rect);
         });
     }
 

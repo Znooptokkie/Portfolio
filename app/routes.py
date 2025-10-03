@@ -34,9 +34,9 @@ def education():
 @project_bp.route("")
 def projects():
     projects = Project.get_all_projects()
-    latest_project = Project.get_latest_project()
+    # latest_project = Project.get_latest_project()
 
-    return render_template("projects.html", title="Projecten", projects=projects, latest=latest_project)
+    return render_template("projects.html", title="Projecten", projects=projects)
 
 
 # All Projects

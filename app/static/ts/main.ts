@@ -3,6 +3,8 @@ import { TextResolver } from "./FancyText.js"
 import { Starfield } from "./Background.js"
 import { CardManager } from "./CardManager.js"
 import { TimelineAnimation } from "./Timeline.js"
+import { CustomSelect } from "./CustomSelectOptions.js"
+import { ProjectsOverlay } from "./ProjectsOverlay.js";
 
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
@@ -19,6 +21,7 @@ const cards = new CardManager()
 
 new Starfield("stars", 50)
 
+const projectOverlays = new ProjectsOverlay
 
 document.addEventListener("DOMContentLoaded", () => 
 {
@@ -26,5 +29,9 @@ document.addEventListener("DOMContentLoaded", () =>
 
     cards.init()
 
+    CustomSelect.initAll()
+
     const timelineAnimation = new TimelineAnimation();
+
+    projectOverlays.getAndPushDivProperties()
 });

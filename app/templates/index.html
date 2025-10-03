@@ -93,7 +93,7 @@
         <div class="row1">
             <div class="row1-left">
                 <p>
-                    "Ik ben bedreven in meerdere programmeertalen, vooral Python en JavaScript, ook ben ik momenteel bezig met een project in Java"
+                    "Ik beschik over een goede basis in meerdere programmeertalen, vooral in Python en JavaScript. En ik blijf mijn kennis verder uitbreiden."
                 </p>
             </div>
             <div class="row1-right">
@@ -113,12 +113,12 @@
 <section class="cv-contact-me-section">
     <div class="contact-me-text">
         <p>
-            De snelste en beste manier om contact met mij op te nemen is via e-mail. Heb je een vraag, idee of wil je samenwerken? Stuur me gerust een bericht.
+            De snelste en beste manier om contact met mij op te nemen is via e-mail. Heb je een vraag, idee of wil je samenwerken? Stuur gerust een bericht!
         </p>
     </div>
     <div class="contact-me-button-container">
         <div class="contact-me-button">
-            <a href="/">Mail Mij</a>
+            <a href="over-mij#about-me-section">Mail Mij</a>
         </div>
     </div>
 </section>
@@ -165,7 +165,7 @@
                 <div class="timeline-content fadeInRight">
                     <h3>Overstap naar Software Developer</h3>
                     <p>
-                        Weer terug naar school, nu begon ik deze opleiding wel met een enorme hoeveelheid motivatie, wat zich meerdere keren uitbetaalde. Ik werd herhaaldelijk gevraagd om <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">extra projecten op te pakken, zoals het begeleiden van een uitwisselingsprogramma</a>, en kreeg zelfs de kans om <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">HBO-studenten te mentoreren</a> als uitdaging voor hun project.
+                        Weer terug naar school, nu begon ik deze opleiding wel met een enorme hoeveelheid motivatie, wat zich meerdere keren uitbetaalde. Ik werd herhaaldelijk gevraagd om <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">extra projecten</a> op te pakken, zoals het begeleiden van een <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">uitwisselingsprogramma</a>, en kreeg zelfs de kans om <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">HBO-studenten te begeleiden</a> als uitdaging voor hun project.
                     </p>
                     <p>
                         De resultaten van mijn motivatie zijn ook terug te zien in mijn cijfers. Ik ben <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">cum laude afgestudeerd</a> als de beste student van de opleiding Software Development aan mboRijnland. Ik moet wel vermelden dat ROC Leiden zeven jaar geleden overging in mboRijnland, maar het blijft een prestatie waar ik ontzettend trots op ben!
@@ -215,81 +215,13 @@
                     <p>
                         Desondanks ben ik zeer gemotiveerd om mijn kennis verder uit te breiden, voortbouwend op de sterke basis die school mij heeft gegeven.
                     </p>
-                    <p>
-                        Voorlopig overweeg ik me te concentreren op het grondig beheersen van één programmeertaal, terwijl ik tegelijkertijd door blijf studeren in de algemene computer theorie.
-                    </p>
-                    <p>
-                        Tijdens de <a href="{{ url_for('main.coming_soon') }}" class="timeline-link">Battlebot-stage</a> hebben we gewerkt met bitoperators en hexadecimale waarden. Ik vind dit aspect van informatica bijzonder interessant en wil hier graag meer over leren.
-                    </p>
-                    <p>
-                        In de nabije toekomst ben ik van plan een low-level programmeertaal te bestuderen om op dit gebied praktische ervaring op te doen.
-                    </p>
+                    <!-- <p>
+                        Ik ben dan ook nu met meerdere projecten bezig, in me eentje, maar ook met wat oud klasgenoten. Ik probeer bij elk project wel weer nieuwe technieken, tools en dergelijke te gebruiken. Om zo van alles wel wat mee te krijgen.
+                    </p> -->
                 </div>   
             </div>
         </div>
     </article>
 </section>
 
-
-<section class="projects-featured-section">
-    <h2>Uitgelichte <span class="green-name">Projecten</span></h2>
-    <div class="carousel">
-        <button class="carousel-arrow left-arrow">&#10094;</button>
-        {% for project in projects if project.featured %}
-            {% set main_image = (project.images | selectattr("is_main_image", "equalto", True) | list | first) or (project.images | first) %}
-            <div class="card-wrapper skills-container" data-card="{{ loop.index }}">
-                <div class="card">
-                    <svg viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg">
-                        <path class="card-shape" stroke="rgba(147, 160, 188, 0.1)" stroke-width="3" />
-                        <path class="card-shape-inner" stroke="rgba(180, 190, 210, 0.7)" stroke-width="20" />
-                        <text
-                          class="card-title"
-                          x="170"
-                          y="25"
-                          text-anchor="middle"
-                          alignment-baseline="middle"
-                          font-size="20"
-                          font-family="Goldman"
-                          fill="rgba(180, 190, 210, 1)"
-                        >
-                          {{ project.title }}
-                        </text>
-                    </svg>
-                    <div class="card-content">
-                        <div class="card-image">
-                            {% if main_image %}
-                                <img
-                                  src="{{ url_for('static', filename='images/' ~ main_image.image_url) }}"
-                                  alt="{{ main_image.alt_text }}"
-                                />
-                            {% else %}
-                                <img
-                                  src="{{ url_for('static', filename='images/placeholder.jpg') }}"
-                                  alt="{{ project.title }} project"
-                                />
-                            {% endif %}
-                        </div>
-                        <div class="card-stats">
-                            {% for tech in project.languages_and_frameworks %}
-                                <div class="stat">{{ tech }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="card-description">
-                            <p>{{ project.excerpt }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="/">GA</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        <button class="carousel-arrow right-arrow">&#10095;</button>
-    </div>
-    <div class="all-projects-button">
-        <a href="/">
-            Alle Projecten
-        </a>
-    </div>
-</section>
 {% endblock %}

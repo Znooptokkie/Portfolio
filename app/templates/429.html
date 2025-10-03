@@ -1,1 +1,17 @@
-Too many request in about me form
+{% extends "base.html" %}
+
+{% block title %}429 - Too Many Requests{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<section class="error-container">
+    <div>
+        <h1>429 - Too Many <span class="last-word">Requests</span></h1>
+        <p>Je hebt teveel aanvragen gedaan! Foei!.</p>
+        <a href="/">Home</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}{% endblock %}
