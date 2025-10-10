@@ -16,8 +16,9 @@
         <div class="subheading-container">
             <p class="subheading">Junior Developer | Full Stack Developer</p>
             <div class="social-icons">
+                
+                <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/in/atilla-oomen-3a4b78335" target="_blank" aria-label="LinkedIn">
-                    <!-- LinkedIn -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          fill="none" stroke="white" stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round"
@@ -28,8 +29,9 @@
                         <path d="M12 17v-6h2.4a2 2 0 0 1 2 2V17"/>
                     </svg>
                 </a>
+                
+                <!-- Mail -->
                 <a href="mailto:oomenatilla@gmail.com" aria-label="Mail">
-                    <!-- Mail -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          fill="none" stroke="white" stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round"
@@ -38,8 +40,9 @@
                         <polyline points="3,7 12,13 21,7"/>
                     </svg>
                 </a>
+
+                <!-- GitHub -->
                 <a href="https://github.com/znooptokkie/" target="_blank" aria-label="GitHub">
-                    <!-- GitHub -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          fill="none" stroke="white" stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round"
@@ -51,7 +54,7 @@
         </div>
         <div class="my-description">
             <p>
-                Ik ben <span class="green-name">cum laude</span> afgestudeerd van de opleiding Software Developer op het mboRijnland in Leiden, als de eerste student in de geschiedenis van de opleiding die deze onderscheiding behaalde.
+                Aan mboRijnland in Leiden heb ik de opleiding Software Developer afgerond met de onderscheiding <span class="green-name">cum laude</span>, als eerste student in de geschiedenis van de opleiding.
             </p>
         </div>
     </div>
@@ -101,7 +104,7 @@
                     {% for language in languages %}
                         <li class="cv-languages-li">
                             <i class="devicon-{{ language.language | lower }}-plain"></i>
-                            <h4>{{ language.language }}</h4>
+                            <h4>{{ "SQL" if language.language == "azuresqldatabase" else language.language }}</h4>
                         </li>
                     {% endfor %}
                 </ul>
@@ -113,7 +116,7 @@
 <section class="cv-contact-me-section">
     <div class="contact-me-text">
         <p>
-            De snelste en beste manier om contact met mij op te nemen is via e-mail. Heb je een vraag, idee of wil je samenwerken? Stuur gerust een bericht!
+            De snelste en beste manier om contact met mij op te nemen is via e-mail. Heb je een vraag, feedback of wil je samenwerken? Stuur gerust een bericht!
         </p>
     </div>
     <div class="contact-me-button-container">
@@ -209,15 +212,15 @@
                 <div class="timeline-img"></div>
                 <div class="timeline-content fadeInRight">
                     <h3>Toekomstige Plannen</h3>
-                    <p>
-                        Gezien mijn leeftijd en de andere stappen die ik in het leven wil nemen, ben ik momenteel niet in staat om formeel onderwijs te volgen, hoewel ik dat heel graag zou willen.
+                    <p> 
+                        Gezien mijn leeftijd en de andere stappen die ik in het leven wil zetten, is het op dit moment niet mogelijk om formeel onderwijs te volgen, hoe graag ik dat ook zou willen.
                     </p>
                     <p>
-                        Desondanks ben ik zeer gemotiveerd om mijn kennis verder uit te breiden, voortbouwend op de sterke basis die school mij heeft gegeven.
+                        Desondanks blijf ik gemotiveerd om mijn kennis en vaardigheden verder te ontwikkelen. De stevige basis die ik tijdens mijn opleiding heb opgebouwd, vormt daarbij een waardevol vertrekpunt.
                     </p>
-                    <!-- <p>
-                        Ik ben dan ook nu met meerdere projecten bezig, in me eentje, maar ook met wat oud klasgenoten. Ik probeer bij elk project wel weer nieuwe technieken, tools en dergelijke te gebruiken. Om zo van alles wel wat mee te krijgen.
-                    </p> -->
+                    <p> 
+                        Ik richt mij momenteel op zelfstudie, praktijkervaring en het opzetten van eigen projecten, waarmee ik mijn leerproces actief vormgeef en mijn professionele groei blijf stimuleren.
+                    </p>
                 </div>   
             </div>
         </div>

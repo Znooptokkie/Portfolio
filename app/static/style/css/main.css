@@ -56,6 +56,7 @@
 }
 
 html {
+  background: linear-gradient(to top, #05080f 0%, rgba(6, 10, 18, 0.85) 40%, rgba(6, 11, 22, 0.86) 70%, rgba(6, 9, 18, 0.94) 100%);
   min-height: 100%;
   background-color: rgb(6, 10, 18);
 }
@@ -132,7 +133,7 @@ a.timeline-link {
 
 .education-school-section h1,
 #about-me-section h1,
-#projects-section-all h1 {
+#projects-section-form h1 {
   font-family: "Ubuntu", sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
@@ -144,7 +145,7 @@ a.timeline-link {
 }
 .education-school-section .education-explenation,
 #about-me-section .education-explenation,
-#projects-section-all .education-explenation {
+#projects-section-form .education-explenation {
   color: rgba(158, 190, 255, 0.5);
 }
 
@@ -300,7 +301,7 @@ main {
   flex: 1;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 7.5rem auto 5rem;
   gap: 7.5rem;
 }
 main .error-container {
@@ -413,8 +414,7 @@ main .cv-banner-section .cv-banner-fancy-header .subheading-container {
   margin: 1rem 0;
 }
 main .cv-banner-section .cv-banner-fancy-header .subheading-container .subheading {
-  color: white;
-  opacity: 0.25;
+  color: grey;
   font-size: clamp(1rem, 3vw, 1.25rem);
   margin: 0;
 }
@@ -513,13 +513,13 @@ main .cv-introduction-section .introduction-container .row1 .row1-left {
   grid-area: row1-left;
   padding: 1.5rem;
   border: solid 2px rgba(51, 81, 142, 0.25);
-  box-shadow: inset 0 0 15px rgba(25, 41, 71, 0.25);
+  box-shadow: inset 0 0 25px rgba(51, 81, 142, 0.05);
 }
 main .cv-introduction-section .introduction-container .row1 .row1-left p {
   font-family: "Courier Prime", monospace;
   font-size: 1.5rem;
   font-weight: 400;
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   line-height: 1.5;
   text-align: left;
   text-transform: none;
@@ -551,14 +551,14 @@ main .cv-introduction-section .introduction-container .row1 .row1-right ul .cv-l
   gap: 1rem;
   padding: 1.5rem 0;
   border: solid 2px rgba(51, 81, 142, 0.25);
-  box-shadow: inset 0 0 15px rgba(25, 41, 71, 0.25);
+  box-shadow: inset 0 0 25px rgba(51, 81, 142, 0.05);
 }
 main .cv-introduction-section .introduction-container .row1 .row1-right ul .cv-languages-li i {
   font-size: 2.5rem;
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
 }
 main .cv-introduction-section .introduction-container .row1 .row1-right ul .cv-languages-li h4 {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
 }
 main .cv-introduction-section .introduction-container .row2 {
   display: grid;
@@ -701,7 +701,7 @@ main .timeline-section .timeline .timeline-container .timeline-item .timeline-co
   color: white;
 }
 main .timeline-section .timeline .timeline-container .timeline-item .timeline-content p {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   line-height: 1.5;
   font-size: clamp(1.15rem, 2.5vw, 1.25rem);
 }
@@ -730,10 +730,6 @@ main .timeline-section .timeline .timeline-container .timeline-item .timeline-co
 }
 main .timeline-section .timeline .timeline-container .timeline-item .timeline-content .timeline-internship div h4 {
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  text-decoration: underline;
-  text-decoration-color: #2ecc71;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 0.5rem;
   color: white;
 }
 main .timeline-section .timeline .timeline-container .timeline-item .timeline-content .timeline-internship div div {
@@ -807,7 +803,7 @@ main .projects-featured-section .skills-container.front {
 }
 main .projects-featured-section .skills-container.front .card svg .card-shape {
   fill: none;
-  stroke: rgba(48, 67, 102, 0.25);
+  stroke: rgba(51, 81, 142, 0.25);
   stroke-width: 3;
 }
 main .projects-featured-section .skills-container.front .card svg .card-shape-inner {
@@ -816,6 +812,12 @@ main .projects-featured-section .skills-container.front .card svg .card-shape-in
 }
 main .projects-featured-section .skills-container.front .card svg .card-title {
   fill: rgba(51, 81, 142, 0.75);
+}
+main .projects-featured-section .skills-container.front .card .card-content .card-image {
+  border: solid 3px #33518e;
+}
+main .projects-featured-section .skills-container.front .card .card-content .card-image img {
+  filter: brightness(1) contrast(1.05);
 }
 main .projects-featured-section .skills-container.front .card .card-content .card-stats {
   border-bottom: solid 3px rgba(48, 67, 102, 0.25);
@@ -828,7 +830,7 @@ main .projects-featured-section .skills-container.front .card .card-content .car
   border-radius: 25px;
 }
 main .projects-featured-section .skills-container.front .card .card-content .card-description p {
-  color: rgba(51, 81, 142, 0.75);
+  color: rgb(51, 81, 142);
 }
 main .projects-featured-section .skills-container.front .card .card-content .card-footer a {
   color: rgba(46, 204, 113, 0.75);
@@ -856,7 +858,6 @@ main .projects-featured-section .skills-container.left .card .card-content .card
 }
 main .projects-featured-section .skills-container.left:hover {
   transform: translate(calc(-50% - 360px), -50%) scale(0.85);
-  opacity: 0.85;
 }
 main .projects-featured-section .skills-container.right {
   transform: translate(calc(-50% + 360px), -50%) scale(0.8);
@@ -866,7 +867,6 @@ main .projects-featured-section .skills-container.right {
 }
 main .projects-featured-section .skills-container.right:hover {
   transform: translate(calc(-50% + 360px), -50%) scale(0.85);
-  opacity: 0.85;
 }
 main .projects-featured-section .skills-container.right .card svg .card-title {
   fill: rgba(51, 81, 142, 0.25);
@@ -927,6 +927,7 @@ main .projects-featured-section .skills-container .card .card-content .card-imag
   width: 200px;
   height: 200px;
   border-radius: 50%;
+  border: solid 3px rgba(51, 81, 142, 0.25);
   overflow: hidden;
   margin: 1.5rem auto 15px auto;
 }
@@ -1069,7 +1070,7 @@ main .education-certifcates-section .education-article-context .education-title 
 }
 main .education-school-section .education-article-context .education-title .education-header-container h3,
 main .education-certifcates-section .education-article-context .education-title .education-header-container h3 {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   opacity: 0.75;
   font-size: 2rem;
 }
@@ -1083,7 +1084,7 @@ main .education-school-section .education-article-context .education-title .educ
 main .education-certifcates-section .education-article-context .education-title .education-year-container p {
   font-size: 2rem;
   font-style: italic;
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
 }
 main .education-school-section .education-article-context .education-content,
 main .education-certifcates-section .education-article-context .education-content {
@@ -1106,7 +1107,7 @@ main .education-certifcates-section .education-article-context .education-conten
 }
 main .education-school-section .education-article-context .education-content .education-excerpt p,
 main .education-certifcates-section .education-article-context .education-content .education-excerpt p {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   line-height: 1.5;
   font-size: 1.25rem;
 }
@@ -1123,7 +1124,7 @@ main .education-certifcates-section .education-article-context .education-conten
 main .education-school-section .education-article-context .education-content .education-properties h4,
 main .education-certifcates-section .education-article-context .education-content .education-properties h4 {
   font-size: 1.5rem;
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   margin-bottom: 1.5rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul,
@@ -1137,7 +1138,7 @@ main .education-certifcates-section .education-article-context .education-conten
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p),
 main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p) {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   font-size: 1.25rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1),
@@ -1198,7 +1199,7 @@ main .education-school-section .education-article-context .education-content .ed
 main .education-school-section .education-article-context .education-content .education-properties .certificates-properties li p,
 main .education-certifcates-section .education-article-context .education-content .education-properties .rijnland-properties-spec li p,
 main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties li p {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgb(51, 81, 142);
   font-size: 1.25rem;
   font-style: italic;
 }
@@ -1221,11 +1222,11 @@ main #projects-section-form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5rem;
+  margin-bottom: 7.5rem;
 }
 main #projects-section-form form {
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -1240,12 +1241,12 @@ main #projects-section-form .form-search-bar input {
   border-radius: 25px;
   box-sizing: border-box;
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-  border: solid 2px rgba(51, 81, 142, 0.25);
+  border: solid 2px rgb(51, 81, 142);
   color: rgba(158, 190, 255, 0.5);
   backdrop-filter: blur(5px);
 }
 main #projects-section-form .form-search-bar input::placeholder {
-  color: rgba(51, 81, 142, 0.5);
+  color: rgb(51, 81, 142);
   opacity: 1;
 }
 main #projects-section-form .form-search-bar input:focus {
@@ -1262,7 +1263,7 @@ main #projects-section-form .form-selections {
 main #projects-section-form .form-selections .custom-select {
   position: relative;
   border-radius: 25px;
-  border: 2px solid rgba(51, 81, 142, 0.25);
+  border: 2px solid rgb(51, 81, 142);
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
   padding: 0.75rem 1rem;
   cursor: pointer;
@@ -1271,7 +1272,7 @@ main #projects-section-form .form-selections .custom-select {
   backdrop-filter: blur(5px);
 }
 main #projects-section-form .form-selections .custom-select .selected {
-  color: rgba(51, 81, 142, 0.5);
+  color: rgb(51, 81, 142);
   position: relative;
   display: flex;
   align-items: center;
@@ -1334,7 +1335,7 @@ main #projects-section-form .form-selections button {
   border: none;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-  border: solid 2px rgba(51, 81, 142, 0.25);
+  border: solid 2px rgb(51, 81, 142);
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -1349,96 +1350,98 @@ main #projects-section-form .form-selections button {
 main #projects-section-form .form-selections button:hover {
   border: solid 2px rgba(158, 190, 255, 0.5);
 }
-main #projects-section-all div {
-  position: relative;
+main #projects-section-all {
+  display: flex;
+  flex-direction: column;
 }
-main #projects-section-all .content-div {
+main #projects-section-all .progress-child-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 5rem;
+  max-width: 950px;
+  align-self: center;
+}
+main #projects-section-all .progress-child-container .progress-img-parent-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 25px rgba(25, 41, 71, 0.5);
-  border-radius: 25px;
+}
+main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container {
+  border: solid 3px rgba(51, 81, 142, 0.5);
+  border-radius: 50%;
   backdrop-filter: blur(5px);
+  width: clamp(7.5rem, 25vw, 15rem);
+  height: clamp(7.5rem, 25vw, 15rem);
+  aspect-ratio: 1/1;
 }
-main #projects-section-all .projects-grid {
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-main #projects-section-all .projects-grid .projects-overlay {
-  display: none;
-  position: absolute;
+main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container img {
   width: 100%;
   height: 100%;
-  background-color: rgb(6, 10, 18);
+}
+main #projects-section-all .progress-child-container .progress-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+main #projects-section-all .progress-child-container .progress-tags .stat {
+  border: solid 3px rgb(51, 81, 142);
+  color: rgb(51, 81, 142);
+  font-weight: bold;
   border-radius: 25px;
-  opacity: 1;
-  border: solid 2px #2ecc71;
+  padding: 0.25rem 0.5rem;
 }
-main #projects-section-all .projects-grid .image-container {
-  width: 256px;
-  height: 256px;
+main #projects-section-all .progress-child-container .progress-content-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  gap: 2rem;
+  border-top-right-radius: 28px;
+  border-top-left-radius: 28px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
-main #projects-section-all .projects-grid .image-container img {
+main #projects-section-all .progress-child-container .progress-content-container h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(51, 81, 142);
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+main #projects-section-all .progress-child-container .progress-content-container .container {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: fill;
-  opacity: 0.25;
 }
-main #projects-section-all .projects-grid .projects-upper-part {
-  gap: 1rem;
+main #projects-section-all .progress-child-container .progress-content-container .container .progress-button {
+  align-self: flex-end;
   display: flex;
+  justify-content: flex-end;
 }
-main #projects-section-all .projects-grid .projects-upper-part .upper-left {
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  flex: 2;
+main #projects-section-all .progress-child-container .progress-content-container .container .progress-button a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 2px solid #2ecc71;
+  border-radius: 25px;
+  color: #2ecc71;
+  font-weight: bold;
+  text-decoration: none;
 }
-main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-top {
-  min-height: 30rem;
+main #projects-section-all .progress-child-container .progress-content-container .container .progress-button a:hover {
+  background-color: rgba(51, 81, 142, 0.1);
 }
-main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-bottom {
-  gap: 1rem;
-  min-height: 20rem;
-  display: flex;
+main #projects-section-all .progress-child-container .progress-content-container .progress-paragraph {
+  color: rgb(51, 81, 142);
 }
-main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-bottom .bottom-1 {
-  flex: 1;
-}
-main #projects-section-all .projects-grid .projects-upper-part .upper-left .upper-left-bottom .bottom-2 {
-  flex: 1;
-}
-main #projects-section-all .projects-grid .projects-upper-part .upper-right {
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-main #projects-section-all .projects-grid .projects-upper-part .upper-right .upper-right-top {
-  min-height: 20rem;
-}
-main #projects-section-all .projects-grid .projects-upper-part .upper-right .upper-right-bottom {
-  min-height: 30rem;
-}
-main #projects-section-all .projects-grid .projects-lower-part {
-  gap: 1rem;
-  display: flex;
-  min-height: 20rem;
-}
-main #projects-section-all .projects-grid .projects-lower-part .lower-left {
-  flex: 0 0 calc(33.33% - 1rem);
-  min-height: 20rem;
-}
-main #projects-section-all .projects-grid .projects-lower-part .lower-right {
-  flex: 0 0 66.67%;
-  min-height: 20rem;
+main #projects-section-all .project-divider {
+  border: none;
+  border-top: 2px solid rgba(51, 81, 142, 0.25);
+  margin: 2rem 0;
+  width: 100%;
 }
 main #about-me-section {
   display: flex;
@@ -1460,8 +1463,9 @@ main #about-me-section .about-me-excerpt p {
   text-transform: none;
   line-height: 1.75;
   padding: 0 2rem;
-  color: white;
+  color: rgb(51, 81, 142);
   line-height: 2rem;
+  text-align: center;
 }
 main #about-me-section .about-me-excerpt hr {
   border: none;
@@ -1495,7 +1499,7 @@ main #about-me-section .about-me-form-article .about-me-form div textarea {
   max-width: max(90%, 800px);
   color: rgba(158, 190, 255, 0.5);
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-  border: solid 2px rgba(51, 81, 142, 0.25);
+  border: solid 2px rgb(51, 81, 142);
   border-radius: 25px;
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -1513,7 +1517,7 @@ main #about-me-section .about-me-form-article .about-me-form div textarea:focus 
 main #about-me-section .about-me-form-article .about-me-form div input[type=text]::placeholder,
 main #about-me-section .about-me-form-article .about-me-form div input[type=email]::placeholder,
 main #about-me-section .about-me-form-article .about-me-form div textarea::placeholder {
-  color: rgba(51, 81, 142, 0.5);
+  color: rgb(51, 81, 142);
 }
 main #about-me-section .about-me-form-article .about-me-form div textarea {
   min-height: 150px;
@@ -1531,13 +1535,13 @@ main #about-me-section .about-me-form-article .about-me-form div button {
   border-radius: 10px;
   backdrop-filter: blur(5px);
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-  color: rgba(51, 81, 142, 0.5);
+  color: rgb(51, 81, 142);
   border-radius: 25px;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   outline: none;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  border: solid 2px rgba(51, 81, 142, 0.25);
+  border: solid 2px rgb(51, 81, 142);
 }
 main #about-me-section .about-me-form-article .about-me-form div button:hover::before, main #about-me-section .about-me-form-article .about-me-form div button:focus::before {
   opacity: 1;
@@ -1567,7 +1571,9 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
+  background-color: #2ecc71;
+  margin-top: 5rem;
 }
 footer .footer-hr-mobile {
   display: none;
@@ -1580,21 +1586,22 @@ footer .footer-first-div {
   gap: 0.25rem;
 }
 footer .footer-first-div p {
-  color: rgb(70, 80, 100);
+  color: rgb(6, 10, 18);
   text-align: center;
   padding: 0.25rem 0;
-  font-weight: 200;
+  font-weight: 400;
 }
 footer .footer-second-div .footer-svg a {
-  color: rgb(70, 80, 100);
+  color: rgb(6, 10, 18);
   text-decoration: none;
+  font-weight: bold;
 }
 footer .footer-second-div .footer-svg a svg {
   width: 20px;
   height: 20px;
   vertical-align: middle;
   margin-right: 0.5rem;
-  fill: rgb(70, 80, 100);
+  fill: rgb(6, 10, 18);
 }
 footer .footer-second-div .footer-svg a:hover {
   text-decoration: underline;
@@ -1702,8 +1709,31 @@ footer .footer-second-div .footer-svg a:hover {
   main .education-school-section .education-article-context .education-title .education-year-container p {
     font-size: 1.25rem !important;
   }
+  main #projects-section-all .progress-child-container {
+    gap: 1rem;
+  }
+  main #projects-section-all .progress-child-container .progress-content-container {
+    gap: 0.5rem;
+  }
+  main #projects-section-all .progress-child-container .progress-content-container h3 {
+    font-size: 1.5rem;
+  }
+  main #projects-section-all .progress-child-container .progress-content-container .content-tags {
+    font-size: 0.5rem;
+  }
+  main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container {
+    display: none;
+  }
   footer {
     font-size: 0.75rem;
+  }
+}
+@media (max-width: 768px) {
+  main #projects-section-all .progress-child-container {
+    gap: 0;
+  }
+  main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container {
+    display: none;
   }
 }
 @media (max-width: 800px) {
@@ -1778,6 +1808,7 @@ footer .footer-second-div .footer-svg a:hover {
     font-size: 2.5rem;
     background-color: white;
     color: rgb(6, 10, 18);
+    border: none;
   }
   header .nav-header {
     display: none;
@@ -2021,9 +2052,6 @@ footer .footer-second-div .footer-svg a:hover {
   header .nav-header-dropdown {
     display: none !important;
   }
-  main {
-    padding: 10rem 1rem;
-  }
   main .cv-banner-section {
     display: flex;
     flex-direction: row-reverse;
@@ -2067,19 +2095,5 @@ footer .footer-second-div .footer-svg a:hover {
     transform: translate(calc(-70% + 400px), -50%) scale(0.65);
     z-index: 2;
     opacity: 0.7;
-  }
-}
-@media (max-width: 881px) {
-  .projects-grid .projects-upper-part .upper-right {
-    display: none !important;
-  }
-  .projects-grid .projects-upper-part .upper-right .upper-right-top {
-    display: none !important;
-  }
-  .projects-grid .projects-upper-part .upper-right .upper-right-bottom {
-    display: none !important;
-  }
-  .projects-grid .projects-lower-part .lower-left {
-    display: none !important;
   }
 }/*# sourceMappingURL=main.css.map */

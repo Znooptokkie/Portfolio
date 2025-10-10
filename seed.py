@@ -1,6 +1,6 @@
 import json
 from app import db, create_app
-# from app.models import Project, ProjectImage, ProjectSpecification, ProjectLanguage, Language, Framework, ProjectSpecificationEnumCategory
+
 from app.models.framework import Framework
 from app.models.language import Language
 from app.models.project import Project
@@ -37,7 +37,7 @@ images = {
         },
         {
             "url": "battlebot/battlebot_myself.webp",
-            "is_main_image": True
+            "is_main_image": False
         },
         {
             "url": "battlebot/battlebot_screen_picture.webp",
@@ -62,31 +62,37 @@ images = {
         {
             "url": "battlebot/battlebot_view_top.webp",
             "is_main_image": False
-        }
+        },
+        {"url": "battlebot/battlebot-logo.png", "is_main_image": True}
     ],
     "final_exam": 
     [
-        {"url": "final_exam/myself.webp", "is_main_image": True}
+        {"url": "final_exam/myself.webp", "is_main_image": False},
+        {"url": "final_exam/eindexamen-logo.png", "is_main_image": True}
     ],
     "smartgarden_mobile": 
     [
-        {"url": "smartgarden_mobile/smartgarden_desktop_add_plant.webp", "is_main_image": True}
+        {"url": "smartgarden_mobile/smartgarden_desktop_add_plant.webp", "is_main_image": False},
+        {"url": "smartgarden_mobile/GG-logo-mobiel.png", "is_main_image": True}
     ],
     "smartgarden_desktop": 
     [
-        {"url": "smartgarden_desktop/smartgarden_desktop_add_plant.webp", "is_main_image": True}
+        {"url": "smartgarden_desktop/smartgarden_desktop_add_plant.webp", "is_main_image": False},
+        {"url": "smartgarden_desktop/GG-logo.png", "is_main_image": True}
     ],
     "bram": 
     [
-        {"url": "bram/bram_loadingscreen.webp", "is_main_image": True}
+        {"url": "bram/bram_loadingscreen.webp", "is_main_image": False},
+        {"url": "bram/bram-logo.png", "is_main_image": True}
     ],
     "zinra": 
     [
-        {"url": "zinra/zinra_app.webp", "is_main_image": True}
+        {"url": "zinra/zinra_app.webp", "is_main_image": False},
+        {"url": "zinra/zinra-logo.png", "is_main_image": True}
     ],
     "portfolio": 
     [
-        {"url": "zinra/zinra.webp", "is_main_image": True}
+        {"url": "portfolio/portfolio-logo.png", "is_main_image": True}
     ]
 }
 
@@ -95,7 +101,9 @@ specifications = {
     "battlebot": [
         "Thonny",
         "Bitwise Operators",
-        "Hailo-HAT"
+        "Hailo-HAT",
+        "Raspberry Pi 5",
+        "Raspberry Pico 2"
     ],
     "final_exam": [
         ""
@@ -103,13 +111,18 @@ specifications = {
     "smartgarden_mobile": [
         "IoT",
         "Algoritme",
-        "ssh"
+        "ssh",
+        "Raspberry Pi 4"
     ],
     "smartgarden_desktop": [
-        "Chart.js"
+        "Chart.js",
+        "IoT",
+        "Algoritme",
+        "ssh",
+        "Raspberry Pi 4"
     ],
     "bram": [
-        ""
+        "Android Studio"
     ],
     "zinra": [
         ""
@@ -137,11 +150,11 @@ json_data = [
         "title": "Eindexamen Project",
         "subtitle": "...",
         "description": "Python project 2025",   
-        "link": "schoolexam",
-        "language": "Python",
+        "link": "final_exam",
+        "language": "Python SASS HTML5 SQL",
         "year": 2025,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "Dit was mijn eindexamenproject waarbij ik een Python-applicatie heb gemaakt die sensorgegevens van een klaslokaalrobot analyseerde en inzichten in realtime weergeeft.",
+        "excerpt": "Dit was mijn eindexamenproject, waarin we een volledige CRUD-website hebben gebouwd op basis van de aangeleverde UML-diagrammen. Ik heb het project ontwikkeld met Flask en daarbij SQLAlchemy gebruikt als ORM om de database te beheren.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "no",
         "framework": "flask"
@@ -151,20 +164,20 @@ json_data = [
         "subtitle": "Autonoom Irrigatiesysteem",
         "description": "JavaScript project 2024",
         "link": "smart-garden-mobile",
-        "language": "TypeScript JavaScript",
+        "language": "TypeScript",
         "year": 2024,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "Ik heb een mobiele app ontwikkeld waarmee gebruikers hun slimme tuin op afstand kunnen monitoren en bewateren, met gebruik van realtime data van sensoren die verbonden zijn met een Raspberry Pi.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "yes",
-        "framework": "React Native|"
+        "framework": "React Native"
     },
     {
         "title": "Smart Garden - Desktop",
         "subtitle": "Autonoom Irrigatiesysteem",
         "description": "JavaScript & Python project 2024",
         "link": "smart-garden-desktop",
-        "language": "Python JavaScript",
+        "language": "Python JavaScript SQL",
         "year": 2024,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "Deze desktopversie stelde gebruikers in staat hun slimme tuin vanaf een pc te bedienen. Het integreerde Python-scripts voor het uitlezen van sensoren en JavaScript voor interactieve dashboards.",
@@ -177,7 +190,7 @@ json_data = [
         "subtitle": "Mobiele Applicatie voor Senioren",
         "description": "Python project 2023",
         "link": "bram",
-        "language": "Python",
+        "language": "Java",
         "year": 2023,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "BRAM was een persoonlijk project waarbij ik een intelligente assistent in Python heb geprogrammeerd om taken te plannen en automatisch meldingen te versturen.",
@@ -190,7 +203,7 @@ json_data = [
         "subtitle": "Postvak Sorteerservice",
         "description": "JavaScript & PHP project 2023",
         "link": "zinra",
-        "language": "Python JavaScript",
+        "language": "PHP JavaScript HTML5 SQL",
         "year": 2023,
         "datetime": "2025-08-27T19:59:00+02:00",
         "excerpt": "Zinra was een webproject waarin JavaScript en PHP werden gecombineerd om een dynamische website te creëren met interactieve functies en een veilige backend voor gebruikersgegevens.",
@@ -203,10 +216,10 @@ json_data = [
         "subtitle": "Eigen Portfolio Website",
         "description": "JavaScript & Python project 2025",
         "link": "portfolio",
-        "language": "Python JavaScript TypeScript PHP HTML5 CSS3 SASS Bootstrap",
+        "language": "Python TypeScript SASS HTML5 SQL",
         "year": 2025,
         "datetime": "2025-08-27T19:59:00+02:00",
-        "excerpt": "Mijn eigen portfolio website. De website waar u zich op dit moment op bevindt.",
+        "excerpt": "Mijn eigen portfolio website. Gemaakt in Python met het framework Flask. Uiteraard alles gemaakt in OOP en zoveel mogelijk mijn code DRY proberen te houden.",
         "github": "https://github.com/BattlebotdeGripper/battlebot_pi",
         "featured": "no",
         "framework": "flask"
@@ -219,12 +232,17 @@ def seed_languages():
     for item in json_data:
         item_languages = item["language"].split()
         languages.update(item_languages)
-    
+
+    icon_mapping = {
+        "SQL": "azuresqldatabase"
+    }
+
     language_map = {}
     for lang in languages:
-        existing_language = Language.query.filter_by(language=lang).first()
+        icon_name = icon_mapping.get(lang, lang)
+        existing_language = Language.query.filter_by(language=icon_name).first()
         if not existing_language:
-            language = Language(language=lang)
+            language = Language(language=icon_name)
             db.session.add(language)
             db.session.flush()  # Zorg dat language_id beschikbaar is
             language_map[lang] = language
@@ -233,6 +251,7 @@ def seed_languages():
     db.session.commit()
     print("Languages seeded successfully!")
     return language_map
+
 
 def seed_frameworks():
     """Voeg unieke frameworks toe aan de Framework-tabel."""
@@ -269,14 +288,16 @@ def seed_projects():
             datetime=parse(item["datetime"]),
             excerpt=item["excerpt"],
             github=item["github"],
-            featured=item["featured"].lower() == "yes"
+            featured=item["featured"].lower() == "yes",
+            in_progress=item["title"].lower() == "portfolio website"
         )
         db.session.add(project)
-        db.session.flush()  # Zorg dat project_id beschikbaar is
+        db.session.flush()
         project_map[item["title"]] = project
     db.session.commit()
     print("Projects seeded successfully!")
     return project_map
+
 
 def seed_project_images(project_map):
     link_map = {
@@ -317,8 +338,16 @@ def seed_project_specifications(project_map):
         "JavaScript": ProjectSpecificationEnumCategory.FRONTEND,
         "PHP": ProjectSpecificationEnumCategory.BACKEND,
         "MySQL": ProjectSpecificationEnumCategory.BACKEND,
-        "Typescript": ProjectSpecificationEnumCategory.FRONTEND
+        "Typescript": ProjectSpecificationEnumCategory.FRONTEND,
+        "Raspberry Pi 4": ProjectSpecificationEnumCategory.HARDWARE,
+        "Raspberry Pi 5": ProjectSpecificationEnumCategory.HARDWARE,
+        "Raspberry Pico 2": ProjectSpecificationEnumCategory.HARDWARE,
+        "Android Studio": ProjectSpecificationEnumCategory.SOFTWARE,
+        "Azure SQL Database": ProjectSpecificationEnumCategory.BACKEND,
+        "SASS": ProjectSpecificationEnumCategory.FRONTEND,
+        "HTML5": ProjectSpecificationEnumCategory.FRONTEND,
     }
+
     
     for item in json_data:
         project = project_map[item["title"]]

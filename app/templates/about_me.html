@@ -4,41 +4,32 @@
 <section id="about-me-section">
   <article class="about-me-excerpt">
     <h1>Meer Over <span class="green-name">Mij</span></h1>
-    <!-- <hr> -->
-    <p>
-      Met vol enthousiasme en een enorme bak aan motivatie ga ik de toekomst tegemoet. Waar ik mij in wil gaan verdiepen is voor mij nog niet helemaal duidelijk.
+    <p> 
+      Met een flinke dosis enthousiasme en een enorme bak aan motivatie kijk ik vol vertrouwen naar de toekomst. Waar ik mij precies in wil gaan specialiseren, blijft nog een ontdekkingsreis, maar juist dat onderzoekende karakter maakt mij wie ik ben. Zodra ik iets nieuws tegenkom, wil ik weten hoe het werkt, waarom het zo werkt en vooral: hoe het beter kan. 
     </p>
     <p>
-      Toch wel een belangrijk eigenschap die ik bezit is een onderzoekende houding. Zodra ik iets voor me krijg wil ik weten hoe het werkt en hoe we het beter kunnen maken.
+      Die nieuwsgierigheid drijft mij om steeds dieper in de wereld van technologie te duiken. Zo wil ik mij binnenkort verdiepen in low-level talen om computers écht van binnenuit te begrijpen. Daarnaast leer ik via Hack The Box steeds meer over cybersecurity, een vakgebied waarin kennis van netwerken, poorten, protocollen, shells, servers en tools als <em>tmux</em> en <em>vim</em> onmisbaar is.
+    </p>
+    <p> 
+      Tegelijkertijd werk ik samen met een aantal voormalige klasgenoten aan nieuwe projecten. Het doel? Niet alleen onze technische kennis vergroten, maar ook leren hoe we effectief kunnen samenwerken, net als in een professioneel team. 
+    </p>
+    <p> 
+      Wat mij typeert? Een onderzoekende houding, een open blik voor elke uitdaging, en een gezonde dosis humor en plezier in alles wat ik doe. Dankzij mijn achtergrond in schilderen ben ik bovendien handig met gereedschap en het maken van fysieke dingen. Bovenal geloof ik dat een fijne, gezellige sfeer en een sterk team de basis vormen voor elk succesvol project. 
+    </p> 
+    <p> 
+      Kortom: ik ben klaar om te blijven leren, te blijven bouwen en met volle energie de volgende stap te zetten. 
     </p>
     <p>
-      
+      Ik sta open voor nieuwe kansen en uitdagingen — neem gerust contact met me op!
     </p>
-    <p>
-      Zo lijkt het mij interessant om wat dieper in de computer te duiken. Dat betekent dat ik in de nabije toekomst een low-level taal zal gaan leren.
-    </p>
-    <p>
-      Ook ben ik bezig met Hack The Box om meer te leren over cybersecurity. Het mooie hieraan is dat je tegelijkertijd meer leert over netwerken, poorten, protocollen, shells, servers, tmux, vim, enzovoort.
-    </p>
-    <p>
-      In de tussentijd ga ik samen met een aantal voormalige klasgenoten een aantal projecten opzetten, met als doel om samenwerking en de manier van werken binnen een bedrijf te bevorderen.
-    </p>
-    <p>Onderzoekende houding</p>
-    <p>Open voor alle uitdagingen</p>
-    <p>Met veel humor en plezier</p>
-    <p>Door mijn geschiedenis in schilderen, erg handig met gereedschap en uberhaupt in het maken van dingen</p>
-    <p>Gezellige sfeer en team vind ik enorm belangrijk</p>
-    <!-- <hr> -->
   </article>
   <article class="about-me-form-article">
-    <!-- <h2><span class="green-name">---</span> Vragen <span class="green-name">of</span> Contact?  <span class="green-name">---</span></h2> -->
      <h2>Vragen of <span class="green-name">Contact</span></h2>
     <form method="POST" class="about-me-form">
 
         {{ form.hidden_tag() }}
 
         <div>
-          <!-- <label for="name">Naam</label> -->
           <input type="text" id="name" name="name" placeholder="Naam" autocomplete="name" value="{{ form.name.data or '' }}">
           {% for error in form.name.errors %}
               <span class="error">{{ error }}</span>
@@ -46,7 +37,6 @@
         </div>
 
         <div>
-          <!-- <label for="email">Email</label> -->
           <input type="email" id="email" name="email" placeholder="E-mail" autocomplete="email" value="{{ form.email.data or '' }}">
           {% for error in form.email.errors %}
               <span class="error">{{ error }}</span>
@@ -54,7 +44,6 @@
         </div>
     
         <div>
-          <!-- <label for="message">Bericht</label> -->
           <textarea id="message" name="message" placeholder="Bericht...">{{ form.message.data or '' }}</textarea>
           {% for error in form.message.errors %}
               <span class="error">{{ error }}</span>

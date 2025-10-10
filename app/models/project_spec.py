@@ -4,7 +4,7 @@ from app.models.project_spec_enum_category import ProjectSpecificationEnumCatego
 class ProjectSpecification(db.Model):
     """
     
-    FK: project_id
+        FK: project_id
 
     """
     __tablename__ = "project_specification"

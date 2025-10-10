@@ -3,150 +3,111 @@
 {% block title %}Projecten{% endblock %}
 
 {% block content %}
+
 <section id="projects-section-form">
+<h1>Alle <span class="green-name">Projecten</span></h1>
     <form action="/projecten" method="get">
+
        <div class="form-search-bar">
            <input type="text" name="question" placeholder="Zoeken..." value="{{ request.args.get('question', '') }}">
        </div>
+
        <div class="form-selections">
-           <!-- <select name="language">
-               <option value="">Programmeertaal</option>
-               <option value="python">Python</option>
-               <option value="php">PHP</option>
-           </select> -->
+
             <div class="custom-select">
                 <div class="selected">Programmeertaal</div>
                 <ul class="options">
                     <li data-value="python">Python</li>
                     <li data-value="php">PHP</li>
+                    <li data-value="javascript">JavaScript</li>
+                    <li data-value="java">Java</li>
                 </ul>
             </div>
-           <!-- <select name="year">
-               <option value="">Jaartal</option>
-               <option value="2025">2025</option>
-               <option value="2024">2024</option>
-           </select> -->
+
             <div class="custom-select">
                 <div class="selected">Jaartal</div>
                 <ul class="options">
-                    <li data-value="python">2025</li>
-                    <li data-value="php">2024</li>
+                    <li data-value="2025">2025</li>
+                    <li data-value="2024">2024</li>
+                    <li data-value="2023">2023</li>
                 </ul>
             </div>
-           <!-- <select name="favorite">
-               <option value="">Framework</option>
-               <option value="python"></option>
-               <option value="php">PHP</option>
-           </select> -->
+
             <div class="custom-select">
                 <div class="selected">Framework</div>
                 <ul class="options">
-                    <li data-value="python">React Native</li>
-                    <li data-value="php">Android Studio</li>
+                    <li data-value="react-native">React Native</li>
+                    <li data-value="android-studio">Android Studio</li>
+                    <li data-value="flask">Flask</li>
+                    <li data-value="django">Django</li>
+                    <li data-value="electron">Electron</li>
+                    <li data-value="arduino">Arduino</li>
                 </ul>
             </div>
-           <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="rgba(51, 81, 142, 0.5)" d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 128 128 192.5 128 272C128 351.5 192.5 416 272 416z"/></svg></button>
+            
+<button type="button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="rgba(51, 81, 142, 1)">
+        <path d="M12 4a8 8 0 1 1-7.75 10h1.53a6.5 6.5 0 1 0 6.22-8.5V1L8 5l4 4V4z"/>
+    </svg>
+</button>
+
+
+
+
+            <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="rgba(51, 81, 142, 1)" d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 416C351.5 416 416 351.5 416 272C416 192.5 351.5 128 272 128C192.5 128 128 192.5 128 272C128 351.5 192.5 416 272 416z"/></svg></button>
+
        </div>
+
     </form>
+
 </section>
+
 <section id="projects-section-all">
-    <h1>Alle <span class="green-name">Projecten</span></h1>
     {% if projects %}
-        <div class="projects-grid">
-            <div class="projects-upper-part">
-                <div class="upper-left">
-                    <div class="upper-left-top content-div">
-                        <div>
-                            <div>
-                                <!-- <h3>Battlebot</h3> -->
-                            </div>
-                            <div class="image-container">
-                                <img src="../static/images/projects/battlebot/battlebot-logo.png" alt="">
-                            </div>
-                        </div>
-                        <div class="projects-overlay" data-name="battlebot">
-                            <h4>{{ projects[0].title }}</h4>
-                                <p>
-                                    Battlebot was een project die ik samen heb uitgevoerd met een klasgenoot. De bedoeling was om een bestaande robot verder te automatiseren.
-                                </p>
-                        </div>
-                    </div>
-                    <div class="upper-left-bottom">
-                        <div class="bottom-1 content-div">
-                            <div>
-                                <div>
-                                    <!-- <h3>Smart Garden</h3> -->
-                                    <!-- <h4>Mobiel</h4> -->
-                                </div>
-                                <div class="image-container">
-                                    <img src="../static/images/projects/smartgarden_mobile/GG-logo-mobiel.png" alt="">
-                                </div>
-                            </div>
-                            <div class="projects-overlay" data-name="gg-mobile">
-                                <h4>{{ projects[0].title }}</h4>
-                                <!-- <p>{{ projects[0].language }}</p> -->
-                                 <p>Battlebot was een project die ik samen heb uitgevoerd met een klasgenoot. De bedoeling was om een bestaande robot verder te automatiseren.</p>
-                            </div>
-                        </div>
-                        <div class="bottom-2 content-div">
-                            <div>
-                                <div>
-                                    <!-- <h3>Smart Garden</h3> -->
-                                </div>
-                                <div class="image-container">
-                                    <img src="../static/images/projects/smartgarden_desktop/GG-logo.png" alt="">
-                                </div>
-                            </div>
-                        </div>
+        {% for project in projects %}
+
+            <div class="progress-child-container">
+                <div class="progress-img-parent-container">
+                    <div class="progress-img-container">
+                        {% set main_image = project.images | selectattr("is_main_image", "equalto", True) | first %}
+                        {% if main_image %}
+                            <img src="{{ url_for('static', filename='images/' ~ main_image.image_url) }}" alt="{{ main_image.alt_text }}">
+                        {% endif %}
                     </div>
                 </div>
-                <div class="upper-right">
-                    <div class="upper-right-top content-div">
-                        <div>
-                            <div>
-                                <!-- <h3>Zinra</h3> -->
-                            </div>
-                            <div class="image-container">
-                                <img src="../static/images/projects/zinra/zinra-logo.png" alt="">
-                            </div>
-                        </div>
+                
+
+                <div class="progress-content-container">
+                    <h3>{{project.title}}</h3>
+                    <div class="progress-tags content-tags">
+                        {% for tag in project.languages_and_frameworks %}
+                             <div class="stat">{{ "SQL" if tag == "azuresqldatabase" else tag}}</div>
+                        {% endfor %}
                     </div>
-                    <div class="upper-right-bottom content-div">
-                        <div>
-                            <div>
-                                <!-- <h3>BRAM</h3> -->
-                            </div>
-                            <div class="image-container">
-                                <img src="../static/images/projects/bram/bram-logo.png" alt="">
-                            </div>
+                    <p class="progress-paragraph">
+                        {{project.excerpt}}
+                    </p>
+                    <div class="container" style="position: relative;">
+                        <div class="progress-button">
+                            <a href="">Lees Meer</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="projects-lower-part">
-                <div class="lower-left content-div">
-                    <div>
-                        <div>
-                            <!-- <h3>Eindexamen Website</h3> -->
-                        </div>
-                        <div class="image-container">
-                            <img src="../static/images/projects/final_exam/eindexamen-logo.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="lower-right content-div">
-                    <div>
-                        <div>
-                            <!-- <h3>Portfolio Website</h3> -->
-                        </div>
-                        <div class="image-container">
-                            <img src="../static/images/projects/portfolio/portfolio-logo.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            
+            {% if not loop.last %}
+                <hr class="project-divider">
+            {% endif %}
+
+        {% endfor %}
+    
+    {% else %}
+        
+        <p>Helaas, geen projecten gevonden!</p>
+
     {% endif %}
+    
+    
 </section>
 <section class="projects-featured-section">
     <h2>Uitgelichte <span class="green-name">Projecten</span></h2>
@@ -188,7 +149,7 @@
                         </div>
                         <div class="card-stats">
                             {% for tech in project.languages_and_frameworks %}
-                                <div class="stat">{{ tech }}</div>
+                                 <div class="stat">{{ "SQL" if tech == "azuresqldatabase" else tech }}</div>
                             {% endfor %}
                         </div>
                         <div class="card-description">
@@ -208,8 +169,5 @@
             Alle Projecten
         </a>
     </div>
-</section>
-<!-- <section class="projects-">
-    <h2>Mijn Hoogtepunten</h2>   -->
 </section>
 {% endblock %}

@@ -5,9 +5,9 @@ from app.models.framework import Framework
 class ProjectLanguage(db.Model):
     """
     
-    FK: project_id -> Project
-    FK: language_id -> Language
-    FK: framework_id -> Framework
+        FK: project_id -> Project
+        FK: language_id -> Language
+        FK: framework_id -> Framework
 
     """
     __tablename__ = "project_language"

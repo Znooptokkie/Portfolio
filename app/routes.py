@@ -3,12 +3,11 @@ from markupsafe import escape
 
 from app import limiter
 
-# from app.models import Project, Language
 from app.models.project import Project
 from app.models.language import Language
 
-from app.forms import ContactForm
-from app.classes import ContactFormProcessing
+from app.forms.contact_form import ContactForm
+from app.classes.contact_form_process import ContactFormProcessing
 
 
 main_bp = Blueprint("main", __name__)
@@ -35,8 +34,9 @@ def education():
 def projects():
     projects = Project.get_all_projects()
     # latest_project = Project.get_latest_project()
+    in_progress = Project.get_project_in_progress()
 
-    return render_template("projects.html", title="Projecten", projects=projects)
+    return render_template("projects.html", title="Projecten", projects=projects, in_progress=in_progress)
 
 
 # All Projects
@@ -68,7 +68,7 @@ def future():
 
 # About Me
 @main_bp.route("/over-mij", methods=["GET", "POST"])
-@limiter.limit("5 per minute")
+@limiter.limit("5 per minute") # Het form kan maar 1x per 5 minuten ingevuld worden
 def about_me():
     form = ContactForm()
     if form.validate_on_submit():

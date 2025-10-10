@@ -3,7 +3,7 @@ from app import db
 class ProjectImage(db.Model):
     """
 
-    FK: project_id
+        FK: project_id
 
     """
     __tablename__ = "project_image"

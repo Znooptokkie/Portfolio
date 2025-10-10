@@ -6,11 +6,11 @@ from app.models.project_language import ProjectLanguage
 class Project(db.Model):
     """
 
-    Got 3 ralationships with (project_images, project_specifications, project_language).
+        Got 3 ralationships with (project_images, project_specifications, project_language).
 
-    ONE TO MANY (Project > ProjectImage)
-    ONE TO MANY (Project > ProjectSpecifications)
-    ONE TO MANY (Project > ProjectLanguage)
+        ONE TO MANY (Project > ProjectImage)
+        ONE TO MANY (Project > ProjectSpecifications)
+        ONE TO MANY (Project > ProjectLanguage)
 
     """
     __tablename__ = "project"
@@ -25,6 +25,7 @@ class Project(db.Model):
     excerpt = db.Column(db.Text)
     github = db.Column(db.String(255))
     featured = db.Column(db.Boolean, default=False)
+    in_progress = db.Column(db.Boolean, default=False)
 
     images = db.relationship("ProjectImage", backref="project", lazy="select")
     specifications = db.relationship("ProjectSpecification", backref="project", lazy="select")
@@ -32,7 +33,9 @@ class Project(db.Model):
 
     @classmethod
     def join_tables(cls):
-        """Retourneert een tuple van joinedload-opties voor alle relaties."""
+        """
+            Retourneert een tuple van joinedload-opties voor alle relaties.
+        """
         return (
             joinedload(cls.images),
             joinedload(cls.specifications),
@@ -52,9 +55,15 @@ class Project(db.Model):
     def get_project_name(cls, link):    
         return cls.query.options(*cls.join_tables()).filter_by(link=link).first()
     
+    @classmethod
+    def get_project_in_progress(cls):
+        return cls.query.options(*cls.join_tables()).filter_by(in_progress=True).first()
+    
     @property
     def languages_and_frameworks(self):
-        """Retourneert een gesorteerde lijst van unieke talen en frameworks"""
+        """
+            Retourneert een gesorteerde lijst van unieke talen en frameworks
+        """
         items = set()
         for pl in self.languages:
             if pl.language:

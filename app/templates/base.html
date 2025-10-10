@@ -17,8 +17,7 @@
         <button class="nav-toggle-button" aria-label="Toggle menu"></button>
         <div class="header-desktop">
             <a href="/" id="portfolio-title">
-                <!-- <b>Atilla Oomen</b> -->
-                 <img src="../static/images/logo_cv.svg" alt="Logo for my website">
+                <img src="../static/images/logo_cv.svg" alt="Logo for my website">
             </a>
             <nav class="nav-header">
                 <ul>
@@ -28,9 +27,9 @@
                     <li>
                         <a href="{{ url_for('projecten.projects') }}" class="{% if request.endpoint == 'projecten.projects' and request.path == '/projecten' %}active{% endif %}">Projecten</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/toekomst' %}active{% endif %}">Toekomst</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/over-mij' %}active{% endif %}">Over Mij</a>
                     </li>
@@ -48,9 +47,9 @@
                 <li>
                     <a href="{{ url_for('projecten.projects') }}" class="{% if request.endpoint == 'projecten.projects' and request.path == '/projecten' %}active{% endif %}">Projecten</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="{{ url_for('main.future') }}" class="{% if request.endpoint == 'main.future' and request.path == '/toekomst' %}active{% endif %}">Toekomst</a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ url_for('main.about_me') }}" class="{% if request.endpoint == 'main.about_me' and request.path == '/over-mij' %}active{% endif %}">Over Mij</a>
                 </li>
