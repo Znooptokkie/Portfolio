@@ -3,7 +3,7 @@
 {% block title %}Toekomst{% endblock %}
 
 {% block content %}
-<!-- <div class="container my-4">
+<div class="container my-4">
     <h1 class="mb-4">Future Projects</h1>
 
     {% if projects %}
@@ -12,20 +12,20 @@
                 <div class="col-md-6 mb-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h2 class="card-title">{{ project.title }}</h2>
+                            <!-- <h2 class="card-title">{{ project.title }}</h2> -->
                             
-                            {% if project.subtitle %}
+                            <!-- {% if project.subtitle %}
                                 <h6 class="text-muted">{{ project.subtitle }}</h6>
-                            {% endif %}
+                            {% endif %} -->
 
-                            {% if project.description %}
+                            <!-- {% if project.description %}
                                 <p class="mt-2">{{ project.description }}</p>
-                            {% endif %}
+                            {% endif %} -->
 
                             <ul class="list-unstyled">
-                                {% if project.link %}
+                                <!-- {% if project.link %}
                                     <li><strong>Link:</strong> <a href="{{ project.link }}">{{ project.link }}</a></li>
-                                {% endif %}
+                                {% endif %} -->
                                 <li><strong>Year:</strong> {{ project.year }}</li>
                                 <li><strong>Date/Time:</strong> {{ project.datetime.strftime('%Y-%m-%d %H:%M') }}</li>
                                 {% if project.excerpt %}
@@ -81,5 +81,5 @@
     {% else %}
         <p>No projects found.</p>
     {% endif %}
-</div> -->
+</div>
 {% endblock %}

@@ -8,7 +8,7 @@ import { ProjectsOverlay } from "./ProjectsOverlay.js";
 
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
-    ["Goedendag, mijn naam is <span class='green-name'>Atilla Oomen</span>"],
+    ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"],
     { timeout: 5, iterations: 10 },
     50000 
 );
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () =>
     cards.init()
 
     CustomSelect.initAll()
+    CustomSelect.updateDividers()
 
     const timelineAnimation = new TimelineAnimation();
 

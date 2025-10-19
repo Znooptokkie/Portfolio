@@ -55,6 +55,30 @@
   border: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: rgb(51, 81, 142) !important;
+  background-color: transparent !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.about-me-form input:-webkit-autofill,
+.about-me-form input:-webkit-autofill:hover,
+.about-me-form input:-webkit-autofill:focus,
+.about-me-form input:-webkit-autofill:active,
+.about-me-form textarea:-webkit-autofill,
+.about-me-form textarea:-webkit-autofill:hover,
+.about-me-form textarea:-webkit-autofill:focus,
+.about-me-form textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: rgb(51, 81, 142) !important;
+  background-color: transparent !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 html {
   background: linear-gradient(to top, #05080f 0%, rgba(6, 10, 18, 0.85) 40%, rgba(6, 11, 22, 0.86) 70%, rgba(6, 9, 18, 0.94) 100%);
   min-height: 100%;
@@ -1222,7 +1246,6 @@ main #projects-section-form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 7.5rem;
 }
 main #projects-section-form form {
   width: 100%;
@@ -1253,6 +1276,9 @@ main #projects-section-form .form-search-bar input:focus {
   box-shadow: 0 0 15px rgba(25, 41, 71, 0.1);
   border: solid 2px rgba(158, 190, 255, 0.5);
   outline: none;
+}
+main #projects-section-form .mobile-filter {
+  display: none;
 }
 main #projects-section-form .form-selections {
   display: flex;
@@ -1481,16 +1507,11 @@ main #about-me-section .about-me-form-article .about-me-form {
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 }
 main #about-me-section .about-me-form-article .about-me-form .honeypot {
   display: none;
-}
-main #about-me-section .about-me-form-article .about-me-form div input:-webkit-autofill,
-main #about-me-section .about-me-form-article .about-me-form div textarea:-webkit-autofill {
-  -webkit-text-fill-color: #2ecc71 !important;
-  caret-color: #2ecc71;
 }
 main #about-me-section .about-me-form-article .about-me-form div input[type=text],
 main #about-me-section .about-me-form-article .about-me-form div input[type=email],
@@ -1614,6 +1635,9 @@ footer .footer-second-div .footer-svg a:hover {
   .cv-experience-section div h3 span {
     font-size: 1rem;
   }
+  .all-projects-button a {
+    font-size: 0.75rem;
+  }
 }
 @media (max-width: 480px) {
   header .header-desktop #portfolio-title img {
@@ -1726,14 +1750,6 @@ footer .footer-second-div .footer-svg a:hover {
   }
   footer {
     font-size: 0.75rem;
-  }
-}
-@media (max-width: 768px) {
-  main #projects-section-all .progress-child-container {
-    gap: 0;
-  }
-  main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container {
-    display: none;
   }
 }
 @media (max-width: 800px) {
@@ -1864,7 +1880,9 @@ footer .footer-second-div .footer-svg a:hover {
   main .education-school-section h1,
   main .education-school-section h2,
   main .education-certifcates-section h1,
-  main .education-certifcates-section h2 {
+  main .education-certifcates-section h2,
+  main #projects-section-form h1,
+  main #projects-section-form h2 {
     font-size: 1.75rem;
   }
   main .cv-banner-section {
@@ -2039,7 +2057,7 @@ footer .footer-second-div .footer-svg a:hover {
   }
   footer {
     flex-direction: column;
-    margin: 2rem 0 1rem;
+    padding-top: 1rem;
   }
 }
 @media (min-width: 992px) {
@@ -2095,5 +2113,95 @@ footer .footer-second-div .footer-svg a:hover {
     transform: translate(calc(-70% + 400px), -50%) scale(0.65);
     z-index: 2;
     opacity: 0.7;
+  }
+}
+@media (min-width: 700px) {
+  main #projects-section-form form .form-selections .mobile-filter {
+    display: none;
+  }
+}
+@media (min-width: 679px) {
+  main #projects-section-form {
+    margin-bottom: 8.5rem;
+  }
+}
+@media (max-width: 768px) {
+  main #projects-section-all .progress-child-container {
+    gap: 0;
+  }
+  main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container {
+    display: none;
+  }
+  main #projects-section-form form .form-selections {
+    display: none;
+  }
+  main #projects-section-form form .mobile-filter {
+    display: block;
+    border: 2px solid rgb(51, 81, 142);
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-header {
+    color: rgb(51, 81, 142);
+    padding: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-header::after {
+    content: "▼";
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+    color: #2ecc71;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content {
+    display: none;
+    border-top: 2px solid rgba(51, 81, 142, 0.2);
+    padding-top: 2rem;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+    position: relative;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content .selected {
+    font-weight: bold;
+    color: rgb(51, 81, 142);
+    padding-left: 1.25rem;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content .custom-select {
+    margin-bottom: 1rem;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content .custom-select .options {
+    list-style: none;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content .custom-select .options li {
+    color: rgb(51, 81, 142);
+    padding: 0.25rem 0 0 2rem;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content .custom-select .options li.active {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+  }
+  main #projects-section-form form .mobile-filter .mobile-filter-content button {
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    align-self: flex-end;
+  }
+  main #projects-section-form form .mobile-filter.open .mobile-filter-header::after {
+    transform: rotate(-180deg);
+  }
+  main #projects-section-form form .mobile-filter.open .mobile-filter-content {
+    display: flex;
+    flex-direction: column;
   }
 }/*# sourceMappingURL=main.css.map */

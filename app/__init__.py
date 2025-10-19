@@ -19,13 +19,12 @@ limiter = Limiter(key_func=get_remote_address)
 mail = Mail()
 csrf = CSRFProtect()
 
-# from app.models import Project, ProjectImage, ProjectSpecification
 from app.models.project import Project
 from app.models.project_image import ProjectImage
 from app.models.project_spec import ProjectSpecification
 
 def create_app(config_class=DevelopmentConfig):
-    # load_dotenv()
+
     app = Flask(__name__)
     
     if config_class is None:
@@ -56,7 +55,6 @@ def create_app(config_class=DevelopmentConfig):
     
     @app.errorhandler(500)
     def internal_error(e):
-        # current_app.logger.error(f"Server error: {e}")
         return render_template("500.html"), 500
     
     @app.errorhandler(429)
