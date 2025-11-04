@@ -6,6 +6,8 @@ import { TimelineAnimation } from "./Timeline.js"
 import { CustomSelect } from "./CustomSelectOptions.js"
 import { ProjectsOverlay } from "./ProjectsOverlay.js";
 
+import { callAllInstances } from "./svg/profilePicSVG.js";
+
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
     ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"],
@@ -36,3 +38,5 @@ document.addEventListener("DOMContentLoaded", () =>
 
     projectOverlays.getAndPushDivProperties()
 });
+
+callAllInstances();

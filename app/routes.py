@@ -14,6 +14,10 @@ main_bp = Blueprint("main", __name__)
 project_bp = Blueprint("projecten", __name__)
 
 
+@main_bp.route("/test")
+def test():
+    return render_template("test.html", title="TEST")
+
 # Homepage / CV
 @main_bp.route("/")
 def home():

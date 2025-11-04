@@ -5,6 +5,7 @@ import { CardManager } from "./CardManager.js";
 import { TimelineAnimation } from "./Timeline.js";
 import { CustomSelect } from "./CustomSelectOptions.js";
 import { ProjectsOverlay } from "./ProjectsOverlay.js";
+import { callAllInstances } from "./svg/profilePicSVG.js";
 const resolver = new TextResolver(document.querySelector("[data-target-resolver]"), ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"], { timeout: 5, iterations: 10 }, 50000);
 resolver.start();
 const callDropdownClass = new Dropdown();
@@ -19,3 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const timelineAnimation = new TimelineAnimation();
     projectOverlays.getAndPushDivProperties();
 });
+callAllInstances();

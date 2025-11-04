@@ -1,67 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Goldman:wght@400;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+// SASS Variables
+@use "base/variable" as *;
 
-$title-font: "Goldman", sans-serif;
-$paragraph-font: "Ubuntu", sans-serif;
-$courier-font: "Courier Prime", monospace;
+// Standaard instellingen 
+@use "base/config" as *;
 
-$primary-color: rgb(51, 51, 51);
-$background-color: rgb(6, 10, 18);
-// $background-color: rgb(0, 12, 35);
-$main-color: #2ecc71;
-//   background-color: #1a1a2e;
-// $main-color: #00ffcc; 
-$paragraph-color: rgba(158, 190, 255, 0.5);
-$blue: rgba(51, 81, 142, 1);
+// Alle SASS mixins
+@use "base/mixin" as *;
 
-///////////////////////////////////////////////
+// Alle keyframes
+@use "base/keyframe" as *;
 
-@mixin glass-card(
-    $height: 100%, 
-    $width: 100%, 
-    $border-radius: 10px, 
-    $blur: 5px
-)
-{
-    height: $height;
-    width: $width;
-    border: solid 3px rgba(70, 80, 100, 0.05);
-    border-radius: $border-radius;
-    backdrop-filter: blur($blur);
-    background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-}
+// Voor dark/light mode en kleuren veranderen van website
+@use "base/dark_mode" as *;
 
-@mixin flexbox(
-    $direction: row, 
-    $justify: flex-start, 
-    $align: stretch
-) 
-{
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
-}
+// Zorgt ervoor dat de kleur van helderheid 
+// veranderd kan worden via color.adjust($color, $lightness, 0%)
+@use "sass:color";
 
-@mixin typography(
-  $font-family: $paragraph-font,
-  $font-size: 1rem,
-  $font-weight: 400,
-  $color: white,
-  $line-height: 1.5,
-  $text-align: left,
-  $text-transform: none
-) 
-{
-  font-family: $font-family;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  color: $color;
-  line-height: $line-height;
-  text-align: $text-align;
-  text-transform: $text-transform;
-}
-
-//////////////////////////////////////////
+////////////////////////////////
+///                          ///
+///   ---Start Styling ---   ///
+///                          ///
+////////////////////////////////
 
 .row1-left,
 .row2-left,
@@ -71,295 +31,6 @@ $blue: rgba(51, 81, 142, 1);
 {
     @include glass-card();
 }
-
-:root
-{
-    font-size: 16px; // 1rem = 16px
-}
-
-/* Hele scrollbar */
-::-webkit-scrollbar 
-{
-    width: .75rem;
-    height: .75rem;
-}
-
-/* Scrollbar track (achtergrond) */
-::-webkit-scrollbar-track 
-{
-    background: rgba(6, 10, 18, 0.7);
-    border-radius: 10px;
-}
-
-/* Scrollbar thumb (het schuifje) */
-::-webkit-scrollbar-thumb 
-{
-    background: $main-color;
-    border-radius: 10px;
-    border: 3px solid rgba(6, 10, 18, 0.7);
-}
-
-/* Scrollbar thumb hover */
-::-webkit-scrollbar-thumb:hover 
-{
-    background: lighten($main-color, 15%);
-}
-
-::selection 
-{
-    background: $main-color;
-    color: $background-color;
-}
-
-*,
-*::before,
-*::after
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: 0;
-}
-
-// input {
-//   background-color: transparent !important;
-//   color: red;
-// }
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active 
-{
-    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-    -webkit-text-fill-color: $blue !important;
-    background-color: transparent !important;
-    transition: background-color 9999s ease-in-out 0s;
-}
-
-.about-me-form input:-webkit-autofill,
-.about-me-form input:-webkit-autofill:hover,
-.about-me-form input:-webkit-autofill:focus,
-.about-me-form input:-webkit-autofill:active,
-.about-me-form textarea:-webkit-autofill,
-.about-me-form textarea:-webkit-autofill:hover,
-.about-me-form textarea:-webkit-autofill:focus,
-.about-me-form textarea:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-    -webkit-text-fill-color: $blue !important;
-    background-color: transparent !important;
-    transition: background-color 9999s ease-in-out 0s;
-}
-
-
-
-html
-{
-    background: linear-gradient(
-        to top,
-        #05080f 0%,
-        rgba(6, 10, 18, 0.85) 40%,
-        rgba(6, 11, 22, 0.86) 70%,
-        rgba(6, 9, 18, 0.94) 100%
-    );
-    min-height: 100%;
-    background-color: $background-color;
-}
-
-
-html,
-body
-{
-    background-attachment: fixed;
-}
-
-p,
-a,
-li,
-article,
-div,
-textarea
-{
-    font-family: $paragraph-font;
-    color: white;
-}
-
-body
-{
-    @include flexbox($direction: column);
-    width: 100%;
-    min-height: 100%;
-    position: relative;
-}
-
-#stars 
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
- a.timeline-link
-{
-    color: rgba($main-color, 0.8);
-    text-decoration: none;
-}
-
-// Welkomstekst op index-pagina
-.green-name
-{
-    color: $main-color;
-}
-
-.cv-skills-section,
-.cv-projects-section,
-.cv-introduction-section,
-.timeline-section,
-.projects-featured-section,
-.education-certifcates-section,
-.about-me-form-article
-{
-    h2
-    {
-        @include typography($text-align: center, $font-size: 2.5rem, $font-weight: bold);
-        margin-bottom: 2.5rem;
-
-        span.last-word
-        {
-            color: $main-color;
-        }
-    }
-}
-
-.education-school-section,
-#about-me-section,
-#projects-section-form
-{
-    h1
-    {
-        @include typography($text-align: center, $font-size: 2.5rem, $font-weight: bold);
-        margin-bottom: 2.5rem;
-    }
-
-    .education-explenation
-    {
-        color: $paragraph-color;
-    }
-}
-
-.nav-toggle-button 
-{
-    display: none;
-    font-size: 2.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin: .5rem;
-    float: right;
-    color: $main-color;
-    transition: transform 0.3s ease;
-
-    &::before 
-    {
-        content: "\2630";
-    }
-}
-
-.all-projects-button,
-.contact-me-button
-{
-    display: inline-flex;
-    justify-content: center;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    position: relative;
-    color: $main-color;
-    border: $main-color 0.125em solid;
-
-    a 
-    {
-        @include typography($color: $main-color, $font-weight: bold);
-        text-decoration: none;
-        text-shadow: 0 1px 2px rgba($background-color, 1);
-    }
-
-    &:hover::before,
-    &:focus::before 
-    {
-        opacity: 1;
-    }
-
-    &:hover::after,
-    &:focus::after 
-    {
-        opacity: 1;
-    }
-
-    &:hover,
-    &:focus {
-        outline: none;
-        color: $background-color;
-        text-shadow: none;
-    }
-
-    &.active 
-    {
-        animation: animate 0.5s ease-in-out;
-    }
-
-    &.active::before 
-    {
-        animation: scalingShadow 0.5s ease-in-out;
-    }
-}
-
-/* Neon-button */
-@keyframes scalingShadow {
-    0% {
-        top: 120%;
-        transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
-    }
-    50% {
-        top: 165%;
-        transform: perspective(1.5em) rotateX(45deg) scale(0.75, 0.3);
-    }
-    100% {
-        top: 120%;
-        transform: perspective(1.5em) rotateX(45deg) scale(0.8, 0.3);
-    }
-}
-
-@keyframes animate {
-    0% {
-        transform: translateY(0%);
-    }
-    50% {
-        transform: translateY(-40%);
-    }
-    100% {
-        transform: translateY(0%);
-    }
-}
-
-header.dropdown-active .nav-toggle-button 
-{
-    color: $main-color;
-}
-
-
-/////////////////////////////////////
-/// 
-///      ---Start Nesting --- 
-/// 
-////////////////////////////////////
-
 
 header 
 {
@@ -469,23 +140,51 @@ main
         .cv-main-banner 
         {
             @include flexbox($justify: center);
-            width: 100%;
-            max-width: 1200px;
+            width: 60%;
+            // max-width: 1200px;
             gap: 2rem;
 
             .profile-pic 
             {
                 @include flexbox();
                 width: 100%;
-                max-width: clamp(200px, 25vw, 300px);
-                aspect-ratio: 1/1;
-                flex-shrink: 0;
+                height: 100%;
+                max-width: clamp(250px, 25vw, 500px);
+                // aspect-ratio: 1/1;
+                // flex-shrink: 0;
 
-                img 
+                // img 
+                // {
+                //     width: 100%;
+                //     height: 100%;
+                //     border-radius: 50%;
+                // }
+
+                #profile-pic-svg
                 {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
+                    .thin-inner-border-group
+                    {
+                        animation: rotate 30s linear infinite;
+                        transform-origin: center;
+                    }
+
+                    .big-inner-border-group
+                    {
+                        animation: rotate 80s linear infinite reverse;
+                        transform-origin: center;
+                    }
+
+                    .background-group
+                    {
+                        animation: rotate 180s linear infinite;
+                        transform-origin: center;
+                        // backdrop-filter: blur(5px);
+
+                        .bg-child
+                        {
+                            backdrop-filter: blur(25px);
+                        }
+                    }
                 }
             }
         }
@@ -493,9 +192,10 @@ main
         .cv-banner-fancy-header 
         {
             @include flexbox($direction: column, $justify: center);
-            width: 100%;
+            width: 40%;
             max-width: 800px;
-            height: auto;
+            height: 100%;
+            align-self: center;
 
             .cv-banner-container 
             {
@@ -509,6 +209,7 @@ main
                 {
                     @include typography($font-size: clamp(1.5rem, 5vw, 2.5rem), $line-height: 1.2, $text-transform: uppercase, $font-family: $title-font);
                     margin: 0;
+                    text-align: center;
                 }
             }
 
@@ -650,15 +351,8 @@ main
 
                         .cv-languages-li
                         {
-                            background-color: rgba(50, 60, 80, 0.15); 
-                            background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));   
-                            border: solid 3px rgba(70, 80, 100, 0.05);
-                            border-radius: 15px;
-                            backdrop-filter: blur(5px);
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
+                            @include glass-card();
+                            @include flexbox($direction: column, $justify: center, $align: center);
                             gap: 1rem;
                             padding: 1.5rem 0;
                             border: solid 2px rgba(51, 81, 142, 0.25);
@@ -964,7 +658,8 @@ main
             top: 35%;
             transform: translate(-50%, -50%);
             z-index: 1;
-                    backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+
             &.front 
             {
                 transform: translate(-50%, -50%) scale(1);
@@ -1026,7 +721,8 @@ main
                         {
                             p
                             {
-                                color: rgba(51, 81, 142, 1);
+                                // color: $blue;
+                                color: $blue;
                             }
                         }
 
@@ -1245,38 +941,6 @@ main
                 }
             }
         }
-
-        @media (max-width: 768px) 
-        {
-            .skills-container 
-            {
-                width: min(76vw, 300px);
-                position: absolute;
-                transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.8s ease;
-            
-                .card {
-                    clip-path: polygon(
-                        0px 20px,
-                        20px 0px,
-                        280px 0px,
-                        300px 20px,
-                        300px 440px,
-                        280px 460px,
-                        20px 460px,
-                        0px 440px
-                    );
-                
-                    .card-content
-                    {
-                        .card-image
-                        {   
-                            width: 160px;
-                            height: 160px;
-                        }
-                    }
-                }
-            }
-        }
         
         .all-projects-button
         {
@@ -1362,9 +1026,7 @@ main
 
                 .education-year-container
                 {
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: flex-end;
+                    @include flexbox($justify: flex-end, $align: flex-end);
 
                     p
                     {
@@ -1440,13 +1102,13 @@ main
 
                             .completion-rating-container
                             {
-                                display: flex;
+                                @include flexbox();
                                 margin-top: .5rem;
 
                                 .green-rate
                                 {
                                     background-color: $main-color;
-                                    background-image: linear-gradient(to bottom, lighten($main-color, 10%), darken($main-color, 10%));
+                                    background-image: linear-gradient(to bottom, color.adjust($main-color, $lightness: 10%), color.adjust($main-color, $lightness: -10%));
                                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 #97f29733;
                                     border-radius: 4px;
                                 }
@@ -1527,18 +1189,14 @@ main
     
     #projects-section-form
     {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flexbox($direction: column, $justify: center, $align: center);
 
         form
         {
+            @include flexbox($direction: column);
             width: 100%;
             max-width: 650px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            gap: 1.25rem;
         }
 
         .form-search-bar
@@ -1553,13 +1211,13 @@ main
                 border-radius: 25px;
                 box-sizing: border-box;
                 background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-                border: solid 2px rgba(51, 81, 142, 1);
+                border: solid 2px $blue;
                 color: $paragraph-color;
                 backdrop-filter: blur(5px);
 
                 &::placeholder
                 {   
-                    color: rgba(51, 81, 142, 1);
+                    color: $blue;
                     opacity: 1; // voorkomt lichte transparantie
                 }
 
@@ -1579,16 +1237,15 @@ main
 
         .form-selections
         {
-            display: flex;
+            @include flexbox($justify: space-between);
             flex-wrap: wrap;
             gap: .5rem;
-            justify-content: space-between;
 
             .custom-select
             {
                 position: relative;
                 border-radius: 25px;
-                border: 2px solid rgba(51, 81, 142, 1);
+                border: 2px solid $blue;
                 background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
                 padding: .75rem 1rem;
                 cursor: pointer;
@@ -1599,18 +1256,16 @@ main
             
                 .selected
                 {
-                    color: rgba(51, 81, 142, 1);
+                    @include flexbox($justify: space-between, $align: center);
                     position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
+                    color: $blue;
 
                     &::after
                     {
                         content: "";
                         display: block;
-                        width: 12px;
-                        height: 12px;
+                        width: .75rem;
+                        height: .75rem;
                         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232ecc71' viewBox='0 0 320 512'%3E%3Cpath d='M31.3 192h257.3c28.4 0 42.8 34.5 22.6 54.6L182.6 375.4c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.4 226.5 3.1 192 31.3 192z'/%3E%3C/svg%3E") no-repeat center;
                         background-size: contain;
                         margin-left: 1rem;
@@ -1677,19 +1332,17 @@ main
         
             button
             {
+                @include flexbox($justify: center, $align: center);
                 padding: .5rem;
                 border: none;
                 border-radius: 50%;
                 background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-                border: solid 2px rgba(51, 81, 142, 1);
+                border: solid 2px $blue;
                 color: white;
                 cursor: pointer;
                 font-weight: bold;
                 width: 3rem;
                 height: 3rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 transition: background-color 0.3s;
                 backdrop-filter: blur(5px);
             }
@@ -1703,8 +1356,7 @@ main
 
     #projects-section-all
     {
-        display: flex;
-        flex-direction: column;
+        @include flexbox($direction: column);
         
         .progress-child-container
         {
@@ -1715,10 +1367,7 @@ main
 
             .progress-img-parent-container
             {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+                @include flexbox($direction: column, $justify: center, $align: center);
 
                 .progress-img-container
                 {
@@ -1755,9 +1404,7 @@ main
 
             .progress-content-container
             {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+                @include flexbox($direction: column, $justify: center);
                 gap: 2rem;
                 border-top-right-radius: 28px;
                 border-top-left-radius: 28px;
@@ -1780,9 +1427,8 @@ main
                 
                     .progress-button
                     {
+                        @include flexbox($justify: flex-end);
                         align-self: flex-end;
-                        display: flex;
-                        justify-content: flex-end;
                     
                         a
                         {
@@ -1827,14 +1473,12 @@ main
 
     #about-me-section
     {
-        display: flex;
-        flex-direction: column;
+        @include flexbox($direction: column);
         gap: 5rem;
 
         .about-me-excerpt
         {
-            display: flex;
-            flex-direction: column;
+            @include flexbox($direction: column);
             gap: .75rem;
 
             p
@@ -1863,8 +1507,7 @@ main
 
             .about-me-form
             {
-                display: flex;
-                flex-direction: column;
+                @include flexbox($direction: column);
                 gap: 1.5rem;
                 width: 100%;
                 max-width: 700px;
@@ -1885,7 +1528,7 @@ main
                         max-width: max(90%, 800px);
                         color: $paragraph-color;
                         background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
-                        border: solid 2px rgba(51, 81, 142, 1);
+                        border: solid 2px $blue;
                         border-radius: 25px;
                         padding: .75rem 1rem;
                         font-size: 1rem;
@@ -1902,7 +1545,7 @@ main
 
                         &::placeholder
                         {
-                            color: rgba(51, 81, 142, 1);
+                            color: $blue;
                         }
                     }
 
@@ -1922,13 +1565,13 @@ main
                         cursor: pointer;
                         max-width: min(90%, 200px);
                         @include glass-card();
-                        color: rgba(51, 81, 142, 1);
+                        color: $blue;
                         border-radius: 25px;
                         padding: .75rem 1rem;
                         font-size: 1rem;
                         outline: none;
                         transition: box-shadow 0.2s ease, border-color 0.2s ease;
-                        border: solid 2px rgba(51, 81, 142, 1);
+                        border: solid 2px $blue;
                     
                         &:hover::before,
                         &:focus::before 
@@ -2222,9 +1865,7 @@ footer
                         {
                             .card-description
                             {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
+                                @include flexbox($justify: center, $align: center);
                             }
 
                             .card-footer 
@@ -2517,7 +2158,7 @@ footer
 
                 .profile-pic 
                 {
-                    max-width: clamp(200px, 20vw, 325px);
+                    max-width: clamp(300px, 20vw, 325px);
                     margin-bottom: 1rem;
                 }
             }
@@ -2810,7 +2451,7 @@ footer
 
         .nav-header 
         {
-            display: flex ; 
+            @include flexbox();
         }
 
         .nav-header-dropdown 
@@ -2931,6 +2572,38 @@ footer
 {
     main
     {
+        .projects-featured-section
+        {
+            .skills-container 
+            {
+                width: min(76vw, 300px);
+                position: absolute;
+                transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.8s ease;
+            
+                .card {
+                    clip-path: polygon(
+                        0px 20px,
+                        20px 0px,
+                        280px 0px,
+                        300px 20px,
+                        300px 440px,
+                        280px 460px,
+                        20px 460px,
+                        0px 440px
+                    );
+                
+                    .card-content
+                    {
+                        .card-image
+                        {   
+                            width: 160px;
+                            height: 160px;
+                        }
+                    }
+                }
+            }
+        }
+
         #projects-section-all
         {
             .progress-child-container
@@ -2959,18 +2632,16 @@ footer
                 .mobile-filter 
                 {
                     display: block;
-                    border: 2px solid rgba(51, 81, 142, 1);
+                    border: 2px solid $blue;
                     border-radius: 25px;
                     overflow: hidden;
 
                     .mobile-filter-header 
                     {
+                        @include flexbox($justify: space-between, $align: center);
                         color: rgba(51,81,142,1);
                         padding: .75rem;
                         cursor: pointer;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
                         backdrop-filter: blur(5px);
                         background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
 
@@ -3015,7 +2686,7 @@ footer
                                     &.active 
                                     {
                                         background: rgba(46, 204, 113, 0.1);
-                                        color: #2ecc71;
+                                        color: $main-color;
                                     }                                    
                                 }
                             }
@@ -3023,15 +2694,13 @@ footer
 
                         button
                         {
+                            @include flexbox($justify: center, $align: center);
                             background-color: transparent;
                             color: white;
                             cursor: pointer;
                             font-weight: bold;
                             width: 3rem;
                             height: 3rem;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
                             transition: background-color 0.3s;
                             align-self: flex-end;
                         }
@@ -3050,8 +2719,7 @@ footer
 
                     .mobile-filter-content 
                     {
-                        display: flex;
-                        flex-direction: column;
+                        @include flexbox($direction: column);
                     }
                 }
             }

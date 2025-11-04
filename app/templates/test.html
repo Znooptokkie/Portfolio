@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}TEST{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+<style>
+
+
+
+
+.image-wrapper {
+    width: 750px;
+    height: 500px;
+}
+
+.futuristic-border {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+
+
+
+.clipped-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: url(#image-clip);
+}
+
+</style>
+
+
+<script>
+    const svg = document.querySelector(".futuristic-border");
+
+// voorbeeld: dynamisch kleur veranderen
+svg.querySelectorAll("polygon, rect").forEach(el => {
+    el.style.stroke = "lime";
+});
+
+// voorbeeld: animatie
+function pulse() {
+    svg.style.opacity = svg.style.opacity === "1" ? "0.8" : "1";
+    requestAnimationFrame(pulse);
+}
+pulse();
+
+</script>
+
+
+
+
+
+<div class="image-wrapper">
+    <svg class="futuristic-border" viewBox="0 0 750 500" preserveAspectRatio="xMidYMid meet">
+
+        <defs>
+            <clipPath id="border-shape">
+                <path d="
+                    M0,0
+                    L750,0
+                    L750,400
+                    L650,500
+                    L0,500
+                    L0,150
+                    L150,0
+                    Z
+                " />
+            </clipPath>
+        </defs>
+
+        <!-- Afbeelding geclipt -->
+        <image
+            href="../static/images/projects/battlebot/battlebot_huge_mess.webp"
+            width="750" height="500"
+            clip-path="url(#border-shape)"
+            preserveAspectRatio="xMidYMid slice" />
+
+        <path
+            d="
+                M150,0
+                L750,0
+                L750,400
+                L650,500
+                L0,500
+                L0,150
+                L150,0
+                Z
+            "
+            fill="none"
+            stroke="grey"
+            stroke-width="2" />
+
+        <path
+            d="
+                M0,0
+                L50,0
+                L0,50
+                Z
+            "
+            fill="cyan"
+            stroke="grey"
+            stroke-width="2"
+        />
+
+        <path
+            d="
+                M65,0
+                L125,0
+                L0,125
+                L0,65
+            "  
+            fill="cyan"
+        />
+    </svg>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block footer %}{% endblock %}

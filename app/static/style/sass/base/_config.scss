@@ -1,0 +1,301 @@
+// SASS Variables
+@use "variable" as *;
+
+// Zorgt ervoor dat de kleur van helderheid 
+// veranderd kan worden via color.adjust($color, $lightness, 0%)
+@use "sass:color";
+
+.row1-left,
+.row2-left,
+.row2-right-top,
+.bottom-left,
+.bottom-right
+{
+    height: 100%;
+    width: 100%;
+    border: solid 3px rgba(70, 80, 100, 0.05);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+}
+
+:root
+{
+    font-size: 16px; // 1rem = 16px
+}
+
+/* Hele scrollbar */
+::-webkit-scrollbar 
+{
+    width: .75rem;
+    height: .75rem;
+}
+
+/* Scrollbar track (achtergrond) */
+::-webkit-scrollbar-track 
+{
+    background: rgba(6, 10, 18, 0.7);
+    border-radius: 10px;
+}
+
+/* Scrollbar thumb (het schuifje) */
+::-webkit-scrollbar-thumb 
+{
+    background: $main-color;
+    border-radius: 10px;
+    border: 3px solid rgba(6, 10, 18, 0.7);
+}
+
+/* Scrollbar thumb hover */
+::-webkit-scrollbar-thumb:hover 
+{
+    // background: lighten($main-color, 15%);
+    background: color.adjust($main-color, $lightness: 15%);
+}
+
+::selection 
+{
+    background: $main-color;
+    color: $background-color;
+}
+
+*,
+*::before,
+*::after
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+
+// input {
+//   background-color: transparent !important;
+//   color: red;
+// }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active 
+{
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: $blue !important;
+    background-color: transparent !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.about-me-form input:-webkit-autofill,
+.about-me-form input:-webkit-autofill:hover,
+.about-me-form input:-webkit-autofill:focus,
+.about-me-form input:-webkit-autofill:active,
+.about-me-form textarea:-webkit-autofill,
+.about-me-form textarea:-webkit-autofill:hover,
+.about-me-form textarea:-webkit-autofill:focus,
+.about-me-form textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: $blue !important;
+    background-color: transparent !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+
+
+html
+{
+    background: linear-gradient(
+        to top,
+        #05080f 0%,
+        rgba(6, 10, 18, 0.85) 40%,
+        rgba(6, 11, 22, 0.86) 70%,
+        rgba(6, 9, 18, 0.94) 100%
+    );
+    min-height: 100%;
+    background-color: $background-color;
+}
+
+
+html,
+body
+{
+    background-attachment: fixed;
+}
+
+p,
+a,
+li,
+article,
+div,
+textarea
+{
+    font-family: $paragraph-font;
+    color: white;
+}
+
+body
+{
+    // @include flexbox($direction: column);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+}
+
+header.dropdown-active .nav-toggle-button 
+{
+    color: $main-color;
+}
+
+#stars 
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+ a.timeline-link
+{
+    color: rgba($main-color, 0.8);
+    text-decoration: none;
+}
+
+// Welkomstekst op index-pagina
+.green-name
+{
+    color: $main-color;
+}
+
+.cv-skills-section,
+.cv-projects-section,
+.cv-introduction-section,
+.timeline-section,
+.projects-featured-section,
+.education-certifcates-section,
+.about-me-form-article
+{ 
+    h2
+    {
+        // @include typography($text-align: center, $font-size: 2.5rem, $font-weight: bold);
+        font-family: $paragraph-font;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: white;
+        line-height: 1.5;
+        text-align: center;
+        text-transform: none;
+        margin-bottom: 2.5rem;
+
+        span.last-word
+        {
+            color: $main-color;
+        }
+    }
+}
+
+.education-school-section,
+#about-me-section,
+#projects-section-form
+{
+    h1
+    {
+        // @include typography($text-align: center, $font-size: 2.5rem, $font-weight: bold);
+        font-family: $paragraph-font;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: white;
+        line-height: 1.5;
+        text-align: center;
+        text-transform: none;
+        margin-bottom: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    // .education-explenation
+    // {
+    //     // color: $paragraph-color;
+    //     color: red;
+    // }
+}
+
+.nav-toggle-button 
+{
+    display: none;
+    font-size: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: .5rem;
+    float: right;
+    color: $main-color;
+    transition: transform 0.3s ease;
+
+    &::before 
+    {
+        content: "\2630";
+    }
+}
+
+.all-projects-button,
+.contact-me-button
+{
+    display: inline-flex;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    position: relative;
+    color: $main-color;
+    border: $main-color 0.125em solid;
+
+    a 
+    {
+        // @include typography($color: $main-color, $font-weight: bold);
+        font-family: $paragraph-font;
+        font-size: 1rem;
+        font-weight: bold;
+        color: $main-color;
+        line-height: 1.5;
+        text-align: left;
+        text-transform: none;
+        text-decoration: none;
+        text-shadow: 0 1px 2px rgba($background-color, 1);
+    }
+
+    &:hover::before,
+    &:focus::before 
+    {
+        opacity: 1;
+    }
+
+    &:hover::after,
+    &:focus::after 
+    {
+        opacity: 1;
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+        color: $background-color;
+        text-shadow: none;
+    }
+
+    &.active 
+    {
+        animation: animate 0.5s ease-in-out;
+    }
+
+    &.active::before 
+    {
+        animation: scalingShadow 0.5s ease-in-out;
+    }
+}

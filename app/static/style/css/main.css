@@ -110,6 +110,10 @@ body {
   position: relative;
 }
 
+header.dropdown-active .nav-toggle-button {
+  color: #2ecc71;
+}
+
 #stars {
   position: fixed;
   top: 0;
@@ -166,11 +170,7 @@ a.timeline-link {
   text-align: center;
   text-transform: none;
   margin-bottom: 2.5rem;
-}
-.education-school-section .education-explenation,
-#about-me-section .education-explenation,
-#projects-section-form .education-explenation {
-  color: rgba(158, 190, 255, 0.5);
+  margin-bottom: 2.5rem;
 }
 
 .nav-toggle-button {
@@ -265,8 +265,25 @@ a.timeline-link {
     transform: translateY(0%);
   }
 }
-header.dropdown-active .nav-toggle-button {
-  color: #2ecc71;
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.row1-left,
+.row2-left,
+.row2-right-top,
+.bottom-left,
+.bottom-right {
+  height: 100%;
+  width: 100%;
+  border: solid 3px rgba(70, 80, 100, 0.05);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
 }
 
 header {
@@ -381,8 +398,7 @@ main .cv-banner-section .cv-main-banner {
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
-  max-width: 1200px;
+  width: 60%;
   gap: 2rem;
 }
 main .cv-banner-section .cv-main-banner .profile-pic {
@@ -391,23 +407,33 @@ main .cv-banner-section .cv-main-banner .profile-pic {
   justify-content: flex-start;
   align-items: stretch;
   width: 100%;
-  max-width: clamp(200px, 25vw, 300px);
-  aspect-ratio: 1/1;
-  flex-shrink: 0;
-}
-main .cv-banner-section .cv-main-banner .profile-pic img {
-  width: 100%;
   height: 100%;
-  border-radius: 50%;
+  max-width: clamp(250px, 25vw, 500px);
+}
+main .cv-banner-section .cv-main-banner .profile-pic #profile-pic-svg .thin-inner-border-group {
+  animation: rotate 30s linear infinite;
+  transform-origin: center;
+}
+main .cv-banner-section .cv-main-banner .profile-pic #profile-pic-svg .big-inner-border-group {
+  animation: rotate 80s linear infinite reverse;
+  transform-origin: center;
+}
+main .cv-banner-section .cv-main-banner .profile-pic #profile-pic-svg .background-group {
+  animation: rotate 180s linear infinite;
+  transform-origin: center;
+}
+main .cv-banner-section .cv-main-banner .profile-pic #profile-pic-svg .background-group .bg-child {
+  backdrop-filter: blur(25px);
 }
 main .cv-banner-section .cv-banner-fancy-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
+  width: 40%;
   max-width: 800px;
-  height: auto;
+  height: 100%;
+  align-self: center;
 }
 main .cv-banner-section .cv-banner-fancy-header .cv-banner-container {
   display: flex;
@@ -428,6 +454,7 @@ main .cv-banner-section .cv-banner-fancy-header .cv-banner-container .heading {
   text-align: left;
   text-transform: uppercase;
   margin: 0;
+  text-align: center;
 }
 main .cv-banner-section .cv-banner-fancy-header .subheading-container {
   display: flex;
@@ -563,11 +590,12 @@ main .cv-introduction-section .introduction-container .row1 .row1-right ul {
   gap: 1rem;
 }
 main .cv-introduction-section .introduction-container .row1 .row1-right ul .cv-languages-li {
-  background-color: rgba(50, 60, 80, 0.15);
-  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
+  height: 100%;
+  width: 100%;
   border: solid 3px rgba(70, 80, 100, 0.05);
-  border-radius: 15px;
+  border-radius: 10px;
   backdrop-filter: blur(5px);
+  background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1015,20 +1043,6 @@ main .projects-featured-section .skills-container .card .card-content .card-foot
   content: "»";
   margin-left: 5px;
 }
-@media (max-width: 768px) {
-  main .projects-featured-section .skills-container {
-    width: min(76vw, 300px);
-    position: absolute;
-    transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.8s ease;
-  }
-  main .projects-featured-section .skills-container .card {
-    clip-path: polygon(0px 20px, 20px 0px, 280px 0px, 300px 20px, 300px 440px, 280px 460px, 20px 460px, 0px 440px);
-  }
-  main .projects-featured-section .skills-container .card .card-content .card-image {
-    width: 160px;
-    height: 160px;
-  }
-}
 main .projects-featured-section .all-projects-button {
   position: absolute;
   bottom: 10%;
@@ -1061,7 +1075,7 @@ main .education-certifcates-section .education-certificates-articles {
 }
 main .education-school-section .education-certificates-articles .education-article-context .education-content .education-certificates p,
 main .education-certifcates-section .education-certificates-articles .education-article-context .education-content .education-certificates p {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgba(10, 37, 92, 0.5);
   line-height: 1.5;
   font-size: 1.25rem;
 }
@@ -1101,6 +1115,7 @@ main .education-certifcates-section .education-article-context .education-title 
 main .education-school-section .education-article-context .education-title .education-year-container,
 main .education-certifcates-section .education-article-context .education-title .education-year-container {
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
 }
@@ -1176,6 +1191,9 @@ main .education-certifcates-section .education-article-context .education-conten
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container,
 main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
   margin-top: 0.5rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .green-rate,
@@ -1244,15 +1262,17 @@ main .education-certifcates-section .education-article-context .education-conten
 main #projects-section-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 main #projects-section-form form {
-  width: 100%;
-  max-width: 650px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  max-width: 650px;
+  gap: 1.25rem;
 }
 main #projects-section-form .form-search-bar {
   width: 100%;
@@ -1265,7 +1285,7 @@ main #projects-section-form .form-search-bar input {
   box-sizing: border-box;
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
   border: solid 2px rgb(51, 81, 142);
-  color: rgba(158, 190, 255, 0.5);
+  color: rgba(10, 37, 92, 0.5);
   backdrop-filter: blur(5px);
 }
 main #projects-section-form .form-search-bar input::placeholder {
@@ -1274,7 +1294,7 @@ main #projects-section-form .form-search-bar input::placeholder {
 }
 main #projects-section-form .form-search-bar input:focus {
   box-shadow: 0 0 15px rgba(25, 41, 71, 0.1);
-  border: solid 2px rgba(158, 190, 255, 0.5);
+  border: solid 2px rgba(10, 37, 92, 0.5);
   outline: none;
 }
 main #projects-section-form .mobile-filter {
@@ -1282,9 +1302,11 @@ main #projects-section-form .mobile-filter {
 }
 main #projects-section-form .form-selections {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
   flex-wrap: wrap;
   gap: 0.5rem;
-  justify-content: space-between;
 }
 main #projects-section-form .form-selections .custom-select {
   position: relative;
@@ -1298,17 +1320,18 @@ main #projects-section-form .form-selections .custom-select {
   backdrop-filter: blur(5px);
 }
 main #projects-section-form .form-selections .custom-select .selected {
-  color: rgb(51, 81, 142);
-  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  position: relative;
+  color: rgb(51, 81, 142);
 }
 main #projects-section-form .form-selections .custom-select .selected::after {
   content: "";
   display: block;
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232ecc71' viewBox='0 0 320 512'%3E%3Cpath d='M31.3 192h257.3c28.4 0 42.8 34.5 22.6 54.6L182.6 375.4c-12.5 12.5-32.8 12.5-45.3 0L8.7 246.6C-11.4 226.5 3.1 192 31.3 192z'/%3E%3C/svg%3E") no-repeat center;
   background-size: contain;
   margin-left: 1rem;
@@ -1321,9 +1344,9 @@ main #projects-section-form .form-selections .custom-select .options {
   left: -2px;
   width: calc(100% + 4px);
   border-radius: 0 0 25px 25px;
-  border-left: 2px solid rgba(158, 190, 255, 0.5);
-  border-right: 2px solid rgba(158, 190, 255, 0.5);
-  border-bottom: 2px solid rgba(158, 190, 255, 0.5);
+  border-left: 2px solid rgba(10, 37, 92, 0.5);
+  border-right: 2px solid rgba(10, 37, 92, 0.5);
+  border-bottom: 2px solid rgba(10, 37, 92, 0.5);
   border-top: none;
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
   z-index: 10;
@@ -1335,7 +1358,7 @@ main #projects-section-form .form-selections .custom-select .options {
 }
 main #projects-section-form .form-selections .custom-select .options li {
   padding: 0.75rem 1rem;
-  color: rgba(158, 190, 255, 0.5);
+  color: rgba(10, 37, 92, 0.5);
 }
 main #projects-section-form .form-selections .custom-select .options li:hover {
   background: rgba(51, 81, 142, 0.1);
@@ -1347,16 +1370,20 @@ main #projects-section-form .form-selections .custom-select .options li:last-chi
 main #projects-section-form .form-selections .custom-select.open {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border: solid 2px rgba(158, 190, 255, 0.5);
+  border: solid 2px rgba(10, 37, 92, 0.5);
   border-bottom: none;
 }
 main #projects-section-form .form-selections .custom-select.open .selected {
-  color: rgba(158, 190, 255, 0.5);
+  color: rgba(10, 37, 92, 0.5);
 }
 main #projects-section-form .form-selections .custom-select.open .options {
   display: block;
 }
 main #projects-section-form .form-selections button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 0.5rem;
   border: none;
   border-radius: 50%;
@@ -1367,18 +1394,17 @@ main #projects-section-form .form-selections button {
   font-weight: bold;
   width: 3rem;
   height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: background-color 0.3s;
   backdrop-filter: blur(5px);
 }
 main #projects-section-form .form-selections button:hover {
-  border: solid 2px rgba(158, 190, 255, 0.5);
+  border: solid 2px rgba(10, 37, 92, 0.5);
 }
 main #projects-section-all {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 main #projects-section-all .progress-child-container {
   display: flex;
@@ -1392,8 +1418,8 @@ main #projects-section-all .progress-child-container {
 main #projects-section-all .progress-child-container .progress-img-parent-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 main #projects-section-all .progress-child-container .progress-img-parent-container .progress-img-container {
   border: solid 3px rgba(51, 81, 142, 0.5);
@@ -1426,6 +1452,7 @@ main #projects-section-all .progress-child-container .progress-content-container
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: stretch;
   gap: 2rem;
   border-top-right-radius: 28px;
   border-top-left-radius: 28px;
@@ -1444,9 +1471,11 @@ main #projects-section-all .progress-child-container .progress-content-container
   width: 100%;
 }
 main #projects-section-all .progress-child-container .progress-content-container .container .progress-button {
-  align-self: flex-end;
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
+  align-items: stretch;
+  align-self: flex-end;
 }
 main #projects-section-all .progress-child-container .progress-content-container .container .progress-button a {
   display: inline-block;
@@ -1472,11 +1501,15 @@ main #projects-section-all .project-divider {
 main #about-me-section {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 5rem;
 }
 main #about-me-section .about-me-excerpt {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 0.75rem;
 }
 main #about-me-section .about-me-excerpt p {
@@ -1505,6 +1538,8 @@ main #about-me-section .about-me-form-article {
 main #about-me-section .about-me-form-article .about-me-form {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 1.5rem;
   width: 100%;
   max-width: 700px;
@@ -1518,7 +1553,7 @@ main #about-me-section .about-me-form-article .about-me-form div input[type=emai
 main #about-me-section .about-me-form-article .about-me-form div textarea {
   width: 100%;
   max-width: max(90%, 800px);
-  color: rgba(158, 190, 255, 0.5);
+  color: rgba(10, 37, 92, 0.5);
   background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
   border: solid 2px rgb(51, 81, 142);
   border-radius: 25px;
@@ -1532,7 +1567,7 @@ main #about-me-section .about-me-form-article .about-me-form div input[type=text
 main #about-me-section .about-me-form-article .about-me-form div input[type=email]:focus,
 main #about-me-section .about-me-form-article .about-me-form div textarea:focus {
   box-shadow: 0 0 15px rgba(25, 41, 71, 0.1);
-  border: solid 2px rgba(158, 190, 255, 0.5);
+  border: solid 2px rgba(10, 37, 92, 0.5);
   outline: none;
 }
 main #about-me-section .about-me-form-article .about-me-form div input[type=text]::placeholder,
@@ -1715,8 +1750,9 @@ footer .footer-second-div .footer-svg a:hover {
   }
   main .projects-featured-section .carousel .skills-container .card .card-content .card-description {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
   }
   main .projects-featured-section .carousel .skills-container .card .card-content .card-footer {
     bottom: 5px;
@@ -1899,7 +1935,7 @@ footer .footer-second-div .footer-svg a:hover {
     gap: 1rem;
   }
   main .cv-banner-section .cv-main-banner .profile-pic {
-    max-width: clamp(200px, 20vw, 325px);
+    max-width: clamp(300px, 20vw, 325px);
     margin-bottom: 1rem;
   }
   main .cv-banner-section .cv-banner-fancy-header {
@@ -2029,7 +2065,7 @@ footer .footer-second-div .footer-svg a:hover {
   }
   .education-certifcates-section .education-article-context .education-title .education-header-container h3,
   .education-school-section .education-article-context .education-title .education-header-container h3 {
-    color: rgba(158, 190, 255, 0.5);
+    color: rgba(10, 37, 92, 0.5);
     opacity: 0.75;
     font-size: 1.5rem !important;
   }
@@ -2066,6 +2102,9 @@ footer .footer-second-div .footer-svg a:hover {
   }
   header .nav-header {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
   }
   header .nav-header-dropdown {
     display: none !important;
@@ -2126,6 +2165,18 @@ footer .footer-second-div .footer-svg a:hover {
   }
 }
 @media (max-width: 768px) {
+  main .projects-featured-section .skills-container {
+    width: min(76vw, 300px);
+    position: absolute;
+    transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.8s ease;
+  }
+  main .projects-featured-section .skills-container .card {
+    clip-path: polygon(0px 20px, 20px 0px, 280px 0px, 300px 20px, 300px 440px, 280px 460px, 20px 460px, 0px 440px);
+  }
+  main .projects-featured-section .skills-container .card .card-content .card-image {
+    width: 160px;
+    height: 160px;
+  }
   main #projects-section-all .progress-child-container {
     gap: 0;
   }
@@ -2142,12 +2193,13 @@ footer .footer-second-div .footer-svg a:hover {
     overflow: hidden;
   }
   main #projects-section-form form .mobile-filter .mobile-filter-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     color: rgb(51, 81, 142);
     padding: 0.75rem;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     backdrop-filter: blur(5px);
     background: linear-gradient(135deg, rgba(50, 60, 80, 0.05), rgba(50, 60, 80, 0.05));
   }
@@ -2185,15 +2237,16 @@ footer .footer-second-div .footer-svg a:hover {
     color: #2ecc71;
   }
   main #projects-section-form form .mobile-filter .mobile-filter-content button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
     color: white;
     cursor: pointer;
     font-weight: bold;
     width: 3rem;
     height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: background-color 0.3s;
     align-self: flex-end;
   }
@@ -2203,5 +2256,7 @@ footer .footer-second-div .footer-svg a:hover {
   main #projects-section-form form .mobile-filter.open .mobile-filter-content {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
   }
 }/*# sourceMappingURL=main.css.map */
