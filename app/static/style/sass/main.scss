@@ -2155,6 +2155,7 @@ footer
             {
                 @include flexbox($direction: column, $justify: center, $align: center);
                 gap: 1rem;
+                width: 100%;
 
                 .profile-pic 
                 {
@@ -2166,6 +2167,7 @@ footer
             .cv-banner-fancy-header 
             {
                 margin-top: 0;
+                width: 100%;
                 
                 .cv-banner-container
                 {

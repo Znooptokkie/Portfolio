@@ -1933,6 +1933,7 @@ footer .footer-second-div .footer-svg a:hover {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    width: 100%;
   }
   main .cv-banner-section .cv-main-banner .profile-pic {
     max-width: clamp(300px, 20vw, 325px);
@@ -1940,6 +1941,7 @@ footer .footer-second-div .footer-svg a:hover {
   }
   main .cv-banner-section .cv-banner-fancy-header {
     margin-top: 0;
+    width: 100%;
   }
   main .cv-banner-section .cv-banner-fancy-header .cv-banner-container .heading {
     max-width: 100%;
