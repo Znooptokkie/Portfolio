@@ -1,16 +1,16 @@
-import { CreateSvgElements } from "./svg-core/CreateSvgElements.js";
+import { CreateSvgElements } from "./components/svg-core/CreateSvgElements.js";
 
-import { SVGDefsElement } from "./svg-elements/Defs.js";
-import { SVGFilterElement } from "./svg-elements/Filter.js";
-import { SVGFeDropShadow } from "./svg-elements/FeDropShadow.js";
-import { SVGClipPathElement } from "./svg-elements/ClipPath.js";
-import { SVGCircle } from "./svg-elements/Circle.js";
-import { SVGGroup } from "./svg-elements/Group.js";
-import { SVGLine } from "./svg-elements/Line.js";
-import { SVGPath } from "./svg-elements/Path.js";
-import { SVGImage } from "./svg-elements/Image.js";
+import { SVGDefsElement } from "./components/svg-elements/Defs.js";
+// import { SVGFilterElement } from "./components/svg-elements/Filter.js";
+import { SVGFeDropShadow } from "./components/svg-elements/FeDropShadow.js";
+import { SVGClipPathElement } from "./components/svg-elements/ClipPath.js";
+import { SVGCircle } from "./components/svg-elements/Circle.js";
+import { SVGGroup } from "./components/svg-elements/Group.js";
+import { SVGLine } from "./components/svg-elements/Line.js";
+import { SVGPath } from "./components/svg-elements/Path.js";
+import { SVGImage } from "./components/svg-elements/Image.js";
 
-import { CalcCircleProperties } from "./svg-calculations/CalcCircleProperties.js";
+import { CalcCircleProperties } from "./components/svg-calculations/CalcCircleProperties.js";
 
 // ///////////////////  //
 //                      //
@@ -183,5 +183,5 @@ export function callAllInstances(): void
 
     imageElement();
 
-    console.log("Wordt geladen");
+    // console.log("Wordt geladen");
 }

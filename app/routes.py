@@ -21,10 +21,10 @@ def test():
 # Homepage / CV
 @main_bp.route("/")
 def home():
-    languages = Language.get_all_languages()
+    # languages = Language.get_all_languages()
     projects = Project.get_all_projects()
     
-    return render_template("index.html", title="Homepagina", languages=languages, projects=projects)
+    return render_template("index.html", title="Homepagina", projects=projects)
 
 
 # Education

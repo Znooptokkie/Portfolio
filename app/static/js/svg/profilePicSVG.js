@@ -1,10 +1,10 @@
-import { CreateSvgElements } from "./svg-core/CreateSvgElements.js";
-import { SVGDefsElement } from "./svg-elements/Defs.js";
-import { SVGClipPathElement } from "./svg-elements/ClipPath.js";
-import { SVGCircle } from "./svg-elements/Circle.js";
-import { SVGGroup } from "./svg-elements/Group.js";
-import { SVGImage } from "./svg-elements/Image.js";
-import { CalcCircleProperties } from "./svg-calculations/CalcCircleProperties.js";
+import { CreateSvgElements } from "./components/svg-core/CreateSvgElements.js";
+import { SVGDefsElement } from "./components/svg-elements/Defs.js";
+import { SVGClipPathElement } from "./components/svg-elements/ClipPath.js";
+import { SVGCircle } from "./components/svg-elements/Circle.js";
+import { SVGGroup } from "./components/svg-elements/Group.js";
+import { SVGImage } from "./components/svg-elements/Image.js";
+import { CalcCircleProperties } from "./components/svg-calculations/CalcCircleProperties.js";
 // ///////////////////  //
 //                      //
 //       OBJECTS        //
@@ -30,7 +30,7 @@ function createThinInnerBorder() {
         cx: "600",
         cy: "600",
         r: radiusInner,
-        stroke: "rgba(46, 204, 113, 0.75)",
+        stroke: "rgba(46, 204, 113, 0.5)",
         "stroke-width": "30",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(600, circumferenceInnerBorder),
@@ -41,7 +41,7 @@ function createThinInnerBorder() {
         cx: "600",
         cy: "600",
         r: radiusInner,
-        stroke: "rgba(46, 204, 113, 0.75)",
+        stroke: "rgba(46, 204, 113, 0.5)",
         "stroke-width": "30",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(300, circumferenceInnerBorder),
@@ -53,7 +53,7 @@ function createThinInnerBorder() {
         cx: "600",
         cy: "600",
         r: radiusInner,
-        stroke: "rgba(46, 204, 113, 0.75)",
+        stroke: "rgba(46, 204, 113, 0.5)",
         "stroke-width": "30",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(600, circumferenceInnerBorder),
@@ -109,7 +109,7 @@ function createBackgroundBlocks() {
         cx: "600",
         cy: "600",
         r: radiusSmall,
-        stroke: "rgba(46, 204, 113, 0.2)",
+        stroke: "rgba(46, 204, 113, 0.1)",
         "stroke-width": "360",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceSmall),
@@ -133,7 +133,7 @@ function createBackgroundBlocks() {
         cx: "600",
         cy: "600",
         r: radiusMedium,
-        stroke: "rgba(46, 204, 113, 0.2)",
+        stroke: "rgba(46, 204, 113, 0.1)",
         "stroke-width": "220",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceMedium),
@@ -157,7 +157,7 @@ function createBackgroundBlocks() {
         cx: "600",
         cy: "600",
         r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.3)",
+        stroke: "rgba(46, 204, 113, 0.1)",
         "stroke-width": "270",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
@@ -169,7 +169,7 @@ function createBackgroundBlocks() {
         cx: "600",
         cy: "600",
         r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.05)",
+        stroke: "rgba(46, 204, 113, 0.1)",
         "stroke-width": "120",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
@@ -181,7 +181,7 @@ function createBackgroundBlocks() {
         cx: "600",
         cy: "600",
         r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.2)",
+        stroke: "rgba(46, 204, 113, 0.1)",
         "stroke-width": "60",
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
@@ -369,5 +369,5 @@ export function callAllInstances() {
     createBigInnerBorder();
     createBackgroundBlocks();
     imageElement();
-    console.log("Wordt geladen");
+    // console.log("Wordt geladen");
 }

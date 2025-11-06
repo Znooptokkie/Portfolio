@@ -93,26 +93,36 @@
     </div>
 </section>
 
-<section class="cv-introduction-section">
+
+
+<style>
+    #proto-1
+    {
+        /*width: 27.5rem !important;*/
+        width: 27.5rem !important;
+        backdrop-filter: blur(5px); /*Moet veradnderd worden naar het*/
+    }
+</style>
+
+
+
+<!-- <section class="cv-introduction-section"> -->
+<section id="languages-section">
     <h2>Mijn Programmeer <span class="last-word">Kennis</span></h2>
-    <div class="introduction-container">
-        <div class="row1">
-            <div class="row1-left">
-                <p>
-                    "Ik beschik over een goede basis in meerdere programmeertalen, vooral in Python en JavaScript. En ik blijf mijn kennis verder uitbreiden."
-                </p>
-            </div>
-            <div class="row1-right">
-                <ul>
-                    {% for language in languages %}
-                        <li class="cv-languages-li">
-                            <i class="devicon-{{ language.language | lower }}-plain"></i>
-                            <h4>{{ "SQL" if language.language == "azuresqldatabase" else language.language }}</h4>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+    <div class="languages-main">
+        <svg id="proto-1">
+
+        </svg>
+    </div>
+    <div class="languages-small">
+        <ul>
+            {% for language in languages %}
+                <li class="cv-languages-li">
+                    <i class="devicon-{{ language.language | lower }}-plain"></i>
+                    <h4>{{ "SQL" if language.language == "azuresqldatabase" else language.language }}</h4>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 </section>
 

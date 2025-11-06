@@ -63,7 +63,10 @@ def create_app(config_class=DevelopmentConfig):
 
     # Blueprints
     from app.routes import main_bp, project_bp
+    from app.api_routes import api_bp
+    
     app.register_blueprint(main_bp)
     app.register_blueprint(project_bp, url_prefix="/projecten")
+    app.register_blueprint(api_bp, url_prefix="/api")
 
     return app

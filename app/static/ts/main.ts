@@ -1,12 +1,13 @@
-import { Dropdown } from "./Dropdown.js"
-import { TextResolver } from "./FancyText.js"
-import { Starfield } from "./Background.js"
-import { CardManager } from "./CardManager.js"
-import { TimelineAnimation } from "./Timeline.js"
-import { CustomSelect } from "./CustomSelectOptions.js"
-import { ProjectsOverlay } from "./ProjectsOverlay.js";
+import { Dropdown } from "./utils/Dropdown.js"
+import { TextResolver } from "./utils/FancyText.js"
+import { Starfield } from "./utils/Background.js"
+import { CardManager } from "./utils/CardManager.js"
+import { TimelineAnimation } from "./utils/Timeline.js"
+import { CustomSelect } from "./utils/ProjectFilter.js"
 
 import { callAllInstances } from "./svg/profilePicSVG.js";
+import { exportInstances } from "./svg/languages/MainContainer.js";
+// import { callSmallInstances } from "./svg/languages/SmallContainers.js"
 
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
@@ -23,7 +24,7 @@ const cards = new CardManager()
 
 new Starfield("stars", 50)
 
-const projectOverlays = new ProjectsOverlay
+// const projectOverlays = new ProjectsOverlay
 
 document.addEventListener("DOMContentLoaded", () => 
 {
@@ -36,7 +37,9 @@ document.addEventListener("DOMContentLoaded", () =>
 
     const timelineAnimation = new TimelineAnimation();
 
-    projectOverlays.getAndPushDivProperties()
+    // projectOverlays.getAndPushDivProperties()
 });
 
 callAllInstances();
+exportInstances();
+// callSmallInstances();

@@ -1,10 +1,10 @@
-import { CreateSvgElements } from "./svg-core/CreateSvgElements.js";
-import { SVGDefsElement } from "./svg-elements/Defs.js";
-import { SVGClipPathElement } from "./svg-elements/ClipPath.js";
-import { SVGCircle } from "./svg-elements/Circle.js";
-import { SVGGroup } from "./svg-elements/Group.js";
-import { SVGImage } from "./svg-elements/Image.js";
-import { CalcCircleProperties } from "./svg-calculations/CalcCircleProperties.js";
+import { CreateSvgElements } from "./components/svg-core/CreateSvgElements.js";
+import { SVGDefsElement } from "./components/svg-elements/Defs.js";
+import { SVGClipPathElement } from "./components/svg-elements/ClipPath.js";
+import { SVGCircle } from "./components/svg-elements/Circle.js";
+import { SVGGroup } from "./components/svg-elements/Group.js";
+import { SVGImage } from "./components/svg-elements/Image.js";
+import { CalcCircleProperties } from "./components/svg-calculations/CalcCircleProperties.js";
 // ///////////////////  //
 //                      //
 //       OBJECTS        //
@@ -130,5 +130,5 @@ export function callAllInstances() {
     createBackgroundBlocks();
     createSecondRow();
     imageElement();
-    console.log("Wordt geladen");
+    // console.log("Wordt geladen");
 }
