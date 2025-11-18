@@ -53,7 +53,7 @@ export class CalcPathProperties
             pathParts.push({ x: px, y: py });
         }
 
-        console.log(pathParts);
+        // console.log(pathParts);
         return pathParts;
-    }
+    }   
 }

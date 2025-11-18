@@ -35,7 +35,7 @@ export class CalcPathProperties {
             const [px, py] = currentValues.split(",").map(s => Number(s.trim()));
             pathParts.push({ x: px, y: py });
         }
-        console.log(pathParts);
+        // console.log(pathParts);
         return pathParts;
     }
 }
