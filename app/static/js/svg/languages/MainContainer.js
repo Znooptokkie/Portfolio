@@ -24,6 +24,87 @@ export class LanguageMainContainer extends CreateSVG {
         this.outerPathMergedArray = this.mergePathArray(this.outerTopArray, this.outerRightArray, this.outerBottomArray, this.outerLeftArray);
         this.newInnerPathMergedArray = this.mergePathArray(this.newInnerTop, this.newInnerRight, this.newInnerBottom, this.newInnerLeft);
     }
+    createGradient() {
+        const defs = new SVGFactory(this, "defs").createSvgTag();
+        const glassGradient = new SVGFactory(defs, "linearGradient", {
+            id: "ultraDarkGlass",
+            x1: "0%", y1: "0%",
+            x2: "100%", y2: "100%"
+        }).createSvgTag();
+        new SVGFactory(glassGradient, "stop", { offset: "0%", "stop-color": "#03080f", "stop-opacity": "0.7" }).createSvgTag();
+        new SVGFactory(glassGradient, "stop", { offset: "30%", "stop-color": "#040a14", "stop-opacity": "0.6" }).createSvgTag();
+        new SVGFactory(glassGradient, "stop", { offset: "70%", "stop-color": "#020610", "stop-opacity": "0.85" }).createSvgTag();
+        // new SVGFactory(glassGradient, "stop", { offset: "100%", "stop-color": "#050c18", "stop-opacity": "0.75" }).createSvgTag();
+        const highlight = new SVGFactory(defs, "linearGradient", {
+            id: "darkReflection",
+            x1: "0%", y1: "100%",
+            x2: "100%", y2: "0%"
+        }).createSvgTag();
+        new SVGFactory(highlight, "stop", { offset: "0%", "stop-color": "#0d1a2e", "stop-opacity": "0" }).createSvgTag();
+        // new SVGFactory(highlight, "stop", { offset: "20%",  "stop-color": "#0f223b", "stop-opacity": "0.18" }).createSvgTag();
+        new SVGFactory(highlight, "stop", { offset: "45%", "stop-color": "#0e1f38", "stop-opacity": "0.92" }).createSvgTag();
+        new SVGFactory(highlight, "stop", { offset: "80%", "stop-color": "#0b182c", "stop-opacity": "0.85" }).createSvgTag();
+        new SVGFactory(highlight, "stop", { offset: "100%", "stop-color": "#0a1527", "stop-opacity": "0" }).createSvgTag();
+        // Frosted-glass filter die de achtergrond echt dempt
+        const filter = new SVGFactory(defs, "filter", {
+            id: "ultraDarkFrosted",
+            x: "-50%", y: "-50%",
+            width: "200%", height: "200%",
+            filterUnits: "objectBoundingBox"
+        }).createSvgTag();
+        new SVGFactory(filter, "feGaussianBlur", {
+            in: "SourceGraphic",
+            stdDeviation: "2",
+            result: "blur"
+        }).createSvgTag();
+        // Extra donkere tint over de blur heen
+        // new SVGFactory(filter, "feFlood", {
+        //     "flood-color": "#03080f",
+        //     "flood-opacity": "0.88"
+        // }).createSvgTag();
+        new SVGFactory(filter, "feComposite", {
+            in: "flood",
+            in2: "blur",
+            operator: "in"
+        }).createSvgTag();
+        new SVGFactory(filter, "feComposite", {
+            in: "SourceGraphic",
+            operator: "over"
+        }).createSvgTag();
+        // // 4. Zachte, donkere outer shadow voor de border-figuren
+        const shadowFilter = new SVGFactory(defs, "filter", {
+            id: "borderSegmentShadow",
+            x: "-50%", y: "-50%",
+            width: "200%", height: "200%",
+            filterUnits: "objectBoundingBox"
+        }).createSvgTag();
+        new SVGFactory(shadowFilter, "feGaussianBlur", {
+            in: "SourceAlpha", // blur alleen de alpha (vorm) van het element
+            stdDeviation: "8", // hoe groter → zachter en verder de schaduw
+            result: "blur"
+        }).createSvgTag();
+        new SVGFactory(shadowFilter, "feOffset", {
+            in: "blur",
+            dx: "3", // naar rechts
+            dy: "5", // naar beneden → geeft diepte
+            result: "offsetBlur"
+        }).createSvgTag();
+        new SVGFactory(shadowFilter, "feFlood", {
+            "flood-color": "#000000",
+            "flood-opacity": "0.6"
+        }).createSvgTag();
+        new SVGFactory(shadowFilter, "feComposite", {
+            in2: "offsetBlur",
+            operator: "in"
+        }).createSvgTag();
+        new SVGFactory(shadowFilter, "feMerge", {}).createSvgTag();
+        new SVGFactory((shadowFilter === null || shadowFilter === void 0 ? void 0 : shadowFilter.querySelector('feMerge')) || shadowFilter, "feMergeNode", {
+            in: "offsetBlur"
+        }).createSvgTag();
+        new SVGFactory((shadowFilter === null || shadowFilter === void 0 ? void 0 : shadowFilter.querySelector('feMerge')) || shadowFilter, "feMergeNode", {
+            in: "SourceGraphic" // originele figuur bovenop de schaduw
+        }).createSvgTag();
+    }
     createBigMainBorder() {
         const borderGroupFactory = new SVGFactory(this, "g", {
             class: "big-main-border-group",
@@ -34,29 +115,31 @@ export class LanguageMainContainer extends CreateSVG {
         const mainPath = new SVGFactory(borderGroup, "path", {
             id: "big-main-border",
             d: borderD,
-            fill: "rgba(6, 10, 18, 0.25)",
-            stroke: "rgba(20, 30, 55, 0.75)",
+            fill: "none",
+            stroke: "none",
             "stroke-opacity": "1",
             "stroke-width": strokeWidth
         });
         mainPath.createSvgTag();
     }
     createInnerBorder() {
-        const innerBorderGroupFactory = new SVGFactory(this, "g", {
-            class: "main-inner-border-group"
-        });
-        const innerBorderGroup = innerBorderGroupFactory.createSvgTag();
-        // Moet ergens anders gezet worden! --- BELANGRIJK@%@$
+        const innerBorderGroup = new SVGFactory(this, "g", { class: "main-inner-border-group" }).createSvgTag();
         this.newStringPath = this.createNewSVGPathString(this.newInnerPathMergedArray);
-        const innerBorderPath = new SVGFactory(innerBorderGroup, "path", {
-            id: "main-inner-border-path",
+        // Basis: bijna zwarte glaslaag
+        new SVGFactory(innerBorderGroup, "path", {
             d: `${this.newStringPath} Z`,
-            fill: "rgba(5, 15, 25, 0.2)",
-            stroke: "rgba(20, 30, 55, 0.75)",
-            "stroke-opacity": "1",
+            fill: "url(#ultraDarkGlass)",
+            filter: "url(#ultraDarkFrosted)",
+            stroke: "none",
             "stroke-width": strokeWidth
-        });
-        innerBorderPath.createSvgTag();
+        }).createSvgTag();
+        // Subtiele donkere reflectie erbovenop
+        new SVGFactory(innerBorderGroup, "path", {
+            d: `${this.newStringPath} Z`,
+            fill: "url(#darkReflection)",
+            opacity: "1",
+            style: "mix-blend-mode: screen;"
+        }).createSvgTag();
     }
     createSideBars() {
         const sidebarGroupFactory = new SVGFactory(this, "g", {
@@ -191,7 +274,7 @@ export class LanguageMainContainer extends CreateSVG {
             const createPath = `M${outerCornerCoord.x},${outerCornerCoord.y} L${innerCornerCoord.x},${innerCornerCoord.y}`;
             const cornerPathSVG = new SVGFactory(cornerGroupSVG, "path", {
                 d: createPath,
-                stroke: "rgba(20, 30, 55, 0.75)",
+                stroke: "none",
                 "stroke-width": strokeWidth,
                 opacity: "1"
             });
@@ -232,30 +315,31 @@ export class LanguageMainContainer extends CreateSVG {
         const getFiguresPath = this.createFigurePathString();
         let counter = 0;
         for (const figure of getFiguresPath) {
-            let currentColor = counter < 12 ? "rgba(5, 15, 25, 0.75)" : "rgba(5, 15, 25, 0.75)";
             const createfigurePath = new SVGFactory(mainContainer, "path", {
                 class: `figure-${counter}`,
                 d: `${figure}Z`,
-                stroke: "none",
+                stroke: "rgba(20, 30, 55, 0.5)",
                 "stroke-width": strokeWidth,
-                opacity: "0.75",
-                fill: currentColor
+                opacity: "1", // geen opacity meer hieronder, want schaduw regelt diepte
+                fill: "url(#ultraDarkGlass)",
+                filter: "url(#ultraDarkFrosted) url(#borderSegmentShadow)", // beide filters!
             });
             counter++;
             createfigurePath.createSvgTag();
         }
     }
     init() {
+        this.createGradient();
         this.createSideBars();
-        this.createBigMainBorder();
-        this.createTextInSVG();
+        // this.createBigMainBorder();
         // this.createTopBar();
         this.createInnerBorder();
         // this.createCorners();
-        this.createCorners();
+        // this.createCorners();
         // this.createFigures();
         // this.createFigurePathString()
         this.fillFigures();
+        this.createTextInSVG();
     }
 }
 const mainContainer = new LanguageMainContainer("proto-1", {

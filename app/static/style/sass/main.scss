@@ -299,6 +299,17 @@ main
         }
     }
 
+    #languages-section
+    {
+        .languages-main-parent
+        {
+            #language-main-svg
+            {
+                max-width: 32.5rem;
+            }
+        }   
+    }
+
     .cv-introduction-section 
     {
         width: 100%;

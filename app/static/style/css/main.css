@@ -545,6 +545,9 @@ main .cv-experience-section div h3 {
   text-transform: none;
   margin: 0.5rem 0 0;
 }
+main #languages-section .languages-main-parent #language-main-svg {
+  max-width: 32.5rem;
+}
 main .cv-introduction-section {
   width: 100%;
 }

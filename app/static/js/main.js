@@ -5,7 +5,7 @@ import { CardManager } from "./utils/CardManager.js";
 import { TimelineAnimation } from "./utils/Timeline.js";
 import { CustomSelect } from "./utils/ProjectFilter.js";
 import { callAllInstances } from "./svg/profilePicSVG.js";
-import { exportInstances } from "./svg/languages/MainContainer.js";
+import { exportClass } from "./svg/languages/languageInit.js";
 // import { callSmallInstances } from "./svg/languages/SmallContainers.js"
 const resolver = new TextResolver(document.querySelector("[data-target-resolver]"), ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"], { timeout: 5, iterations: 10 }, 50000);
 resolver.start();
@@ -22,5 +22,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // projectOverlays.getAndPushDivProperties()
 });
 callAllInstances();
-exportInstances();
+exportClass();
 // callSmallInstances();

@@ -33,6 +33,7 @@ export type SVGLineAttributes = SVGGlobalAttributes & {
 
 export type SVGPathAttributes = SVGGlobalAttributes & {
     d?: string;
+    filter?: string;
 };
 
 

@@ -6,7 +6,7 @@ import { TimelineAnimation } from "./utils/Timeline.js"
 import { CustomSelect } from "./utils/ProjectFilter.js"
 
 import { callAllInstances } from "./svg/profilePicSVG.js";
-import { exportInstances } from "./svg/languages/MainContainer.js";
+import { exportClass } from "./svg/languages/languageInit.js"
 // import { callSmallInstances } from "./svg/languages/SmallContainers.js"
 
 const resolver = new TextResolver(
@@ -41,5 +41,5 @@ document.addEventListener("DOMContentLoaded", () =>
 });
 
 callAllInstances();
-exportInstances();
+exportClass()
 // callSmallInstances();
