@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from config import ProductionConfig, DevelopmentConfig
 from dotenv import load_dotenv
@@ -32,6 +33,40 @@ def create_app(config_class=DevelopmentConfig):
 
     app.config.from_object(config_class)
 
+    # Zorgt ervoor dat de JavaScript en CSS bestanden 
+    # elke keer dynamisch een eigen versie hebben
+
+    VERSION_FILE = os.path.join(os.path.dirname(__file__), "static", "version.txt")
+    VERSION_DIR = os.path.dirname(VERSION_FILE)
+
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):  # alleen eerste run
+
+        # Lees huidige versie
+        if os.path.exists(VERSION_FILE):
+            with open(VERSION_FILE) as f:
+                content = f.read().strip().replace("\n", "")
+                parts = content.split(".")
+                if len(parts) == 3:
+                    major, minor, patch = map(int, parts)
+                else:
+                    major, minor, patch = 0, 0, 0
+        else:
+            major, minor, patch = 0, 0, 0
+
+        # Verhoog patchnummer
+        patch += 1
+
+        VERSION = f"{major}.{minor}.{patch}"
+        with open(VERSION_FILE, "w") as f:
+            f.write(VERSION)
+    else:
+        # Bij de tweede (reloader) run gewoon de versie lezen
+        with open(VERSION_FILE) as f:
+            VERSION = f.read().strip()
+
+    @app.context_processor
+    def inject_version():
+        return dict(version=VERSION)
 
     db.init_app(app)
     migrate.init_app(app, db)
