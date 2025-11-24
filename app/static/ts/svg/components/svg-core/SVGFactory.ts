@@ -52,7 +52,6 @@ export class SVGFactory<T extends Record<string, string | number> = Record<strin
 
             if (!parent) 
             {
-                console.error("Can't find parent SVG element.");
                 return null;
             }
 

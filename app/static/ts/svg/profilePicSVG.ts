@@ -6,15 +6,18 @@ import { CalcCircleProperties } from "./components/svg-calculations/CalcCirclePr
 
 import { SVGCircleAttributes, SVGImageAttributes } from "../types/svg/attributes"
 
-// ROOT SVG ELEMENT <svg>
-const htmlSVGElement = new CreateSVG(
-    "profile-pic-svg",
-    {
-        viewBox: "0 0 1200 1200",
-        preserveAspectRatio: "xMidYMid meet"
-    },
-    true
-); 
+if (document.getElementById("profile-pic-svg"))
+{
+    // ROOT SVG ELEMENT <svg>
+    var htmlSVGElement = new CreateSVG(
+        "profile-pic-svg",
+        {
+            viewBox: "0 0 1200 1200",
+            preserveAspectRatio: "xMidYMid meet"
+        },
+        true
+    ); 
+}
 
 // Both THIN an BIG inner borders
 

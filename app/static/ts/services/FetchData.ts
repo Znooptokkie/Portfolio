@@ -3,27 +3,21 @@ import { LanguageJSON } from "../interfaces/api/language.interface.js"
 export class FetchData
 {
     private url: string;
-    private result: Response | null = null;
-    private jsonData: LanguageJSON[] | null = null;
 
     constructor(url: string)
     {
         this.url = url;
     }
 
-    async fetchJsonData(): Promise<LanguageJSON[] | string>
+    async fetchJsonData(): Promise<LanguageJSON[]>
     {
-        try
+        const res = await fetch(this.url);
+
+        if (!res.ok)
         {
-            this.result = await fetch(this.url);
-            const data: LanguageJSON[] = await this.result.json();
-            this.jsonData = data;
-            // console.log(this.jsonData);
-            return this.jsonData
+            throw new Error(`Fetch failed with status ${res.status}`);
         }
-        catch (error)
-        {
-            return `An error fetching json data: ${error} `;
-        }
+
+        return await res.json() as LanguageJSON[];
     }
 }

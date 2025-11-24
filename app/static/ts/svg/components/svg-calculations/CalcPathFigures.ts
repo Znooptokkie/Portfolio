@@ -6,14 +6,15 @@ export class CalcPathFigures
     {
             const firgurePositions = new Map();
     
-            let counter = 1;
-    
+            
             if (!innerPath)
                 return null
             
             const outerPathValues = CalcPathProperties.getPathParts(outerPath)
             const innerPathValues = CalcPathProperties.getPathParts(innerPath)
-    
+            
+            let counter = 1;
+            
             for (let i = 0; i < CalcPathProperties.getPathParts(outerPath).length; i++)
             {
                 const figureArray = [];

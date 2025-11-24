@@ -299,16 +299,37 @@ main
         }
     }
 
-    #languages-section
-    {
-        .languages-main-parent
-        {
-            #language-main-svg
-            {
-                max-width: 32.5rem;
-            }
-        }   
-    }
+    // #languages-section
+    // {
+    //     .languages-svg-container
+    //     {
+    //         display: flex;
+    //         gap: 1rem;
+            
+    //         .languages-main-parent
+    //         {
+    //             width: 26rem;
+
+    //             #language-main-svg
+    //             {
+    //                 max-width: 100%;
+    //             }
+    //         }   
+    //     }
+
+    //     .languages-small
+    //     {
+    //         display: grid;
+    //         grid-template-columns: 25% 25% 25% 25%;
+    //         gap: 1rem;
+    //         width: calc(100% - 30rem);
+
+    //         .small-svg
+    //         {
+
+    //         }
+    //     }
+    // }
 
     .cv-introduction-section 
     {
@@ -2139,7 +2160,8 @@ footer
         .cv-projects-section,
         .cv-introduction-section,
         .timeline-section,
-        .projects-featured-section
+        .projects-featured-section,
+        #languages-section
         {
             h2
             {
@@ -2523,6 +2545,49 @@ footer
     }
 }
 
+@media (max-width: 1150px)
+{
+    #languages-section
+    {
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+
+        .languages-svg-container
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            
+            .languages-main-parent
+            {
+                width: 100%;
+                max-width: 26rem;
+
+                #language-main-svg
+                {
+                    max-width: 100%;
+                }
+            }   
+        }
+
+        .languages-small
+        {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            // width: calc(100% - 30rem);
+            max-width: 26rem;
+
+            .small-svg
+            {
+                // max-width: 13rem;
+            }
+        }
+    }
+}
+
 @media (min-width: 1151px)
 {
     .cv-skills-section-carousel
@@ -2546,6 +2611,38 @@ footer
             transform: translate(calc(-70% + 400px), -50%) scale(0.65);
             z-index: 2;
             opacity: 0.7;
+        }
+    }
+
+        #languages-section
+    {
+        .languages-svg-container
+        {
+            display: flex;
+            gap: 1rem;
+            
+            .languages-main-parent
+            {
+                width: 26rem;
+
+                #language-main-svg
+                {
+                    max-width: 100%;
+                }
+            }   
+        }
+
+        .languages-small
+        {
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            gap: 1rem;
+            width: calc(100% - 30rem);
+
+            .small-svg
+            {
+
+            }
         }
     }
 }

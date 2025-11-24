@@ -95,23 +95,25 @@
 
 <section id="languages-section">
     <h2>Mijn Programmeer <span class="last-word">Kennis</span></h2>
-    <div class="languages-main-parent">
-        <svg id="language-main-svg">
+    <div class="languages-svg-container">
+        <div class="languages-main-parent">
+            <svg id="language-main-svg">
 
-        </svg>
-        <!-- <svg id="proto-svg">
+            </svg>
+            <!-- <svg id="proto-svg">
 
-        </svg> -->
-    </div>
-    <div class="languages-small">
-        <ul>
-            {% for language in languages %}
-                <li class="cv-languages-li">
-                    <i class="devicon-{{ language.language | lower }}-plain"></i>
-                    <h4>{{ "SQL" if language.language == "azuresqldatabase" else language.language }}</h4>
-                </li>
-            {% endfor %}
-        </ul>
+            </svg> -->
+        </div>
+        <div class="languages-small">
+            <!-- <ul>
+                {% for language in languages %}
+                    <li class="cv-languages-li">
+                        <i class="devicon-{{ language.language | lower }}-plain"></i>
+                        <h4>{{ "SQL" if language.language == "azuresqldatabase" else language.language }}</h4>
+                    </li>
+                {% endfor %}
+            </ul> -->
+        </div>
     </div>
 </section>
 

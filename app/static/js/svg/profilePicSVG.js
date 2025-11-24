@@ -1,11 +1,13 @@
 import { CreateSVG } from "./components/svg-core/SVGCreate.js";
 import { SVGFactory } from "./components/svg-core/SVGFactory.js";
 import { CalcCircleProperties } from "./components/svg-calculations/CalcCircleProperties.js";
-// ROOT SVG ELEMENT <svg>
-const htmlSVGElement = new CreateSVG("profile-pic-svg", {
-    viewBox: "0 0 1200 1200",
-    preserveAspectRatio: "xMidYMid meet"
-}, true);
+if (document.getElementById("profile-pic-svg")) {
+    // ROOT SVG ELEMENT <svg>
+    var htmlSVGElement = new CreateSVG("profile-pic-svg", {
+        viewBox: "0 0 1200 1200",
+        preserveAspectRatio: "xMidYMid meet"
+    }, true);
+}
 // Both THIN an BIG inner borders
 const radiusInner = 375;
 const circumferenceInnerBorder = CalcCircleProperties.calcCircleCircumference(radiusInner);

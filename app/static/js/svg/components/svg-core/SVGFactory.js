@@ -35,7 +35,6 @@ export class SVGFactory {
                 parent = this.parentSVG;
             }
             if (!parent) {
-                console.error("Can't find parent SVG element.");
                 return null;
             }
             parent.appendChild(this.SVGElement);

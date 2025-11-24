@@ -32,6 +32,7 @@ export class LanguageMainBorder extends CreateSVG
 
         const contrastPath = new SVGFactory<SVGPathAttributes>(contrastGroup, "path", {
             d: this.pathPoints,
+            // fill: "#000214",
             fill: "none",
             stroke: "none",
             "stroke-width": 1
@@ -51,8 +52,8 @@ export class LanguageMainBorder extends CreateSVG
 
 export class InnerBorder
 {
-    private parentSVGSource: LanguageMainBorder
-    private parentSVG: SVGElement | null
+    private parentSVGSource: LanguageMainBorder;
+    private parentSVG: SVGElement | null;
 
     constructor(parentSVGSource: LanguageMainBorder)
     {
@@ -60,17 +61,19 @@ export class InnerBorder
         this.parentSVG = parentSVGSource.getSVGElementRoot;
     }
 
-    public getInnerPathValues(): string | null
+    public getInnerPathValues(padding: number = 10): string | null
     {
-        const getPathPointsAndSides = CalcPathProperties.getEachSide(outerPath)
+        const path = this.parentSVGSource.getPathPoints;
 
-        if (!getPathPointsAndSides)
-            return null
+        const getPathPointsAndSides = CalcPathProperties.getEachSide(this.parentSVGSource.getPathPoints);
 
-        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, 10)
-        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder)
-        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray)
+        if (!getPathPointsAndSides) 
+            return null;
 
-        return pathToString
+        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
+        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
+        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
+
+        return pathToString;
     }
 }

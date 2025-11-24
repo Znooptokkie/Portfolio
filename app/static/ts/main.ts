@@ -7,7 +7,8 @@ import { CustomSelect } from "./utils/ProjectFilter.js"
 
 import { callAllInstances } from "./svg/profilePicSVG.js";
 import { exportClass } from "./svg/languages/languageInit.js"
-// import { callSmallInstances } from "./svg/languages/SmallContainers.js"
+// import { callSmallInstances } from "./svg/languages/smallcontainer/SmallContainers.js"
+import { LanguageSmallContainerHTML, LanguageSmallBorder } from "./svg/languages/smallcontainer/LanguageSmallHTML.js"
 
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
@@ -42,4 +43,11 @@ document.addEventListener("DOMContentLoaded", () =>
 
 callAllInstances();
 exportClass()
+// LanguageSmallContainer.createSmallSVGContainers()
 // callSmallInstances();
+
+// const smallContainers = new LanguageSmallContainerHTML()
+// smallContainers.createSmallSVGContainers()
+
+const smallContainer = new LanguageSmallBorder()
+smallContainer.createInnerPath()

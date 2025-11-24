@@ -1,7 +1,6 @@
 import { CreateSVG } from "../../components/svg-core/SVGCreate.js";
 import { SVGFactory } from "../../components/svg-core/SVGFactory.js";
 import { CalcPathProperties } from "../../components/svg-calculations/CalcPathProperties.js";
-import { outerPath } from "../languageInit.js";
 export class LanguageMainBorder extends CreateSVG {
     constructor(HTMLId, svgAttributes, defaultStyling, sectionName, pathPoints) {
         super(HTMLId, svgAttributes, defaultStyling);
@@ -14,6 +13,7 @@ export class LanguageMainBorder extends CreateSVG {
         }).createSvgTag();
         const contrastPath = new SVGFactory(contrastGroup, "path", {
             d: this.pathPoints,
+            // fill: "#000214",
             fill: "none",
             stroke: "none",
             "stroke-width": 1
@@ -31,11 +31,12 @@ export class InnerBorder {
         this.parentSVGSource = parentSVGSource;
         this.parentSVG = parentSVGSource.getSVGElementRoot;
     }
-    getInnerPathValues() {
-        const getPathPointsAndSides = CalcPathProperties.getEachSide(outerPath);
+    getInnerPathValues(padding = 10) {
+        const path = this.parentSVGSource.getPathPoints;
+        const getPathPointsAndSides = CalcPathProperties.getEachSide(this.parentSVGSource.getPathPoints);
         if (!getPathPointsAndSides)
             return null;
-        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, 10);
+        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
         const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
         const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
         return pathToString;

@@ -1,0 +1,129 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import { FetchData } from "../../../services/FetchData.js";
+import { InnerBorder, LanguageMainBorder } from "../maincontainer/LanguageMainBorder.js";
+import { CalcPathProperties } from "../../components/svg-calculations/CalcPathProperties.js";
+import { LanguageInnerBorder } from "../maincontainer/LanguageInnerBorder.js";
+// import { LanguageMainBorder } from "../maincontainer/LanguageMainBorder.js"    
+const cornerPoint = 50;
+export const outerPath = `M60,0 L200,0 L250,50 L750,50 L800,0 L940,0 L1000,${cornerPoint} L1000,150 L950,175 L950,500 L1000,525 L1000,625 L940,675 L800,675 L775,650 L225,650 L200,675 L60,675 L0,625 L0,525 L${cornerPoint},500 L${cornerPoint},175 L0,150 L0,${cornerPoint} L60,0`;
+export class LanguageSmallContainerHTML {
+    constructor() {
+        this.languageName = [];
+    }
+    createSmallSVGContainers() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const smallLanguagesContainer = document.querySelector(".languages-small");
+            if (smallLanguagesContainer) {
+                const APIData = yield this.getAPIData();
+                const svgElements = [];
+                for (const language of APIData) {
+                    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    svg.id = `${language.language.toLowerCase()}-svg`;
+                    svg.setAttribute("class", "small-svg");
+                    smallLanguagesContainer === null || smallLanguagesContainer === void 0 ? void 0 : smallLanguagesContainer.appendChild(svg);
+                    svgElements.push(svg);
+                    this.createDivContainer(language.language, svg);
+                }
+                return svgElements;
+            }
+            else {
+                return null;
+            }
+        });
+    }
+    createDivContainer(language, svg) {
+        const foreign = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
+        foreign.setAttribute("width", "100%");
+        foreign.setAttribute("height", "100%");
+        const wrapper = document.createElement("div");
+        wrapper.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+        wrapper.style.width = "100%";
+        wrapper.style.height = "100%";
+        wrapper.style.display = "flex";
+        wrapper.style.flexDirection = "column";
+        wrapper.style.alignItems = "center";
+        wrapper.style.justifyContent = "center";
+        wrapper.style.gap = "10px";
+        const icon = document.createElement("div");
+        icon.className = `devicon-${language.toLowerCase()}-plain`;
+        icon.style.fontSize = "60px";
+        icon.style.color = "rgba(51, 81, 142, 1)";
+        const label = document.createElement("p");
+        label.style.margin = "0";
+        label.style.fontSize = "28px";
+        label.style.color = "rgba(51, 81, 142, 1)";
+        if (language.toLowerCase() === "azuresqldatabase")
+            language = "SQL";
+        label.textContent = language;
+        wrapper.appendChild(icon);
+        wrapper.appendChild(label);
+        foreign.appendChild(wrapper);
+        svg._foreignObject = foreign;
+    }
+    getAPIData() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const getLanguagesData = new FetchData("api/languages");
+            const call = yield getLanguagesData.fetchJsonData();
+            this.languageName = call;
+            // console.log(this.languageName);
+            return call;
+        });
+    }
+}
+export class LanguageSmallBorder {
+    getHTMLElement() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const smallContainer = new LanguageSmallContainerHTML();
+            const svgElements = yield smallContainer.createSmallSVGContainers();
+            if (!svgElements)
+                return null;
+            return svgElements.length > 0 ? svgElements : null;
+        });
+    }
+    createInnerPath() {
+        return __awaiter(this, void 0, void 0, function* () {
+            var _a;
+            const svgElements = (_a = (yield this.getHTMLElement())) === null || _a === void 0 ? void 0 : _a.filter((el) => el instanceof SVGElement);
+            if (!svgElements)
+                return null;
+            for (const child of svgElements) {
+                const viewboxWidth = 1006;
+                const viewboxHeight = 682;
+                const newW = 300;
+                const newH = 225;
+                const scaledPath = this.dynamicPathScale(outerPath, viewboxWidth, viewboxHeight, newW, newH);
+                // console.log(scaledPath);
+                const main = new LanguageMainBorder(child.id, {
+                    viewBox: `0 0 ${newW} ${newH}`,
+                    preserveAspectRatio: "xMidYMid meet"
+                }, true, "language", scaledPath);
+                const inner = new InnerBorder(main);
+                const path = CalcPathProperties.getEachSide(main.getPathPoints);
+                // console.log(path);
+                const innerString = inner.getInnerPathValues(5);
+                const figure = new LanguageInnerBorder(main);
+                main.init();
+                figure.init(main);
+                const foreign = child._foreignObject;
+                child.appendChild(foreign);
+            }
+        });
+    }
+    dynamicPathScale(path, originalWidth, originalHeight, newWidth, newHeight) {
+        const scaleX = newWidth / originalWidth;
+        const scaleY = newHeight / originalHeight;
+        return path.replace(/([ML])\s*([\d.]+),([\d.]+)/g, (_, cmd, x, y) => {
+            const newX = parseFloat(x) * scaleX;
+            const newY = parseFloat(y) * scaleY;
+            return `${cmd}${newX},${newY}`;
+        });
+    }
+}

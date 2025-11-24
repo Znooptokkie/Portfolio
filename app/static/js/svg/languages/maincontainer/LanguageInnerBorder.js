@@ -1,37 +1,43 @@
-import { innerPathString, outerPath } from "../languageInit.js";
+import { InnerBorder } from "./LanguageMainBorder.js";
+// import { innerPathString, outerPath } from "../languageInit.js"
 import { SVGFactory } from "../../components/svg-core/SVGFactory.js";
 import { CalcPathFigures } from "../../components/svg-calculations/CalcPathFigures.js";
 export class LanguageInnerBorder {
-    constructor(parentSVGSource) {
+    constructor(parentSVGSource, padding = 5) {
         this.parentSVGSource = parentSVGSource;
         this.parentSVG = parentSVGSource.getSVGElementRoot;
+        this.padding = padding;
     }
     makeFigures(container) {
-        if (!innerPathString)
+        const outer = this.parentSVGSource.getPathPoints;
+        const inner = new InnerBorder(this.parentSVGSource).getInnerPathValues(this.padding);
+        if (!inner || !outer)
             return null;
-        const getFiguresPath = CalcPathFigures.createFigurePathString(innerPathString, outerPath);
+        const getFiguresPath = CalcPathFigures.createFigurePathString(inner, outer);
         if (!getFiguresPath)
             return null;
         const innerGroup = new SVGFactory(container, "g", {
             class: `${this.parentSVGSource.sectionName}-inner`
         }).createSvgTag();
         new SVGFactory(innerGroup, "path", {
-            d: innerPathString,
+            d: inner,
+            // fill: "#000214",
             fill: "url(#ultraDarkGlass)",
-            filter: "url(#ultraDarkFrosted) url(#borderSegmentShadow)",
+            // filter: "url(#ultraDarkFrosted) url(#borderSegmentShadow)",
             stroke: "none",
         }).createSvgTag();
         let counter = 0;
         for (const figure of getFiguresPath) {
-            let color = counter < 12 ? "#01030a" : "#01030a";
+            let color = counter < 12 ? "#01030a" : "#000214";
             const createfigurePath = new SVGFactory(container, "path", {
                 class: `figure-${counter}`,
                 d: `${figure}Z`,
                 stroke: "rgba(51, 81, 142, 0.5)",
                 "stroke-width": 1,
                 opacity: "1",
-                fill: color,
-                filter: "url(#ultraDark)",
+                fill: "#03080f"
+                // fill: "#000214",
+                // filter: "url(#ultraDark)",
             });
             counter++;
             createfigurePath.createSvgTag();

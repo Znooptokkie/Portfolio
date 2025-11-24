@@ -66,6 +66,7 @@ export class CreateSVG extends SVG {
     // -- **Returns the main SVG element stored in this instance**
     // -- **Uses the parent class method to retrieve the element by its ID**
     get getSVGElementRoot() {
-        return this.getSVGHTMLIDElement();
+        var _a;
+        return (_a = this.getSVGHTMLIDElement()) !== null && _a !== void 0 ? _a : null;
     }
 }

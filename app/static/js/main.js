@@ -6,7 +6,8 @@ import { TimelineAnimation } from "./utils/Timeline.js";
 import { CustomSelect } from "./utils/ProjectFilter.js";
 import { callAllInstances } from "./svg/profilePicSVG.js";
 import { exportClass } from "./svg/languages/languageInit.js";
-// import { callSmallInstances } from "./svg/languages/SmallContainers.js"
+// import { callSmallInstances } from "./svg/languages/smallcontainer/SmallContainers.js"
+import { LanguageSmallBorder } from "./svg/languages/smallcontainer/LanguageSmallHTML.js";
 const resolver = new TextResolver(document.querySelector("[data-target-resolver]"), ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"], { timeout: 5, iterations: 10 }, 50000);
 resolver.start();
 const callDropdownClass = new Dropdown();
@@ -23,4 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 callAllInstances();
 exportClass();
+// LanguageSmallContainer.createSmallSVGContainers()
 // callSmallInstances();
+// const smallContainers = new LanguageSmallContainerHTML()
+// smallContainers.createSmallSVGContainers()
+const smallContainer = new LanguageSmallBorder();
+smallContainer.createInnerPath();
