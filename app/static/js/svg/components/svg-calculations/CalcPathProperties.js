@@ -26,6 +26,7 @@ export class CalcPathProperties {
             return null;
         const outerPathArray = CalcPathProperties.getPathParts(basePath);
         const filteredLastItem = [...outerPathArray];
+        // Zorgt ervoor dat de SVG mooi aansluit op het begin
         if (filteredLastItem.length > 1 && filteredLastItem[0].x === filteredLastItem[filteredLastItem.length - 1].x && filteredLastItem[0].y === filteredLastItem[filteredLastItem.length - 1].y) {
             filteredLastItem.pop();
         }
@@ -72,12 +73,57 @@ export class CalcPathProperties {
         const maxXRight = Math.max(...sides.right.map(p => p.x));
         const maxYBottom = Math.max(...sides.bottom.map(p => p.y));
         const minXLeft = Math.min(...sides.left.map(p => p.x));
+        // console.log(sides.right);
         const innerTop = [];
         const innerRight = [];
         const innerBottom = [];
         const innerLeft = [];
+        // if (sides.top.length == 2)
+        // {
+        //     const newPoints = {
+        //         x: sides.top[0].x + offset * 2,
+        //         y: sides.top[0].y + offset * 2
+        //     }
+        //     const newSubPoints = {
+        //         x: sides.top[1].x - offset * 2,
+        //         y: sides.top[1].y + offset * 2
+        //     }
+        //     innerTop.push(newPoints, newSubPoints)
+        // }
         if (sides.top) {
+            // Als er maar 1 item in de Array staat
+            if (sides.top.length <= 1) {
+                const newPoints = {
+                    x: sides.top[0].x - offset * 2,
+                    y: sides.top[0].y + offset
+                };
+                innerTop.push(newPoints);
+            }
+            // if (sides.top.length)
+            // {
+            //     const newPoints = {
+            //         x: sides.top[0].x + offset * 2,
+            //         y: sides.top[0].y + offset * 2
+            //     }
+            //     const newSubPoints = {
+            //         x: sides.top[1].x + offset * 2,
+            //         y: sides.top[1].y + offset * 2
+            //     }
+            //     innerTop.push(newPoints, newSubPoints)
+            // }
             for (let i = 0; i < sides.top.length - 1; i++) {
+                if (sides.top[i].y === sides.top[i + 1].y &&
+                    sides.top.length === 2) {
+                    //     const newPoints = {
+                    //         x: sides.top[0].x + offset * 2,
+                    //         y: sides.top[0].y + offset * 2
+                    //     }
+                    //     const newSubPoints = {
+                    //         x: sides.top[1].x + offset * 2,
+                    //         y: sides.top[1].y + offset * 2
+                    //     }
+                    //     innerTop.push(newPoints, newSubPoints)
+                }
                 if (sides.top[i].y === sides.top[i + 1].y) {
                     if (sides.top[i].y === minYTop && sides.top[i + 1].y === minYTop) {
                         const newFirstPoints = {
@@ -102,6 +148,15 @@ export class CalcPathProperties {
                         innerTop.push(newFirstPoints, newSecondPoints);
                     }
                 }
+            }
+        }
+        if (sides.right) {
+            if (sides.right.length <= 1) {
+                const newPoints = {
+                    x: sides.right[0].x - offset * 2,
+                    y: sides.right[0].y - offset
+                };
+                innerRight.push(newPoints);
             }
             for (let i = 0; i < sides.right.length - 1; i++) {
                 if (sides.right[i].x === sides.right[i + 1].x) {
@@ -129,6 +184,15 @@ export class CalcPathProperties {
                     }
                 }
             }
+        }
+        if (sides.bottom) {
+            if (sides.bottom.length <= 1) {
+                const newPoints = {
+                    x: sides.bottom[0].x + offset,
+                    y: sides.bottom[0].y - offset * 2
+                };
+                innerBottom.push(newPoints);
+            }
             for (let i = 0; i < sides.bottom.length - 1; i++) {
                 if (sides.bottom[i].y === sides.bottom[i + 1].y) {
                     if (sides.bottom[i].y === maxYBottom && sides.bottom[i + 1].y === maxYBottom) {
@@ -154,6 +218,15 @@ export class CalcPathProperties {
                         innerBottom.push(newFirstPoints, newSecondPoints);
                     }
                 }
+            }
+        }
+        if (sides.left) {
+            if (sides.left.length <= 1) {
+                const newPoints = {
+                    x: sides.left[0].x + offset * 2,
+                    y: sides.left[0].y - offset
+                };
+                innerLeft.push(newPoints);
             }
             for (let i = 0; i < sides.left.length - 1; i++) {
                 if (sides.left[i].x === sides.left[i + 1].x) {

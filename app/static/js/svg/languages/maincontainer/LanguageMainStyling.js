@@ -68,7 +68,7 @@ export class LanguageMainStyling {
         }).createSvgTag();
         new SVGFactory(glassGradient, "stop", {
             offset: "100%",
-            "stop-color": "#000214",
+            "stop-color": "#03080f",
             "stop-opacity": "1"
         }).createSvgTag();
         const filter = new SVGFactory(defs, "filter", {
@@ -97,6 +97,23 @@ export class LanguageMainStyling {
             in: "SourceGraphic",
             in2: "softened",
             mode: "normal"
+        }).createSvgTag();
+        const innerGradient = new SVGFactory(defs, "linearGradient", {
+            id: "innerBorderGradient",
+            x1: "0%",
+            y1: "0%",
+            x2: "100%", // horizontaal in plaats van verticaal
+            y2: "0%"
+        }).createSvgTag();
+        new SVGFactory(innerGradient, "stop", {
+            offset: "0%",
+            // "stop-color": "#1a2b46"
+            // "stop-color": "#142137"
+            "stop-color": "#101b2b",
+        }).createSvgTag();
+        new SVGFactory(innerGradient, "stop", {
+            offset: "100%",
+            "stop-color": "#010307"
         }).createSvgTag();
     }
 }

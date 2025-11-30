@@ -10,6 +10,8 @@ import { exportClass } from "./svg/languages/languageInit.js"
 // import { callSmallInstances } from "./svg/languages/smallcontainer/SmallContainers.js"
 import { LanguageSmallContainerHTML, LanguageSmallBorder } from "./svg/languages/smallcontainer/LanguageSmallHTML.js"
 
+import { educationInit } from "./svg/education/educationInit.js"
+
 const resolver = new TextResolver(
     document.querySelector("[data-target-resolver]") as HTMLElement,
     ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"],
@@ -51,3 +53,6 @@ exportClass()
 
 const smallContainer = new LanguageSmallBorder()
 smallContainer.createInnerPath()
+
+
+educationInit()

@@ -28,14 +28,18 @@ export class LanguageInnerBorder {
         }).createSvgTag();
         let counter = 0;
         for (const figure of getFiguresPath) {
-            let color = counter < 12 ? "#01030a" : "#000214";
+            // let color = counter < 12 ? "#01030a" : "#000214";
+            // let color = counter < 12 ? "#010307" : "#010307"
+            let color = counter < 12 ? "#0a121c" : "#010307";
             const createfigurePath = new SVGFactory(container, "path", {
                 class: `figure-${counter}`,
                 d: `${figure}Z`,
-                stroke: "rgba(51, 81, 142, 0.5)",
+                stroke: "rgba(51, 81, 142, 0.85)",
+                // stroke: "#010307",
                 "stroke-width": 1,
                 opacity: "1",
-                fill: "#03080f"
+                // fill: "url(#innerBorderGradient)"
+                fill: "none",
                 // fill: "#000214",
                 // filter: "url(#ultraDark)",
             });

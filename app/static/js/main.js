@@ -8,6 +8,7 @@ import { callAllInstances } from "./svg/profilePicSVG.js";
 import { exportClass } from "./svg/languages/languageInit.js";
 // import { callSmallInstances } from "./svg/languages/smallcontainer/SmallContainers.js"
 import { LanguageSmallBorder } from "./svg/languages/smallcontainer/LanguageSmallHTML.js";
+import { educationInit } from "./svg/education/educationInit.js";
 const resolver = new TextResolver(document.querySelector("[data-target-resolver]"), ["hey, mijn naam is <span class='green-name'>Atilla Oomen</span>"], { timeout: 5, iterations: 10 }, 50000);
 resolver.start();
 const callDropdownClass = new Dropdown();
@@ -30,3 +31,4 @@ exportClass();
 // smallContainers.createSmallSVGContainers()
 const smallContainer = new LanguageSmallBorder();
 smallContainer.createInnerPath();
+educationInit();
