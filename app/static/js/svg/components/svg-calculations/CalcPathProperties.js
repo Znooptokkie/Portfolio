@@ -1,9 +1,7 @@
 import { SVGFactory } from "../svg-core/SVGFactory.js";
 import { CalcPathFigures } from "./CalcPathFigures.js";
 export class CalcPathProperties {
-    static createBorderParts(container, outerPath, padding, category) {
-        const outer = outerPath;
-        const inner = CalcPathProperties.getInnerPathValues(padding, outerPath);
+    static createBorderParts(container, outer, inner, category) {
         if (!inner || !outer)
             return null;
         const getFiguresPath = CalcPathFigures.createFigurePathString(inner, outer);
@@ -39,15 +37,6 @@ export class CalcPathProperties {
             counter++;
             createfigurePath.createSvgTag();
         }
-    }
-    static getInnerPathValues(padding = 10, pathPoints) {
-        const getPathPointsAndSides = CalcPathProperties.getEachSide(pathPoints);
-        if (!getPathPointsAndSides)
-            return null;
-        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
-        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
-        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
-        return pathToString;
     }
     static getPathParts(path) {
         const pathValues = ["M", "L"];
@@ -129,6 +118,7 @@ export class CalcPathProperties {
         const innerRight = [];
         const innerBottom = [];
         const innerLeft = [];
+        // Gehele code moet efficienter/dynamischer, maar voor nu werkt het
         if (sides.top) {
             // Als er maar 1 item in de Array staat
             if (sides.top.length <= 1) {
@@ -297,5 +287,12 @@ export class CalcPathProperties {
             parts.push(`L${p.x},${p.y}`);
         }
         return parts.join(" ");
+    }
+    static init(path, padding) {
+        const newPath = CalcPathProperties.getEachSide(path);
+        const createInnerPath = CalcPathProperties.buildInnerPath(newPath, padding); // Uitroepteken moet weg!!@!!@$!#@$
+        const mergedArray = CalcPathProperties.mergePathArray(createInnerPath);
+        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
+        return pathToString;
     }
 }

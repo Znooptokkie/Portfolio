@@ -71,7 +71,6 @@ export class LanguageSmallContainerHTML {
             const getLanguagesData = new FetchData("api/languages");
             const call = yield getLanguagesData.fetchJsonData();
             this.languageName = call;
-            // console.log(this.languageName);
             return call;
         });
     }
@@ -98,12 +97,12 @@ export class LanguageSmallBorder {
                 const newW = 300;
                 const newH = 225;
                 const scaledPath = this.dynamicPathScale(outerPath, viewboxWidth, viewboxHeight, newW, newH);
-                // console.log(scaledPath);
                 const main = new MainBorder(child.id, {
                     viewBox: `0 0 ${newW} ${newH}`,
                     preserveAspectRatio: "xMidYMid meet"
                 }, true, "language", scaledPath);
-                const figure = CalcPathProperties.createBorderParts(main, scaledPath, 5, "languages-small");
+                const createStringInnerContPath = CalcPathProperties.init(scaledPath, 5);
+                const languageSmallBorderFigures = CalcPathProperties.createBorderParts(main, scaledPath, createStringInnerContPath, "languages-small");
                 main.init();
                 const foreign = child._foreignObject;
                 child.appendChild(foreign);

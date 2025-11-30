@@ -21,11 +21,8 @@ type FourSidesInner = {
 
 export class CalcPathProperties 
 {
-    public static createBorderParts(container: CreateSVG, outerPath: string, padding: number, category: string): void | null
+    public static createBorderParts(container: CreateSVG, outer: string, inner: string, category: string): void | null
     {        
-        const outer = outerPath
-        const inner = CalcPathProperties.getInnerPathValues(padding, outerPath)
-
         if (!inner || !outer)
             return null
             
@@ -71,20 +68,6 @@ export class CalcPathProperties
             counter++;
             createfigurePath.createSvgTag();
         }
-    }
-
-    public static getInnerPathValues(padding: number = 10, pathPoints: string): string | null
-    {
-        const getPathPointsAndSides = CalcPathProperties.getEachSide(pathPoints);
-
-        if (!getPathPointsAndSides) 
-            return null;
-
-        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
-        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
-        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
-
-        return pathToString;
     }
 
     public static getPathParts(path: string) 
@@ -210,6 +193,7 @@ export class CalcPathProperties
         const innerBottom = []
         const innerLeft = []
 
+        // Gehele code moet efficienter/dynamischer, maar voor nu werkt het
         if (sides.top)
         {
             // Als er maar 1 item in de Array staat
@@ -434,5 +418,15 @@ export class CalcPathProperties
         }
 
         return parts.join(" ");
+    }
+
+    public static init(path: string, padding: number): string
+    {
+        const newPath = CalcPathProperties.getEachSide(path)
+        const createInnerPath =  CalcPathProperties.buildInnerPath(newPath!, padding) // Uitroepteken moet weg!!@!!@$!#@$
+        const mergedArray = CalcPathProperties.mergePathArray(createInnerPath)
+        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray)
+
+        return pathToString
     }
 }
