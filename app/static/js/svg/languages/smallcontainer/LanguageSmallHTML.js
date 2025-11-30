@@ -8,10 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { FetchData } from "../../../services/FetchData.js";
-import { InnerBorder, LanguageMainBorder } from "../maincontainer/LanguageMainBorder.js";
+import { MainBorder } from "../maincontainer/MainBorder.js";
 import { CalcPathProperties } from "../../components/svg-calculations/CalcPathProperties.js";
-import { LanguageInnerBorder } from "../maincontainer/LanguageInnerBorder.js";
-// import { LanguageMainBorder } from "../maincontainer/LanguageMainBorder.js"    
 const cornerPoint = 50;
 export const outerPath = `M60,0 L200,0 L250,50 L750,50 L800,0 L940,0 L1000,${cornerPoint} L1000,150 L950,175 L950,500 L1000,525 L1000,625 L940,675 L800,675 L775,650 L225,650 L200,675 L60,675 L0,625 L0,525 L${cornerPoint},500 L${cornerPoint},175 L0,150 L0,${cornerPoint} L60,0`;
 export class LanguageSmallContainerHTML {
@@ -101,17 +99,12 @@ export class LanguageSmallBorder {
                 const newH = 225;
                 const scaledPath = this.dynamicPathScale(outerPath, viewboxWidth, viewboxHeight, newW, newH);
                 // console.log(scaledPath);
-                const main = new LanguageMainBorder(child.id, {
+                const main = new MainBorder(child.id, {
                     viewBox: `0 0 ${newW} ${newH}`,
                     preserveAspectRatio: "xMidYMid meet"
                 }, true, "language", scaledPath);
-                const inner = new InnerBorder(main);
-                const path = CalcPathProperties.getEachSide(main.getPathPoints);
-                // console.log(path);
-                const innerString = inner.getInnerPathValues(5);
-                const figure = new LanguageInnerBorder(main);
+                const figure = CalcPathProperties.createBorderParts(main, scaledPath, 5, "languages-small");
                 main.init();
-                figure.init(main);
                 const foreign = child._foreignObject;
                 child.appendChild(foreign);
             }

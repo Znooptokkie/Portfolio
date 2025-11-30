@@ -1,48 +1,65 @@
-import { CreateSVG } from "../components/svg-core/SVGCreate.js";
 import { SVGFactory } from "../components/svg-core/SVGFactory.js";
-import { CalcPathProperties } from "../components/svg-calculations/CalcPathProperties.js";
 import { CalcPathFigures } from "../components/svg-calculations/CalcPathFigures.js";
-export class EducationContainer extends CreateSVG {
-    constructor(HTMLId, svgAttributes, defaultStyling, sectionName, pathPoints) {
-        super(HTMLId, svgAttributes, defaultStyling);
-        this.sectionName = sectionName;
-        this.pathPoints = pathPoints;
-    }
-    CreateEducationContainer() {
-        const eduactionGroup = new SVGFactory(this, "g", {
-            id: `${this.sectionName}-container`
-        }).createSvgTag();
-        const contrastPath = new SVGFactory(eduactionGroup, "path", {
-            d: this.pathPoints,
-            // fill: "#000214",
-            fill: "none",
-            stroke: "none",
-            "stroke-width": 1
-        }).createSvgTag();
-    }
-    init() {
-        this.CreateEducationContainer();
-    }
-    get getPathPoints() {
-        return this.pathPoints;
-    }
-}
-export class InnerBorder {
-    constructor(parentSVGSource) {
-        this.parentSVGSource = parentSVGSource;
-        this.parentSVG = parentSVGSource.getSVGElementRoot;
-    }
-    getInnerPathValues(padding = 10) {
-        const path = this.parentSVGSource.getPathPoints;
-        const getPathPointsAndSides = CalcPathProperties.getEachSide(this.parentSVGSource.getPathPoints);
-        if (!getPathPointsAndSides)
-            return null;
-        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
-        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
-        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
-        return pathToString;
-    }
-}
+import { InnerBorder } from "../languages/maincontainer/LanguageMainBorder.js";
+// export class EducationContainer extends CreateSVG
+// {
+//     public sectionName: string
+//     private pathPoints: string
+//     constructor(
+//         HTMLId: string,
+//         svgAttributes: Record<string, string>,
+//         defaultStyling: boolean,
+//         sectionName: string,
+//         pathPoints: string
+//     )
+//     {
+//         super(HTMLId, svgAttributes, defaultStyling)
+//         this.sectionName = sectionName
+//         this.pathPoints = pathPoints
+//     }
+//     private CreateEducationContainer(): void
+//     {
+//         const eduactionGroup = new SVGFactory(this, "g", {
+//             id: `${this.sectionName}-container`
+//         }).createSvgTag()
+//         const contrastPath = new SVGFactory<SVGPathAttributes>(eduactionGroup, "path", {
+//             d: this.pathPoints,
+//             // fill: "#000214",
+//             fill: "none",
+//             stroke: "none",
+//             "stroke-width": 1
+//         }).createSvgTag()
+//     }
+//     public init(): void
+//     {
+//         this.CreateEducationContainer()
+//     }
+//     public get getPathPoints() : string 
+//     {
+//         return this.pathPoints
+//     }
+// }
+// export class InnerBorder
+// {
+//     private parentSVGSource: EducationContainer;
+//     private parentSVG: SVGElement | null;
+//     constructor(parentSVGSource: EducationContainer)
+//     {
+//         this.parentSVGSource = parentSVGSource;
+//         this.parentSVG = parentSVGSource.getSVGElementRoot;
+//     }
+//     public getInnerPathValues(padding: number = 10): string | null
+//     {
+//         const path = this.parentSVGSource.getPathPoints;
+//         const getPathPointsAndSides = CalcPathProperties.getEachSide(this.parentSVGSource.getPathPoints);
+//         if (!getPathPointsAndSides) 
+//             return null;
+//         const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
+//         const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
+//         const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
+//         return pathToString;
+//     }
+// }
 export class EducationInnerBorder {
     constructor(parentSVGSource, padding = 5) {
         this.parentSVGSource = parentSVGSource;

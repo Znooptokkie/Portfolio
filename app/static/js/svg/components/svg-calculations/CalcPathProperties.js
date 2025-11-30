@@ -1,4 +1,54 @@
+import { SVGFactory } from "../svg-core/SVGFactory.js";
+import { CalcPathFigures } from "./CalcPathFigures.js";
 export class CalcPathProperties {
+    static createBorderParts(container, outerPath, padding, category) {
+        const outer = outerPath;
+        const inner = CalcPathProperties.getInnerPathValues(padding, outerPath);
+        if (!inner || !outer)
+            return null;
+        const getFiguresPath = CalcPathFigures.createFigurePathString(inner, outer);
+        if (!getFiguresPath)
+            return null;
+        const innerGroup = new SVGFactory(container, "g", {
+            class: `${category}-inner`
+        }).createSvgTag();
+        new SVGFactory(innerGroup, "path", {
+            d: inner,
+            // fill: "#000214",
+            fill: "url(#ultraDarkGlass)",
+            // filter: "url(#ultraDarkFrosted) url(#borderSegmentShadow)",
+            stroke: "none",
+        }).createSvgTag();
+        let counter = 0;
+        for (const figure of getFiguresPath) {
+            // let color = counter < 12 ? "#01030a" : "#000214";
+            // let color = counter < 12 ? "#010307" : "#010307"
+            let color = counter < 12 ? "#0a121c" : "#010307";
+            const createfigurePath = new SVGFactory(container, "path", {
+                class: `figure-${counter}`,
+                d: `${figure}Z`,
+                stroke: "rgba(51, 81, 142, 0.5)",
+                // stroke: "#010307",
+                "stroke-width": 1,
+                opacity: "1",
+                // fill: "url(#innerBorderGradient)",
+                // fill: "none",
+                fill: "#000214",
+                // filter: "url(#ultraDark)",
+            });
+            counter++;
+            createfigurePath.createSvgTag();
+        }
+    }
+    static getInnerPathValues(padding = 10, pathPoints) {
+        const getPathPointsAndSides = CalcPathProperties.getEachSide(pathPoints);
+        if (!getPathPointsAndSides)
+            return null;
+        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
+        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
+        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
+        return pathToString;
+    }
     static getPathParts(path) {
         const pathValues = ["M", "L"];
         const pathParts = [];
@@ -27,7 +77,9 @@ export class CalcPathProperties {
         const outerPathArray = CalcPathProperties.getPathParts(basePath);
         const filteredLastItem = [...outerPathArray];
         // Zorgt ervoor dat de SVG mooi aansluit op het begin
-        if (filteredLastItem.length > 1 && filteredLastItem[0].x === filteredLastItem[filteredLastItem.length - 1].x && filteredLastItem[0].y === filteredLastItem[filteredLastItem.length - 1].y) {
+        if (filteredLastItem.length > 1 &&
+            filteredLastItem[0].x === filteredLastItem[filteredLastItem.length - 1].x &&
+            filteredLastItem[0].y === filteredLastItem[filteredLastItem.length - 1].y) {
             filteredLastItem.pop();
         }
         const borderTop = [];
@@ -73,23 +125,10 @@ export class CalcPathProperties {
         const maxXRight = Math.max(...sides.right.map(p => p.x));
         const maxYBottom = Math.max(...sides.bottom.map(p => p.y));
         const minXLeft = Math.min(...sides.left.map(p => p.x));
-        // console.log(sides.right);
         const innerTop = [];
         const innerRight = [];
         const innerBottom = [];
         const innerLeft = [];
-        // if (sides.top.length == 2)
-        // {
-        //     const newPoints = {
-        //         x: sides.top[0].x + offset * 2,
-        //         y: sides.top[0].y + offset * 2
-        //     }
-        //     const newSubPoints = {
-        //         x: sides.top[1].x - offset * 2,
-        //         y: sides.top[1].y + offset * 2
-        //     }
-        //     innerTop.push(newPoints, newSubPoints)
-        // }
         if (sides.top) {
             // Als er maar 1 item in de Array staat
             if (sides.top.length <= 1) {
@@ -99,33 +138,10 @@ export class CalcPathProperties {
                 };
                 innerTop.push(newPoints);
             }
-            // if (sides.top.length)
-            // {
-            //     const newPoints = {
-            //         x: sides.top[0].x + offset * 2,
-            //         y: sides.top[0].y + offset * 2
-            //     }
-            //     const newSubPoints = {
-            //         x: sides.top[1].x + offset * 2,
-            //         y: sides.top[1].y + offset * 2
-            //     }
-            //     innerTop.push(newPoints, newSubPoints)
-            // }
             for (let i = 0; i < sides.top.length - 1; i++) {
-                if (sides.top[i].y === sides.top[i + 1].y &&
-                    sides.top.length === 2) {
-                    //     const newPoints = {
-                    //         x: sides.top[0].x + offset * 2,
-                    //         y: sides.top[0].y + offset * 2
-                    //     }
-                    //     const newSubPoints = {
-                    //         x: sides.top[1].x + offset * 2,
-                    //         y: sides.top[1].y + offset * 2
-                    //     }
-                    //     innerTop.push(newPoints, newSubPoints)
-                }
                 if (sides.top[i].y === sides.top[i + 1].y) {
-                    if (sides.top[i].y === minYTop && sides.top[i + 1].y === minYTop) {
+                    if (sides.top[i].y === minYTop &&
+                        sides.top[i + 1].y === minYTop) {
                         const newFirstPoints = {
                             x: sides.top[i].x + offset,
                             y: sides.top[i].y + offset * 2
@@ -160,7 +176,8 @@ export class CalcPathProperties {
             }
             for (let i = 0; i < sides.right.length - 1; i++) {
                 if (sides.right[i].x === sides.right[i + 1].x) {
-                    if (sides.right[i].x === maxXRight && sides.right[i + 1].x === maxXRight) {
+                    if (sides.right[i].x === maxXRight &&
+                        sides.right[i + 1].x === maxXRight) {
                         const newFirstPoints = {
                             x: sides.right[i].x - offset * 2,
                             y: sides.right[i].y + offset
@@ -195,7 +212,8 @@ export class CalcPathProperties {
             }
             for (let i = 0; i < sides.bottom.length - 1; i++) {
                 if (sides.bottom[i].y === sides.bottom[i + 1].y) {
-                    if (sides.bottom[i].y === maxYBottom && sides.bottom[i + 1].y === maxYBottom) {
+                    if (sides.bottom[i].y === maxYBottom &&
+                        sides.bottom[i + 1].y === maxYBottom) {
                         const newFirstPoints = {
                             x: sides.bottom[i].x - offset,
                             y: sides.bottom[i].y - offset * 2
@@ -230,7 +248,8 @@ export class CalcPathProperties {
             }
             for (let i = 0; i < sides.left.length - 1; i++) {
                 if (sides.left[i].x === sides.left[i + 1].x) {
-                    if (sides.left[i].x === minXLeft && sides.left[i + 1].x === minXLeft) {
+                    if (sides.left[i].x === minXLeft &&
+                        sides.left[i + 1].x === minXLeft) {
                         const newFirstPoints = {
                             x: sides.left[i].x + offset * 2,
                             y: sides.left[i].y - offset

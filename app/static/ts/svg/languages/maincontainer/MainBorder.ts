@@ -1,12 +1,8 @@
 import { CreateSVG } from "../../components/svg-core/SVGCreate.js"
 import{ SVGFactory } from "../../components/svg-core/SVGFactory.js"
-import { CalcPathProperties } from "../../components/svg-calculations/CalcPathProperties.js"
-
 import { SVGPathAttributes } from "../../../types/svg/attributes.js"
 
-import { outerPath } from "../languageInit.js"
-
-export class LanguageMainBorder extends CreateSVG
+export class MainBorder extends CreateSVG
 {
     public sectionName: string
     private pathPoints: string
@@ -47,33 +43,5 @@ export class LanguageMainBorder extends CreateSVG
     public get getPathPoints() : string 
     {
         return this.pathPoints
-    }
-}
-
-export class InnerBorder
-{
-    private parentSVGSource: LanguageMainBorder;
-    private parentSVG: SVGElement | null;
-
-    constructor(parentSVGSource: LanguageMainBorder)
-    {
-        this.parentSVGSource = parentSVGSource;
-        this.parentSVG = parentSVGSource.getSVGElementRoot;
-    }
-
-    public getInnerPathValues(padding: number = 10): string | null
-    {
-        const path = this.parentSVGSource.getPathPoints;
-
-        const getPathPointsAndSides = CalcPathProperties.getEachSide(this.parentSVGSource.getPathPoints);
-
-        if (!getPathPointsAndSides) 
-            return null;
-
-        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
-        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
-        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
-
-        return pathToString;
     }
 }

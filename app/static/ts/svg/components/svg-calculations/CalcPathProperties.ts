@@ -1,3 +1,8 @@
+import { SVGPathAttributes } from "../../../types/svg/attributes";
+import { CreateSVG } from "../svg-core/SVGCreate.js";
+import { SVGFactory } from "../svg-core/SVGFactory.js";
+import { CalcPathFigures } from "./CalcPathFigures.js";
+
 type Point = { x: number; y: number };
 
 type FourSides = {
@@ -16,6 +21,72 @@ type FourSidesInner = {
 
 export class CalcPathProperties 
 {
+    public static createBorderParts(container: CreateSVG, outerPath: string, padding: number, category: string): void | null
+    {        
+        const outer = outerPath
+        const inner = CalcPathProperties.getInnerPathValues(padding, outerPath)
+
+        if (!inner || !outer)
+            return null
+            
+        const getFiguresPath = CalcPathFigures.createFigurePathString(inner, outer);
+            
+        if (!getFiguresPath)
+            return null
+
+        const innerGroup = new SVGFactory(container, "g", {
+            class: `${category}-inner`
+        }).createSvgTag()
+
+        new SVGFactory(innerGroup, "path", {
+            d: inner,
+            // fill: "#000214",
+            fill: "url(#ultraDarkGlass)",
+            // filter: "url(#ultraDarkFrosted) url(#borderSegmentShadow)",
+            stroke: "none",
+        }).createSvgTag();
+
+        let counter = 0;
+        
+        for (const figure of getFiguresPath)
+        {
+            // let color = counter < 12 ? "#01030a" : "#000214";
+            // let color = counter < 12 ? "#010307" : "#010307"
+            let color = counter < 12 ? "#0a121c" : "#010307"
+
+
+            const createfigurePath = new SVGFactory<SVGPathAttributes>(container, "path", {
+                class: `figure-${counter}`,
+                d: `${figure}Z`,
+                stroke: "rgba(51, 81, 142, 0.5)",
+                // stroke: "#010307",
+                "stroke-width": 1,
+                opacity: "1",
+                // fill: "url(#innerBorderGradient)",
+                // fill: "none",
+                fill: "#000214",
+                // filter: "url(#ultraDark)",
+            });
+
+            counter++;
+            createfigurePath.createSvgTag();
+        }
+    }
+
+    public static getInnerPathValues(padding: number = 10, pathPoints: string): string | null
+    {
+        const getPathPointsAndSides = CalcPathProperties.getEachSide(pathPoints);
+
+        if (!getPathPointsAndSides) 
+            return null;
+
+        const drawInnerBorder = CalcPathProperties.buildInnerPath(getPathPointsAndSides, padding);
+        const mergedArray = CalcPathProperties.mergePathArray(drawInnerBorder);
+        const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray);
+
+        return pathToString;
+    }
+
     public static getPathParts(path: string) 
     {
         const pathValues = ["M", "L"];
@@ -64,7 +135,11 @@ export class CalcPathProperties
         const filteredLastItem = [...outerPathArray];
 
         // Zorgt ervoor dat de SVG mooi aansluit op het begin
-        if (filteredLastItem.length > 1 && filteredLastItem[0].x === filteredLastItem[filteredLastItem.length - 1].x && filteredLastItem[0].y === filteredLastItem[filteredLastItem.length - 1].y)
+        if (
+            filteredLastItem.length > 1 && 
+            filteredLastItem[0].x === filteredLastItem[filteredLastItem.length - 1].x && 
+            filteredLastItem[0].y === filteredLastItem[filteredLastItem.length - 1].y
+        )
         {
             filteredLastItem.pop();
         }
@@ -129,26 +204,11 @@ export class CalcPathProperties
         const maxYBottom = Math.max(...sides.bottom.map(p => p.y))
 
         const minXLeft = Math.min(...sides.left.map(p => p.x))
-        
-        // console.log(sides.right);
     
         const innerTop = []
         const innerRight = []
         const innerBottom = []
         const innerLeft = []
-
-        // if (sides.top.length == 2)
-        // {
-        //     const newPoints = {
-        //         x: sides.top[0].x + offset * 2,
-        //         y: sides.top[0].y + offset * 2
-        //     }
-        //     const newSubPoints = {
-        //         x: sides.top[1].x - offset * 2,
-        //         y: sides.top[1].y + offset * 2
-        //     }
-        //     innerTop.push(newPoints, newSubPoints)
-        // }
 
         if (sides.top)
         {
@@ -162,41 +222,14 @@ export class CalcPathProperties
                 innerTop.push(newPoints)
             }
 
-            // if (sides.top.length)
-            // {
-            //     const newPoints = {
-            //         x: sides.top[0].x + offset * 2,
-            //         y: sides.top[0].y + offset * 2
-            //     }
-            //     const newSubPoints = {
-            //         x: sides.top[1].x + offset * 2,
-            //         y: sides.top[1].y + offset * 2
-            //     }
-            //     innerTop.push(newPoints, newSubPoints)
-            // }
-
             for (let i = 0; i < sides.top.length - 1; i++)
             {
-                if (
-                    sides.top[i].y === sides.top[i + 1].y && 
-                    sides.top.length === 2
-                )
-                {
-            //     const newPoints = {
-            //         x: sides.top[0].x + offset * 2,
-            //         y: sides.top[0].y + offset * 2
-            //     }
-            //     const newSubPoints = {
-            //         x: sides.top[1].x + offset * 2,
-            //         y: sides.top[1].y + offset * 2
-            //     }
-            //     innerTop.push(newPoints, newSubPoints)
-                }
-                if (
-                    sides.top[i].y === sides.top[i + 1].y
-                )
+                if (sides.top[i].y === sides.top[i + 1].y)
                 {       
-                    if (sides.top[i].y === minYTop && sides.top[i + 1].y === minYTop)
+                    if (
+                        sides.top[i].y === minYTop && 
+                        sides.top[i + 1].y === minYTop
+                    )
                     {
                         const newFirstPoints = { 
                             x: sides.top[i].x + offset, 
@@ -241,7 +274,10 @@ export class CalcPathProperties
             {
                 if (sides.right[i].x ===  sides.right[i + 1].x)
                 {
-                    if (sides.right[i].x === maxXRight && sides.right[i + 1].x === maxXRight)
+                    if (
+                        sides.right[i].x === maxXRight && 
+                        sides.right[i + 1].x === maxXRight
+                    )
                     {
                         const newFirstPoints = { 
                             x: sides.right[i].x - offset * 2, 
@@ -285,7 +321,10 @@ export class CalcPathProperties
             {
                 if (sides.bottom[i].y === sides.bottom[i + 1].y)
                 {       
-                    if (sides.bottom[i].y === maxYBottom && sides.bottom[i + 1].y === maxYBottom)
+                    if (
+                        sides.bottom[i].y === maxYBottom && 
+                        sides.bottom[i + 1].y === maxYBottom
+                    )
                     {
                         const newFirstPoints = { 
                             x: sides.bottom[i].x - offset, 
@@ -329,7 +368,10 @@ export class CalcPathProperties
             {
                 if (sides.left[i].x ===  sides.left[i + 1].x)
                 {
-                    if (sides.left[i].x === minXLeft && sides.left[i + 1].x === minXLeft)
+                    if (
+                        sides.left[i].x === minXLeft && 
+                        sides.left[i + 1].x === minXLeft
+                    )
                     {
                         const newFirstPoints = { 
                             x: sides.left[i].x + offset * 2, 
