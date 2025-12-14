@@ -16,7 +16,7 @@ function createSWD() {
     // Bereken nieuwe totale viewBox hoogte
     SWDInstance.calcNewTotalViewboxHeight();
     const SWDContainer = SWDInstance.createContainer();
-    SWDContainer === null || SWDContainer === void 0 ? void 0 : SWDContainer.init();
+    // SWDContainer?.init()
     // Pas inner pad en offset aan
     SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH);
     SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset();
@@ -49,7 +49,7 @@ function createPainter() {
     SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath);
     SWDInstance.calcNewTotalViewboxHeight();
     const SWDContainer = SWDInstance.createContainer();
-    SWDContainer === null || SWDContainer === void 0 ? void 0 : SWDContainer.init();
+    // SWDContainer?.init()
     SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH);
     SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset();
     const SWDTitleTEST = new SVGFactory(SWDContainer, "text", {
@@ -78,7 +78,7 @@ function createWellant() {
     SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath);
     SWDInstance.calcNewTotalViewboxHeight();
     const SWDContainer = SWDInstance.createContainer();
-    SWDContainer === null || SWDContainer === void 0 ? void 0 : SWDContainer.init();
+    // SWDContainer?.init()
     SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH);
     SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset();
     const SWDTitleTEST = new SVGFactory(SWDContainer, "text", {

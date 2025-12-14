@@ -8,7 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { FetchData } from "../../../services/FetchData.js";
-import { MainBorder } from "../../components/MainBorder.js";
+import { CreateSVG } from "../../components/core/SVGCreate.js";
+// import { MainBorder } from "../../components/MainBorder.js"   
 import { InitPath } from "../../components/InitPath.js";
 import { InnerPath } from "../../components/InnerPath.js";
 // Hoekpunt voor de buitenrand van het kleine SVG container pad
@@ -111,11 +112,10 @@ export class LanguageSmallBorder {
                 // Schaal het pad naar nieuwe afmetingen van de kleine SVG
                 const scaledPath = this.dynamicPathScale(outerPath, 1006, 682, newW, newH);
                 // Maak een MainBorder instantie voor deze kleine SVG
-                const main = new MainBorder(svg.id, { viewBox: `0 0 ${newW} ${newH}`, preserveAspectRatio: "xMidYMid meet" }, true, "language", scaledPath);
+                const main = new CreateSVG(svg.id, { viewBox: `0 0 ${newW} ${newH}`, preserveAspectRatio: "xMidYMid meet" }, true);
                 // Bereken het inner pad voor de border
                 const innerPathStr = InnerPath.buildOffsetPath(scaledPath, 5);
                 InitPath.createBorderParts(main, scaledPath, innerPathStr, "languages-small");
-                main.init();
                 // Voeg het foreignObject met HTML content toe aan de SVG
                 const foreign = svg._foreignObject;
                 svg.appendChild(foreign);

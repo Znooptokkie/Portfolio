@@ -1,7 +1,7 @@
-import { MainBorder } from "../components/MainBorder.js";
 import { DeconstructPath } from "../components/DeconstructPath.js";
 import { CalcPathProperties } from "../components/calculations/CalcPathProperties.js";
 import { CreateSides } from "../components/CreateSides.js";
+import { CreateSVG } from "../components/core/SVGCreate.js";
 /**
  * CreateEducation
  *
@@ -59,10 +59,10 @@ export class CreateEducation {
     createContainer() {
         let painterContainer = null;
         if (this.getHTMLTagElement()) {
-            painterContainer = new MainBorder(`${this.HTMLID}`, {
+            painterContainer = new CreateSVG(`${this.HTMLID}`, {
                 viewBox: `0 0 ${this.VIEWBOX_WIDTH} ${this.newTotalViewboxHeight}`,
                 preserveAspectRatio: "xMidYMid"
-            }, true, "education", this.newOuterPath);
+            }, true);
             return painterContainer;
         }
         return null;

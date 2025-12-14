@@ -23,7 +23,7 @@ function createSWD(): void
     // Bereken nieuwe totale viewBox hoogte
     SWDInstance.calcNewTotalViewboxHeight()
     const SWDContainer = SWDInstance.createContainer()
-    SWDContainer?.init()
+    // SWDContainer?.init()
 
     // Pas inner pad en offset aan
     SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH)
@@ -63,7 +63,7 @@ function createPainter(): void
     SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath)
     SWDInstance.calcNewTotalViewboxHeight()
     const SWDContainer = SWDInstance.createContainer()
-    SWDContainer?.init()
+    // SWDContainer?.init()
 
     SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH)
     SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset()
@@ -99,7 +99,7 @@ function createWellant(): void
     SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath)
     SWDInstance.calcNewTotalViewboxHeight()
     const SWDContainer = SWDInstance.createContainer()
-    SWDContainer?.init()
+    // SWDContainer?.init()
 
     SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH)
     SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset()

@@ -1,10 +1,11 @@
-import { MainBorder } from "../components/MainBorder.js"   
+// import { MainBorder } from "../components/MainBorder.js"   
 import { SVGFactory } from "../components/core/SVGFactory.js";
 import { InnerPath } from "../components/InnerPath.js";
 import { DeconstructPath } from "../components/DeconstructPath.js";
 
 import { CalcPathProperties } from "../components/calculations/CalcPathProperties.js"
 import { CreateSides } from "../components/CreateSides.js";
+import { CreateSVG } from "../components/core/SVGCreate.js";
 
 /**
  * CreateEducation
@@ -38,7 +39,7 @@ export class CreateEducation {
     public newInnerPath: string | null = null
     public newInnerOffsetPath: string | null = null
 
-    private container: MainBorder | null = null
+    private container: CreateSVG | null = null
 
     // Initialiseert de class met HTML-referenties en optionele parameters
     constructor(
@@ -103,21 +104,19 @@ export class CreateEducation {
     }
 
     // Creëert de MainBorder container met de nieuwe viewBox hoogte
-    public createContainer(): MainBorder | null
+    public createContainer(): CreateSVG | null
     {
-        let painterContainer: MainBorder | null = null
+        let painterContainer: CreateSVG | null = null
 
         if (this.getHTMLTagElement())
         {
-            painterContainer = new MainBorder(
+            painterContainer = new CreateSVG(
                 `${this.HTMLID}`,
                 {
                     viewBox: `0 0 ${this.VIEWBOX_WIDTH} ${this.newTotalViewboxHeight}`,
                     preserveAspectRatio: "xMidYMid"
                 },
-                true,
-                "education",
-                this.newOuterPath!
+                true
             )
             
             return painterContainer

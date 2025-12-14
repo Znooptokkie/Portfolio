@@ -1,6 +1,7 @@
 import { LanguageJSON } from "../../../interfaces/api/language.interface.js";
 import { FetchData } from "../../../services/FetchData.js";
-import { MainBorder } from "../../components/MainBorder.js"   
+import { CreateSVG } from "../../components/core/SVGCreate.js";
+// import { MainBorder } from "../../components/MainBorder.js"   
 import { InitPath } from "../../components/InitPath.js";
 import { InnerPath } from "../../components/InnerPath.js";
 
@@ -125,19 +126,15 @@ export class LanguageSmallBorder
             const scaledPath = this.dynamicPathScale(outerPath, 1006, 682, newW, newH);
 
             // Maak een MainBorder instantie voor deze kleine SVG
-            const main = new MainBorder(
+            const main = new CreateSVG(
                 svg.id,
                 { viewBox: `0 0 ${newW} ${newH}`, preserveAspectRatio: "xMidYMid meet" },
-                true,
-                "language",
-                scaledPath
+                true
             );
 
             // Bereken het inner pad voor de border
             const innerPathStr = InnerPath.buildOffsetPath(scaledPath, 5);
             InitPath.createBorderParts(main, scaledPath, innerPathStr, "languages-small");
-
-            main.init();
 
             // Voeg het foreignObject met HTML content toe aan de SVG
             const foreign = (svg as any)._foreignObject;
