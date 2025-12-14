@@ -1,5 +1,17 @@
 import { DeconstructPath } from "./DeconstructPath.js";
-export class CalcPathFigures {
+/**
+ * CalcPathFigures
+ *
+ * Bevat methoden voor geometrische berekeningen voor SVG paths en shapes:
+ * - berekening van offsets
+ * - het bepalen van punten en afstanden
+ */
+export class PathFigures {
+    // Vormt uit twee paden (inner en outer) afzonderlijke vierhoeken door
+    // telkens de huidige en volgende punten van beide paden te combineren.
+    // Elk vierhoek bestaat uit: currentOuter → currentInner → nextInner → nextOuter.
+    // De vierhoeken worden sequentieel opgebouwd en opgeslagen in een Map,
+    // waarna alle waardes worden teruggegeven als geneste array van puntobjecten.
     static createFigures(innerPath, outerPath) {
         var _a, _b;
         const firgurePositions = new Map();

@@ -660,8 +660,15 @@ main
 
     #education-section
     {
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+        
         .wrapper
         {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
             position: relative;
 
             .education-article-context
@@ -683,183 +690,188 @@ main
                 //     }
                 // }
                 //  @include flexbox($direction: column);
-            // @include glass-card();
-            // padding: 3rem 2rem 4rem;
-            // box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
-            // height: auto;
-            // border: solid 2px rgba(51, 81, 142, 0.5);
+                // @include glass-card();
+                // padding: 3rem 2rem 4rem;
+                // box-shadow: inset 0 0 15px rgba(51, 81, 142, 0.25);
+                // height: auto;
+                // border: solid 2px rgba(51, 81, 142, 0.5);
 
-            .education-title
-            {
-                // @include flexbox($direction: row, $justify: space-between, $align: center);
-                // width: 100%;
-                // border-bottom: solid 3px rgba(158, 190, 255, 0.05);
-                // padding: 0 2rem 1rem;
-
-                // .education-header-container
-                // {
-                //     h3
-                //     {
-                //         color: $blue;
-                //         opacity: 0.75;
-                //         font-size: 2rem;
-                //     }
-                // }
-
-                // .education-year-container
-                // {
-                //     @include flexbox($justify: flex-end, $align: flex-end);
-
-                //     p
-                //     {
-                //         font-size: 2rem;
-                //         font-style: italic;
-                //         color: $blue;
-                //     }
-                // }
-            }
-            
-            .education-content
-            {
-                @include flexbox();
-                gap: 2.5rem;
-                // padding: 2rem 4rem 0;
-                min-height: 200px !important;
-
-                .education-excerpt
+                .education-title
                 {
-                    @include flexbox($direction: column);
-                    gap: 1rem;
-                    width: 45%;
-                    
-                    p
-                    {
-                        color: $blue;
-                        line-height: 1.5;
-                        font-size: 1.25rem;
-                    }
-                }
-                
-                .separator 
-                {
-                    width: 3px;
-                    align-self: stretch;
-                    background-color: rgba(158, 190, 255, 0.05);
+                    // @include flexbox($direction: row, $justify: space-between, $align: center);
+                    // width: 100%;
+                    // border-bottom: solid 3px rgba(158, 190, 255, 0.05);
+                    // padding: 0 2rem 1rem;
+
+                    // .education-header-container
+                    // {
+                    //     h3
+                    //     {
+                    //         color: $blue;
+                    //         opacity: 0.75;
+                    //         font-size: 2rem;
+                    //     }
+                    // }
+
+                    // .education-year-container
+                    // {
+                    //     @include flexbox($justify: flex-end, $align: flex-end);
+
+                    //     p
+                    //     {
+                    //         font-size: 2rem;
+                    //         font-style: italic;
+                    //         color: $blue;
+                    //     }
+                    // }
                 }
 
-                .education-properties
+                .education-content,
+                .education-painter-svg-content,
+                .education-wellant-svg-content
                 {
-                    width: 45%;
+                    @include flexbox();
+                    gap: 2.5rem;
+                    // padding: 2rem 4rem 0;
+                    // min-height: 200px !important;
+                    // height: 100%;
+                    min-height: 325px !important; // Is de minimale hoogte van MBO 2
+                    max-width: 100%;
 
-                    h4
-                    {
-                        font-size: 1.5rem;
-                        color: $blue;
-                        margin-bottom: 1.5rem;
-                    }
-
-                    .education-ul
+                    .education-excerpt
                     {
                         @include flexbox($direction: column);
                         gap: 1rem;
-                        list-style: none;
-                        
-                        li
-                        {
-                            p:not(.rijnland-properties-spec li p)
-                            {
-                                color: $blue;
-                                font-size: 1.25rem;
+                        width: 45%;
 
-                                &:nth-child(1)
+                        p
+                        {
+                            color: $blue;
+                            line-height: 1.5;
+                            font-size: 1.25rem;
+                        }
+                    }
+
+                    .separator 
+                    {
+                        width: 3px;
+                        align-self: stretch;
+                        background-color: rgba(158, 190, 255, 0.05);
+                    }
+
+                    .education-properties
+                    {
+                        width: 45%;
+
+                        h4
+                        {
+                            font-size: 1.5rem;
+                            color: $blue;
+                            margin-bottom: 1.5rem;
+                        }
+
+                        .education-ul
+                        {
+                            @include flexbox($direction: column);
+                            gap: 1rem;
+                            list-style: none;
+
+                            li
+                            {
+                                p:not(.rijnland-properties-spec li p)
                                 {
-                                    font-weight: bold;
+                                    color: $blue;
+                                    font-size: 1.25rem;
+
+                                    &:nth-child(1)
+                                    {
+                                        font-weight: bold;
+                                    }
+
+                                    &:nth-child(2)
+                                    {
+                                        font-style: italic;
+                                    }
                                 }
 
-                                &:nth-child(2)
+                                .completion-rating-container
                                 {
+                                    @include flexbox();
+                                    margin-top: .5rem;
+
+                                    .green-rate
+                                    {
+                                        background-color: $main-color;
+                                        background-image: linear-gradient(to bottom, color.adjust($main-color, $lightness: 10%), color.adjust($main-color, $lightness: -10%));
+                                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 #97f29733;
+                                        border-radius: 4px;
+                                    }
+
+                                    .rate:not(.green-rate)
+                                    {
+                                        background-color: rgba(158, 190, 255, 0.1);   
+                                    }
+
+                                    .rate
+                                    {
+                                        width: 60px;
+                                        height: 13px; 
+
+                                        &:first-child
+                                        {
+                                            clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+                                            border-top-left-radius: 10px;
+                                            border-bottom-left-radius: 10px;
+                                        }
+
+                                        &:nth-child(2),
+                                        &:nth-child(3),
+                                        &:nth-child(4)
+                                        {
+                                            clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
+                                        }
+
+                                        &:last-child
+                                        {
+                                            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+                                            border-top-right-radius: 10px;
+                                            border-bottom-right-radius: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .rijnland-properties-spec,
+                        .certificates-properties
+                        {
+                            list-style:square;
+
+                            margin-left: 1rem;
+
+                            li
+                            {
+                                p
+                                {
+                                    color: $blue;
+                                    font-size: 1.25rem;
                                     font-style: italic;
                                 }
-                            }
 
-                            .completion-rating-container
-                            {
-                                @include flexbox();
-                                margin-top: .5rem;
-
-                                .green-rate
+                                &::marker
                                 {
-                                    background-color: $main-color;
-                                    background-image: linear-gradient(to bottom, color.adjust($main-color, $lightness: 10%), color.adjust($main-color, $lightness: -10%));
-                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 #97f29733;
-                                    border-radius: 4px;
-                                }
-                                
-                                .rate:not(.green-rate)
-                                {
-                                    background-color: rgba(158, 190, 255, 0.1);   
-                                }
-
-                                .rate
-                                {
-                                    width: 60px;
-                                    height: 13px; 
-
-                                    &:first-child
-                                    {
-                                        clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
-                                        border-top-left-radius: 10px;
-                                        border-bottom-left-radius: 10px;
-                                    }
-
-                                    &:nth-child(2),
-                                    &:nth-child(3),
-                                    &:nth-child(4)
-                                    {
-                                        clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
-                                    }
-
-                                    &:last-child
-                                    {
-                                        clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
-                                        border-top-right-radius: 10px;
-                                        border-bottom-right-radius: 10px;
-                                    }
+                                    color: $main-color;
                                 }
                             }
                         }
-                    }
 
-                    .rijnland-properties-spec,
-                    .certificates-properties
-                    {
-                        list-style:square;
-                        
-                        margin-left: 1rem;
-
-                        li
+                        .certificates-properties
                         {
-                            p
-                            {
-                                color: $blue;
-                                font-size: 1.25rem;
-                                font-style: italic;
-                            }
-
-                            &::marker
-                            {
-                                color: $main-color;
-                            }
+                            @include flexbox($direction: column);
+                            gap: 1rem;
                         }
-                    }
-
-                    .certificates-properties
-                    {
-                        @include flexbox($direction: column);
-                        gap: 1rem;
                     }
                 }
-            }
             }
         }
 
@@ -867,7 +879,7 @@ main
         {
             #education-svg
             {
-                width: 95% !important; /* Moet op andere manier gemaakt worden   */
+                // width: 95% !important; /* Moet op andere manier gemaakt worden   */
             }
         }
     }
@@ -1230,7 +1242,8 @@ main
 
                 }
 
-                .education-content
+                .education-content,
+                .education-painter-svg-content
                 {
                     .education-certificates
                     {
@@ -1284,7 +1297,8 @@ main
                 }
             }
             
-            .education-content
+            .education-content,
+            .education-painter-svg-content
             {
                 @include flexbox();
                 gap: 5rem;
@@ -2659,7 +2673,8 @@ footer
                 }
             }
 
-            .education-content
+            .education-content,
+            .education-painter-svg-content
             {
                 flex-direction: column !important;
                 // padding: .5rem !important;

@@ -1,13 +1,16 @@
 import { CreateSVG } from "./SVGCreate.js";
 
+/**
+ * SVGFactory
+ * 
+ * Algemene factory class voor het creëren van SVG elementen binnen een container:
+ * - ondersteunt circle, path, rect, text, image, foreignObject, g
+ * - kan attributen en styles instellen
+ */
 export class SVGFactory<T extends Record<string, string | number> = Record<string, string | number>>
 {
-    // -- SVGElement: The SVG element created by this factory
     private SVGElement: SVGElement | null = null;
 
-    // -- parentSVG: The parent to which the created element will be appended
-    // -- SVGNSParam: The type of SVG element to create (e.g., "circle", "rect")
-    // -- options: Optional key:value pairs applied as attributes to the created element
     constructor(
         private parentSVG: CreateSVG | SVGElement | SVGFactory | null,
         private SVGNSParam: keyof SVGElementTagNameMap,
@@ -18,11 +21,13 @@ export class SVGFactory<T extends Record<string, string | number> = Record<strin
         this.options = options;
     }
 
-    // -- **Creates the specified SVG element**
-    // -- **Appends it to the resolved parent (CreateSVG, SVGFactory, or SVGElement)**
-    // -- **If creation fails or parent cannot be resolved, logs an error**
-    // --
-    // -- return: The created SVG element or null if creation/appending fails
+    // Produceert een nieuw SVG-element aan de hand van de opgegeven tagnaam en attributen.
+    // Wanneer het element nog niet eerder is aangemaakt, wordt het opgebouwd via CreateSVG.createSVGElement().
+    // Vervolgens wordt bepaald welke ouder gebruikt moet worden:
+    // - de root-SVG wanneer parentSVG een CreateSVG-instantie is,
+    // - het reeds gecreëerde element van een andere SVGFactory,
+    // - of een direct meegegeven SVGElement.
+    // Alleen wanneer er een geldig parent-element gevonden wordt, wordt het nieuwe SVG-element toegevoegd.
     public createSvgTag(): SVGElement | null
     {
         if (!this.SVGElement)
@@ -61,7 +66,6 @@ export class SVGFactory<T extends Record<string, string | number> = Record<strin
         return this.SVGElement;
     }
 
-    // -- **Getter for the created SVG element**
     public get getSVGElement(): SVGElement | null
     {
         return this.SVGElement as SVGElement | null;

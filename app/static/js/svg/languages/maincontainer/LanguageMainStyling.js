@@ -1,4 +1,4 @@
-import { SVGFactory } from "../../components/svg-core/SVGFactory.js";
+import { SVGFactory } from "../../components/core/SVGFactory.js";
 // export class LanguageMainStyling
 // {
 //     public static createGradient(container: CreateSVG): void 

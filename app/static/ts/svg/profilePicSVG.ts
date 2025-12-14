@@ -1,14 +1,12 @@
-import { CreateSVG } from "./components/svg-core/SVGCreate.js";
-import { SVGFactory } from "./components/svg-core/SVGFactory.js";
-
-import { CalcPathProperties } from "./components/svg-calculations/CalcPathProperties.js";
-import { CalcCircleProperties } from "./components/svg-calculations/CalcCircleProperties.js";
+import { CreateSVG } from "./components/core/SVGCreate.js";
+import { SVGFactory } from "./components/core/SVGFactory.js";
+import { CalcCircleProperties } from "./components/calculations/CalcCircleProperties.js";
 
 import { SVGCircleAttributes, SVGImageAttributes } from "../types/svg/attributes"
 
+// Controleer of het SVG-element aanwezig is in de DOM en maak het aan
 if (document.getElementById("profile-pic-svg"))
 {
-    // ROOT SVG ELEMENT <svg>
     var htmlSVGElement = new CreateSVG(
         "profile-pic-svg",
         {
@@ -17,14 +15,12 @@ if (document.getElementById("profile-pic-svg"))
         },
         true
     ); 
-}
+} 
 
-// Both THIN an BIG inner borders
-
+// Radianwaarden en omtrek van cirkels berekenen
 const radiusInner: number = 375;
 const circumferenceInnerBorder: number = CalcCircleProperties.calcCircleCircumference(radiusInner); 
 
-// Alle different radius for background blocks
 const radiusSmallest: number = 375
 const circumferenceSmallest: number = CalcCircleProperties.calcCircleCircumference(radiusSmallest);
 
@@ -38,13 +34,13 @@ const radiusLarge: number = 400
 const circumferenceLarge: number = CalcCircleProperties.calcCircleCircumference(radiusLarge);
 
 
+// Maak een clipPath aan voor de profielfoto
 function createClipPath(): void
 {
     const newClipPathElement = new SVGFactory(htmlSVGElement, "clipPath", 
     {
         id: "circle-inner"
     });
-
     newClipPathElement.createSvgTag();
 
     const newCircleInClipPath = new SVGFactory<SVGCircleAttributes>(newClipPathElement, "circle", 
@@ -53,10 +49,10 @@ function createClipPath(): void
         cy: 600,
         r: 300
     });
-
     newCircleInClipPath.createSvgTag();
 }
 
+// Dunne binnenrand van de profielfoto
 function createThinInnerBorder(): void
 {
     const thinInnerGroupFactory = new SVGFactory(htmlSVGElement, "g",
@@ -66,6 +62,7 @@ function createThinInnerBorder(): void
 
     const thinInnerGroup = thinInnerGroupFactory.createSvgTag();
 
+    // Eerste cirkel
     const firstCircleBlockFactory = new SVGFactory<SVGCircleAttributes>(thinInnerGroup, "circle", 
     {
         class: "thin-line-first",
@@ -77,9 +74,9 @@ function createThinInnerBorder(): void
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(600, circumferenceInnerBorder),
     });
-
     firstCircleBlockFactory.createSvgTag();
 
+    // Tweede cirkel met dashoffset
     const secondCircleBlockFactory = new SVGFactory<SVGCircleAttributes>(thinInnerGroup, "circle",
     {
         class: "thin-line-second",
@@ -92,9 +89,9 @@ function createThinInnerBorder(): void
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(300, circumferenceInnerBorder),
         "stroke-dashoffset": 600,
     });
-
     secondCircleBlockFactory.createSvgTag();
 
+    // Derde cirkel met dashoffset
     const thirdCircleBlock = new SVGFactory<SVGCircleAttributes>(thinInnerGroup, "circle",
     {
         class: "thin-line-third",
@@ -107,18 +104,16 @@ function createThinInnerBorder(): void
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(600, circumferenceInnerBorder),
         "stroke-dashoffset": 1500,
     });
-
     thirdCircleBlock.createSvgTag();
 }
 
-
+// Dikke binnenrand van de profielfoto
 function createBigInnerBorder(): void
 {
     const bigInnerGroupFactory = new SVGFactory(htmlSVGElement, "g",
     {
         class: "big-inner-border-group"
     });
-
     const bigInnerGroup = bigInnerGroupFactory.createSvgTag();
 
     const firstCircleBlock = new SVGFactory<SVGCircleAttributes>(bigInnerGroup, "circle",
@@ -132,7 +127,6 @@ function createBigInnerBorder(): void
         fill: "none",
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(600, circumferenceInnerBorder),
     });
-
     firstCircleBlock.createSvgTag();
 
     const secondCircleBlock = new SVGFactory<SVGCircleAttributes>(bigInnerGroup, "circle",
@@ -147,305 +141,60 @@ function createBigInnerBorder(): void
         "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(200, circumferenceInnerBorder),
         "stroke-dashoffset": 750
     });
-
     secondCircleBlock.createSvgTag();
 }
 
+// Achtergrondcirkels rond de profielfoto
 function createBackgroundBlocks(): void
 {
     const backgroundGroupFactory = new SVGFactory(htmlSVGElement, "g", 
     {
         class: "background-group"
     });
-
     const backgroundGroup = backgroundGroupFactory.createSvgTag();
 
-    const firstCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
+    // Herhaalde achtergrondcirkels met verschillende stroke-width, radius en dashoffset
+    const circleConfigs = [
+        { r: radiusSmallest, width: 140, dash: 100, offset: 0, class: "background-first bg-child" },
+        { r: radiusSmall, width: 360, dash: 120, offset: 135, class: "background-second bg-child" },
+        { r: radiusMedium, width: 120, dash: 120, offset: 270, class: "background-third bg-child" },
+        { r: radiusMedium, width: 220, dash: 120, offset: 400, class: "background-fourth bg-child" },
+        { r: radiusLarge, width: 80, dash: 120, offset: 535, class: "background-fifth bg-child" },
+        { r: radiusLarge, width: 270, dash: 120, offset: 665, class: "background-sixth bg-child" },
+        { r: radiusLarge, width: 120, dash: 120, offset: 795, class: "background-seventh bg-child" },
+        { r: radiusLarge, width: 60, dash: 120, offset: 925, class: "background-eigth bg-child" },
+        { r: radiusSmallest, width: 400, dash: 120, offset: 1000, class: "background-ninth bg-child" },
+        { r: radiusMedium, width: 60, dash: 80, offset: 1145, class: "background-tenth bg-child" },
+        { r: radiusLarge, width: 400, dash: 100, offset: 1270, class: "background-eleventh bg-child" },
+        { r: radiusLarge, width: 180, dash: 100, offset: 1380, class: "background-twelfth bg-child" },
+        { r: radiusLarge, width: 80, dash: 120, offset: 1510, class: "background-thirtheenth bg-child" },
+        { r: radiusLarge, width: 380, dash: 120, offset: 1640, class: "background-fourteenth bg-child" },
+        { r: radiusLarge, width: 60, dash: 140, offset: 1790, class: "background-fifteenth bg-child" },
+        { r: radiusLarge, width: 120, dash: 140, offset: 1940, class: "background-sixteenth bg-child" },
+        { r: radiusLarge, width: 350, dash: 140, offset: 2090, class: "background-seventeenth bg-child" },
+        { r: radiusLarge, width: 80, dash: 140, offset: 2240, class: "background-eigthteenth bg-child" },
+        { r: radiusLarge, width: 60, dash: 140, offset: 2395, class: "background-nineteenth bg-child" }
+    ];
+
+    for (const cfg of circleConfigs)
     {
-        class: "background-first bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusSmallest,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "140",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(100, circumferenceSmallest),
-    });
-
-    firstCircleBlock.createSvgTag();
-
-    const secondCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-second bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusSmall,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "360",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceSmall),
-        "stroke-dashoffset": 135
-    }); 
-
-    secondCircleBlock.createSvgTag();
-
-
-    const thirdCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-third bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusMedium,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "120",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceMedium),
-        "stroke-dashoffset": 270
-    }); 
-
-    thirdCircleBlock.createSvgTag();
-
-    const fourthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-fourth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusMedium,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "220",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceMedium),
-        "stroke-dashoffset": 400
-    }); 
-
-    fourthCircleBlock.createSvgTag();
-
-    const fifthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-fifth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "80",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
-        "stroke-dashoffset": 535
-    }); 
-
-    fifthCircleBlock.createSvgTag();
-
-    const sixthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-sixth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "270",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
-        "stroke-dashoffset": 665
-    }); 
-
-    sixthCircleBlock.createSvgTag();
-
-    const seventhCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-seventh bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "120",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
-        "stroke-dashoffset": 795
-    }); 
-
-    seventhCircleBlock.createSvgTag();
-
-    const eigthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-eigth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "60",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
-        "stroke-dashoffset": 925
-    }); 
-
-    eigthCircleBlock.createSvgTag();
-
-    const ninthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-ninth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusSmallest,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "400",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceSmallest),
-        "stroke-dashoffset": 1000
-    }); 
-
-    ninthCircleBlock.createSvgTag();
-
-    const tenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-tenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusMedium,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "60",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(80, circumferenceMedium),
-        "stroke-dashoffset": 1145
-    }); 
-
-    tenthCircleBlock.createSvgTag();
-
-    const eleventhCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-eleventh bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "400",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(100, circumferenceLarge),
-        "stroke-dashoffset": 1270
-    }); 
-
-    eleventhCircleBlock.createSvgTag();
-
-    const twelfthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-twelfth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "180",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(100, circumferenceLarge),
-        "stroke-dashoffset": 1380
-    }); 
-
-    twelfthCircleBlock.createSvgTag();
-
-    const thirtheenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-thirtheenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "80",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
-        "stroke-dashoffset": 1510
-    }); 
-
-    thirtheenthCircleBlock.createSvgTag();
-
-    const fourteenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-fourteenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "380",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(120, circumferenceLarge),
-        "stroke-dashoffset": 1640
-    }); 
-
-    fourteenthCircleBlock.createSvgTag();
-
-    const fifteenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-fifteenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "60",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(140, circumferenceLarge),
-        "stroke-dashoffset": 1790
-    }); 
-
-    fifteenthCircleBlock.createSvgTag();
-
-    const sixteenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-sixteenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "120",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(140, circumferenceLarge),
-        "stroke-dashoffset": 1940
-    }); 
-
-    sixteenthCircleBlock.createSvgTag();
-
-    const seventeenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-seventeenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "350",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(140, circumferenceLarge),
-        "stroke-dashoffset": 2090
-    }); 
-
-    seventeenthCircleBlock.createSvgTag();
-
-    const eigthteenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-eigthteenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "80",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(140, circumferenceLarge),
-        "stroke-dashoffset": 2240
-    }); 
-
-    eigthteenthCircleBlock.createSvgTag();
-
-    const nineteenthCircleBlock = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
-    {
-        class: "background-nineteenth bg-child",
-        cx: "600",
-        cy: "600",
-        r: radiusLarge,
-        stroke: "rgba(46, 204, 113, 0.1)",
-        "stroke-width": "60",
-        fill: "none",
-        "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(140, circumferenceLarge),
-        "stroke-dashoffset": 2395
-    }); 
-
-    nineteenthCircleBlock.createSvgTag();
+        const circle = new SVGFactory<SVGCircleAttributes>(backgroundGroup, "circle", 
+        {
+            class: cfg.class,
+            cx: "600",
+            cy: "600",
+            r: cfg.r,
+            stroke: "rgba(46, 204, 113, 0.1)",
+            "stroke-width": cfg.width,
+            fill: "none",
+            "stroke-dasharray": CalcCircleProperties.calcStrokeDasharray(cfg.dash, CalcCircleProperties.calcCircleCircumference(cfg.r)),
+            "stroke-dashoffset": cfg.offset
+        });
+        circle.createSvgTag();
+    }
 }
 
+// Voeg afbeelding toe binnen clipPath
 function imageElement(): void
 {
     const image = new SVGFactory<SVGImageAttributes>(htmlSVGElement, "image",
@@ -459,10 +208,10 @@ function imageElement(): void
         "clip-path": "url(#circle-inner)",
         preserveAspectRatio: "xMidYMid slice"
     });
-
     image.createSvgTag();
 }
 
+// Initialiseer en maak alle SVG-elementen
 export function callAllInstances(): void
 {
     createClipPath();
@@ -470,5 +219,4 @@ export function callAllInstances(): void
     createBigInnerBorder();
     createBackgroundBlocks();
     imageElement();
-    // console.log("Wordt geladen");
 }

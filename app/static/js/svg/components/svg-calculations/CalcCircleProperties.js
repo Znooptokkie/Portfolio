@@ -5,7 +5,6 @@ export class CalcCircleProperties {
     }
     static calcStrokeDasharray(dasharrayElement, circumference) {
         const availableRoom = (circumference - dasharrayElement);
-        // console.log(`${dasharrayElement} ${availableRoom}`);
         return `${dasharrayElement} ${availableRoom}`;
     }
     static calcRadiusDifferenceAndWidth(strokeWidth, basicRadius) {

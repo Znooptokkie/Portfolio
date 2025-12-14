@@ -819,7 +819,15 @@ main .timeline-section .timeline .timeline-line-segment {
   left: 0;
   transform: translateX(-1.5px);
 }
+main #education-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
 main #education-section .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   position: relative;
 }
 main #education-section .wrapper .education-article-context {
@@ -827,15 +835,20 @@ main #education-section .wrapper .education-article-context {
   top: 140px;
   left: 60px;
 }
-main #education-section .wrapper .education-article-context .education-content {
+main #education-section .wrapper .education-article-context .education-content,
+main #education-section .wrapper .education-article-context .education-painter-svg-content,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
   gap: 2.5rem;
-  min-height: 200px !important;
+  min-height: 325px !important;
+  max-width: 100%;
 }
-main #education-section .wrapper .education-article-context .education-content .education-excerpt {
+main #education-section .wrapper .education-article-context .education-content .education-excerpt,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-excerpt,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-excerpt {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -843,25 +856,35 @@ main #education-section .wrapper .education-article-context .education-content .
   gap: 1rem;
   width: 45%;
 }
-main #education-section .wrapper .education-article-context .education-content .education-excerpt p {
+main #education-section .wrapper .education-article-context .education-content .education-excerpt p,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-excerpt p,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-excerpt p {
   color: rgb(51, 81, 142);
   line-height: 1.5;
   font-size: 1.25rem;
 }
-main #education-section .wrapper .education-article-context .education-content .separator {
+main #education-section .wrapper .education-article-context .education-content .separator,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .separator,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .separator {
   width: 3px;
   align-self: stretch;
   background-color: rgba(158, 190, 255, 0.05);
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties {
+main #education-section .wrapper .education-article-context .education-content .education-properties,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties {
   width: 45%;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties h4 {
+main #education-section .wrapper .education-article-context .education-content .education-properties h4,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties h4,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties h4 {
   font-size: 1.5rem;
   color: rgb(51, 81, 142);
   margin-bottom: 1.5rem;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -869,73 +892,108 @@ main #education-section .wrapper .education-article-context .education-content .
   gap: 1rem;
   list-style: none;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p) {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p) {
   color: rgb(51, 81, 142);
   font-size: 1.25rem;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1) {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1) {
   font-weight: bold;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2) {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2) {
   font-style: italic;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
   margin-top: 0.5rem;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .green-rate {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .green-rate,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .green-rate,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .green-rate {
   background-color: #2ecc71;
   background-image: linear-gradient(to bottom, rgb(84.456, 216.544, 140.468), rgb(36.616, 162.384, 89.948));
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(151, 242, 151, 0.2);
   border-radius: 4px;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate) {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate) {
   background-color: rgba(158, 190, 255, 0.1);
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate {
   width: 60px;
   height: 13px;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:first-child {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:first-child,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:first-child,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate:first-child {
   clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2), main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3), main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4) {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2), main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3), main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3),
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3),
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4) {
   clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:last-child {
+main #education-section .wrapper .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:last-child,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:last-child,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .education-ul li .completion-rating-container .rate:last-child {
   clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 main #education-section .wrapper .education-article-context .education-content .education-properties .rijnland-properties-spec,
-main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties {
+main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .certificates-properties,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .rijnland-properties-spec,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .certificates-properties {
   list-style: square;
   margin-left: 1rem;
 }
 main #education-section .wrapper .education-article-context .education-content .education-properties .rijnland-properties-spec li p,
-main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties li p {
+main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties li p,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec li p,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .certificates-properties li p,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .rijnland-properties-spec li p,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .certificates-properties li p {
   color: rgb(51, 81, 142);
   font-size: 1.25rem;
   font-style: italic;
 }
 main #education-section .wrapper .education-article-context .education-content .education-properties .rijnland-properties-spec li::marker,
-main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties li::marker {
+main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties li::marker,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec li::marker,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .certificates-properties li::marker,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .rijnland-properties-spec li::marker,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .certificates-properties li::marker {
   color: #2ecc71;
 }
-main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties {
+main #education-section .wrapper .education-article-context .education-content .education-properties .certificates-properties,
+main #education-section .wrapper .education-article-context .education-painter-svg-content .education-properties .certificates-properties,
+main #education-section .wrapper .education-article-context .education-wellant-svg-content .education-properties .certificates-properties {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   gap: 1rem;
-}
-main #education-section .swd-wrapper #education-svg {
-  width: 95% !important; /* Moet op andere manier gemaakt worden   */
 }
 main .projects-featured-section {
   position: relative;
@@ -1194,7 +1252,9 @@ main .education-certifcates-section .education-certificates-articles {
   gap: 5rem;
 }
 main .education-school-section .education-certificates-articles .education-article-context .education-content .education-certificates p,
-main .education-certifcates-section .education-certificates-articles .education-article-context .education-content .education-certificates p {
+main .education-school-section .education-certificates-articles .education-article-context .education-painter-svg-content .education-certificates p,
+main .education-certifcates-section .education-certificates-articles .education-article-context .education-content .education-certificates p,
+main .education-certifcates-section .education-certificates-articles .education-article-context .education-painter-svg-content .education-certificates p {
   color: rgba(10, 37, 92, 0.5);
   line-height: 1.5;
   font-size: 1.25rem;
@@ -1246,7 +1306,9 @@ main .education-certifcates-section .education-article-context .education-title 
   color: rgb(51, 81, 142);
 }
 main .education-school-section .education-article-context .education-content,
-main .education-certifcates-section .education-article-context .education-content {
+main .education-school-section .education-article-context .education-painter-svg-content,
+main .education-certifcates-section .education-article-context .education-content,
+main .education-certifcates-section .education-article-context .education-painter-svg-content {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1254,7 +1316,9 @@ main .education-certifcates-section .education-article-context .education-conten
   gap: 5rem;
 }
 main .education-school-section .education-article-context .education-content .education-excerpt,
-main .education-certifcates-section .education-article-context .education-content .education-excerpt {
+main .education-school-section .education-article-context .education-painter-svg-content .education-excerpt,
+main .education-certifcates-section .education-article-context .education-content .education-excerpt,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-excerpt {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1263,29 +1327,39 @@ main .education-certifcates-section .education-article-context .education-conten
   width: 45%;
 }
 main .education-school-section .education-article-context .education-content .education-excerpt p,
-main .education-certifcates-section .education-article-context .education-content .education-excerpt p {
+main .education-school-section .education-article-context .education-painter-svg-content .education-excerpt p,
+main .education-certifcates-section .education-article-context .education-content .education-excerpt p,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-excerpt p {
   color: rgb(51, 81, 142);
   line-height: 1.5;
   font-size: 1.25rem;
 }
 main .education-school-section .education-article-context .education-content .separator,
-main .education-certifcates-section .education-article-context .education-content .separator {
+main .education-school-section .education-article-context .education-painter-svg-content .separator,
+main .education-certifcates-section .education-article-context .education-content .separator,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .separator {
   width: 3px;
   align-self: stretch;
   background-color: rgba(158, 190, 255, 0.05);
 }
 main .education-school-section .education-article-context .education-content .education-properties,
-main .education-certifcates-section .education-article-context .education-content .education-properties {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties,
+main .education-certifcates-section .education-article-context .education-content .education-properties,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties {
   width: 45%;
 }
 main .education-school-section .education-article-context .education-content .education-properties h4,
-main .education-certifcates-section .education-article-context .education-content .education-properties h4 {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties h4,
+main .education-certifcates-section .education-article-context .education-content .education-properties h4,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties h4 {
   font-size: 1.5rem;
   color: rgb(51, 81, 142);
   margin-bottom: 1.5rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul,
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul,
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1294,20 +1368,28 @@ main .education-certifcates-section .education-article-context .education-conten
   list-style: none;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p),
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p) {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p),
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p) {
   color: rgb(51, 81, 142);
   font-size: 1.25rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1),
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1) {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1),
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(1) {
   font-weight: bold;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2),
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2) {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2),
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li p:not(.rijnland-properties-spec li p):nth-child(2) {
   font-style: italic;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container,
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container,
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1315,62 +1397,92 @@ main .education-certifcates-section .education-article-context .education-conten
   margin-top: 0.5rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .green-rate,
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .green-rate {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .green-rate,
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .green-rate,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .green-rate {
   background-color: #2ecc71;
   background-image: linear-gradient(to bottom, rgb(84.456, 216.544, 140.468), rgb(36.616, 162.384, 89.948));
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(151, 242, 151, 0.2);
   border-radius: 4px;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate),
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate) {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate),
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:not(.green-rate) {
   background-color: rgba(158, 190, 255, 0.1);
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate,
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate,
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate {
   width: 60px;
   height: 13px;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:first-child,
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:first-child {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:first-child,
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:first-child,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:first-child {
   clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2), main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3), main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4),
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2),
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3),
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4),
 main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2),
 main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3),
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4) {
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(2),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(3),
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:nth-child(4) {
   clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
 }
 main .education-school-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:last-child,
-main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:last-child {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:last-child,
+main .education-certifcates-section .education-article-context .education-content .education-properties .education-ul li .completion-rating-container .rate:last-child,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .education-ul li .completion-rating-container .rate:last-child {
   clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 main .education-school-section .education-article-context .education-content .education-properties .rijnland-properties-spec,
 main .education-school-section .education-article-context .education-content .education-properties .certificates-properties,
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec,
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties,
 main .education-certifcates-section .education-article-context .education-content .education-properties .rijnland-properties-spec,
-main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties {
+main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties {
   list-style: square;
   margin-left: 1rem;
 }
 main .education-school-section .education-article-context .education-content .education-properties .rijnland-properties-spec li p,
 main .education-school-section .education-article-context .education-content .education-properties .certificates-properties li p,
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec li p,
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties li p,
 main .education-certifcates-section .education-article-context .education-content .education-properties .rijnland-properties-spec li p,
-main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties li p {
+main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties li p,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec li p,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties li p {
   color: rgb(51, 81, 142);
   font-size: 1.25rem;
   font-style: italic;
 }
 main .education-school-section .education-article-context .education-content .education-properties .rijnland-properties-spec li::marker,
 main .education-school-section .education-article-context .education-content .education-properties .certificates-properties li::marker,
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec li::marker,
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties li::marker,
 main .education-certifcates-section .education-article-context .education-content .education-properties .rijnland-properties-spec li::marker,
-main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties li::marker {
+main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties li::marker,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .rijnland-properties-spec li::marker,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties li::marker {
   color: #2ecc71;
 }
 main .education-school-section .education-article-context .education-content .education-properties .certificates-properties,
-main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties {
+main .education-school-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties,
+main .education-certifcates-section .education-article-context .education-content .education-properties .certificates-properties,
+main .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties .certificates-properties {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -2195,20 +2307,28 @@ footer .footer-second-div .footer-svg a:hover {
     font-size: 1.5rem !important;
   }
   .education-certifcates-section .education-article-context .education-content,
-  .education-school-section .education-article-context .education-content {
+  .education-certifcates-section .education-article-context .education-painter-svg-content,
+  .education-school-section .education-article-context .education-content,
+  .education-school-section .education-article-context .education-painter-svg-content {
     flex-direction: column !important;
     gap: 1rem !important;
   }
   .education-certifcates-section .education-article-context .education-content .education-excerpt,
-  .education-school-section .education-article-context .education-content .education-excerpt {
+  .education-certifcates-section .education-article-context .education-painter-svg-content .education-excerpt,
+  .education-school-section .education-article-context .education-content .education-excerpt,
+  .education-school-section .education-article-context .education-painter-svg-content .education-excerpt {
     width: 100% !important;
   }
   .education-certifcates-section .education-article-context .education-content .separator,
-  .education-school-section .education-article-context .education-content .separator {
+  .education-certifcates-section .education-article-context .education-painter-svg-content .separator,
+  .education-school-section .education-article-context .education-content .separator,
+  .education-school-section .education-article-context .education-painter-svg-content .separator {
     display: none;
   }
   .education-certifcates-section .education-article-context .education-content .education-properties,
-  .education-school-section .education-article-context .education-content .education-properties {
+  .education-certifcates-section .education-article-context .education-painter-svg-content .education-properties,
+  .education-school-section .education-article-context .education-content .education-properties,
+  .education-school-section .education-article-context .education-painter-svg-content .education-properties {
     width: 100% !important;
   }
   footer {

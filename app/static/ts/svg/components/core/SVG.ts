@@ -1,22 +1,29 @@
+/**
+ * SVG
+ * 
+ * Basisclass voor het beheren van SVG-elementen in de DOM.
+ * Behandelt:
+ * - de SVG namespace
+ * - het ophalen van SVG-elementen via een HTML-ID
+ * - het instellen van attributen zoals width, height, viewBox
+ * - optioneel toepassen van standaard styling op het SVG-element
+ * - het teruggeven van interne SVG-ID en attributen voor gebruik in subklassen
+ */
 export class SVG
 {
-    // -- SVG_NS: The namespace URL required to create SVG elements in the DOM
+    // Namespace vereist voor het genereren en manipuleren van SVG-elementen
     private static readonly SVG_NS: string = "http://www.w3.org/2000/svg";
 
-    // -- SVGHTMLID: The ID of the <svg> HTML element to manipulate
+    // ID van het doel-SVG-element in de HTML
     private SVGHTMLID: string;
 
-    // -- SVGAttributes: Key:value pairs of attributes to apply to the SVG element
+    // Attributen die op het SVG-element worden toegepast (bijv. width, height, viewBox)
     private SVGAttributes: Record<string, string | number> = {};
 
-    // -- SVGIsDefaultStyling: Determines if default responsive styling is applied (width: 100%, height: auto)
+    // Geeft aan of standaard styling toegepast moet worden
     public SVGIsDefaultStyling: boolean = true;
 
-    // -- SVGHTMLID: The ID of the <svg> element
-    // -- SVGAttributes: Optional attributes applied to the SVG element
-    // -- SVGDefaultStyling: Enables responsive styling by default
-    // --
-    // -- **Initializes the SVG instance with ID, attributes, and default styling**
+    // Initialiseert een SVG-instantie met een HTML-ID, attributen en standaard styling-instellingen
     constructor(
         SVGHTMLID: string, 
         SVGAttributes: Record<string, string | number>,
@@ -28,25 +35,19 @@ export class SVG
         this.SVGIsDefaultStyling = SVGDefaultStyling;
     }
     
-    // -- **Returns the SVG namespace URL**
+    // Geeft de SVG-namespace terug voor intern gebruik bij elementcreatie
     protected static getSVG_NS(): string
     {
         return this.SVG_NS;
     }
 
-    // -- SVGHTMLID: The new ID to assign to this SVG instance
-    // --
-    // -- **Updates the stored ID of the SVG element**
+    // Stelt de HTML-ID opnieuw in voor dynamische aanpassingen
     protected setSVGHTMLID(SVGHTMLID: string): void
     { 
         this.SVGHTMLID = SVGHTMLID;
     }
 
-    // -- **Retrieves the SVG element from the DOM using the stored ID**
-    // -- **Applies all attributes stored in SVGAttributes**
-    // -- **Optionally applies default responsive styling if SVGIsDefaultStyling is true**
-    // --
-    // -- return: The SVG element or null if not found or not an SVG element
+    // Haalt het SVG-element op uit de DOM, valideert het type en past attributen en styling toe
     protected getSVGHTMLIDElement(): SVGSVGElement | null
     {
         const HTMLElement = document.getElementById(this.SVGHTMLID);
@@ -62,26 +63,21 @@ export class SVG
             return null;
         }
 
+        // Pas alle gedefinieerde attributen toe op het SVG-element
         if (this.SVGAttributes)
         {
             for (const [key, value] of Object.entries(this.SVGAttributes))
-            {
-                HTMLElement?.setAttribute(key, String(value));
-            }
+                HTMLElement.setAttribute(key, String(value));
         }
 
+        // Indien standaard styling gewenst is, toepassen op het SVG-element
         if (this.SVGIsDefaultStyling && HTMLElement)
             this.addDefaultStyling(HTMLElement);
             
         return HTMLElement;
     }
 
-    // -- HTMLElement: The HTML element to style
-    // --
-    // -- **Applies default responsive styling to the SVG element**
-    // -- **Sets width: 100%, height: auto, and display: block**
-    // --
-    // -- return: The styled HTML element
+    // Toepassen van basis styling: SVG vult de breedte van de container en schaalt automatisch
     private addDefaultStyling(HTMLElement: HTMLElement): HTMLElement | null
     {   
         HTMLElement.style.width = "100%";
@@ -91,13 +87,13 @@ export class SVG
         return HTMLElement;
     }
 
-    // -- **Getter for the SVG element ID**
+    // Geeft de interne SVG-ID terug voor externe klassen
     protected get getSVGID(): string 
     {
         return this.SVGHTMLID;
     }
 
-    // -- **Getter for the SVG element attributes**
+    // Geeft de interne attributen terug zoals ingesteld in de constructor
     protected get getSVGAttributes(): Record<string, string | number>
     {
         return this.SVGAttributes;

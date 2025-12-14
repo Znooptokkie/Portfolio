@@ -1,7 +1,19 @@
-import { CalcPathProperties } from "./CalcPathProperties.js"
+import { DeconstructPath } from "./DeconstructPath.js"
 
-export class CalcPathFigures
+/**
+ * CalcPathFigures
+ * 
+ * Bevat methoden voor geometrische berekeningen voor SVG paths en shapes:
+ * - berekening van offsets
+ * - het bepalen van punten en afstanden
+ */
+export class PathFigures
 {
+    // Vormt uit twee paden (inner en outer) afzonderlijke vierhoeken door
+    // telkens de huidige en volgende punten van beide paden te combineren.
+    // Elk vierhoek bestaat uit: currentOuter → currentInner → nextInner → nextOuter.
+    // De vierhoeken worden sequentieel opgebouwd en opgeslagen in een Map,
+    // waarna alle waardes worden teruggegeven als geneste array van puntobjecten.
     public static createFigures(innerPath: string, outerPath: string): Array<Array<{ x: number, y:  number }>> | null
     {
             const firgurePositions = new Map()
@@ -9,8 +21,8 @@ export class CalcPathFigures
             if (!innerPath)
                 return null
             
-            const outerPathValues = CalcPathProperties.getPathParts(outerPath)
-            const innerPathValues = CalcPathProperties.getPathParts(innerPath)
+            const outerPathValues = DeconstructPath.getPathParts(outerPath)
+            const innerPathValues = DeconstructPath.getPathParts(innerPath)
             
             let counter = 1
             
@@ -47,7 +59,7 @@ export class CalcPathFigures
 
         for (const figures of eachPathPositionArray)
         {
-            const getFigureStringPath = CalcPathProperties.createNewSVGPathString(figures)
+            const getFigureStringPath = DeconstructPath.createNewSVGPathString(figures)
             createArrayWithPathFigures.push(getFigureStringPath)
         }
 

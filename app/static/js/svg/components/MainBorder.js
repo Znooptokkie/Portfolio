@@ -1,5 +1,5 @@
-import { CreateSVG } from "../../components/core/SVGCreate.js";
-import { SVGFactory } from "../../components/core/SVGFactory.js";
+import { CreateSVG } from "../components/core/SVGCreate.js";
+import { SVGFactory } from "../components/core/SVGFactory.js";
 /**
  * MainBorder
  *

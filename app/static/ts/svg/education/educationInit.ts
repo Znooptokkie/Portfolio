@@ -1,78 +1,134 @@
-import { CalcPathProperties } from "../components/svg-calculations/CalcPathProperties.js";
-import { SVGFactory } from "../components/svg-core/SVGFactory.js";
-import { MainBorder } from "../languages/maincontainer/MainBorder.js";
+import { SVGFactory } from "../components/core/SVGFactory.js";
+import { InitPath } from "../components/InitPath.js"
 
-const educationContainerPath = "M25,0 L975,0 L1000,25 L1000,575 L975,600 L25,600 L0,575 L0,25 L25,0"
+// Basis paden en padding voor alle education SVGs
+const MAIN_PATH = "M25,0 L975,0 L1000,25 L1000,575 L975,600 L25,600 L0,575 L0,25 L25,0"
+const INNER_CONTENT_PATH = "M27,100 L973,100 L973,565 L963,575 L37,575 L27,565 L27,100"
+const BORDER_OUTER_PADDING = 3
 
-const viewboxWidth = 1000
-const viewboxHeight = 600
+import { CreateEducation } from "../education/CreateEducation.js"
 
-const HARDCODED_OUTER_PADDING = 3
-const HARDCODED_INNER_PADDING = 2
-
-// Nieuwe inner path voor de main container (outer border)
-const mainPathToString = CalcPathProperties.init(educationContainerPath, HARDCODED_OUTER_PADDING)
-
-let educationContainer: MainBorder | null = null
-
-const educationSVGElement = document.getElementById("education-svg")
-
-if (educationSVGElement)
+// Creëert de SVG voor Software Developer opleiding
+function createSWD(): void
 {
-    educationContainer = new MainBorder(
-        "education-svg",
-        {
-            viewBox: `0 0 ${viewboxWidth} ${viewboxHeight}`,
-            preserveAspectRatio: "xMidYMid meet"
-        },
-        true,
-        "eduaction",
-        educationContainerPath
-    )
+    const SWDInstance = new CreateEducation("education-svg", "education-content")
+
+    // Bouw offset path voor buitenrand
+    const SWDOffsetPath = SWDInstance.buildOffsetPath(MAIN_PATH, BORDER_OUTER_PADDING)
+
+    // Pas Y-waarden aan voor buitenpad
+    SWDInstance.newOuterPath = SWDInstance.changeValueY(MAIN_PATH)
+    SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath)
+
+    // Bereken nieuwe totale viewBox hoogte
+    SWDInstance.calcNewTotalViewboxHeight()
+    const SWDContainer = SWDInstance.createContainer()
+    SWDContainer?.init()
+
+    // Pas inner pad en offset aan
+    SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH)
+    SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset()
+
+    // Voeg titel toe
+    const SWDTitleTEST = new SVGFactory(SWDContainer, "text", {
+        x: 50,
+        y: 60,
+        "font-size": 24,
+        fill: "rgba(51, 81, 142, 1)",
+    }).createSvgTag()
+    SWDTitleTEST!.textContent = "MBO 4 | Software Developer"
+    SWDTitleTEST!.style.fontWeight = "bold"
+
+    // Voeg subtitel toe
+    const SWDSubtitleTEST = new SVGFactory(SWDContainer, "text", {
+        x: 800,
+        y: 60,
+        "font-size": 24,
+        fill: "rgba(51, 81, 142, 1)",
+    }).createSvgTag()
+    SWDSubtitleTEST!.textContent = "2022 - 2025"
+
+    // Bouw buiten- en binnenranden
+    InitPath.createBorderParts(SWDContainer!, SWDInstance.newOuterPath!, SWDInstance.newOuterOffsetPath!, "education")
+    InitPath.createBorderParts(SWDContainer!, SWDInstance.newInnerPath!, SWDInstance.newInnerOffsetPath!, "education")
 }
 
-// FIX!: Door de strokewidth is de border neit goed zichtbaar ana de onderkantm dus er moet ene manier komen om dat op te lossen. Zet de x-as op 799 en het is opgelost, maar dit is niet de juiste manier!
-const eduactionInnerContainerPath = "M27,100 L973,100 L973,565 L963,575 L37,575 L27,565 L27,100"
+// Creëert de SVG voor Schilder opleiding
+function createPainter(): void
+{
+    const SWDInstance = new CreateEducation("education-painter-svg", "education-painter-svg-content")
 
-// FIX!: Om een of andere reden wordt van de top beide zijkanten niet goed berkend
-// 
-// --- Moet eigenlijk zelfde als bovenstaande
-//
-// --- Gaat fout in method CalcPathProperties.buildInnerPath()
-const newPath = CalcPathProperties.getEachSide(eduactionInnerContainerPath)
-const createInnerPAth =  CalcPathProperties.buildInnerPath(newPath!, HARDCODED_INNER_PADDING)
-createInnerPAth.innerTop[0].x = createInnerPAth.innerTop[0].x + HARDCODED_INNER_PADDING
-createInnerPAth.innerTop[1].x = createInnerPAth.innerTop[1].x - HARDCODED_INNER_PADDING
-const mergedArray = CalcPathProperties.mergePathArray(createInnerPAth)
-const pathToString = CalcPathProperties.createNewSVGPathString(mergedArray)
+    const SWDOffsetPath = SWDInstance.buildOffsetPath(MAIN_PATH, BORDER_OUTER_PADDING)
+    SWDInstance.newOuterPath = SWDInstance.changeValueY(MAIN_PATH)
+    SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath)
+    SWDInstance.calcNewTotalViewboxHeight()
+    const SWDContainer = SWDInstance.createContainer()
+    SWDContainer?.init()
 
-const educationInnerPAth = new SVGFactory(
-    educationContainer,
-    "path",
-    {
-        d: eduactionInnerContainerPath,
-        fill: "none",
-        stroke: "rgba(51, 81, 142, 0.25)",
-        "stroke-width": 1
-    }
-).createSvgTag()
+    SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH)
+    SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset()
 
+    const SWDTitleTEST = new SVGFactory(SWDContainer, "text", {
+        x: 50,
+        y: 60,
+        "font-size": 24,
+        fill: "rgba(51, 81, 142, 1)",
+    }).createSvgTag()
+    SWDTitleTEST!.textContent = "MBO 2 | Assistent Schilder"
+    SWDTitleTEST!.style.fontWeight = "bold"
 
-const drawNewInnerPAth = new SVGFactory(educationContainer, "path", {
-    // d: hardcodedInnerPath,
-    d: pathToString,
-    fill: "rgba(51, 81, 142, 0.0)",
-    stroke: "rgba(51, 81, 142, 0.25)",
-    "stroke-width": 1
-}).createSvgTag()
+    const SWDSubtitleTEST = new SVGFactory(SWDContainer, "text", {
+        x: 800,
+        y: 60,
+        "font-size": 24,
+        fill: "rgba(51, 81, 142, 1)",
+    }).createSvgTag()
+    SWDSubtitleTEST!.textContent = "2014 - 2016"
 
+    InitPath.createBorderParts(SWDContainer!, SWDInstance.newOuterPath!, SWDInstance.newOuterOffsetPath!, "education")
+    InitPath.createBorderParts(SWDContainer!, SWDInstance.newInnerPath!, SWDInstance.newInnerOffsetPath!, "education")
+}
+
+// Creëert de SVG voor Wellant opleiding
+function createWellant(): void
+{
+    const SWDInstance = new CreateEducation("education-wellant-svg", "education-wellant-svg-content")
+
+    const SWDOffsetPath = SWDInstance.buildOffsetPath(MAIN_PATH, BORDER_OUTER_PADDING)
+    SWDInstance.newOuterPath = SWDInstance.changeValueY(MAIN_PATH)
+    SWDInstance.newOuterOffsetPath = SWDInstance.changeValueY(SWDOffsetPath)
+    SWDInstance.calcNewTotalViewboxHeight()
+    const SWDContainer = SWDInstance.createContainer()
+    SWDContainer?.init()
+
+    SWDInstance.newInnerPath = SWDInstance.changeValueY(INNER_CONTENT_PATH)
+    SWDInstance.newInnerOffsetPath = SWDInstance.hardcodedOffset()
+
+    const SWDTitleTEST = new SVGFactory(SWDContainer, "text", {
+        x: 50,
+        y: 60,
+        "font-size": 24,
+        fill: "rgba(51, 81, 142, 1)",
+    }).createSvgTag()
+    SWDTitleTEST!.textContent = "VMBO GL | Landbouwbreed"
+    SWDTitleTEST!.style.fontWeight = "bold"
+
+    const SWDSubtitleTEST = new SVGFactory(SWDContainer, "text", {
+        x: 800,
+        y: 60,
+        "font-size": 24,
+        fill: "rgba(51, 81, 142, 1)",
+    }).createSvgTag()
+    SWDSubtitleTEST!.textContent = "2008 - 2012"
+
+    InitPath.createBorderParts(SWDContainer!, SWDInstance.newOuterPath!, SWDInstance.newOuterOffsetPath!, "education")
+    InitPath.createBorderParts(SWDContainer!, SWDInstance.newInnerPath!, SWDInstance.newInnerOffsetPath!, "education")
+}
+
+// Initieert alle education SVG-secties
 export function educationInit()
 {
-    if (!educationContainer)
-        return null
-
-    educationContainer.init()
-
-    const educationBorderFigures = CalcPathProperties.createBorderParts(educationContainer, educationContainerPath, mainPathToString, "education")
-    const educationInnerBorderFigures = CalcPathProperties.createBorderParts(educationContainer, eduactionInnerContainerPath, pathToString, "education-inner")
+    createSWD()
+    createPainter()
+    createWellant()
 }
