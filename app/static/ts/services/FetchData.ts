@@ -1,23 +1,21 @@
-import { LanguageJSON } from "../interfaces/api/language.interface.js"
-
-export class FetchData
+export class FetchData<T> 
 {
     private url: string;
 
-    constructor(url: string)
+    constructor(url: string) 
     {
         this.url = url;
     }
 
-    async fetchJsonData(): Promise<LanguageJSON[]>
+    async fetchJsonData(): Promise<T[]> 
     {
         const res = await fetch(this.url);
 
-        if (!res.ok)
+        if (!res.ok) 
         {
             throw new Error(`Fetch failed with status ${res.status}`);
         }
 
-        return await res.json() as LanguageJSON[];
+        return await res.json() as T[];
     }
 }

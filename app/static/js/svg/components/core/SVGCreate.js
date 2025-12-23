@@ -11,12 +11,13 @@ export class CreateSVG extends SVG {
         super(SVGHTMLID, SVGAttributes, SVGIsDefaultStyling);
         // Houdt de hoofdreferentie naar het root <svg>-element vast
         this.root = null;
-        this.createRootSVG();
+        // this.createRootSVG();
     }
     // Zorgt dat er altijd een geldig root-SVG bestaat.
     // Controleert eerst of een SVG met deze ID al in de DOM staat.
     // Zo niet, wordt er een nieuwe SVG aangemaakt met namespace en attributen.
-    createRootSVG() {
+    createRootSVG(htmlID) {
+        var _a;
         const currentSVG = document.getElementById(this.getSVGID);
         if (currentSVG) {
             // Als het element al bestaat, wordt het opnieuw gekoppeld
@@ -30,7 +31,8 @@ export class CreateSVG extends SVG {
             for (const [key, value] of Object.entries(this.getSVGAttributes))
                 SVGElement.setAttribute(key, String(value));
             // Voeg de nieuwe SVG toe aan de body
-            document.body.appendChild(SVGElement);
+            // document.body.appendChild(SVGElement);
+            (_a = document.getElementById(htmlID)) === null || _a === void 0 ? void 0 : _a.appendChild(SVGElement);
             this.root = SVGElement;
         }
     }

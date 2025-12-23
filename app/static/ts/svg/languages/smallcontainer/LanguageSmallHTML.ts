@@ -85,7 +85,7 @@ export class LanguageSmallContainerHTML
     // Haalt talen data op van API
     public async getAPIData(): Promise<LanguageJSON[]>
     {
-        const fetcher = new FetchData("api/languages");
+        const fetcher = new FetchData<LanguageJSON>("api/languages");
         const result = await fetcher.fetchJsonData();
         this.languageName = result;
         return result;

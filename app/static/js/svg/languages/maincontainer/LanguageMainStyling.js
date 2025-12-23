@@ -1,119 +1,24 @@
-import { SVGFactory } from "../../components/core/SVGFactory.js";
-// export class LanguageMainStyling
-// {
-//     public static createGradient(container: CreateSVG): void 
-//     {
-//         const defs = new SVGFactory(container, "defs").createSvgTag();
-//         const glassGradient = new SVGFactory(defs, "linearGradient", {
-//             id: "ultraDarkGlass",
-//             x1: "0%", y1: "0%",
-//             x2: "100%", y2: "100%"
-//         }).createSvgTag();
-//         new SVGFactory(glassGradient, "stop", {
-//             offset: "0%",
-//             "stop-color": "#01030a"
-//         }).createSvgTag();
-//         new SVGFactory(glassGradient, "stop", {
-//             offset: "30%",
-//             "stop-color": "#000214"
-//         }).createSvgTag();
-//         new SVGFactory(glassGradient, "stop", {
-//             offset: "70%",
-//             "stop-color": "#03050e"
-//         }).createSvgTag();
-//         const filter = new SVGFactory(defs, "filter", {
-//             id: "ultraDarkFrosted",
-//             x: "-50%", y: "-50%",
-//             width: "200%", height: "200%",
-//             filterUnits: "objectBoundingBox"
-//         }).createSvgTag();
-//         new SVGFactory(filter, "feGaussianBlur", {
-//             in: "SourceGraphic",
-//             stdDeviation: "2", 
-//             result: "blur"
-//         }).createSvgTag();
-//         // Extra donkere tint over de blur heen
-//         // new SVGFactory(filter, "feFlood", {
-//         //     "flood-color": "#03080f",
-//         //     "flood-opacity": "0.88"
-//         // }).createSvgTag();
-//         new SVGFactory(filter, "feComposite", {
-//             in: "flood",
-//             in2: "blur",
-//             operator: "in"
-//         }).createSvgTag();
-//         new SVGFactory(filter, "feComposite", {
-//             in: "SourceGraphic",
-//             operator: "over"
-//         }).createSvgTag();
-//     }
+"use strict";
+// import { CreateSVG } from "../../components/core/SVGCreate.js";
+// import { SVGFactory } from "../../components/core/SVGFactory.js";
+// export class LanguageMainStyling {
+//   public static createGradient(container: CreateSVG): void {
+//     const innerPath = "M25,0 L200,0 L250,50 L750,50 L800,0 L975,0 L1000,25 L1000,150 L975,175 L975,500 L1000,525 L1000,650 L975,675 L800,675 L775,650 L225,650 L200,675 L25,675 L0,650 L0,525 L25,500 L25,175 L0,150 L0,25 L25,0";
+//     const defs = new SVGFactory(container, "defs").createSvgTag();
+//     // Mask voor het path
+//     const mask = new SVGFactory(defs, "mask", { id: "glass-mask" }).createSvgTag();
+//     new SVGFactory(mask, "path", { d: innerPath, fill: "white" }).createSvgTag();
+//     // foreignObject met HTML content IN de SVG
+//     const foreignObject = new SVGFactory(container, "foreignObject", {
+//       x: 0,
+//       y: 0,
+//       width: "100%",
+//       height: "100%",
+//       mask: "url(#glass-mask)"
+//     }).createSvgTag();
+//     // Voeg het HTML-element toe met blur en background
+//     foreignObject!.innerHTML = `
+//       <div xmlns="http://www.w3.org/1999/xhtml" class="glass-layer"></div>
+//     `;
+//   }
 // }
-export class LanguageMainStyling {
-    static createGradient(container) {
-        const defs = new SVGFactory(container, "defs").createSvgTag();
-        const glassGradient = new SVGFactory(defs, "linearGradient", {
-            id: "ultraDarkGlass",
-            x1: "0%", y1: "0%",
-            x2: "100%", y2: "100%"
-        }).createSvgTag();
-        new SVGFactory(glassGradient, "stop", {
-            offset: "0%",
-            "stop-color": "#03080f",
-            "stop-opacity": "1"
-        }).createSvgTag();
-        new SVGFactory(glassGradient, "stop", {
-            offset: "50%",
-            "stop-color": "#03080f",
-            "stop-opacity": "1"
-        }).createSvgTag();
-        new SVGFactory(glassGradient, "stop", {
-            offset: "100%",
-            "stop-color": "#03080f",
-            "stop-opacity": "1"
-        }).createSvgTag();
-        const filter = new SVGFactory(defs, "filter", {
-            id: "ultraDarkFrosted",
-            x: "-50%", y: "-50%",
-            width: "200%", height: "200%",
-            filterUnits: "objectBoundingBox"
-        }).createSvgTag();
-        new SVGFactory(filter, "feGaussianBlur", {
-            in: "SourceGraphic",
-            stdDeviation: "6",
-            result: "blur"
-        }).createSvgTag();
-        new SVGFactory(filter, "feColorMatrix", {
-            in: "blur",
-            type: "matrix",
-            values: `
-                1 0 0 0 0
-                0 1 0 0 0
-                0 0 1 0 0
-                0 0 0 0.35 0
-            `,
-            result: "softened"
-        }).createSvgTag();
-        new SVGFactory(filter, "feBlend", {
-            in: "SourceGraphic",
-            in2: "softened",
-            mode: "normal"
-        }).createSvgTag();
-        const innerGradient = new SVGFactory(defs, "linearGradient", {
-            id: "innerBorderGradient",
-            x1: "0%",
-            y1: "0%",
-            x2: "100%", // horizontaal in plaats van verticaal
-            y2: "0%"
-        }).createSvgTag();
-        new SVGFactory(innerGradient, "stop", {
-            offset: "0%",
-            // "stop-color": "#1a2b46"
-            // "stop-color": "#142137"
-            "stop-color": "#101b2b",
-        }).createSvgTag();
-        new SVGFactory(innerGradient, "stop", {
-            offset: "100%",
-            "stop-color": "#010307"
-        }).createSvgTag();
-    }
-}

@@ -25,30 +25,30 @@ export class InitPath {
         }).createSvgTag();
         // Render de binnenrand als één pad met een gedefinieerde fill
         new SVGFactory(innerGroup, "path", {
+            class: "glass",
             d: inner,
-            // fill: "#000214",
-            fill: "url(#ultraDarkGlass)",
-            // filter: "url(#ultraDarkFrosted) url(#borderSegmentShadow)",
+            fill: "rgba(15,20,30,0.05)",
+            filter: "url(#liquidGlass)",
             stroke: "none",
         }).createSvgTag();
         let counter = 0;
+        const figureGroup = new SVGFactory(container, "g", {
+            class: "figure-group"
+        }).createSvgTag();
         // Doorloop alle berekende segmenten en genereer voor elk segment een afzonderlijk pad
         // Dit creëert de visuele border-opdeling rondom het figuur
         for (const figure of getFiguresPath) {
             // let color = counter < 12 ? "#01030a" : "#000214";
             // let color = counter < 12 ? "#010307" : "#010307"
             let color = counter < 12 ? "#0a121c" : "#010307";
-            const createfigurePath = new SVGFactory(container, "path", {
+            const createfigurePath = new SVGFactory(figureGroup, "path", {
                 class: `figure-${counter}`,
-                d: `${figure}Z`, // Sluit segment af
-                stroke: "rgba(51, 81, 142, 0.5)",
-                // stroke: "#010307",
-                "stroke-width": 1,
+                d: `${figure}Z`,
                 opacity: "1",
+                "stroke-width": 1,
+                stroke: "#1a2b46",
                 // fill: "url(#innerBorderGradient)",
-                // fill: "none",
-                fill: "#000214",
-                // filter: "url(#ultraDark)",
+                fill: "none"
             });
             counter++;
             createfigurePath.createSvgTag();

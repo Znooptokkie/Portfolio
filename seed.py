@@ -67,7 +67,7 @@ images = {
     ],
     "final_exam": 
     [
-        {"url": "final_exam/myself.webp", "is_main_image": False},
+        {"url": "final_exam/eindexamen-logo.png", "is_main_image": False},
         {"url": "final_exam/eindexamen-logo.png", "is_main_image": True}
     ],
     "smartgarden_mobile": 

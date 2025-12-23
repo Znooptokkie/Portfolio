@@ -1,5 +1,5 @@
 // import { MainBorder } from "../components/MainBorder"    
-import { LanguageMainStyling } from "./maincontainer/LanguageMainStyling.js"
+// import { LanguageMainStyling } from "./maincontainer/LanguageMainStyling.js"
 import { LanguageAddedFeatures } from "./maincontainer/LanguageAddedFeatures.js"
 import { InitPath } from "../components/InitPath.js"
 import { CreateEducation } from "../education/CreateEducation.js"
@@ -39,7 +39,7 @@ export function exportClass(): null | void
 
     const languageBorderFigures = InitPath.createBorderParts(mainContainer, outerPath,  createStringInnerContainerPath, "language")
 
-    LanguageMainStyling.createGradient(mainContainer)
+    // LanguageMainStyling.createGradient(mainContainer)
     LanguageAddedFeatures.createSideBars(mainContainer)
     LanguageAddedFeatures.createTextInSVG(mainContainer)
 }

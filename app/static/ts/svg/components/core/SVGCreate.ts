@@ -21,13 +21,13 @@ export class CreateSVG extends SVG
     ) 
     {
         super(SVGHTMLID, SVGAttributes, SVGIsDefaultStyling);
-        this.createRootSVG();
+        // this.createRootSVG();
     }
 
     // Zorgt dat er altijd een geldig root-SVG bestaat.
     // Controleert eerst of een SVG met deze ID al in de DOM staat.
     // Zo niet, wordt er een nieuwe SVG aangemaakt met namespace en attributen.
-    private createRootSVG(): void
+    public createRootSVG(htmlID: string): void
     {
         const currentSVG = document.getElementById(this.getSVGID);
 
@@ -47,7 +47,8 @@ export class CreateSVG extends SVG
                 SVGElement.setAttribute(key, String(value));
 
             // Voeg de nieuwe SVG toe aan de body
-            document.body.appendChild(SVGElement);
+            // document.body.appendChild(SVGElement);
+            document.getElementById(htmlID)?.appendChild(SVGElement)
             this.root = SVGElement;
         }
     }

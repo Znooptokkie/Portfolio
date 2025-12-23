@@ -1,3 +1,4 @@
+import random
 from app import db
 from sqlalchemy.orm import joinedload
 
@@ -58,6 +59,19 @@ class Project(db.Model):
     @classmethod
     def get_project_in_progress(cls):
         return cls.query.options(*cls.join_tables()).filter_by(in_progress=True).first()
+
+    @classmethod
+    def get_project_images(cls):
+        projects = cls.query.options(*cls.join_tables()).all()
+        for project in projects:
+            logo_images = [img for img in project.images if "logo" in img.image_url.lower()]
+            project.logo = logo_images[0] if logo_images else None
+    
+            other_images = [img for img in project.images if img not in logo_images]
+            project.other_images = random.sample(other_images, min(3, len(other_images)))
+    
+        return projects
+
     
     @property
     def languages_and_frameworks(self):

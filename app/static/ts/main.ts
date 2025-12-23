@@ -5,12 +5,14 @@ import { CardManager } from "./utils/CardManager.js"
 import { TimelineAnimation } from "./utils/Timeline.js"
 import { CustomSelect } from "./utils/ProjectFilter.js"
 
-import { callAllInstances } from "./svg/profilePicSVG.js";
+import { callAllInstances } from "./svg/profile/profilePicSVG.js";
 import { exportClass } from "./svg/languages/languageInit.js"
 // import { callSmallInstances } from "./svg/languages/smallcontainer/SmallContainers.js"
 import { LanguageSmallContainerHTML, LanguageSmallBorder } from "./svg/languages/smallcontainer/LanguageSmallHTML.js"
 
 import { educationInit } from "./svg/education/educationInit.js"
+
+import { initProjects } from "./svg/projects/projectsInit.js"
 
 // Start animatie voor introductietekst
 const resolver = new TextResolver(
@@ -58,6 +60,10 @@ callAllInstances();
 
 // Exporteer taal-specifieke SVG's
 exportClass()
+// projects()
+
+if (window.location.pathname === "/projecten")
+    initProjects()
 
 // Creëer kleine taalcontainers
 const smallContainer = new LanguageSmallBorder()

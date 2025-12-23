@@ -1,5 +1,5 @@
 // import { MainBorder } from "../components/MainBorder"    
-import { LanguageMainStyling } from "./maincontainer/LanguageMainStyling.js";
+// import { LanguageMainStyling } from "./maincontainer/LanguageMainStyling.js"
 import { LanguageAddedFeatures } from "./maincontainer/LanguageAddedFeatures.js";
 import { InitPath } from "../components/InitPath.js";
 import { InnerPath } from "../components/InnerPath.js";
@@ -22,7 +22,7 @@ export function exportClass() {
         return null;
     // mainContainer.init()
     const languageBorderFigures = InitPath.createBorderParts(mainContainer, outerPath, createStringInnerContainerPath, "language");
-    LanguageMainStyling.createGradient(mainContainer);
+    // LanguageMainStyling.createGradient(mainContainer)
     LanguageAddedFeatures.createSideBars(mainContainer);
     LanguageAddedFeatures.createTextInSVG(mainContainer);
 }

@@ -1,8 +1,8 @@
-import { CreateSVG } from "./components/core/SVGCreate.js";
-import { SVGFactory } from "./components/core/SVGFactory.js";
-import { CalcCircleProperties } from "./components/calculations/CalcCircleProperties.js";
+import { CreateSVG } from "../components/core/SVGCreate.js";
+import { SVGFactory } from "../components/core/SVGFactory.js";
+import { CalcCircleProperties } from "../components/calculations/CalcCircleProperties.js";
 
-import { SVGCircleAttributes, SVGImageAttributes } from "../types/svg/attributes"
+import { SVGCircleAttributes, SVGImageAttributes } from "../../types/svg/attributes.js"
 
 // Controleer of het SVG-element aanwezig is in de DOM en maak het aan
 if (document.getElementById("profile-pic-svg"))
