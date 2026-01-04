@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { FetchData } from "../../services/FetchData.js";
+import { FetchData } from "../../../services/FetchData.js";
 export class FetchProjects {
     constructor() {
         this.projects = [];

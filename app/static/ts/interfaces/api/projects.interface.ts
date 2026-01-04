@@ -20,5 +20,6 @@ export interface ProjectsJSON {
         is_main_image?: boolean;
         project_image_id: number;
     }[];
+    excerpt: string;
 }
 

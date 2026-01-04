@@ -1,7 +1,7 @@
-import { FetchData } from "../../services/FetchData.js"
-import { ProjectsJSON } from "../../interfaces/api/projects.interface.js"
-import { ProjectData } from "../../types/svg/projects.type.js"
-import { Project } from "./Project.js"
+import { FetchData } from "../../../services/FetchData.js"
+import { ProjectsJSON } from "../../../interfaces/api/projects.interface.js"
+import { ProjectData } from "../../../types/svg/projects.type.js"
+import { Project } from "../Project.js"
 
 export class FetchProjects 
 {
@@ -16,7 +16,9 @@ export class FetchProjects
             project: proj.title, 
             languages: proj.languages_and_frameworks ?? [],
             logo: proj.logo,
-            otherImages: proj.other_images ?? []
+            otherImages: proj.other_images ?? [],
+            excerpt: proj.excerpt,
+            link: proj.link
         }));
 
         return this.projects

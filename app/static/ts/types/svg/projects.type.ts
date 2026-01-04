@@ -17,6 +17,8 @@ export type ProjectData = {
         alt_text?: string;
         is_main_image?: boolean;
     }[];
+    excerpt: string;
+    link: string;
 };
 
 

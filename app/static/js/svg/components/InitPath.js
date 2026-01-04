@@ -24,11 +24,21 @@ export class InitPath {
             class: `${category}-inner`
         }).createSvgTag();
         // Render de binnenrand als één pad met een gedefinieerde fill
+        // new SVGFactory(innerGroup, "path", {
+        //     class: "glass",
+        //     d: inner,
+        //     // fill: "rgba(15,20,30,1)",
+        //     // fill: "#010310",
+        //     fill: "rgba(3, 5, 20, 0.05)",
+        //     filter: "url(#ultraDarkFrosted)",
+        //     stroke: "none",
+        //     // opacity: 0.8,
+        // }).createSvgTag();
         new SVGFactory(innerGroup, "path", {
-            class: "glass",
             d: inner,
-            fill: "rgba(15,20,30,0.05)",
-            filter: "url(#liquidGlass)",
+            // fill: "#000214",
+            fill: "url(#ultraDarkGlass)",
+            // filter: "url(#ultraDarkFrosted)",
             stroke: "none",
         }).createSvgTag();
         let counter = 0;
@@ -40,15 +50,19 @@ export class InitPath {
         for (const figure of getFiguresPath) {
             // let color = counter < 12 ? "#01030a" : "#000214";
             // let color = counter < 12 ? "#010307" : "#010307"
-            let color = counter < 12 ? "#0a121c" : "#010307";
+            let color = counter < (Math.floor(getFiguresPath.length / 2)) ? "rgba(3, 5, 20, 1)" : "rgba(3, 5, 18, 1)";
             const createfigurePath = new SVGFactory(figureGroup, "path", {
                 class: `figure-${counter}`,
                 d: `${figure}Z`,
                 opacity: "1",
                 "stroke-width": 1,
-                stroke: "#1a2b46",
+                // stroke: "#1a2b46",
+                // stroke: "rgba(255,255,255,0.05)",
+                // stroke: "rgba(3, 5, 22, 1)",
+                // stroke: "green",
                 // fill: "url(#innerBorderGradient)",
-                fill: "none"
+                fill: color,
+                // fill: "none"
             });
             counter++;
             createfigurePath.createSvgTag();

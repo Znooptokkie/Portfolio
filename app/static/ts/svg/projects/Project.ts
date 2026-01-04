@@ -6,6 +6,8 @@ export class Project
     public languages: string[]
     public logo: ProjectData["logo"]
     public otherImages: ProjectData["otherImages"]
+    public excerpt: string
+    public link: string
 
     constructor(data: ProjectData) 
     {
@@ -13,6 +15,8 @@ export class Project
         this.languages = data.languages
         this.logo = data.logo
         this.otherImages = data.otherImages
+        this.excerpt = data.excerpt
+        this.link = data.link
     }
 
     // Moet niet random zijn maar 3 gekozen afbeeldingen

@@ -7,6 +7,7 @@ const INNER_CONTENT_PATH = "M27,100 L973,100 L973,565 L963,575 L37,575 L27,565 L
 const BORDER_OUTER_PADDING = 3
 
 import { CreateEducation } from "../education/CreateEducation.js"
+import { LanguageMainStyling } from "../languages/maincontainer/LanguageMainStyling.js";
 
 // Creëert de SVG voor Software Developer opleiding
 function createSWD(): void
@@ -48,9 +49,11 @@ function createSWD(): void
     }).createSvgTag()
     SWDSubtitleTEST!.textContent = "2022 - 2025"
 
+
     // Bouw buiten- en binnenranden
     InitPath.createBorderParts(SWDContainer!, SWDInstance.newOuterPath!, SWDInstance.newOuterOffsetPath!, "education")
     InitPath.createBorderParts(SWDContainer!, SWDInstance.newInnerPath!, SWDInstance.newInnerOffsetPath!, "education")
+    LanguageMainStyling.createGradient(SWDContainer!) // GRADIENT!@$%$#^%
 }
 
 // Creëert de SVG voor Schilder opleiding

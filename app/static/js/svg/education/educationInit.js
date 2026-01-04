@@ -5,6 +5,7 @@ const MAIN_PATH = "M25,0 L975,0 L1000,25 L1000,575 L975,600 L25,600 L0,575 L0,25
 const INNER_CONTENT_PATH = "M27,100 L973,100 L973,565 L963,575 L37,575 L27,565 L27,100";
 const BORDER_OUTER_PADDING = 3;
 import { CreateEducation } from "../education/CreateEducation.js";
+import { LanguageMainStyling } from "../languages/maincontainer/LanguageMainStyling.js";
 // Creëert de SVG voor Software Developer opleiding
 function createSWD() {
     const SWDInstance = new CreateEducation("education-svg", "education-content");
@@ -40,6 +41,7 @@ function createSWD() {
     // Bouw buiten- en binnenranden
     InitPath.createBorderParts(SWDContainer, SWDInstance.newOuterPath, SWDInstance.newOuterOffsetPath, "education");
     InitPath.createBorderParts(SWDContainer, SWDInstance.newInnerPath, SWDInstance.newInnerOffsetPath, "education");
+    LanguageMainStyling.createGradient(SWDContainer); // GRADIENT!@$%$#^%
 }
 // Creëert de SVG voor Schilder opleiding
 function createPainter() {
