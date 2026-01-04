@@ -3,7 +3,25 @@
 {% block title %}{{ project.title if project else "Project Not Found" }}{% endblock %}
 
 {% block content %}
+{% if project %}
+<style>
+    #project-slideshow-section
+    {
+        max-width: 80%;
+    }
+</style>
+    <section id="project-slideshow-section">
+        <article>
+            <svg id="project-slideshow-main-svg">
+                
+            </svg>
+        </article>
+        <article class="small-slideshow-svg-article">
 
+        </article>
+    </section>
+{% endif %}
+<!-- 
 <section class="project-detail-section">
     {% if project %}
         <div class="project-detail-svg" data-title="{{ project.title|e }}" data-subtitle="{{ project.year|e }}">
@@ -63,6 +81,6 @@
     {% else %}
         <p>Project niet gevonden.</p>
     {% endif %}
-</section>
-
+</section> -->
+<!-- hoi -->
 {% endblock %}

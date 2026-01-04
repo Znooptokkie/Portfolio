@@ -13,6 +13,7 @@ import { LanguageSmallContainerHTML, LanguageSmallBorder } from "./svg/languages
 import { educationInit } from "./svg/education/educationInit.js"
 
 import { initProjects } from "./svg/projects/projectsInit.js"
+import { projectInit } from "./svg/project/projectInit.js"
 
 // Start animatie voor introductietekst
 const resolver = new TextResolver(
@@ -56,14 +57,25 @@ document.addEventListener("DOMContentLoaded", () =>
 });
 
 // Initialiseer profiel SVG's
-callAllInstances();
-
-// Exporteer taal-specifieke SVG's
-exportClass()
-// projects()
+if (window.location.pathname === "/")
+{
+    callAllInstances();
+    
+    // Exporteer taal-specifieke SVG's
+    exportClass()
+    // projects()
+}
 
 if (window.location.pathname === "/projecten")
     initProjects()
+
+// if (window.location.pathname === "/projecten/%d")
+// {
+//     projectInit()
+// }
+if (window.location.pathname.startsWith("/projecten/"))
+    projectInit()
+
 
 // Creëer kleine taalcontainers
 const smallContainer = new LanguageSmallBorder()
